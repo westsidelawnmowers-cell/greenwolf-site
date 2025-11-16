@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Green Wolf Maintenance & Landscaping Inc.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Professional lawn care, landscaping, and snow clearing in Saskatoon." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-content">
+      <div class="logo-block">
+        <div class="logo-circle">GW</div>
+        <div>
+          <h1>Green Wolf Maintenance & Landscaping Inc.</h1>
+          <p class="tagline">Reliable lawn care & snow clearing in Saskatoon</p>
+        </div>
+      </div>
+      <a href="#quote" class="btn primary-btn">Get a Free Quote</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <h2>Snow, lawn or leaves — we’ve got it handled.</h2>
+        <p>
+          Serving Saskatoon neighborhoods like Rosewood, Lakeview, Wildwood,
+          Lakeridge, Briarwood, Brighton and more.
+        </p>
+
+        <ul class="hero-bullets">
+          <li>Residential & small commercial</li>
+          <li>Seasonal & monthly snow plans</li>
+          <li>Fast response during heavy snowfalls</li>
+        </ul>
+
+        <div class="hero-cta">
+          <a href="#quote" class="btn primary-btn">Request Quote</a>
+          <a href="#contact" class="btn secondary-btn">Call / Text Us</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>Winter Snow Packages</h3>
+        <ul>
+          <li>Driveway & walkway clearing</li>
+          <li>Front steps included</li>
+          <li>Salting available (except asphalt)</li>
+        </ul>
+        <p class="small">Limited spots per neighborhood.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="container">
+      <h2>Services</h2>
+
+      <div class="cards-grid">
+        <article class="card">
+          <h3>Snow Clearing</h3>
+          <p>
+            Fast and reliable snow clearing for driveways, walkways, and entries.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Lawn Care</h3>
+          <p>
+            Weekly or bi-weekly mowing, trimming, and edging.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Yard Cleanups</h3>
+          <p>
+            Full spring and fall cleanups to refresh your property.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- AREAS -->
+  <section class="section section-alt" id="areas">
+    <div class="container">
+      <h2>Service Areas</h2>
+      <ul class="pill-list">
+        <li>Rosewood</li>
+        <li>Lakeview</li>
+        <li>Wildwood</li>
+        <li>Lakeridge</li>
+        <li>Briarwood</li>
+        <li>Brighton</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- QUOTE FORM -->
+  <section class="section" id="quote">
+    <div class="container form-layout">
+      <div>
+        <h2>Request a Free Quote</h2>
+        <p>Fast replies. Clear pricing. No pressure.</p>
+
+        <ul class="hero-bullets">
+          <li>Fast response</li>
+          <li>Clear pricing</li>
+          <li>No commitment required</li>
+        </ul>
+      </div>
+
+      <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
+        <label>
+          Name
+          <input type="text" name="name" required />
+        </label>
+
+        <label>
+          Phone
+          <input type="tel" name="phone" required />
+        </label>
+
+        <label>
+          Email (optional)
+          <input type="email" name="email" />
+        </label>
+
+        <label>
+          Address / Area
+          <input type="text" name="address" required />
+        </label>
+
+        <label>
+          What do you need done?
+          <textarea name="details" rows="4" placeholder="Snow, lawn, cleanup, etc."></textarea>
+        </label>
+
+        <button type="submit" class="btn primary-btn full-width">Submit</button>
+
+        <p class="form-footnote">We never share your info.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section section-alt" id="contact">
+    <div class="container contact-block">
+      <h2>Contact</h2>
+      <p><strong>Phone:</strong> 639-XXX-XXXX</p>
+      <p><strong>Email:</strong> info@yourdomain.ca</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>&copy; <span id="year"></span> Green Wolf Maintenance & Landscaping Inc.</p>
+    </div>
+  </footer>
+
+  <!-- JS FOR YEAR + GLOW EFFECT -->
+  <script>
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Section / hero glow following cursor or touch
+    const glowSections = document.querySelectorAll(".section, .section-alt, .hero");
+
+    glowSections.forEach((section) => {
+      // Mouse move glow
+      section.addEventListener("mousemove", (e) => {
+        const rect = section.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        section.style.setProperty("--mx", `${x}%`);
+        section.style.setProperty("--my", `${y}%`);
+        section.classList.add("is-hovered");
+      });
+
+      section.addEventListener("mouseleave", () => {
+        section.classList.remove("is-hovered");
+      });
+
+      // Touch glow (mobile)
+      section.addEventListener(
+        "touchstart",
+        (e) => {
+          const touch = e.touches[0];
+          const rect = section.getBoundingClientRect();
+          const x = ((touch.clientX - rect.left) / rect.width) * 100;
+          const y = ((touch.clientY - rect.top) / rect.height) * 100;
+          section.style.setProperty("--mx", `${x}%`);
+          section.style.setProperty("--my", `${y}%`);
+          section.classList.add("is-hovered");
+          setTimeout(() => {
+            section.classList.remove("is-hovered");
+          }, 350);
+        },
+        { passive: true }
+      );
+    });
+  </script>
+
+</body>
+</html>
