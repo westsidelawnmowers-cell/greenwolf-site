@@ -325,8 +325,53 @@
     </div>
   </footer>
 
-  <script>
+   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
+  <script>
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Section / hero glow following cursor or touch
+    const glowSections = document.querySelectorAll(".section, .section-alt, .hero");
+
+    glowSections.forEach((section) => {
+      // Mouse move glow
+      section.addEventListener("mousemove", (e) => {
+        const rect = section.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        section.style.setProperty("--mx", `${x}%`);
+        section.style.setProperty("--my", `${y}%`);
+        section.classList.add("is-hovered");
+      });
+
+      section.addEventListener("mouseleave", () => {
+        section.classList.remove("is-hovered");
+      });
+
+      // Touch glow (mobile)
+      section.addEventListener(
+        "touchstart",
+        (e) => {
+          const touch = e.touches[0];
+          const rect = section.getBoundingClientRect();
+          const x = ((touch.clientX - rect.left) / rect.width) * 100;
+          const y = ((touch.clientY - rect.top) / rect.height) * 100;
+          section.style.setProperty("--mx", `${x}%`);
+          section.style.setProperty("--my", `${y}%`);
+          section.classList.add("is-hovered");
+          setTimeout(() => {
+            section.classList.remove("is-hovered");
+          }, 350);
+        },
+        { passive: true }
+      );
+    });
+  </script>
+</body>
+</html>
+
+
