@@ -4,7 +4,10 @@
   <meta charset="UTF-8" />
   <title>Green Wolf Maintenance & Landscaping Inc.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Professional lawn care, landscaping, and snow clearing in Saskatoon." />
+  <meta
+    name="description"
+    content="Professional lawn care, landscaping, and snow clearing in Saskatoon."
+  />
   <link rel="stylesheet" href="styles.css" />
 </head>
 
@@ -22,13 +25,14 @@
     </div>
   </header>
 
+  <!-- HERO -->
   <section class="hero">
     <div class="container hero-grid">
       <div>
         <h2>Snow, lawn or leaves — we’ve got it handled.</h2>
         <p>
           Serving Saskatoon neighborhoods like Rosewood, Lakeview, Wildwood,
-          Lakeridge, Briarwood, Brighton and more with dependable, 
+          Lakeridge, Briarwood, Brighton and more with dependable,
           no-nonsense service.
         </p>
 
@@ -58,6 +62,7 @@
     </div>
   </section>
 
+  <!-- SERVICES -->
   <section class="section" id="services">
     <div class="container">
       <h2>Services</h2>
@@ -90,6 +95,7 @@
     </div>
   </section>
 
+  <!-- AREAS -->
   <section class="section section-alt" id="areas">
     <div class="container">
       <h2>Service Areas</h2>
@@ -106,6 +112,126 @@
     </div>
   </section>
 
+  <!-- WHY CHOOSE US -->
+  <section class="section" id="about">
+    <div class="container">
+      <h2>Why Choose Green Wolf</h2>
+      <div class="cards-grid">
+        <article class="card">
+          <h3>Owner-Operated</h3>
+          <p>
+            You’re not dealing with a call centre. You deal directly with the
+            owner, and the work gets done the way it’s promised.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Route Discipline</h3>
+          <p>
+            We keep routes tight in specific neighborhoods so we can respond
+            faster during storms and stay consistent all season.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Clear Communication</h3>
+          <p>
+            Simple quotes, clear expectations, and honest updates. No games,
+            no surprise add-ons.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section section-alt" id="process">
+    <div class="container">
+      <h2>How It Works</h2>
+      <div class="cards-grid">
+        <article class="card">
+          <h3>1. Request a Quote</h3>
+          <p>
+            Send us your address and what you need done. We review your
+            property and send a clear number.
+          </p>
+        </article>
+        <article class="card">
+          <h3>2. Confirm Service</h3>
+          <p>
+            Once you approve, we lock in your spot on the route or schedule
+            the one-time job.
+          </p>
+        </article>
+        <article class="card">
+          <h3>3. We Show Up</h3>
+          <p>
+            Work gets done on time, photos can be shared on request, and
+            billing is straightforward.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section" id="reviews">
+    <div class="container">
+      <h2>Customer Feedback</h2>
+      <div class="cards-grid">
+        <article class="card">
+          <h3>“Reliable and consistent.”</h3>
+          <p>
+            “Shows up when he says he will. Driveway and walkways are always
+            cleared properly. No drama.”
+          </p>
+        </article>
+        <article class="card">
+          <h3>“Clean work, fair price.”</h3>
+          <p>
+            “Lawn looks sharp every week. Pricing is straightforward and easy
+            to understand.”
+          </p>
+        </article>
+        <article class="card">
+          <h3>“Easy to deal with.”</h3>
+          <p>
+            “Text, quote, done. Simple and fast. That’s all I want as a
+            homeowner.”
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section-alt" id="faq">
+    <div class="container">
+      <h2>FAQ</h2>
+      <div class="cards-grid">
+        <article class="card">
+          <h3>Do you offer seasonal snow contracts?</h3>
+          <p>
+            Yes. We offer per-push, monthly, and full-season options depending on
+            the property and route capacity.
+          </p>
+        </article>
+        <article class="card">
+          <h3>What areas do you cover?</h3>
+          <p>
+            Focus is on Saskatoon neighborhoods like Rosewood, Lakeview,
+            Wildwood, Lakeridge, Briarwood, Brighton and nearby areas.
+          </p>
+        </article>
+        <article class="card">
+          <h3>How do I pay?</h3>
+          <p>
+            E-transfer is preferred. Recurring customers can be billed monthly.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE FORM -->
   <section class="section" id="quote">
     <div class="container form-layout">
       <div>
@@ -122,10 +248,11 @@
         </ul>
       </div>
 
-      <form class="quote-form"
-            method="POST"
-            action="https://formspree.io/f/your-form-id">
-        
+      <form
+        class="quote-form"
+        method="POST"
+        action="https://formspree.io/f/your-form-id"
+      >
         <label>
           Name
           <input type="text" name="name" required />
@@ -143,15 +270,21 @@
 
         <label>
           Address / Area
-          <input type="text" name="address"
-                 placeholder="Street + neighborhood (e.g., Briarwood)"
-                 required />
+          <input
+            type="text"
+            name="address"
+            placeholder="Street + neighborhood (e.g., Briarwood)"
+            required
+          />
         </label>
 
         <label>
           What do you need help with?
-          <textarea name="details" rows="4"
-            placeholder="Snow clearing, lawn care, cleanup, etc."></textarea>
+          <textarea
+            name="details"
+            rows="4"
+            placeholder="Snow clearing, lawn care, cleanup, etc."
+          ></textarea>
         </label>
 
         <button type="submit" class="btn primary-btn full-width">
@@ -165,6 +298,7 @@
     </div>
   </section>
 
+  <!-- CONTACT -->
   <section class="section section-alt" id="contact">
     <div class="container contact-block">
       <div>
@@ -181,9 +315,12 @@
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container footer-content">
-      <p>&copy; <span id="year"></span> Green Wolf Maintenance & Landscaping Inc.</p>
+      <p>
+        &copy; <span id="year"></span> Green Wolf Maintenance & Landscaping Inc.
+      </p>
       <p class="footer-small">Serving Saskatoon and surrounding areas.</p>
     </div>
   </footer>
