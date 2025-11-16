@@ -2,11 +2,226 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>TEST – Green Wolf</title>
+  <title>Green Wolf Maintenance & Landscaping Inc.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Professional lawn care, landscaping, and snow clearing in Saskatoon."
+  />
+  <link rel="stylesheet" href="styles.css" />
 </head>
-<body style="background:#111;color:#f9f9f9;font-family:system-ui;padding:40px;">
-  <h1>TEST PAGE – GREEN WOLF</h1>
-  <p>If you see this text, the new index.html is working.</p>
-  <p>No CSS, no layout. Just a black page with white text.</p>
+
+<body>
+  <header class="site-header">
+    <div class="container header-content">
+      <div class="logo-block">
+        <div class="logo-circle">GW</div>
+        <div>
+          <h1>Green Wolf Maintenance & Landscaping Inc.</h1>
+          <p class="tagline">Reliable lawn care & snow clearing in Saskatoon</p>
+        </div>
+      </div>
+      <a href="#quote" class="btn primary-btn">Get a Free Quote</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <h2>Snow, lawn or leaves — we’ve got it handled.</h2>
+        <p>
+          Serving Saskatoon neighborhoods like Rosewood, Lakeview, Wildwood,
+          Lakeridge, Briarwood, Brighton and more with dependable, no-nonsense service.
+        </p>
+
+        <ul class="hero-bullets">
+          <li>Residential & small commercial</li>
+          <li>Seasonal & monthly snow plans</li>
+          <li>Fast response during heavy snowfalls</li>
+        </ul>
+
+        <div class="hero-cta">
+          <a href="#quote" class="btn primary-btn">Request Quote</a>
+          <a href="#contact" class="btn secondary-btn">Call / Text Us</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>Winter Snow Packages</h3>
+        <ul>
+          <li>Driveway & walkway clearing</li>
+          <li>Front steps included</li>
+          <li>Salting available (except asphalt)</li>
+        </ul>
+        <p class="small">Limited spots per neighborhood for faster response.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="container">
+      <h2>Services</h2>
+
+      <div class="cards-grid">
+        <article class="card">
+          <h3>Snow Clearing</h3>
+          <p>
+            Fast, reliable snow clearing for driveways, walkways and front entries.
+            Flexible options for per-push, monthly, or full seasonal coverage.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Lawn Care</h3>
+          <p>
+            Weekly and bi-weekly mowing, trimming and edge cleanup so your yard
+            stays clean and sharp all season.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Yard Cleanups</h3>
+          <p>
+            Spring and fall cleanups, leaf removal and basic landscape maintenance
+            to reset your property.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- AREAS -->
+  <section class="section section-alt" id="areas">
+    <div class="container">
+      <h2>Service Areas</h2>
+      <p>Focused routes for better response time and consistent pricing:</p>
+      <ul class="pill-list">
+        <li>Rosewood</li>
+        <li>Lakeview</li>
+        <li>Wildwood</li>
+        <li>Lakeridge</li>
+        <li>Briarwood</li>
+        <li>Brighton</li>
+        <li>Other nearby Saskatoon neighborhoods</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE -->
+  <section class="section" id="why">
+    <div class="container">
+      <h2>Why Choose Green Wolf</h2>
+      <div class="cards-grid">
+        <article class="card">
+          <h3>Owner-Operated</h3>
+          <p>
+            You deal directly with the owner. Work is done the way it’s promised,
+            not left to chance.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Route Discipline</h3>
+          <p>
+            We keep routes tight in selected neighborhoods so we can show up
+            faster during storms and stay consistent.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Clear Communication</h3>
+          <p>
+            Simple quotes, clear expectations, honest updates. No games and no
+            surprise extras after the job is done.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE FORM -->
+  <section class="section section-alt" id="quote">
+    <div class="container form-layout">
+      <div>
+        <h2>Request a Free Quote</h2>
+        <p>Fast replies. Clear pricing. No pressure.</p>
+
+        <ul class="hero-bullets">
+          <li>Most quotes sent the same day</li>
+          <li>Text or email – whatever is easier</li>
+          <li>No long-term commitment required</li>
+        </ul>
+      </div>
+
+      <form
+        method="POST"
+        class="quote-form"
+        action="https://formspree.io/f/your-form-id"
+      >
+        <label>
+          Name
+          <input type="text" name="name" required />
+        </label>
+
+        <label>
+          Phone
+          <input type="tel" name="phone" required />
+        </label>
+
+        <label>
+          Email (optional)
+          <input type="email" name="email" />
+        </label>
+
+        <label>
+          Address / Area
+          <input
+            type="text"
+            name="address"
+            placeholder="Street + neighborhood (e.g., Briarwood)"
+            required
+          />
+        </label>
+
+        <label>
+          What do you need done?
+          <textarea
+            name="details"
+            rows="4"
+            placeholder="Snow clearing, lawn care, cleanup, etc."
+          ></textarea>
+        </label>
+
+        <button type="submit" class="btn primary-btn full-width">Submit</button>
+
+        <p class="form-footnote">
+          This form sends directly to our inbox. We never share your info.
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="container contact-block">
+      <h2>Contact</h2>
+      <p>Best way to reach us:</p>
+      <p class="contact-line"><strong>Phone:</strong> 639-XXX-XXXX</p>
+      <p class="contact-line"><strong>Email:</strong> info@yourdomain.ca</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>&copy; <span id="year"></span> Green Wolf Maintenance & Landscaping Inc.</p>
+      <p class="footer-small">Serving Saskatoon and surrounding areas.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
