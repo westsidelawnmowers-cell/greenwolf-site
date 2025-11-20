@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Gallery | Green Wolf Maintenance & Landscaping</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Gallery of lawn care, cleanups, and snow removal projects from Green Wolf Maintenance & Landscaping."
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-content">
+        <div class="logo-block">
+          <div class="logo-circle">GW</div>
+          <div>
+            <h1>Green Wolf Maintenance & Landscaping Inc.</h1>
+            <p class="tagline">Work we’re proud to show</p>
+          </div>
+        </div>
+        <nav aria-label="Main navigation">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="gallery.html" class="active">Gallery</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="index.html#quote">Quote</a></li>
+          </ul>
+        </nav>
+        <a href="index.html#quote" class="btn primary-btn">Get a Free Quote</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="subheading">Recent work</p>
+          <h2>Gallery of lawns, cleanups and winter response.</h2>
+          <p class="lead">
+            A sample of tidy lawns, fall cleanups, fresh edges and quick snow turnarounds.
+            Replace these placeholders with your own before / after photos.
+          </p>
+          <div class="hero-cta">
+            <a class="btn primary-btn" href="index.html#quote">Book similar work</a>
+            <a class="btn secondary-btn" href="services.html">See service menu</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <h3>How to add your photos</h3>
+          <ul>
+            <li>Swap each gallery card with an image tag</li>
+            <li>Use descriptive captions for quick context</li>
+            <li>Keep before/after pairs side by side</li>
+          </ul>
+          <p class="small">Images can be stored locally or via a CDN.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <div class="container">
+        <div class="section-header">
+          <p class="subheading">Gallery</p>
+          <h2>Before/after snapshots</h2>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-card"><span>Winter route cleared</span></div>
+          <div class="gallery-card"><span>Driveway + walk salt</span></div>
+          <div class="gallery-card"><span>Fall leaf cleanup</span></div>
+          <div class="gallery-card"><span>Weekly mow</span></div>
+          <div class="gallery-card"><span>Edge + trim</span></div>
+          <div class="gallery-card"><span>Spring power-rake</span></div>
+          <div class="gallery-card"><span>Hedge tidy</span></div>
+          <div class="gallery-card"><span>Landscape refresh</span></div>
+          <div class="gallery-card"><span>Snowstorm response</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-alt">
+      <div class="container split">
+        <div class="cta">
+          <h3>Want your property here?</h3>
+          <p class="small">We love adding before/after shots when clients approve.</p>
+          <div class="cta-actions">
+            <a class="btn secondary-btn" href="index.html#quote">Request service</a>
+            <a class="btn ghost-btn" href="reviews.html">See reviews</a>
+          </div>
+        </div>
+        <div class="highlight-box">
+          <h3>Photo tips</h3>
+          <p class="small">Take wide shots in good light and save both before and after angles.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="container footer-content">
+        <p>&copy; <span id="year"></span> Green Wolf Maintenance & Landscaping Inc.</p>
+        <p class="footer-small">Proudly serving Saskatoon.</p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Reviews | Green Wolf Maintenance & Landscaping</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Client reviews for Green Wolf Maintenance & Landscaping, plus a direct link to leave a Google review."
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-content">
+        <div class="logo-block">
+          <div class="logo-circle">GW</div>
+          <div>
+            <h1>Green Wolf Maintenance & Landscaping Inc.</h1>
+            <p class="tagline">Client feedback & Google reviews</p>
+          </div>
+        </div>
+        <nav aria-label="Main navigation">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="reviews.html" class="active">Reviews</a></li>
+            <li><a href="index.html#quote">Quote</a></li>
+          </ul>
+        </nav>
+        <a href="index.html#quote" class="btn primary-btn">Get a Free Quote</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="subheading">Trust & proof</p>
+          <h2>Hear from neighbors and leave your own Google review.</h2>
+          <p class="lead">
+            We keep routes tight and communication clear. Add your feedback on Google so other
+            homeowners know what to expect.
+          </p>
+          <div class="hero-cta">
+            <a class="btn primary-btn" href="#google">Open Google reviews</a>
+            <a class="btn secondary-btn" href="index.html#quote">Book a service</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <h3>How to connect to Google Reviews</h3>
+          <ul>
+            <li>Replace the placeholder Google Maps review link with your business link</li>
+            <li>Encourage clients to click “Write a review” on Maps</li>
+            <li>Embed the Google Places widget if your host allows JavaScript</li>
+          </ul>
+          <p class="small">Below is a ready-to-use button for your Google listing.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="google">
+      <div class="container split">
+        <div>
+          <div class="section-header">
+            <p class="subheading">Google reviews</p>
+            <h2>Read & leave a review</h2>
+          </div>
+          <p class="lead">
+            Click the button to open Google Maps directly to our business page, where you can read
+            more feedback or share your own experience.
+          </p>
+          <div class="hero-cta">
+            <a
+              class="btn primary-btn"
+              href="https://www.google.com/maps/place/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open Google reviews
+            </a>
+            <a class="btn secondary-btn" href="mailto:info@yourdomain.ca">Send private feedback</a>
+          </div>
+          <p class="small">
+            Tip: replace the placeholder Maps URL above with your exact Google review link so
+            clients go straight to the right place.
+          </p>
+        </div>
+        <div class="highlight-box">
+          <h3>Embed widget (optional)</h3>
+          <p class="small">
+            If your host allows, you can embed a Google Places reviews widget here using your Place
+            ID. For now, this block keeps your call-to-action prominent and mobile-friendly.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-alt" id="testimonials">
+      <div class="container">
+        <div class="section-header">
+          <p class="subheading">Client stories</p>
+          <h2>Highlights from homeowners</h2>
+        </div>
+        <div class="review-grid">
+          <article class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>
+              “Showed up during a blizzard, cleared the driveway and walks fast, and checked back in
+              the evening when the wind picked up. Exactly what we needed.”
+            </p>
+            <div class="review-footer">
+              <span>Winter client, Rosewood</span>
+              <span class="small">Snow plan</span>
+            </div>
+          </article>
+
+          <article class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>
+              “Consistent mowing, neat edging, and easy texts to confirm schedule changes. Yard has
+              never looked better.”
+            </p>
+            <div class="review-footer">
+              <span>Lakeview homeowner</span>
+              <span class="small">Weekly mowing</span>
+            </div>
+          </article>
+
+          <article class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>
+              “Quick quote, clear pricing, and the fall cleanup removed every bag of leaves. Great
+              experience start to finish.”
+            </p>
+            <div class="review-footer">
+              <span>Briarwood homeowner</span>
+              <span class="small">Fall cleanup</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container split">
+        <div class="cta">
+          <h3>Ready to join the route?</h3>
+          <p class="small">Tell us what you need and we’ll respond quickly.</p>
+          <div class="cta-actions">
+            <a class="btn secondary-btn" href="index.html#quote">Request a quote</a>
+            <a class="btn ghost-btn" href="services.html">View services</a>
+          </div>
+        </div>
+        <div class="highlight-box">
+          <h3>Need help with the Google link?</h3>
+          <p class="small">
+            Send us your Google Maps listing URL and we’ll plug it into the button above so clients
+            can review you without searching.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="container footer-content">
+        <p>&copy; <span id="year"></span> Green Wolf Maintenance & Landscaping Inc.</p>
+        <p class="footer-small">Owner-operated service in Saskatoon.</p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
