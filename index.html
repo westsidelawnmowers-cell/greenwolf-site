@@ -9,358 +9,7 @@
     content="Professional lawn care, landscaping, and snow clearing in Saskatoon."
   />
   <link rel="stylesheet" href="style.css" />
-  <style>
-    /* RESET */
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    /* BASE */
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #e5f9ed, #f4f4f5);
-      color: #111827;
-      line-height: 1.6;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    /* LAYOUT */
-    .container {
-      width: 100%;
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 1.25rem;
-    }
-
-    /* HEADER */
-    .site-header {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid #e5e7eb;
-      position: sticky;
-      top: 0;
-      z-index: 20;
-    }
-
-    .header-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem 0;
-      gap: 1.2rem;
-    }
-
-    .logo-block {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .logo-circle {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 1.2rem;
-      background: radial-gradient(circle at 0 0, #22c55e, #15803d);
-      color: #fff;
-      box-shadow: 0 6px 16px rgba(34, 197, 94, 0.45);
-    }
-
-    /* TYPOGRAPHY */
-    h1 {
-      font-size: 1.1rem;
-      color: #111827;
-    }
-
-    h2 {
-      font-size: 1.45rem;
-      color: #064e3b;
-      margin-bottom: 0.9rem;
-    }
-
-    h3 {
-      font-size: 1.02rem;
-      margin-bottom: 0.4rem;
-      color: #111827;
-    }
-
-    .tagline {
-      font-size: 0.88rem;
-      color: #6b7280;
-    }
-
-    /* HERO */
-    .hero {
-      padding: 3rem 0 2.5rem;
-      background: linear-gradient(135deg, #ecfdf3, #f9fafb);
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
-      gap: 2rem;
-      align-items: center;
-    }
-
-    .hero p {
-      color: #374151;
-      margin-bottom: 1rem;
-    }
-
-    .hero-bullets {
-      list-style: none;
-      margin-bottom: 1.3rem;
-    }
-
-    .hero-bullets li {
-      position: relative;
-      padding-left: 1.4rem;
-      margin-bottom: 0.35rem;
-      color: #374151;
-      font-size: 0.95rem;
-    }
-
-    .hero-bullets li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      top: 0;
-      color: #16a34a;
-    }
-
-    .hero-cta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-    }
-
-    /* HERO CARD */
-    .hero-card {
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-radius: 1.1rem;
-      padding: 1.3rem 1.2rem;
-      box-shadow: 0 14px 40px rgba(15, 23, 42, 0.12);
-    }
-
-    .hero-card ul {
-      list-style: none;
-      margin: 0 0 0.85rem;
-      padding-left: 0;
-      color: #374151;
-    }
-
-    .hero-card li {
-      margin-bottom: 0.4rem;
-      position: relative;
-      padding-left: 1.1rem;
-    }
-
-    .hero-card li::before {
-      content: "";
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      left: 0.2rem;
-      top: 0.55rem;
-      background: #16a34a;
-      box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.18);
-    }
-
-    .small {
-      font-size: 0.85rem;
-      color: #6b7280;
-    }
-
-    /* SECTIONS */
-    .section,
-    .section-alt {
-      padding: 2.6rem 0;
-    }
-
-    .section {
-      background: #eef2f7;
-    }
-
-    .section-alt {
-      background: #ffffff;
-    }
-
-    /* CARDS GRID */
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 1.4rem;
-    }
-
-    .card {
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-radius: 1rem;
-      padding: 1.1rem;
-      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
-    }
-
-    /* PILL LIST */
-    .pill-list {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-top: 0.6rem;
-    }
-
-    .pill-list li {
-      background: #f9fafb;
-      padding: 0.45rem 0.9rem;
-      border-radius: 999px;
-      border: 1px solid #d1d5db;
-      font-size: 0.85rem;
-    }
-
-    /* FORM */
-    .form-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.65fr);
-      gap: 1.9rem;
-      align-items: flex-start;
-    }
-
-    .quote-form {
-      background: #ffffff;
-      padding: 1.2rem;
-      border-radius: 1rem;
-      border: 1px solid #e5e7eb;
-      box-shadow: 0 12px 35px rgba(15, 23, 42, 0.09);
-    }
-
-    .quote-form label {
-      display: block;
-      font-size: 0.8rem;
-      margin-bottom: 0.65rem;
-      color: #374151;
-    }
-
-    .quote-form input,
-    .quote-form textarea {
-      width: 100%;
-      margin-top: 0.25rem;
-      border-radius: 0.55rem;
-      border: 1px solid #d1d5db;
-      padding: 0.48rem 0.55rem;
-      background: #f9fafb;
-      color: #111827;
-      font-size: 0.86rem;
-    }
-
-    .quote-form input:focus,
-    .quote-form textarea:focus {
-      outline: none;
-      border-color: #16a34a;
-      box-shadow: 0 0 0 1px rgba(22, 163, 74, 0.25);
-    }
-
-    .form-footnote {
-      margin-top: 0.9rem;
-      font-size: 0.82rem;
-      color: #6b7280;
-    }
-
-    /* CONTACT */
-    .contact-block {
-      display: flex;
-      flex-direction: column;
-      gap: 0.45rem;
-    }
-
-    .contact-line {
-      font-size: 0.95rem;
-    }
-
-    /* BUTTONS */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.55rem 1.2rem;
-      border-radius: 999px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      border: 1px solid transparent;
-      cursor: pointer;
-      transition: 0.12s ease;
-    }
-
-    .primary-btn {
-      background: linear-gradient(135deg, #22c55e, #16a34a);
-      color: #052e16;
-      box-shadow: 0 10px 24px rgba(34, 197, 94, 0.4);
-    }
-
-    .primary-btn:hover {
-      transform: translateY(-1px);
-    }
-
-    .secondary-btn {
-      border-color: #9ca3af;
-      background: #ffffff;
-      color: #1f2937;
-    }
-
-    .full-width {
-      width: 100%;
-    }
-
-    /* FOOTER */
-    .site-footer {
-      background: #ffffff;
-      padding: 1.2rem 0;
-      border-top: 1px solid #e5e7eb;
-    }
-
-    .footer-content {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-      font-size: 0.8rem;
-      color: #6b7280;
-    }
-
-    .footer-small {
-      font-size: 0.76rem;
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      .hero-grid,
-      .form-layout {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .hero {
-        padding-top: 2rem;
-      }
-
-      .header-content {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-  </style>
-</head>
+  </head>
 
 <body>
   <header class="site-header">
@@ -413,32 +62,132 @@
   <!-- SERVICES -->
   <section class="section" id="services">
     <div class="container">
-      <h2>Services</h2>
+      <div class="section-heading">
+        <div>
+          <h2>Services & Packages</h2>
+          <p class="muted">Pick a service to preview quick, editable package ideas.</p>
+        </div>
+        <div class="tabs" role="tablist" aria-label="Service tabs">
+          <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-lawn" data-target="panel-lawn">Lawncare</button>
+          <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-fall" data-target="panel-fall">Fall Cleanups</button>
+          <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-snow" data-target="panel-snow">Snow Clearing</button>
+          <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-land" data-target="panel-land">Landscaping</button>
+        </div>
+      </div>
 
-      <div class="cards-grid">
-        <article class="card">
-          <h3>Snow Clearing</h3>
-          <p>
-            Fast, reliable snow clearing for driveways, walkways and front entries.
-            Flexible options for per-push, monthly, or full seasonal coverage.
-          </p>
-        </article>
+      <div class="tab-panels">
+        <div class="tab-panel active" id="panel-lawn" role="tabpanel">
+          <div class="panel-grid">
+            <div class="packages">
+              <article class="card package-card">
+                <h3>Weekly Cut</h3>
+                <p>Simple weekly mow, trim, and blow-off for small lots.</p>
+              </article>
+              <article class="card package-card">
+                <h3>Premium Groom</h3>
+                <p>Weekly mow, edging refresh, and light garden touch-ups.</p>
+              </article>
+              <article class="card package-card">
+                <h3>Season Pass</h3>
+                <p>Season-long mowing plan with spring tune-up and fall tidy.</p>
+              </article>
+            </div>
+            <div class="service-scene lawn-scene" aria-hidden="true">
+              <div class="grass-lines"></div>
+              <div class="mower"></div>
+              <div class="mower-handle"></div>
+              <div class="mower-wheel left"></div>
+              <div class="mower-wheel right"></div>
+              <div class="worker">
+                <div class="head"></div>
+                <div class="body"></div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        <article class="card">
-          <h3>Lawn Care</h3>
-          <p>
-            Weekly and bi-weekly mowing, trimming and edge cleanup so your yard
-            stays clean and sharp all season.
-          </p>
-        </article>
+        <div class="tab-panel" id="panel-fall" role="tabpanel">
+          <div class="panel-grid">
+            <div class="packages">
+              <article class="card package-card">
+                <h3>Leaf Sweep</h3>
+                <p>Front-yard leaf pickup and haul-away starter option.</p>
+              </article>
+              <article class="card package-card">
+                <h3>Full Reset</h3>
+                <p>Leaf removal, gutter scoop, and end-of-season waste bagging.</p>
+              </article>
+              <article class="card package-card">
+                <h3>Deep Clean</h3>
+                <p>Leaf removal, shrub trimming, and garden bed cutback prep.</p>
+              </article>
+            </div>
+            <div class="service-scene fall-scene" aria-hidden="true">
+              <div class="rake"></div>
+              <div class="leaf leaf-one"></div>
+              <div class="leaf leaf-two"></div>
+              <div class="leaf leaf-three"></div>
+            </div>
+          </div>
+        </div>
 
-        <article class="card">
-          <h3>Yard Cleanups</h3>
-          <p>
-            Spring and fall cleanups, leaf removal and basic landscape maintenance
-            to reset your property.
-          </p>
-        </article>
+        <div class="tab-panel" id="panel-snow" role="tabpanel">
+          <div class="panel-grid">
+            <div class="packages">
+              <article class="card package-card">
+                <h3>Per Push</h3>
+                <p>On-demand driveway and walkway clearing with salting option.</p>
+              </article>
+              <article class="card package-card">
+                <h3>Monthly Plan</h3>
+                <p>Flat-rate coverage for typical snowfall with quick response.</p>
+              </article>
+              <article class="card package-card">
+                <h3>Season Secure</h3>
+                <p>Priority clearing all winter, including front steps and paths.</p>
+              </article>
+            </div>
+            <div class="service-scene snow-scene" aria-hidden="true">
+              <div class="snow-ground"></div>
+              <div class="snow-worker">
+                <div class="head"></div>
+                <div class="body"></div>
+                <div class="arm"></div>
+              </div>
+              <div class="shovel"></div>
+              <div class="snow-pile"></div>
+              <div class="snowflake flake-one"></div>
+              <div class="snowflake flake-two"></div>
+              <div class="snowflake flake-three"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="panel-land" role="tabpanel">
+          <div class="panel-grid">
+            <div class="packages">
+              <article class="card package-card">
+                <h3>Plant & Mulch</h3>
+                <p>Fresh bed mulch, seasonal planting, and edge refresh.</p>
+              </article>
+              <article class="card package-card">
+                <h3>Stone Starter</h3>
+                <p>Small path or accent rock install with tidy borders.</p>
+              </article>
+              <article class="card package-card">
+                <h3>Landscape Plus</h3>
+                <p>Custom plan layout with lighting accents and bed shaping.</p>
+              </article>
+            </div>
+            <div class="service-scene land-scene" aria-hidden="true">
+              <div class="planter"></div>
+              <div class="sprout sprout-one"></div>
+              <div class="sprout sprout-two"></div>
+              <div class="sprout sprout-three"></div>
+              <div class="stone"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -573,6 +322,29 @@
   <script>
     // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Simple tabs for services
+    const tabButtons = document.querySelectorAll(".tab-btn");
+    const tabPanels = document.querySelectorAll(".tab-panel");
+
+    tabButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const target = btn.getAttribute("data-target");
+
+        tabButtons.forEach((b) => {
+          b.classList.remove("active");
+          b.setAttribute("aria-selected", "false");
+        });
+        tabPanels.forEach((panel) => panel.classList.remove("active"));
+
+        btn.classList.add("active");
+        btn.setAttribute("aria-selected", "true");
+        const activePanel = document.getElementById(target);
+        if (activePanel) {
+          activePanel.classList.add("active");
+        }
+      });
+    });
   </script>
 </body>
 </html>
