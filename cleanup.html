@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Yard Cleanups | Green Wolf Maintenance & Landscaping Inc.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Spring and fall yard cleanups, leaf removal, and light landscape maintenance." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-content">
+      <div class="logo-block">
+        <div class="logo-circle">
+          <img src="Green-Wolf.png" alt="Green Wolf Logo" />
+        </div>
+        <div>
+          <h1>Green Wolf Maintenance & Landscaping Inc.</h1>
+          <p class="tagline">Reset your property with tidy cleanups</p>
+        </div>
+      </div>
+
+      <nav class="main-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="snow.html">Snow</a>
+        <a href="lawn.html">Lawn</a>
+        <a href="cleanup.html">Cleanups</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <a href="#quote" class="btn primary-btn">Book a Cleanup</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <h2>Spring & fall cleanups made simple.</h2>
+        <p>
+          From leaf removal to light landscaping touch-ups, we tidy your yard so it’s ready for the next season.
+        </p>
+        <ul class="hero-bullets">
+          <li>Leaf and debris removal</li>
+          <li>Garden bed refresh and trimming</li>
+          <li>Haul-away available for branches and waste</li>
+        </ul>
+        <div class="hero-cta">
+          <a href="#quote" class="btn primary-btn">Plan your cleanup</a>
+          <a href="index.html#contact" class="btn secondary-btn">Call / Text Us</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h3>Cleanup Bundles</h3>
+        <ul>
+          <li>Leaf & Debris Sweep</li>
+          <li>Garden Bed Refresh</li>
+          <li>Full Fall or Spring Reset</li>
+        </ul>
+        <p class="small">Custom bundles available for rentals and listings.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="details">
+    <div class="container">
+      <h2>What we handle</h2>
+      <div class="cards-grid">
+        <article class="card">
+          <h3>Leaf & Debris Removal</h3>
+          <p>Leaf blowing, raking, and bagging to clear lawns, walks, and beds.</p>
+        </article>
+        <article class="card">
+          <h3>Pruning & Trimming</h3>
+          <p>Light shrub and hedge trims to keep entrances and paths clear.</p>
+        </article>
+        <article class="card">
+          <h3>Haul-away Option</h3>
+          <p>We can remove bagged waste or leave neatly stacked for city pickup.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="quote">
+    <div class="container form-layout">
+      <div>
+        <h2>Request a Cleanup Quote</h2>
+        <p>Tell us what needs attention. We’ll tailor a bundle to your property.</p>
+        <ul class="hero-bullets">
+          <li>Same-week scheduling when possible</li>
+          <li>Haul-away pricing upfront</li>
+          <li>Great for move-ins and move-outs</li>
+        </ul>
+      </div>
+
+      <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
+        <label>
+          Name
+          <input type="text" name="name" required />
+        </label>
+        <label>
+          Phone
+          <input type="tel" name="phone" required />
+        </label>
+        <label>
+          Email (optional)
+          <input type="email" name="email" />
+        </label>
+        <label>
+          Address / Area
+          <input
+            type="text"
+            name="address"
+            placeholder="Street + neighborhood (e.g., Lakeview)"
+            required
+          />
+        </label>
+        <label>
+          What do you need cleaned?
+          <textarea
+            name="details"
+            rows="4"
+            placeholder="Leaves, beds, branches, etc."
+          ></textarea>
+        </label>
+        <button type="submit" class="btn primary-btn full-width">Submit</button>
+        <p class="form-status" aria-live="polite"></p>
+        <p class="form-footnote">This form sends directly to our inbox. We never share your info.</p>
+      </form>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>&copy; <span id="year"></span> Green Wolf Maintenance & Landscaping Inc.</p>
+      <p class="footer-small">Serving Saskatoon and surrounding areas.</p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" type="button" aria-label="Back to top">↑</button>
+  <script src="script.js"></script>
+</body>
+</html>

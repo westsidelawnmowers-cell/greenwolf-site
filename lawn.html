@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lawn Care | Green Wolf Maintenance & Landscaping Inc.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Weekly and bi-weekly lawn mowing, trimming, and edging for Saskatoon yards." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-content">
+      <div class="logo-block">
+        <div class="logo-circle">
+          <img src="Green-Wolf.png" alt="Green Wolf Logo" />
+        </div>
+        <div>
+          <h1>Green Wolf Maintenance & Landscaping Inc.</h1>
+          <p class="tagline">Consistent, clean lawn care</p>
+        </div>
+      </div>
+
+      <nav class="main-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="snow.html">Snow</a>
+        <a href="lawn.html">Lawn</a>
+        <a href="cleanup.html">Cleanups</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <a href="#quote" class="btn primary-btn">Start Lawn Service</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <h2>Keep your yard sharp all season.</h2>
+        <p>
+          Reliable mowing, clean edges, and tidy clippings removal so your property stays welcoming week after week.
+        </p>
+        <ul class="hero-bullets">
+          <li>Weekly or bi-weekly mowing schedules</li>
+          <li>Trimming and edging included each visit</li>
+          <li>Simple seasonal or per-cut pricing</li>
+        </ul>
+        <div class="hero-cta">
+          <a href="#quote" class="btn primary-btn">Set your schedule</a>
+          <a href="index.html#contact" class="btn secondary-btn">Call / Text Us</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h3>Lawn Programs</h3>
+        <ul>
+          <li>Weekly Mow & Trim: best curb appeal</li>
+          <li>Bi-weekly Budget Plan</li>
+          <li>One-time tidy cuts for listings</li>
+        </ul>
+        <p class="small">Route-based pricing for Rosewood, Lakeview, Wildwood, and nearby.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="details">
+    <div class="container">
+      <h2>Service details</h2>
+      <div class="cards-grid">
+        <article class="card">
+          <h3>Trim & Edge Included</h3>
+          <p>Line trimming around fences, trees, and walks keeps everything uniform.</p>
+        </article>
+        <article class="card">
+          <h3>Clipping Removal</h3>
+          <p>We bag and remove clippings on request, or mulch for a healthier lawn.</p>
+        </article>
+        <article class="card">
+          <h3>Consistent Schedule</h3>
+          <p>Weather-aware scheduling with text notifications if timing shifts.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="quote">
+    <div class="container form-layout">
+      <div>
+        <h2>Request a Lawn Quote</h2>
+        <p>Share your address and preferred frequency. We’ll confirm routes and pricing.</p>
+        <ul class="hero-bullets">
+          <li>Weekly or bi-weekly options</li>
+          <li>No hidden add-ons</li>
+          <li>Easy pause for vacations</li>
+        </ul>
+      </div>
+
+      <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
+        <label>
+          Name
+          <input type="text" name="name" required />
+        </label>
+        <label>
+          Phone
+          <input type="tel" name="phone" required />
+        </label>
+        <label>
+          Email (optional)
+          <input type="email" name="email" />
+        </label>
+        <label>
+          Address / Area
+          <input
+            type="text"
+            name="address"
+            placeholder="Street + neighborhood (e.g., Rosewood)"
+            required
+          />
+        </label>
+        <label>
+          How often do you want service?
+          <textarea
+            name="details"
+            rows="4"
+            placeholder="Weekly, bi-weekly, or one-time"
+          ></textarea>
+        </label>
+        <button type="submit" class="btn primary-btn full-width">Submit</button>
+        <p class="form-status" aria-live="polite"></p>
+        <p class="form-footnote">This form sends directly to our inbox. We never share your info.</p>
+      </form>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>&copy; <span id="year"></span> Green Wolf Maintenance & Landscaping Inc.</p>
+      <p class="footer-small">Serving Saskatoon and surrounding areas.</p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" type="button" aria-label="Back to top">↑</button>
+  <script src="script.js"></script>
+</body>
+</html>
