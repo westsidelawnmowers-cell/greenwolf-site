@@ -195,6 +195,8 @@
 
         <button type="submit" class="btn primary-btn full-width">Submit</button>
 
+        <p class="form-status" aria-live="polite"></p>
+
         <p class="form-footnote">
           This form sends directly to our inbox. We never share your info.
         </p>
@@ -220,9 +222,8 @@
     </div>
   </footer>
 
-  <script>
-    // Footer year
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  <button class="back-to-top" type="button" aria-label="Back to top">↑</button>
+
+  <script src="script.js"></script>
 </body>
 </html>

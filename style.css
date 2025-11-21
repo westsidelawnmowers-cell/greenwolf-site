@@ -37,6 +37,17 @@ img {
   display: block;
 }
 
+.will-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* LAYOUT */
 .container {
   width: 100%;
@@ -354,6 +365,22 @@ p {
   color: #c7d2fe;
 }
 
+.form-status {
+  min-height: 1.2rem;
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  transition: color 0.2s ease;
+}
+
+.form-status[data-type="error"] {
+  color: #f87171;
+}
+
+.form-status[data-type="info"] {
+  color: #34d399;
+}
+
 /* CONTACT */
 .contact-block {
   display: flex;
@@ -484,6 +511,33 @@ p {
     transform: translateX(40%);
     opacity: 0.4;
   }
+}
+
+.back-to-top {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: linear-gradient(145deg, rgba(52, 211, 153, 0.18), rgba(29, 185, 84, 0.22));
+  color: var(--white);
+  font-size: 1.2rem;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.back-to-top.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }
 
 /* RESPONSIVE */
