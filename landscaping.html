@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Landscaping | Green Wolf Maintenance & Landscaping Inc.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Planting, bed design, and stonework to elevate Saskatoon properties." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-content">
+      <div class="logo-block">
+        <div class="logo-circle">
+          <img src="Green-Wolf.png" alt="Green Wolf Logo" />
+        </div>
+        <div class="logo-text">
+          <h1>Green Wolf Maintenance & Landscaping Inc.</h1>
+          <p class="tagline">Thoughtful outdoor design</p>
+        </div>
+      </div>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="index.html#services">Services</a>
+        <a href="snow.html">Snow</a>
+        <a href="lawn.html">Lawn</a>
+        <a href="landscaping.html" class="is-active">Landscaping</a>
+        <a href="cleanup.html">Cleanups</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#quote">Quote</a>
+      </nav>
+      <a class="btn btn-primary" href="#quote">Plan My Project</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <h2>Landscapes built to shine all season.</h2>
+        <p>From refreshed garden beds to stone accents and lighting, we design and maintain outdoor spaces that feel polished and welcoming.</p>
+        <ul class="hero-bullets">
+          <li>Planting plans and bed reshaping</li>
+          <li>Rock, mulch, and edging upgrades</li>
+          <li>Pathways, small patios, and lighting accents</li>
+        </ul>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#quote">Start a landscaping quote</a>
+          <a class="btn btn-outline" href="gallery.html">View gallery</a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <div class="placeholder">Add landscaping hero photo or video</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section service-hero">
+    <div class="container">
+      <h2>Design, build, and maintain</h2>
+      <p class="section-lead">Choose a full refresh or focused upgrades. We handle the planning, installation, and upkeep so your investment keeps looking great.</p>
+      <div class="service-grid">
+        <div class="card">
+          <h3>Garden refresh</h3>
+          <p>New plantings, soil and mulch, edging, and cleanup to bring beds back to life.</p>
+        </div>
+        <div class="card">
+          <h3>Stone & hard edges</h3>
+          <p>Rock, paver, and flagstone accents with tidy edging for lasting definition.</p>
+        </div>
+        <div class="card">
+          <h3>Lighting accents</h3>
+          <p>Low-voltage lighting to highlight walkways, beds, and architectural details.</p>
+        </div>
+        <div class="card">
+          <h3>Maintenance plans</h3>
+          <p>Seasonal pruning, bed weeding, mulch top-ups, and tidy weekly visits.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="quote">
+    <div class="container split-grid">
+      <div>
+        <h2>Tell us about your project</h2>
+        <p class="section-lead">Share your ideas and timing. We’ll recommend materials, phases, and budgets that match your vision.</p>
+        <ul class="hero-bullets">
+          <li>Design-first recommendations</li>
+          <li>Clear phases for budget flexibility</li>
+          <li>Hands-on installation and clean finish</li>
+        </ul>
+      </div>
+      <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
+        <label>
+          Name
+          <input type="text" name="name" required />
+        </label>
+        <label>
+          Phone
+          <input type="tel" name="phone" required />
+        </label>
+        <label>
+          Email (optional)
+          <input type="email" name="email" />
+        </label>
+        <label>
+          Address / Area
+          <input type="text" name="address" placeholder="Street + neighborhood" required />
+        </label>
+        <label>
+          What would you like to build?
+          <textarea name="details" rows="4" placeholder="Beds, stonework, lighting, etc."></textarea>
+        </label>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <p class="form-status" aria-live="polite"></p>
+        <p class="form-footnote">Swap in your own Formspree or CRM endpoint to receive these requests.</p>
+      </form>
+    </div>
+  </section>
+
+  <section class="section" id="reviews">
+    <div class="container">
+      <h2>Reviews from Saskatoon neighbors</h2>
+      <p class="section-lead">Share your landscaping experience—tap to leave a review or request directions.</p>
+
+      <div class="review-summary">
+        <div class="rating-tile">
+          <div class="rating-header">
+            <span class="rating-source">Google Maps</span>
+            <span class="rating-score">4.9</span>
+          </div>
+          <div class="rating-stars" aria-hidden="true">★★★★★</div>
+          <p class="small-text">Open Google to rate your project and service.</p>
+          <a class="btn btn-primary" href="https://maps.google.com/?q=Green+Wolf+Maintenance+%26+Landscaping+Inc" target="_blank" rel="noreferrer noopener">Open Google Maps</a>
+        </div>
+        <div class="rating-tile">
+          <div class="rating-header">
+            <span class="rating-source">Apple Maps</span>
+            <span class="rating-score">4.8</span>
+          </div>
+          <div class="rating-stars" aria-hidden="true">★★★★★</div>
+          <p class="small-text">Launch Apple Maps to drop a rating or grab directions.</p>
+          <a class="btn btn-outline" href="https://maps.apple.com/?q=Green+Wolf+Maintenance+%26+Landscaping+Inc" target="_blank" rel="noreferrer noopener">Open Apple Maps</a>
+        </div>
+      </div>
+
+      <div class="review-grid">
+        <article class="review-card">
+          <div class="quote-mark">“</div>
+          <p>Beautiful stonework and planting plan—our entry looks amazing now.</p>
+          <p class="reviewer">— Maya L., Briarwood</p>
+        </article>
+        <article class="review-card">
+          <div class="quote-mark">“</div>
+          <p>They listened to our ideas and delivered exactly what we pictured.</p>
+          <p class="reviewer">— Aaron G., Lakeview</p>
+        </article>
+        <article class="review-card">
+          <div class="quote-mark">“</div>
+          <p>Great communication and a tidy job site throughout the build.</p>
+          <p class="reviewer">— Selina W., Rosewood</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>&copy; <span id="year"></span> Green Wolf Maintenance & Landscaping Inc.</p>
+      <p class="small-text">Serving Saskatoon and surrounding areas.</p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" aria-label="Back to top">↑</button>
+  <script src="script.js"></script>
+</body>
+</html>
