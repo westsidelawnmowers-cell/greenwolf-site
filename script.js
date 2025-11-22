@@ -18,6 +18,15 @@ anchorLinks.forEach((link) => {
   });
 });
 
+// Click highlight for interactive elements
+const clickables = document.querySelectorAll('a, button, .card, .pill');
+clickables.forEach((el) => {
+  el.addEventListener('click', () => {
+    el.classList.add('click-flash');
+    setTimeout(() => el.classList.remove('click-flash'), 280);
+  });
+});
+
 // Reveal on scroll
 const revealElements = document.querySelectorAll(
   'section, .card, .feature, .quote-block, .hero-media, .hero h2, .hero p, .hero-bullets li, .hero-actions, .site-header'
