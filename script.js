@@ -102,3 +102,98 @@ if (quoteForm) {
     setStatus('Sending your request…', 'info');
   });
 }
+
+// Dynamic gallery loader
+const galleryRoot = document.querySelector('[data-gallery-root]');
+
+const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'avif'];
+
+const buildImageCard = (src) => {
+  const card = document.createElement('article');
+  card.className = 'gallery-card';
+
+  const figure = document.createElement('div');
+  figure.className = 'frame live-image';
+
+  const img = document.createElement('img');
+  img.loading = 'lazy';
+  img.decoding = 'async';
+  img.src = src;
+  img.alt = 'Project photo from the Green Wolf gallery';
+
+  figure.appendChild(img);
+  card.appendChild(figure);
+  return card;
+};
+
+const renderGallery = (container, images) => {
+  container.innerHTML = '';
+
+  if (!images.length) {
+    const empty = document.createElement('article');
+    empty.className = 'gallery-card';
+    empty.innerHTML = `
+      <h3>No images found yet</h3>
+      <p class="small-text">Drop photos into the <code>images</code> folder and refresh to see them appear here automatically.</p>
+    `;
+    container.appendChild(empty);
+    return;
+  }
+
+  images.forEach((src) => container.appendChild(buildImageCard(src)));
+};
+
+const parseDirectoryListing = (markup, folder) => {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(markup, 'text/html');
+  const anchors = Array.from(doc.querySelectorAll('a'));
+  const files = anchors
+    .map((a) => decodeURIComponent(a.getAttribute('href') || ''))
+    .filter((href) => imageExtensions.some((ext) => href.toLowerCase().endsWith(ext)))
+    .map((href) => {
+      const cleanHref = href.startsWith('http') ? href : `${folder.replace(/\/$/, '')}/${href.replace(/^\//, '')}`;
+      return cleanHref;
+    });
+
+  return Array.from(new Set(files));
+};
+
+const fetchImageList = async (folder) => {
+  // 1) Try manifest file if present
+  try {
+    const manifestResponse = await fetch(`${folder}/manifest.json`, { cache: 'no-store' });
+    if (manifestResponse.ok) {
+      const manifest = await manifestResponse.json();
+      if (Array.isArray(manifest)) {
+        return manifest
+          .map((src) => src.toString())
+          .filter((src) => imageExtensions.some((ext) => src.toLowerCase().endsWith(ext)));
+      }
+    }
+  } catch (error) {
+    console.warn('Gallery manifest not found; falling back to directory listing.', error);
+  }
+
+  // 2) Fallback: attempt to parse directory listing (works when the server exposes the folder)
+  try {
+    const listingResponse = await fetch(`${folder}/`, { cache: 'no-store' });
+    if (listingResponse.ok) {
+      const markup = await listingResponse.text();
+      return parseDirectoryListing(markup, folder);
+    }
+  } catch (error) {
+    console.warn('Gallery listing unavailable.', error);
+  }
+
+  return [];
+};
+
+const initDynamicGallery = async () => {
+  if (!galleryRoot) return;
+
+  const folder = galleryRoot.dataset.galleryFolder || 'images';
+  const images = await fetchImageList(folder);
+  renderGallery(galleryRoot, images);
+};
+
+initDynamicGallery();
