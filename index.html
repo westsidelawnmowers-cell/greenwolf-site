@@ -93,6 +93,40 @@
     </div>
   </section>
 
+  <!-- GALLERY (auto-loads from /images via GitHub API) -->
+  <section class="section section-alt" id="gallery">
+    <div class="container">
+      <div class="gallery-header">
+        <div>
+          <p class="eyebrow">Recent work</p>
+          <h2>Photo gallery</h2>
+          <p>
+            Add any JPG, PNG, or WEBP image to your repo's <code>images</code>
+            folder (e.g., <code>C:\Users\Visio\OneDrive\Documents\GitHub\greenwolf-site\images</code>),
+            push to GitHub, and it will show here automatically.
+          </p>
+        </div>
+        <div class="gallery-note">
+          <p class="small">
+            Update the <strong>data-github-owner</strong> and
+            <strong>data-github-branch</strong> values below to match your
+            GitHub Pages repository.
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="gallery-grid"
+        id="gallery-grid"
+        data-github-owner="YOUR_GITHUB_USERNAME"
+        data-github-repo="greenwolf-site"
+        data-github-branch="main"
+        data-github-path="images"
+      ></div>
+      <p class="gallery-status" id="gallery-status" aria-live="polite"></p>
+    </div>
+  </section>
+
   <!-- AREAS -->
   <section class="section section-alt" id="areas">
     <div class="container">
@@ -295,6 +329,99 @@
   <script>
     // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+  <script>
+    // Auto-load gallery images from the GitHub repo's /images folder
+    (function loadGallery() {
+      const grid = document.getElementById("gallery-grid");
+      const status = document.getElementById("gallery-status");
+
+      if (!grid || !status) return;
+
+      const owner = grid.dataset.githubOwner || "";
+      const repo = grid.dataset.githubRepo || "greenwolf-site";
+      const branch = grid.dataset.githubBranch || "main";
+      const path = grid.dataset.githubPath || "images";
+
+      const showStatus = (text, isError = false) => {
+        status.textContent = text;
+        status.classList.toggle("error", Boolean(isError));
+      };
+
+      if (!owner || owner === "YOUR_GITHUB_USERNAME") {
+        showStatus(
+          "Set data-github-owner on the gallery to your GitHub username so images can load."
+        );
+        return;
+      }
+
+      const apiUrl = `https://api.github.com/repos/${encodeURIComponent(
+        owner
+      )}/${encodeURIComponent(repo)}/contents/${encodeURIComponent(
+        path
+      )}?ref=${encodeURIComponent(branch)}`;
+
+      fetch(apiUrl)
+        .then((response) => {
+          if (!response.ok) {
+            const message =
+              response.status === 404
+                ? "Images folder not found. Push the images directory to the branch set above."
+                : `GitHub API error (${response.status}). Please try again.`;
+            throw new Error(message);
+          }
+          return response.json();
+        })
+        .then((items) => {
+          const images = (items || []).filter(
+            (item) => item.type === "file" && /\.(jpe?g|png|webp|gif)$/i.test(item.name)
+          );
+
+          if (!images.length) {
+            showStatus(
+              "No images found yet. Add files to the images folder and push to GitHub."
+            );
+            return;
+          }
+
+          images.sort((a, b) => b.name.localeCompare(a.name));
+
+          const fragment = document.createDocumentFragment();
+
+          images.forEach((file) => {
+            const encodedPath = (file.path || "")
+              .split("/")
+              .map((part) => encodeURIComponent(part))
+              .join("/");
+
+            const img = document.createElement("img");
+            img.loading = "lazy";
+            img.src = `https://raw.githubusercontent.com/${encodeURIComponent(
+              owner
+            )}/${encodeURIComponent(repo)}/${encodeURIComponent(branch)}/${encodedPath}`;
+            img.alt = file.name
+              .replace(/[-_]+/g, " ")
+              .replace(/\.[^.]+$/, "")
+              .trim();
+
+            const caption = document.createElement("figcaption");
+            caption.textContent = img.alt || file.name;
+
+            const card = document.createElement("figure");
+            card.className = "gallery-card";
+            card.append(img, caption);
+
+            fragment.appendChild(card);
+          });
+
+          grid.appendChild(fragment);
+          showStatus(`Loaded ${images.length} image${images.length === 1 ? "" : "s"} from GitHub.`);
+        })
+        .catch((error) => {
+          showStatus(`Gallery unavailable: ${error.message}`, true);
+        });
+    })();
   </script>
 </body>
 </html>
