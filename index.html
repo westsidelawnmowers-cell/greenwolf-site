@@ -108,9 +108,10 @@
         </div>
         <div class="gallery-note">
           <p class="small">
-            Update the <strong>data-github-owner</strong> and
-            <strong>data-github-branch</strong> values below to match your
-            GitHub Pages repository.
+            If you deploy this site with GitHub Pages, the gallery will auto-detect
+            your GitHub username and repository. You can also set
+            <strong>data-github-owner</strong> / <strong>data-github-branch</strong>
+            on the grid to override.
           </p>
         </div>
       </div>
@@ -339,8 +340,28 @@
 
       if (!grid || !status) return;
 
-      const owner = grid.dataset.githubOwner || "";
-      const repo = grid.dataset.githubRepo || "greenwolf-site";
+      const deriveOwnerFromHost = () => {
+        const host = window.location.hostname.toLowerCase();
+        return host.endsWith("github.io")
+          ? host.replace(/\.github\.io$/, "")
+          : "";
+      };
+
+      const deriveRepoFromPath = () => {
+        const [firstSegment] = window.location.pathname
+          .split("/")
+          .filter(Boolean);
+        return firstSegment || "";
+      };
+
+      const ownerCandidate = grid.dataset.githubOwner;
+      const owner =
+        ownerCandidate && ownerCandidate !== "YOUR_GITHUB_USERNAME"
+          ? ownerCandidate
+          : deriveOwnerFromHost();
+
+      const repo =
+        grid.dataset.githubRepo || deriveRepoFromPath() || "greenwolf-site";
       const branch = grid.dataset.githubBranch || "main";
       const path = grid.dataset.githubPath || "images";
 
@@ -349,9 +370,9 @@
         status.classList.toggle("error", Boolean(isError));
       };
 
-      if (!owner || owner === "YOUR_GITHUB_USERNAME") {
+      if (!owner) {
         showStatus(
-          "Set data-github-owner on the gallery to your GitHub username so images can load."
+          "Set data-github-owner on the gallery to your GitHub username or deploy via GitHub Pages so it can auto-detect."
         );
         return;
       }
