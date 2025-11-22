@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Snow Clearing | Green Wolf Maintenance & Landscaping Inc.</title>
+  <title>Snow Removal | Green Wolf Maintenance & Landscaping Inc.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Dedicated snow clearing plans for Saskatoon homes and small businesses." />
+  <meta name="description" content="Route-based snow removal for Saskatoon homes and small businesses." />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -14,85 +14,85 @@
         <div class="logo-circle">
           <img src="Green-Wolf.png" alt="Green Wolf Logo" />
         </div>
-        <div>
+        <div class="logo-text">
           <h1>Green Wolf Maintenance & Landscaping Inc.</h1>
-          <p class="tagline">Reliable snow clearing for Saskatoon winters</p>
+          <p class="tagline">Dependable winter coverage</p>
         </div>
       </div>
-
       <nav class="main-nav" aria-label="Primary">
-        <a href="index.html">Home</a>
-        <a href="snow.html">Snow</a>
+        <a href="index.html#services">Services</a>
+        <a href="snow.html" class="is-active">Snow</a>
         <a href="lawn.html">Lawn</a>
         <a href="cleanup.html">Cleanups</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="index.html#quote">Quote</a>
       </nav>
-
-      <a href="#quote" class="btn primary-btn">Get a Snow Quote</a>
+      <a class="btn btn-primary" href="#quote">Get a Snow Quote</a>
     </div>
   </header>
 
   <section class="hero">
     <div class="container hero-grid">
       <div>
-        <h2>Stay ahead of Saskatoon storms.</h2>
-        <p>
-          Tight neighborhood routes, fast response, and careful walkway/driveway service so you can keep moving even after heavy dumps.
-        </p>
+        <h2>Stay ahead of every snowfall.</h2>
+        <p>Route-based snow removal for driveways, walkways, and entries so your property stays safe and ready to move after every storm.</p>
         <ul class="hero-bullets">
           <li>Per-push, monthly, or full-season options</li>
-          <li>Sidewalks, driveways, and front steps included</li>
-          <li>Text updates after each visit</li>
+          <li>Front steps and sidewalks included</li>
+          <li>Updates after each visit</li>
         </ul>
-        <div class="hero-cta">
-          <a href="#quote" class="btn primary-btn">Book a snow plan</a>
-          <a href="index.html#contact" class="btn secondary-btn">Call / Text Us</a>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#quote">Book a plan</a>
+          <a class="btn btn-outline" href="index.html#contact">Call / text us</a>
         </div>
       </div>
-      <div class="hero-card">
-        <h3>Popular Snow Plans</h3>
-        <ul>
-          <li>Per Push: pay only when it snows</li>
-          <li>Monthly Plan: one monthly rate, unlimited visits</li>
-          <li>Seasonal: full coverage December–March</li>
-        </ul>
-        <p class="small">Limited capacity per neighborhood to stay responsive.</p>
+      <div class="hero-media">
+        <div class="placeholder">Add snow route photo or video</div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="details">
+  <section class="section service-hero" id="details">
     <div class="container">
-      <h2>What’s included</h2>
-      <div class="cards-grid">
+      <h2>Snow services</h2>
+      <p class="section-lead">Focused routes and careful clearing keep your property accessible and presentable all winter long.</p>
+      <div class="card-grid">
         <article class="card">
-          <h3>Driveway & Walkway Clearing</h3>
-          <p>Snowblower + shovel combo for a clean, safe finish every visit.</p>
+          <h3>Driveways & Walks</h3>
+          <p>Snowblower plus shovel finish on driveways, sidewalks, and approaches for a clean result every time.</p>
         </article>
         <article class="card">
           <h3>Front Steps & Entry</h3>
-          <p>Front approaches are cleared with extra attention to edges and rails.</p>
+          <p>Hand-finished steps and porches with attention to rails and transitions to keep guests safe.</p>
         </article>
         <article class="card">
-          <h3>De-icing Option</h3>
-          <p>Ice melt available on concrete and paving stone areas upon request.</p>
+          <h3>De-icing</h3>
+          <p>Ice melt available for concrete and paving stone surfaces upon request.</p>
         </article>
+      </div>
+      <div class="divider"></div>
+      <div class="feature-row">
+        <div class="feature">
+          <h3>Route discipline</h3>
+          <p>Limited neighborhoods for fast response even during heavy snowfall.</p>
+        </div>
+        <div class="feature">
+          <h3>Photo updates</h3>
+          <p>Optional text or email updates so you know exactly when service is complete.</p>
+        </div>
+        <div class="feature">
+          <h3>Flexible coverage</h3>
+          <p>Pick per-push, monthly, or full-season plans that match your budget and snow patterns.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section section-alt" id="quote">
-    <div class="container form-layout">
+  <section class="section" id="quote">
+    <div class="container split-grid">
       <div>
-        <h2>Request a Snow Quote</h2>
-        <p>Tell us your address and coverage preference. We’ll reply quickly.</p>
-        <ul class="hero-bullets">
-          <li>Route-based pricing for faster service</li>
-          <li>Same-day replies when possible</li>
-          <li>No long-term pressure — cancel anytime</li>
-        </ul>
+        <h2>Request a snow quote</h2>
+        <p class="section-lead">Tell us your address, snow plan preference, and any special access needs. We’ll reply quickly.</p>
       </div>
-
       <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
         <label>
           Name
@@ -108,32 +108,23 @@
         </label>
         <label>
           Address / Area
-          <input
-            type="text"
-            name="address"
-            placeholder="Street + neighborhood (e.g., Briarwood)"
-            required
-          />
+          <input type="text" name="address" placeholder="Street + neighborhood" required />
         </label>
         <label>
-          Which snow plan do you want?
-          <textarea
-            name="details"
-            rows="4"
-            placeholder="Per push, monthly, or full-season"
-          ></textarea>
+          Which snow plan do you prefer?
+          <textarea name="details" rows="4" placeholder="Per push, monthly, or full-season"></textarea>
         </label>
-        <button type="submit" class="btn primary-btn full-width">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
         <p class="form-status" aria-live="polite"></p>
-        <p class="form-footnote">This form sends directly to our inbox. We never share your info.</p>
+        <p class="form-footnote">This form sends directly to our inbox. We never share your information.</p>
       </form>
     </div>
   </section>
 
-  <footer class="site-footer">
+  <footer class="footer">
     <div class="container footer-content">
       <p>&copy; <span id="year"></span> Green Wolf Maintenance & Landscaping Inc.</p>
-      <p class="footer-small">Serving Saskatoon and surrounding areas.</p>
+      <p class="small-text">Serving Saskatoon and surrounding areas.</p>
     </div>
   </footer>
 
