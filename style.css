@@ -331,10 +331,10 @@ img {
 
 .pill {
   padding: 0.45rem 0.9rem;
-  background: #f7faf7;
-  border: 1px solid rgba(230, 199, 110, 0.4);
+  background: var(--forest);
+  border: 1px solid rgba(230, 199, 110, 0.6);
   border-radius: 999px;
-  color: var(--forest);
+  color: var(--cream);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.04);
 }
 
@@ -393,7 +393,8 @@ img {
 
 .frequency-cta {
   padding: 0.85rem 0.75rem;
-  background: #f7faf7;
+  background: var(--forest);
+  color: var(--cream);
   border: 1px dashed rgba(230, 199, 110, 0.6);
   border-radius: 0.9rem;
   display: grid;
@@ -408,15 +409,19 @@ img {
 .frequency-cta .pill.is-active,
 .frequency-cta .pill:focus-visible,
 .frequency-cta .pill:hover {
-  background: var(--gold-gradient);
+  background: linear-gradient(120deg, #2c6b46, var(--forest));
   border-color: var(--gold);
-  color: var(--forest);
-  box-shadow: 0 10px 20px rgba(230, 199, 110, 0.35);
+  color: var(--cream);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
 }
 
 .muted {
   color: var(--muted);
   font-weight: 600;
+}
+
+.frequency-cta .muted {
+  color: var(--cream);
 }
 
 .feature {
