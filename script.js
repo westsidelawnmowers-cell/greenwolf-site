@@ -102,3 +102,61 @@ if (quoteForm) {
     setStatus('Sending your request…', 'info');
   });
 }
+
+// Service prefill + mowing cadence shortcuts
+const serviceCards = document.querySelectorAll('.service-card');
+const serviceSelect = document.querySelector('select[name="service"]');
+const frequencySelect = document.querySelector('select[name="frequency"]');
+const frequencyButtons = document.querySelectorAll('[data-frequency]');
+const quoteSection = document.getElementById('quote');
+
+const scrollToQuote = () => {
+  if (!quoteSection) return;
+  quoteSection.scrollIntoView({ behavior: 'smooth' });
+};
+
+const setService = (service) => {
+  if (serviceSelect) {
+    serviceSelect.value = service;
+  }
+
+  serviceCards.forEach((card) => {
+    const isMatch = card.dataset.service === service;
+    card.classList.toggle('is-active', isMatch);
+  });
+};
+
+serviceCards.forEach((card) => {
+  card.addEventListener('click', () => {
+    const service = card.dataset.service;
+    if (!service) return;
+    setService(service);
+
+    if (service !== 'Lawn Mowing' && frequencySelect) {
+      frequencySelect.value = '';
+      frequencyButtons.forEach((btn) => btn.classList.remove('is-active'));
+      setStatus(`Prefilled your request for ${service}. Add notes and submit.`, 'info');
+    }
+
+    scrollToQuote();
+  });
+});
+
+frequencyButtons.forEach((button) => {
+  button.addEventListener('click', (event) => {
+    event.stopPropagation();
+    const frequency = button.dataset.frequency;
+    if (!frequency) return;
+
+    setService('Lawn Mowing');
+    if (frequencySelect) {
+      frequencySelect.value = frequency;
+    }
+
+    frequencyButtons.forEach((btn) => btn.classList.remove('is-active'));
+    button.classList.add('is-active');
+
+    setStatus(`Locked in ${frequency.toLowerCase()} mowing. Add your phone and address to finish.`, 'info');
+    scrollToQuote();
+  });
+});

@@ -16,11 +16,7 @@
         </div>
         <div class="logo-text">
           <h1>Green Wolf Maintenance & Landscaping Inc.</h1>
-<<<<<<< HEAD
           <p class="tagline">Lawncare That Cares</p>
-=======
-          <p class="tagline">Lawncare That Care</p>
->>>>>>> 5011668bbb5f8d43fcd89749e3ea3fb2eeacd184
         </div>
       </div>
       <nav class="main-nav" aria-label="Primary">
@@ -94,13 +90,63 @@
     </div>
   </section>
 
+  <section class="section" id="lawn-services">
+    <div class="container">
+      <h2>Lawn services you can book now</h2>
+      <p class="section-lead">Tap a service to prefill the quote form. Lawn mowing will prompt you to pick a schedule before we send it over.</p>
+
+      <div class="service-grid">
+        <article class="service-card" data-service="Lawn Mowing">
+          <div class="service-top">
+            <h3>Lawn Mowing</h3>
+            <p>Pick the cadence that fits your grass growth, then jump to the quote.</p>
+          </div>
+          <div class="frequency-cta" aria-live="polite">
+            <p class="muted">How often would you like mowing?</p>
+            <div class="pill-list">
+              <button type="button" class="pill" data-frequency="Weekly">Weekly</button>
+              <button type="button" class="pill" data-frequency="Every 10 days">Every 10 days</button>
+              <button type="button" class="pill" data-frequency="Bi-weekly">Bi-weekly</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="service-card" data-service="Power Raking">
+          <h3>Power Raking</h3>
+          <p>Lift thatch and debris to help your lawn breathe before the growing season.</p>
+        </article>
+        <article class="service-card" data-service="Aeration">
+          <h3>Aeration</h3>
+          <p>Core aeration to open the soil, encourage root growth, and improve water uptake.</p>
+        </article>
+        <article class="service-card" data-service="Seeding">
+          <h3>Seeding</h3>
+          <p>Overseeding thin areas with the right mix for Saskatoon lawns.</p>
+        </article>
+        <article class="service-card" data-service="Fertilization">
+          <h3>Fertilization</h3>
+          <p>Nutrient programs to boost colour and density all season long.</p>
+        </article>
+        <article class="service-card" data-service="Pest Control">
+          <h3>Pest Control</h3>
+          <p>Surface insect control options to protect your turf investment.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="quote">
     <div class="container split-grid">
       <div>
         <h2>Request a lawn quote</h2>
         <p class="section-lead">Tell us the size of your yard, visit frequency, and any special notes. We’ll respond with clear pricing.</p>
       </div>
-      <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
+      <form
+        method="POST"
+        class="quote-form"
+        action="mailto:info@greenwolf.work"
+        enctype="text/plain"
+      >
         <label>
           Name
           <input type="text" name="name" required />
@@ -118,8 +164,32 @@
           <input type="text" name="address" placeholder="Street + neighborhood" required />
         </label>
         <label>
+          Service needed
+          <select name="service" required>
+            <option value="Lawn Mowing">Lawn Mowing</option>
+            <option value="Power Raking">Power Raking</option>
+            <option value="Aeration">Aeration</option>
+            <option value="Seeding">Seeding</option>
+            <option value="Fertilization">Fertilization</option>
+            <option value="Pest Control">Pest Control</option>
+          </select>
+        </label>
+        <label class="frequency-select">
+          Mowing frequency (for mowing requests)
+          <select name="frequency">
+            <option value="">Select a mowing cadence</option>
+            <option value="Weekly">Weekly</option>
+            <option value="Every 10 days">Every 10 days</option>
+            <option value="Bi-weekly">Bi-weekly</option>
+          </select>
+        </label>
+        <label>
           Which lawn service do you need?
-          <textarea name="details" rows="4" placeholder="Weekly mowing, bi-weekly, front/back only, etc."></textarea>
+          <textarea
+            name="details"
+            rows="4"
+            placeholder="Weekly mowing, every 10 days, front/back only, power raking, aeration, seeding, fertilization, pest control, etc."
+          ></textarea>
         </label>
         <button type="submit" class="btn btn-primary">Submit</button>
         <p class="form-status" aria-live="polite"></p>
