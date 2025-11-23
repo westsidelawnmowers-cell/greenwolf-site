@@ -421,42 +421,9 @@ img {
   margin-bottom: 0.75rem;
 }
 
-.frequency-cta {
-  padding: 0.85rem 0.75rem;
-  background: var(--forest);
-  color: var(--cream);
-  border: 1px dashed rgba(230, 199, 110, 0.6);
-  border-radius: 0.9rem;
-  display: grid;
-  gap: 0.5rem;
-}
-
-.cadence-display {
-  font-weight: 700;
-  color: var(--gold-bright);
-}
-
-.frequency-cta .pill {
-  cursor: pointer;
-  transition: background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
-}
-
-.frequency-cta .pill.is-active,
-.frequency-cta .pill:focus-visible,
-.frequency-cta .pill:hover {
-  background: linear-gradient(120deg, #2c6b46, var(--forest));
-  border-color: var(--gold);
-  color: var(--cream);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
-}
-
 .muted {
   color: var(--muted);
   font-weight: 600;
-}
-
-.frequency-cta .muted {
-  color: var(--cream);
 }
 
 .feature {
