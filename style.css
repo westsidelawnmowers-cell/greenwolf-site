@@ -703,5 +703,10 @@ img {
   border-radius: 0.85rem;
   display: block;
 }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal-size columns */
+  gap: 1.2rem;
+}
 
 
