@@ -77,11 +77,15 @@ const setStatus = (message, type = 'info') => {
 
 if (quoteForm) {
   quoteForm.addEventListener('submit', (event) => {
+    event.preventDefault();
     const formData = new FormData(quoteForm);
     const name = (formData.get('name') || '').toString().trim();
     const phone = (formData.get('phone') || '').toString().trim();
     const email = (formData.get('email') || '').toString().trim();
     const area = (formData.get('address') || '').toString().trim();
+    const service = (formData.get('service') || '').toString();
+    const frequency = (formData.get('frequency') || '').toString();
+    const details = (formData.get('details') || '').toString().trim();
 
     const errors = [];
     if (!name) errors.push('Please include your name.');
@@ -92,13 +96,61 @@ if (quoteForm) {
       errors.push('That email doesn’t look quite right.');
     }
     if (!area) errors.push('Let us know your neighborhood so we can quote quickly.');
+    if (service === 'Lawn Mowing' && !frequency) {
+      errors.push('Pick a mowing cadence so we can price it.');
+    }
 
     if (errors.length) {
-      event.preventDefault();
       setStatus(errors[0], 'error');
       return;
     }
 
-    setStatus('Sending your request…', 'info');
+    const subject = encodeURIComponent('New lawn quote request');
+    const body = encodeURIComponent(
+      `Name: ${name}\nPhone: ${phone}\nEmail: ${email || 'Not provided'}\nAddress: ${area}\nService: ${service}\nMowing frequency: ${frequency || 'Not specified'}\nDetails: ${details || 'None provided'}`
+    );
+
+    const mailtoLink = `mailto:info@greenwolf.work?subject=${subject}&body=${body}`;
+    window.location.href = mailtoLink;
+    setStatus('Opening your email app with your request. Please press send to finish.', 'info');
   });
 }
+
+// Service prefill and scroll
+const serviceCards = document.querySelectorAll('.service-card');
+const serviceSelect = document.querySelector('select[name="service"]');
+const frequencySelect = document.querySelector('select[name="frequency"]');
+const quoteSection = document.getElementById('quote');
+
+const scrollToQuote = () => {
+  if (!quoteSection) return;
+  quoteSection.scrollIntoView({ behavior: 'smooth' });
+};
+
+const setService = (service) => {
+  if (serviceSelect) {
+    serviceSelect.value = service;
+  }
+
+  serviceCards.forEach((card) => {
+    const isMatch = card.dataset.service === service;
+    card.classList.toggle('is-active', isMatch);
+  });
+};
+
+serviceCards.forEach((card) => {
+  card.addEventListener('click', () => {
+    const service = card.dataset.service;
+    if (!service) return;
+    setService(service);
+
+    if (service !== 'Lawn Mowing' && frequencySelect) {
+      frequencySelect.value = '';
+      setStatus(`Prefilled your request for ${service}. Add notes and submit.`, 'info');
+    } else {
+      setStatus('Mowing selected. Pick your visit cadence in the form and submit.', 'info');
+    }
+
+    scrollToQuote();
+  });
+});
