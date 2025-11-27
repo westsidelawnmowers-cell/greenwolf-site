@@ -687,18 +687,21 @@ img {
 }
 .frame {
   width: 100%;
-  aspect-ratio: 1 / 1; /* perfect square */
+  aspect-ratio: 9 / 16;   /* iPhone portrait ratio */
   overflow: hidden;
   border-radius: 0.85rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #f8f8f8;
 }
 
 .frame img {
   width: 100%;
   height: 100%;
-  object-fit: cover;   /* ensures uniform size */
+  object-fit: cover;       /* fills the frame cleanly */
   border-radius: 0.85rem;
+  display: block;
 }
+
 
