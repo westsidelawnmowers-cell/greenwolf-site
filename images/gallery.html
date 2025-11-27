@@ -5,14 +5,14 @@
   <title>Gallery | Green Wolf Maintenance & Landscaping Inc.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Before and after photos of Green Wolf snow, lawn, cleanup, and landscaping work." />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="../style.css" />
 </head>
 <body>
   <header class="site-header">
     <div class="container header-content">
       <div class="logo-block">
         <div class="logo-circle">
-          <img src="images/5.jpeg" alt="Patio Image" />
+          <img src="../Green-Wolf.png" alt="Green Wolf Logo" />
         </div>
         <div class="logo-text">
           <h1>Green Wolf Maintenance & Landscaping Inc.</h1>
@@ -20,15 +20,15 @@
         </div>
       </div>
       <nav class="main-nav" aria-label="Primary">
-        <a href="index.html#services">Services</a>
-        <a href="snow.html">Snow</a>
-        <a href="lawn.html">Lawn</a>
-        <a href="landscaping.html">Landscaping</a>
-        <a href="cleanup.html">Cleanups</a>
+        <a href="../index.html#services">Services</a>
+        <a href="../snow.html">Snow</a>
+        <a href="../lawn.html">Lawn</a>
+        <a href="../landscaping.html">Landscaping</a>
+        <a href="../cleanup.html">Cleanups</a>
         <a href="#reviews">Reviews</a>
-        <a href="index.html#quote">Quote</a>
+        <a href="../index.html#quote">Quote</a>
       </nav>
-      <a class="btn btn-primary" href="index.html#quote">Book a project</a>
+      <a class="btn btn-primary" href="../index.html#quote">Book a project</a>
     </div>
   </header>
 
@@ -36,14 +36,14 @@
     <div class="container hero-grid">
       <div>
         <h2>Transformations you can share.</h2>
-        <p>Replace these placeholders with your own before-and-after photos or short clips. Each frame is ready to drop in your media so prospects can see the difference.</p>
+        <p>Drop your photos into the images folder, update the filenames below, and the gallery will display them instantly.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="index.html#quote">Request a quote</a>
+          <a class="btn btn-primary" href="../index.html#quote">Request a quote</a>
           <a class="btn btn-outline" href="#grid">Jump to gallery</a>
         </div>
       </div>
       <div class="hero-media">
-        <div class="placeholder">images/5.jpeg</div>
+        <img src="5.jpeg" alt="Project highlight" />
       </div>
     </div>
   </section>
@@ -51,56 +51,63 @@
   <section class="section" id="grid">
     <div class="container">
       <h2>Before & after sets</h2>
-      <p class="section-lead">Swap images in each frame with your own snow, lawn, cleanup, or landscaping photos. Use the captions to explain what changed.</p>
+      <p class="section-lead">Swap images in each frame with your own snow, lawn, cleanup, or landscaping photos.</p>
       <div class="gallery-grid">
         <article class="gallery-card">
           <h3>Snow clearing route</h3>
           <div class="before-after">
-            <div class="frame"><span>Before photo</span></div>
-            <div class="frame"><span>After photo</span></div>
+            <div class="frame photo-frame"><img src="2.jpeg" alt="Snow route before" /></div>
+            <div class="frame photo-frame"><img src="3.jpeg" alt="Snow route after" /></div>
           </div>
-          <p class="small-text">Describe the snowfall depth, response time, or equipment used.</p>
+          <p class="small-text">Replace 2.jpeg and 3.jpeg with your before/after filenames.</p>
         </article>
         <article class="gallery-card">
           <h3>Lawn refresh</h3>
           <div class="before-after">
-            <div class="frame"><span>Before photo</span></div>
-            <div class="frame"><span>After photo</span></div>
+            <div class="frame photo-frame"><img src="4.jpeg" alt="Lawn before" /></div>
+            <div class="frame photo-frame"><img src="5.jpeg" alt="Lawn after" /></div>
           </div>
-          <p class="small-text">Note mowing patterns, edging, fertilizer, or weed control results.</p>
+          <p class="small-text">Swap the filenames to match your mowing or cleanup shots.</p>
         </article>
         <article class="gallery-card">
-          <h3>Landscaping upgrade</h3>
+          <h3>Patio tidy-up</h3>
           <div class="before-after">
-            <div class="frame"><span>Before photo</span></div>
-            <div class="frame"><span>After photo</span></div>
+            <div class="frame photo-frame"><img src="patio.jpeg" alt="Patio before" /></div>
+            <div class="frame photo-frame"><img src="5.jpeg" alt="Patio after" /></div>
           </div>
-          <p class="small-text">Outline plant selections, stone choices, and lighting highlights.</p>
+          <p class="small-text">Use any two images for quick side-by-side comparisons.</p>
         </article>
-        <article class="gallery-card">
-          <h3>Seasonal cleanup</h3>
-          <div class="before-after">
-            <div class="frame"><span>Before photo</span></div>
-            <div class="frame"><span>After photo</span></div>
-          </div>
-          <p class="small-text">Call out leaf removal, pruning, and bed edging results.</p>
-        </article>
-        <article class="gallery-card">
-          <h3>Commercial frontage</h3>
-          <div class="before-after">
-            <div class="frame"><span>images/5.jpeg</span></div>
-            <div class="frame"><span>After photo</span></div>
-          </div>
-          <p class="small-text">Showcase retail, restaurant, or office frontage upgrades.</p>
-        </article>
-        <article class="gallery-card">
-          <h3>Lighting accents</h3>
-          <div class="before-after">
-            <div class="frame"><span>Before photo</span></div>
-            <div class="frame"><span>After photo</span></div>
-          </div>
-          <p class="small-text">Highlight evening ambiance with path or feature lighting.</p>
-        </article>
+      </div>
+
+      <div class="divider"></div>
+
+      <h3>Full gallery</h3>
+      <p class="section-lead">Add as many images as you like—each tile pulls straight from the images folder.</p>
+      <div class="gallery-grid full-gallery">
+        <figure class="gallery-card">
+          <img class="gallery-photo" src="2.jpeg" alt="Snow removal result" />
+          <figcaption class="small-text">Change 2.jpeg to any filename you upload.</figcaption>
+        </figure>
+        <figure class="gallery-card">
+          <img class="gallery-photo" src="3.jpeg" alt="Route in progress" />
+          <figcaption class="small-text">Drop your new file into /images and update the name.</figcaption>
+        </figure>
+        <figure class="gallery-card">
+          <img class="gallery-photo" src="4.jpeg" alt="Lawn care stripes" />
+          <figcaption class="small-text">Replace 4.jpeg with any mowing or cleanup photo.</figcaption>
+        </figure>
+        <figure class="gallery-card">
+          <img class="gallery-photo" src="5.jpeg" alt="Fresh cut lawn" />
+          <figcaption class="small-text">Images in this folder are ready to show instantly.</figcaption>
+        </figure>
+        <figure class="gallery-card">
+          <img class="gallery-photo" src="patio.jpeg" alt="Patio prep" />
+          <figcaption class="small-text">Swap filenames to share patios, beds, or lighting.</figcaption>
+        </figure>
+        <figure class="gallery-card">
+          <img class="gallery-photo" src="patio.jpeg" alt="Patio after clean" />
+          <figcaption class="small-text">Add more tiles by duplicating this figure block.</figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -159,6 +166,6 @@
   </footer>
 
   <button class="back-to-top" aria-label="Back to top">↑</button>
-  <script src="script.js"></script>
+  <script src="../script.js"></script>
 </body>
 </html>
