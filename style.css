@@ -261,14 +261,23 @@ img {
 }
 
 .hero-media {
-  background: var(--cream);
-  border-radius: 1.3rem;
-  overflow: hidden;
+  width: 400px;
+  height: 250px;
+  margin-left: auto;
+  border-radius: 22px;
   border: 4px solid var(--gold);
+  overflow: hidden;
   box-shadow: 0 20px 35px rgba(0, 0, 0, 0.18), 0 0 0 6px rgba(247, 220, 139, 0.35);
-  min-height: 260px;
+  background: var(--cream);
   display: grid;
   place-items: center;
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .hero-media .placeholder {
