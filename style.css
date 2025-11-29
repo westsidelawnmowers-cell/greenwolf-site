@@ -322,7 +322,7 @@ img {
 }
 
 .card h3 {
-  font-size: 2.0rem;
+  font-size: 1.1rem;
   color: var(--forest);
   margin-bottom: 0.4rem;
 }
@@ -363,7 +363,7 @@ img {
   background: var(--forest);
   color: var(--cream);
   border-radius: 1rem;
-  padding: 1.2rem 1.25rem;
+  padding: 2.0rem 1.25rem;
   position: relative;
   overflow: hidden;
 }
