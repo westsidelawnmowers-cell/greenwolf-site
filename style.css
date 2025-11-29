@@ -609,6 +609,12 @@ img {
   transition: border-color 0.18s ease, box-shadow 0.18s ease;
 }
 
+.quote-form textarea[readonly] {
+  background: #f7f8f6;
+  border-style: dashed;
+  color: var(--muted);
+}
+
 .quote-form input:focus,
 .quote-form textarea:focus,
 .quote-form select:focus {
@@ -625,6 +631,13 @@ img {
 .form-status {
   min-height: 1.2rem;
   font-weight: 600;
+}
+
+.field-hint {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
 }
 
 .form-status[data-type='error'] {

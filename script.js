@@ -75,6 +75,9 @@ const packageOptions = document.getElementById('package-options');
 const priceAmount = document.getElementById('price-amount');
 const priceNote = document.getElementById('price-note');
 const offerSticker = document.getElementById('offer-sticker');
+const packageSummaryField = document.getElementById('package-summary');
+let selectedProgramKey = 'alpha';
+let selectedPackageId = '';
 
 const programs = {
   alpha: {
@@ -195,6 +198,19 @@ const setPrice = (pkg) => {
   priceNote.textContent = pkg.frequency;
 };
 
+const updateQuoteSummary = (programKey, pkg) => {
+  const program = programs[programKey];
+  if (!program || !pkg || !packageSummaryField) return;
+  packageSummaryField.value = `${program.name} — ${pkg.label} (${pkg.price}, ${pkg.frequency})`;
+};
+
+const setSelection = (programKey, pkg) => {
+  selectedProgramKey = programKey;
+  selectedPackageId = pkg.id;
+  setPrice(pkg);
+  updateQuoteSummary(programKey, pkg);
+};
+
 const renderPackages = (programKey) => {
   if (!packageOptions) return;
   const program = programs[programKey];
@@ -210,7 +226,7 @@ const renderPackages = (programKey) => {
     input.name = 'package-choice';
     input.value = pkg.id;
     input.checked = index === 0;
-    input.addEventListener('change', () => setPrice(pkg));
+    input.addEventListener('change', () => setSelection(programKey, pkg));
 
     const textBlock = document.createElement('div');
     const title = document.createElement('div');
@@ -231,7 +247,7 @@ const renderPackages = (programKey) => {
     packageOptions.append(option);
 
     if (index === 0) {
-      setPrice(pkg);
+      setSelection(programKey, pkg);
     }
   });
 };
@@ -239,6 +255,7 @@ const renderPackages = (programKey) => {
 const renderProgram = (key) => {
   const program = programs[key];
   if (!program) return;
+  selectedProgramKey = key;
 
   programCards.forEach((card) => {
     card.classList.toggle('is-selected', card.dataset.program === key);

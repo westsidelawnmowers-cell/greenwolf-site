@@ -161,6 +161,17 @@ Lawncare That Cares
           <input type="text" name="address" placeholder="Street + neighborhood" required />
         </label>
         <label>
+          Selected lawn package
+          <textarea
+            id="package-summary"
+            name="package_summary"
+            rows="2"
+            readonly
+            aria-live="polite"
+          >Select a program and package above to attach it to your quote.</textarea>
+          <span class="field-hint">Updates automatically when you choose a program and visit plan.</span>
+        </label>
+        <label>
           Which lawn service do you need?
           <textarea name="details" rows="4" placeholder="Weekly mowing, bi-weekly, front/back only, etc."></textarea>
         </label>
