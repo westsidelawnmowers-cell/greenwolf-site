@@ -363,7 +363,7 @@ img {
   background: var(--forest);
   color: var(--cream);
   border-radius: 1rem;
-  padding: 2.0rem 1.25rem;
+  padding: 1.2rem 1.25rem;
   position: relative;
   overflow: hidden;
 }
