@@ -396,7 +396,7 @@ img {
 }
 
 .feature-logo {
-  width: 40px;      /* adjust size as needed */
+  width: 100px;      /* adjust size as needed */
   height: auto;
   object-fit: contain;
   opacity: 0.9;     /* looks cleaner on dark backgrounds */
