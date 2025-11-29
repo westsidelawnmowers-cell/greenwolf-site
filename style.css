@@ -383,6 +383,24 @@ img {
 .feature h3 {
   margin-bottom: 0.35rem;
 }
+.feature-with-logo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.feature-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-logo {
+  width: 40px;      /* adjust size as needed */
+  height: auto;
+  object-fit: contain;
+  opacity: 0.9;     /* looks cleaner on dark backgrounds */
+}
 
 .quote-block {
   background: linear-gradient(120deg, var(--forest), #183c2b);
