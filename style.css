@@ -408,6 +408,21 @@ img {
   opacity: 0.9;     /* looks cleaner on dark backgrounds */
 }
 
+.logo-placeholder {
+  width: 150px;
+  height: 110px;
+  border: 2px dashed rgba(230, 199, 110, 0.8);
+  border-radius: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background: rgba(255, 255, 255, 0.08);
+  text-transform: uppercase;
+}
+
 .quote-block {
   background: linear-gradient(120deg, var(--forest), #183c2b);
   color: var(--cream);
