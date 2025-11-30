@@ -425,11 +425,11 @@ img {
   position: relative;
   display: grid;
   gap: 1.6rem;
-  background: linear-gradient(180deg, #f8fbf7, #eef5ed);
-  padding: 1.4rem;
+  background: linear-gradient(180deg, #f2f6f1, #f7f2e9);
+  padding: 1.6rem;
   border-radius: 1.5rem;
-  border: 1px solid rgba(15, 45, 31, 0.08);
-  box-shadow: 0 22px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(15, 45, 31, 0.06);
+  box-shadow: 0 18px 28px rgba(0, 0, 0, 0.08);
 }
 
 .program-card-row {
@@ -437,10 +437,10 @@ img {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 0.9rem;
-  padding: 0.35rem;
-  background: linear-gradient(120deg, #0f2d1f, #1e4a35);
-  border-radius: 1.1rem;
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.16);
+  padding: 0.4rem;
+  background: linear-gradient(135deg, #0c1f16, #1c3a2a 60%, #103322);
+  border-radius: 1.15rem;
+  box-shadow: 0 18px 32px rgba(0, 0, 0, 0.2);
 }
 
 .program-card-row::after {
@@ -457,30 +457,30 @@ img {
 
 .program-card {
   align-items: flex-start;
-  background: linear-gradient(145deg, #fef7dc, #f8f1e6);
-  color: var(--forest);
+  background: linear-gradient(150deg, #1d3b2b, #102418);
+  color: #f7f4ea;
   border-radius: 1rem;
-  border: 1px solid rgba(230, 199, 110, 0.35);
+  border: 1px solid rgba(212, 184, 106, 0.45);
   padding: 1rem 1.1rem;
   transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 14px 28px rgba(0, 0, 0, 0.18);
 }
 
 .program-card .feature-text h3 {
-  color: var(--forest);
-  font-size: 1.05rem;
+  color: #fdfbf6;
+  font-size: 1.1rem;
   letter-spacing: -0.02em;
 }
 
 .program-card p {
-  color: var(--muted);
+  color: rgba(247, 244, 234, 0.78);
 }
 
 .program-meta {
   display: grid;
   gap: 0.3rem;
   font-weight: 700;
-  color: var(--pine);
+  color: #fdfbf6;
   text-align: left;
 }
 
@@ -490,10 +490,10 @@ img {
   gap: 0.35rem;
   padding: 0.35rem 0.65rem;
   border-radius: 0.9rem;
-  background: #0f2d1f;
-  color: var(--gold);
-  border: 1px solid rgba(244, 227, 167, 0.4);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  background: linear-gradient(135deg, #f5d66c, #d7ad3c);
+  color: #0f2217;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08), 0 6px 14px rgba(0, 0, 0, 0.18);
 }
 
 .program-frequency {
@@ -504,14 +504,14 @@ img {
 .program-bonus {
   font-size: 0.95rem;
   font-weight: 700;
-  color: var(--forest);
+  color: #0f2d1f;
 }
 
 .program-card.is-active {
   border-color: rgba(230, 199, 110, 0.9);
-  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.18), 0 0 0 4px rgba(230, 199, 110, 0.24);
-  transform: translateY(-2px);
-  background: linear-gradient(135deg, #fff5cf, #f5ecde);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 20px 34px rgba(0, 0, 0, 0.2), 0 0 0 3px rgba(230, 199, 110, 0.24);
+  transform: translateY(-1px);
+  background: linear-gradient(150deg, #234630, #142c1e);
 }
 
 .program-body {
@@ -520,11 +520,12 @@ img {
   grid-template-columns: minmax(320px, 1.05fr) minmax(280px, 0.95fr);
   gap: 1.15rem;
   align-items: start;
-  background: linear-gradient(180deg, #f7f3e6, #eef4ed 58%, #f9f7ef);
+  background: radial-gradient(circle at 18% 10%, rgba(15, 45, 31, 0.08), transparent 38%),
+    linear-gradient(180deg, #f9f6ee, #f2f6f1);
   border-radius: 1.35rem;
-  border: 1px solid rgba(15, 45, 31, 0.12);
-  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.12);
-  padding: 1.6rem 1.55rem 1.45rem;
+  border: 1px solid rgba(15, 45, 31, 0.1);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.12);
+  padding: 1.65rem 1.55rem 1.45rem;
   margin-top: 0.35rem;
   overflow: hidden;
 }
@@ -535,9 +536,9 @@ img {
   top: -52px;
   left: 50%;
   transform: translateX(-50%);
-  width: clamp(240px, 60%, 520px);
-  height: 60px;
-  background: radial-gradient(circle at 50% 100%, rgba(15, 45, 31, 0.14), transparent 62%);
+  width: clamp(260px, 62%, 540px);
+  height: 70px;
+  background: radial-gradient(circle at 50% 100%, rgba(15, 45, 31, 0.12), transparent 62%);
   pointer-events: none;
 }
 
@@ -548,11 +549,11 @@ img {
 }
 
 .program-summary {
-  background: linear-gradient(140deg, #fbf6e6, #f0f6ef);
+  background: linear-gradient(180deg, #fdfbf6, #f6f1e6);
   border-radius: 1rem;
   padding: 1.45rem;
-  border: 1px solid rgba(230, 199, 110, 0.35);
-  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(15, 45, 31, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65), 0 12px 22px rgba(0, 0, 0, 0.08);
   grid-column: 1 / -1;
 }
 
@@ -583,24 +584,25 @@ img {
 
 .program-title {
   margin: 0.2rem 0 0.15rem;
+  font-size: 1.15rem;
 }
 
 .program-description {
   color: var(--muted);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.9rem;
   font-size: 1rem;
 }
 
 .price-chip {
   background: #0f2d1f;
   color: var(--gold);
-  padding: 0.65rem 1rem;
+  padding: 0.7rem 1.05rem;
   border-radius: 0.95rem;
   box-shadow: 0 12px 22px rgba(0, 0, 0, 0.16), 0 0 0 3px rgba(230, 199, 110, 0.16);
   display: grid;
   gap: 0.15rem;
   text-align: right;
-  min-width: 160px;
+  min-width: 170px;
 }
 
 .price-chip .price-value {
@@ -612,6 +614,10 @@ img {
 .price-chip .price-frequency {
   color: var(--cream);
   font-weight: 600;
+}
+
+.tier-pills {
+  display: none;
 }
 
 .program-summary .program-bonus {
@@ -655,16 +661,16 @@ img {
 
 .tier-differences .card {
   border-top: 3px solid rgba(230, 199, 110, 0.85);
-  box-shadow: 0 14px 24px rgba(0, 0, 0, 0.06);
-  background: linear-gradient(180deg, #fefbf2, #f5f7f2);
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.06);
+  background: linear-gradient(180deg, #fdfaf1, #f4f7f3);
 }
 
 .program-options {
-  background: linear-gradient(165deg, #f8f3e4, #f0f7f1);
-  border: 1px solid rgba(15, 45, 31, 0.12);
+  background: linear-gradient(180deg, #fdfbf6, #f3f7f2);
+  border: 1px solid rgba(15, 45, 31, 0.08);
   border-radius: 1rem;
   padding: 1.1rem;
-  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 14px 22px rgba(0, 0, 0, 0.08);
 }
 
 .option-list {
@@ -675,14 +681,27 @@ img {
 
 .option-card {
   display: flex;
-  justify-content: space-between;
-  gap: 0.8rem;
-  align-items: flex-start;
-  background: linear-gradient(135deg, #fff7e4, #f2f7f1);
-  border: 1px solid rgba(15, 45, 31, 0.12);
+  flex-direction: column;
+  gap: 0.6rem;
+  background: #fdfbf6;
+  border: 1px solid rgba(15, 45, 31, 0.08);
   border-radius: 0.9rem;
-  padding: 0.85rem 0.95rem;
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.06);
+  padding: 0.95rem 1rem;
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.06);
+}
+
+.option-header {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.option-title {
+  margin: 0;
+}
+
+.option-desc {
+  margin: 0;
+  color: var(--muted);
 }
 
 .option-price {
@@ -691,10 +710,35 @@ img {
   white-space: nowrap;
 }
 
+.option-lines {
+  display: none;
+  gap: 0.4rem;
+}
+
+.option-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+  align-items: flex-start;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid rgba(15, 45, 31, 0.08);
+  border-radius: 0.7rem;
+  background: #f6f2e9;
+}
+
+.option-label {
+  font-weight: 700;
+  margin: 0;
+}
+
 .option-note {
   margin-top: 0.35rem;
   color: var(--muted);
   font-size: 0.95rem;
+}
+
+.option-line .option-note {
+  margin: 0.25rem 0 0;
 }
 
 .quote-block {

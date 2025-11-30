@@ -108,38 +108,55 @@ const programContent = {
   lawn: {
     alpha: {
       label: 'Alpha Turf Program',
-      tag: 'Alpha • Top tier',
-      title: 'Premium weekly polish',
+      tag: 'Alpha Turf Program (Top Tier)',
+      title: 'Alpha Turf Program',
       description:
-        'Our highest-attention visits keep front and back yards immaculate with fertilizer touch-ups and careful edging every week.',
+        'Weekly mowing, trimming, edging, and fertilizer with owner check-ins to keep the lawn in top shape.',
       price: '$119',
       term: '/ visit',
-      frequency: 'Weekly visits',
-      bonus: 'Kickoff bonus: first edge reshape included.',
-      pills: ['Weekly mowing & trim', 'Front + back coverage', 'Fertilizer touch-ups'],
+      frequency: 'Weekly',
+      bonus: 'Kickoff bonus: first edge re-shape included.',
+      pills: [],
       details: [
-        { title: 'Visit cadence', text: 'Weekly mowing and trimming for the tightest appearance.' },
-        { title: 'Coverage', text: 'Front, back, and fence lines with careful gate handling.' },
-        { title: 'Finishing touches', text: 'Edging, sweep/blow clean-up, and seasonal fertilizer boosts.' },
+        {
+          title: 'Front / Back options',
+          text: 'Front only? Add the backyard or go full pass. Includes trimming and line edging along sidewalks and fences.',
+        },
+        {
+          title: 'Detail finishes',
+          text: 'Each visit includes trimming, edging, sweeping or blowing walkways, and fuel. Gate careful and tidy.',
+        },
       ],
       options: [
         {
-          title: 'Weekly service',
-          description: 'Show-home ready finish throughout the season.',
-          note: 'Includes edging and trimming on each visit.',
-          price: '$119 / visit',
-        },
-        {
-          title: 'Bi-weekly service',
-          description: 'A steady cadence with a little more breathing room.',
-          note: 'Keeps growth in check without over-servicing.',
-          price: '$139 / visit',
+          title: 'Weekly or Bi-weekly',
+          description: '',
+          note: '',
+          price: '',
+          suboptions: [
+            {
+              label: 'Weekly service',
+              note: 'Weekly trim + edge, owner check-in.',
+              price: '$119 / visit',
+            },
+            {
+              label: 'Bi-weekly service',
+              note: 'Reliable upkeep with a little more breathing room.',
+              price: '',
+            },
+          ],
         },
         {
           title: 'Front / Back options',
-          description: 'Choose front-only, backyard add-on, or a full property pass.',
-          note: 'Great for rentals or budget-focused upkeep.',
-          price: 'Custom quote',
+          description: 'Front only? Add the backyard or go full pass.',
+          note: 'Includes trimming and line edging along sidewalks and fences.',
+          price: '',
+        },
+        {
+          title: 'Detail finishes',
+          description: 'Each visit includes trimming, edging, sweeping or blowing walkways, and fuel.',
+          note: 'Gate careful and tidy.',
+          price: '',
         },
       ],
     },
@@ -624,7 +641,11 @@ programSections.forEach((section) => {
 
     detailCards.forEach((card, index) => {
       const detail = tier.details[index];
-      if (!detail) return;
+      if (!detail) {
+        card.style.display = 'none';
+        return;
+      }
+      card.style.display = '';
       const heading = card.querySelector('h3');
       const paragraph = card.querySelector('p');
       if (heading) heading.textContent = detail.title;
@@ -638,17 +659,59 @@ programSections.forEach((section) => {
         return;
       }
       card.style.display = '';
-      const title = card.querySelector('h4');
-      const desc = card.querySelector('p:not(.option-note)');
+      const title = card.querySelector('.option-title');
+      const desc = card.querySelector('.option-desc');
       const note = card.querySelector('.option-note');
       const price = card.querySelector('.option-price');
-      if (title) title.textContent = option.title;
-      if (desc) desc.textContent = option.description;
+      const lines = card.querySelector('.option-lines');
+
+      if (title) title.textContent = option.title || '';
+      if (desc) desc.textContent = option.description || '';
       if (note) {
         note.textContent = option.note || '';
         note.classList.toggle('is-hidden', !option.note);
       }
-      if (price) price.textContent = option.price || '';
+      if (price) {
+        price.textContent = option.price || '';
+        price.classList.toggle('is-hidden', Boolean(option.suboptions?.length));
+      }
+
+      if (lines) {
+        lines.innerHTML = '';
+        if (option.suboptions?.length) {
+          lines.style.display = 'grid';
+          option.suboptions.forEach((sub) => {
+            const line = document.createElement('div');
+            line.className = 'option-line';
+
+            const info = document.createElement('div');
+            const label = document.createElement('p');
+            label.className = 'option-label';
+            label.textContent = sub.label || '';
+            info.appendChild(label);
+
+            if (sub.note) {
+              const subNote = document.createElement('p');
+              subNote.className = 'option-note';
+              subNote.textContent = sub.note;
+              info.appendChild(subNote);
+            }
+
+            line.appendChild(info);
+
+            if (sub.price) {
+              const subPrice = document.createElement('div');
+              subPrice.className = 'option-price';
+              subPrice.textContent = sub.price;
+              line.appendChild(subPrice);
+            }
+
+            lines.appendChild(line);
+          });
+        } else {
+          lines.style.display = 'none';
+        }
+      }
     });
 
     syncFormTier(service, tier.label);
