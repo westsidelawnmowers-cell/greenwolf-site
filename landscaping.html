@@ -58,6 +58,61 @@
     <div class="container">
       <h2>Design, build, and maintain</h2>
       <p class="section-lead">Choose a full refresh or focused upgrades. We handle the planning, installation, and upkeep so your investment keeps looking great.</p>
+      <div class="programs" data-service="landscaping">
+        <div class="feature-row program-card-row">
+          <button class="feature feature-with-logo program-card" type="button" data-program="alpha">
+            <div class="feature-text">
+              <h3>Alpha Landscape Program</h3>
+              <p>(Top Tier)</p>
+            </div>
+            <img src="images/Lawn Program Golden.png" alt="Wolf Logo" class="feature-logo" />
+          </button>
+
+          <button class="feature feature-with-logo program-card" type="button" data-program="beta">
+            <div class="feature-text">
+              <h3>Beta Landscape Program</h3>
+              <p>(Balanced)</p>
+            </div>
+            <img src="images/Lawn Program Silver.png" alt="Wolf Logo" class="feature-logo" />
+          </button>
+
+          <button class="feature feature-with-logo program-card" type="button" data-program="delta">
+            <div class="feature-text">
+              <h3>Delta Landscape Program</h3>
+              <p>(Value)</p>
+            </div>
+            <img src="images/Lawn Program Bronze.png" alt="Wolf Logo" class="feature-logo" />
+          </button>
+        </div>
+
+        <div class="program-body">
+          <div class="program-summary">
+            <p class="tier-tag">Alpha • Top tier</p>
+            <h3 class="program-title">Design-led build with finishing touches</h3>
+            <p class="program-description">Concept-to-completion projects with lighting, stone accents, and planting plans that stay beautiful through the season.</p>
+            <ul class="pill-list tier-pills">
+              <li class="pill">Design consult & plan</li>
+              <li class="pill">Stone + planting install</li>
+              <li class="pill">Lighting + cleanup</li>
+            </ul>
+          </div>
+
+        <div class="card-grid tier-differences">
+          <article class="card" data-detail="0">
+            <h3>Planning support</h3>
+            <p>Full design consult with plant list, materials, and phased scheduling.</p>
+          </article>
+          <article class="card" data-detail="1">
+            <h3>Build scope</h3>
+            <p>Stone borders, beds, and lighting installed with tidy edges.</p>
+          </article>
+          <article class="card" data-detail="2">
+            <h3>Aftercare</h3>
+            <p>Post-install cleanup plus a follow-up maintenance visit option.</p>
+          </article>
+        </div>
+      </div>
+      </div>
       <div class="service-grid">
         <div class="card">
           <h3>Garden refresh</h3>
@@ -90,7 +145,7 @@
           <li>Hands-on installation and clean finish</li>
         </ul>
       </div>
-      <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
+      <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id" data-service-form="landscaping">
         <label>
           Name
           <input type="text" name="name" required />
@@ -102,6 +157,15 @@
         <label>
           Email (optional)
           <input type="email" name="email" />
+        </label>
+        <label>
+          Service tier
+          <select name="tier">
+            <option value="">Select Alpha, Beta, or Delta</option>
+            <option value="Alpha Landscape Program">Alpha Landscape Program (Top tier)</option>
+            <option value="Beta Landscape Program">Beta Landscape Program (Balanced)</option>
+            <option value="Delta Landscape Program">Delta Landscape Program (Value)</option>
+          </select>
         </label>
         <label>
           Address / Area

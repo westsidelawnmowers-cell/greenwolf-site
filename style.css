@@ -408,6 +408,74 @@ img {
   opacity: 0.9;     /* looks cleaner on dark backgrounds */
 }
 
+.programs {
+  display: grid;
+  gap: 1.4rem;
+}
+
+.program-card-row {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.program-card {
+  border: 2px solid transparent;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  box-shadow: 0 18px 32px rgba(0, 0, 0, 0.12);
+}
+
+.program-card.is-active {
+  border-color: rgba(230, 199, 110, 0.9);
+  box-shadow: 0 20px 36px rgba(0, 0, 0, 0.16);
+  transform: translateY(-4px);
+}
+
+.program-body {
+  display: grid;
+  grid-template-columns: minmax(260px, 1.1fr) minmax(300px, 1.2fr);
+  gap: 1.1rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .program-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.program-summary {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.08);
+}
+
+.tier-tag {
+  font-weight: 800;
+  color: var(--pine);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.2rem;
+}
+
+.program-title {
+  margin: 0.2rem 0 0.35rem;
+}
+
+.program-description {
+  color: var(--muted);
+  margin-bottom: 0.7rem;
+}
+
+.tier-pills {
+  padding-top: 0.2rem;
+}
+
+.tier-differences .card {
+  border-top: 3px solid rgba(230, 199, 110, 0.85);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.08);
+}
+
 .quote-block {
   background: linear-gradient(120deg, var(--forest), #183c2b);
   color: var(--cream);
