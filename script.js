@@ -584,17 +584,23 @@ programSections.forEach((section) => {
   const serviceContent = programContent[service];
   if (!service || !serviceContent) return;
 
-  const tagEl = section.querySelector('.tier-tag');
-  const titleEl = section.querySelector('.program-title');
-  const descEl = section.querySelector('.program-description');
+  const tagEls = section.querySelectorAll('.tier-tag');
+  const titleEls = section.querySelectorAll('.program-title');
+  const descEls = section.querySelectorAll('.program-description');
   const pillList = section.querySelector('.tier-pills');
   const detailCards = Array.from(section.querySelectorAll('.tier-differences [data-detail]'));
-  const priceValueEl = section.querySelector('.program-summary .price-value');
-  const priceTermEl = section.querySelector('.program-summary .price-term');
-  const priceFrequencyEl = section.querySelector('.program-summary .price-frequency');
-  const summaryBonusEl = section.querySelector('.program-summary .program-bonus');
+  const priceValueEls = section.querySelectorAll('.program-summary .price-value');
+  const priceTermEls = section.querySelectorAll('.program-summary .price-term');
+  const priceFrequencyEls = section.querySelectorAll('.program-summary .price-frequency');
+  const summaryBonusEls = section.querySelectorAll('.program-summary .program-bonus');
   const optionCards = Array.from(section.querySelectorAll('.option-card'));
   const programCards = Array.from(section.querySelectorAll('.program-card'));
+
+  const setText = (nodeList, value) => {
+    nodeList?.forEach?.((node) => {
+      if (node) node.textContent = value;
+    });
+  };
 
   const renderTier = (tierKey) => {
     const tier = serviceContent[tierKey];
@@ -618,16 +624,16 @@ programSections.forEach((section) => {
       }
     });
 
-    if (tagEl) tagEl.textContent = tier.tag;
-    if (titleEl) titleEl.textContent = tier.title;
-    if (descEl) descEl.textContent = tier.description;
-    if (priceValueEl) priceValueEl.textContent = tier.price || '';
-    if (priceTermEl) priceTermEl.textContent = tier.term || '';
-    if (priceFrequencyEl) priceFrequencyEl.textContent = tier.frequency || '';
-    if (summaryBonusEl) {
-      summaryBonusEl.textContent = tier.bonus || '';
-      summaryBonusEl.classList.toggle('is-hidden', !tier.bonus);
-    }
+    setText(tagEls, tier.tag);
+    setText(titleEls, tier.title);
+    setText(descEls, tier.description);
+    setText(priceValueEls, tier.price || '');
+    setText(priceTermEls, tier.term || '');
+    setText(priceFrequencyEls, tier.frequency || '');
+    summaryBonusEls.forEach((bonusEl) => {
+      bonusEl.textContent = tier.bonus || '';
+      bonusEl.classList.toggle('is-hidden', !tier.bonus);
+    });
 
     if (pillList) {
       pillList.innerHTML = '';
