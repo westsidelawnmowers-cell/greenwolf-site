@@ -58,36 +58,125 @@
     <div class="container">
       <h2>Snow services</h2>
       <p class="section-lead">Focused routes and careful clearing keep your property accessible and presentable all winter long.</p>
-      <div class="card-grid">
-        <article class="card">
-          <h3>Driveways & Walks</h3>
-          <p>Snowblower plus shovel finish on driveways, sidewalks, and approaches for a clean result every time.</p>
-        </article>
-        <article class="card">
-          <h3>Front Steps & Entry</h3>
-          <p>Hand-finished steps and porches with attention to rails and transitions to keep guests safe.</p>
-        </article>
-        <article class="card">
-          <h3>De-icing</h3>
-          <p>Ice melt available for concrete and paving stone surfaces upon request.</p>
-        </article>
+      <div class="programs" data-service="snow">
+        <div class="feature-row program-card-row">
+          <button class="feature feature-with-logo program-card" type="button" data-program="alpha">
+            <div class="feature-text">
+              <p class="tier-label">Top Tier</p>
+              <h3>Alpha Snow Program</h3>
+              <p class="tier-note">(Top Tier)</p>
+            </div>
+            <div class="program-meta">
+              <span class="program-price">$179 / month</span>
+              <span class="program-frequency">Priority route</span>
+              <span class="program-bonus">Includes de-icing</span>
+            </div>
+            <div class="logo-spot">
+              <img src="images/Lawn Program Golden.png" alt="Wolf Logo" class="feature-logo" />
+            </div>
+          </button>
+
+          <button class="feature feature-with-logo program-card" type="button" data-program="beta">
+            <div class="feature-text">
+              <p class="tier-label">Balanced</p>
+              <h3>Beta Snow Program</h3>
+              <p class="tier-note">(Balanced)</p>
+            </div>
+            <div class="program-meta">
+              <span class="program-price">$139 / month</span>
+              <span class="program-frequency">Standard route</span>
+              <span class="program-bonus">Every snowfall</span>
+            </div>
+            <div class="logo-spot placeholder">LOGO SPOT</div>
+          </button>
+
+          <button class="feature feature-with-logo program-card" type="button" data-program="delta">
+            <div class="feature-text">
+              <p class="tier-label">Value</p>
+              <h3>Delta Snow Program</h3>
+              <p class="tier-note">(Value)</p>
+            </div>
+            <div class="program-meta">
+              <span class="program-price">$79 / visit</span>
+              <span class="program-frequency">As-available</span>
+              <span class="program-bonus">Driveway focus</span>
+            </div>
+            <div class="logo-spot placeholder">ANOTHER LOGO SPOT</div>
+          </button>
+        </div>
+
+        <div class="program-body">
+          <div class="program-sheet">
+            <div class="program-summary">
+              <div class="summary-copy">
+                <p class="eyebrow">Selected program</p>
+                <span class="tier-tag">Alpha Turf Program (Top Tier)</span>
+                <h3 class="program-title">Alpha Turf Program</h3>
+                <p class="program-description">Weekly mowing, trimming, edging, and fertilizer with owner check-ins to keep the lawn in top shape.</p>
+
+                <div class="detail-grid tier-differences">
+                  <article class="detail-card" data-detail="0">
+                    <h3>Weekly or Bi-weekly</h3>
+                    <p>Weekly mowing, trimming, edging, and fertilizer with owner check-ins to keep the lawn in top shape.</p>
+                  </article>
+                  <article class="detail-card" data-detail="1">
+                    <h3>Front / Back options</h3>
+                    <p>Front only? Add the backyard or go full pass. Includes trimming and line edging along sidewalks and fences.</p>
+                  </article>
+                  <article class="detail-card" data-detail="2">
+                    <h3>Finishes</h3>
+                    <p>Each visit includes trimming, edging, sweeping or blowing walkways, and fuel.</p>
+                  </article>
+                </div>
+              </div>
+
+              <div class="summary-rate">
+                <div class="price-chip">
+                  <span class="price-value">$119</span>
+                  <span class="price-term">/ visit</span>
+                  <span class="price-frequency">Weekly</span>
+                </div>
+                <article class="option-card main-option" data-option="0">
+                  <div class="option-header">
+                    <div>
+                      <h4 class="option-title">Weekly or Bi-weekly</h4>
+                      <p class="option-desc">Choose your cadence.</p>
+                    </div>
+                    <div class="option-price"></div>
+                  </div>
+                  <div class="option-lines"></div>
+                </article>
+                <p class="program-bonus">Kickoff bonus: first edge re-shape included.</p>
+              </div>
+            </div>
+
+            <div class="program-layout">
+              <article class="option-card" data-option="1">
+                <div class="option-header">
+                  <div>
+                    <h4 class="option-title">Front / Back options</h4>
+                    <p class="option-desc">Front only? Add the backyard or go full pass.</p>
+                  </div>
+                  <div class="option-price"></div>
+                </div>
+                <p class="option-note">Includes trimming and line edging along sidewalks and fences.</p>
+                <div class="option-lines"></div>
+              </article>
+              <article class="option-card" data-option="2">
+                <div class="option-header">
+                  <div>
+                    <h4 class="option-title">Detail finishes</h4>
+                    <p class="option-desc">Each visit includes trimming, edging, sweeping or blowing walkways, and fuel.</p>
+                  </div>
+                  <div class="option-price"></div>
+                </div>
+                <p class="option-note">Gate careful and tidy.</p>
+                <div class="option-lines"></div>
+              </article>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="divider"></div>
-      <div class="feature-row">
-        <div class="feature">
-          <h3>Route discipline</h3>
-          <p>Limited neighborhoods for fast response even during heavy snowfall.</p>
-        </div>
-        <div class="feature">
-          <h3>Photo updates</h3>
-          <p>Optional text or email updates so you know exactly when service is complete.</p>
-        </div>
-        <div class="feature">
-          <h3>Flexible coverage</h3>
-          <p>Pick per-push, monthly, or full-season plans that match your budget and snow patterns.</p>
-        </div>
-      </div>
-    </div>
   </section>
 
   <section class="section" id="quote">
@@ -96,7 +185,7 @@
         <h2>Request a snow quote</h2>
         <p class="section-lead">Tell us your address, snow plan preference, and any special access needs. We’ll reply quickly.</p>
       </div>
-      <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
+      <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id" data-service-form="snow">
         <label>
           Name
           <input type="text" name="name" required />
@@ -108,6 +197,15 @@
         <label>
           Email (optional)
           <input type="email" name="email" />
+        </label>
+        <label>
+          Service tier
+          <select name="tier">
+            <option value="">Select Alpha, Beta, or Delta</option>
+            <option value="Alpha Snow Program">Alpha Snow Program (Top tier)</option>
+            <option value="Beta Snow Program">Beta Snow Program (Balanced)</option>
+            <option value="Delta Snow Program">Delta Snow Program (Value)</option>
+          </select>
         </label>
         <label>
           Address / Area

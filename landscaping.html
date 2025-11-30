@@ -58,25 +58,125 @@
     <div class="container">
       <h2>Design, build, and maintain</h2>
       <p class="section-lead">Choose a full refresh or focused upgrades. We handle the planning, installation, and upkeep so your investment keeps looking great.</p>
-      <div class="service-grid">
-        <div class="card">
-          <h3>Garden refresh</h3>
-          <p>New plantings, soil and mulch, edging, and cleanup to bring beds back to life.</p>
+      <div class="programs" data-service="landscaping">
+        <div class="feature-row program-card-row">
+          <button class="feature feature-with-logo program-card" type="button" data-program="alpha">
+            <div class="feature-text">
+              <p class="tier-label">Top Tier</p>
+              <h3>Alpha Landscape Program</h3>
+              <p class="tier-note">(Top Tier)</p>
+            </div>
+            <div class="program-meta">
+              <span class="program-price">From $349</span>
+              <span class="program-frequency">Design + build</span>
+              <span class="program-bonus">Lighting + detailing</span>
+            </div>
+            <div class="logo-spot">
+              <img src="images/Lawn Program Golden.png" alt="Wolf Logo" class="feature-logo" />
+            </div>
+          </button>
+
+          <button class="feature feature-with-logo program-card" type="button" data-program="beta">
+            <div class="feature-text">
+              <p class="tier-label">Balanced</p>
+              <h3>Beta Landscape Program</h3>
+              <p class="tier-note">(Balanced)</p>
+            </div>
+            <div class="program-meta">
+              <span class="program-price">From $189</span>
+              <span class="program-frequency">Refresh projects</span>
+              <span class="program-bonus">Mulch or rock focus</span>
+            </div>
+            <div class="logo-spot placeholder">LOGO SPOT</div>
+          </button>
+
+          <button class="feature feature-with-logo program-card" type="button" data-program="delta">
+            <div class="feature-text">
+              <p class="tier-label">Value</p>
+              <h3>Delta Landscape Program</h3>
+              <p class="tier-note">(Value)</p>
+            </div>
+            <div class="program-meta">
+              <span class="program-price">From $119</span>
+              <span class="program-frequency">Essential upkeep</span>
+              <span class="program-bonus">Beds + edges</span>
+            </div>
+            <div class="logo-spot placeholder">ANOTHER LOGO SPOT</div>
+          </button>
         </div>
-        <div class="card">
-          <h3>Stone & hard edges</h3>
-          <p>Rock, paver, and flagstone accents with tidy edging for lasting definition.</p>
-        </div>
-        <div class="card">
-          <h3>Lighting accents</h3>
-          <p>Low-voltage lighting to highlight walkways, beds, and architectural details.</p>
-        </div>
-        <div class="card">
-          <h3>Maintenance plans</h3>
-          <p>Seasonal pruning, bed weeding, mulch top-ups, and tidy weekly visits.</p>
+
+        <div class="program-body">
+          <div class="program-sheet">
+            <div class="program-summary">
+              <div class="summary-copy">
+                <p class="eyebrow">Selected program</p>
+                <span class="tier-tag">Alpha Turf Program (Top Tier)</span>
+                <h3 class="program-title">Alpha Turf Program</h3>
+                <p class="program-description">Weekly mowing, trimming, edging, and fertilizer with owner check-ins to keep the lawn in top shape.</p>
+
+                <div class="detail-grid tier-differences">
+                  <article class="detail-card" data-detail="0">
+                    <h3>Weekly or Bi-weekly</h3>
+                    <p>Weekly mowing, trimming, edging, and fertilizer with owner check-ins to keep the lawn in top shape.</p>
+                  </article>
+                  <article class="detail-card" data-detail="1">
+                    <h3>Front / Back options</h3>
+                    <p>Front only? Add the backyard or go full pass. Includes trimming and line edging along sidewalks and fences.</p>
+                  </article>
+                  <article class="detail-card" data-detail="2">
+                    <h3>Finishes</h3>
+                    <p>Each visit includes trimming, edging, sweeping or blowing walkways, and fuel.</p>
+                  </article>
+                </div>
+              </div>
+
+              <div class="summary-rate">
+                <div class="price-chip">
+                  <span class="price-value">$119</span>
+                  <span class="price-term">/ visit</span>
+                  <span class="price-frequency">Weekly</span>
+                </div>
+                <article class="option-card main-option" data-option="0">
+                  <div class="option-header">
+                    <div>
+                      <h4 class="option-title">Weekly or Bi-weekly</h4>
+                      <p class="option-desc">Choose your cadence.</p>
+                    </div>
+                    <div class="option-price"></div>
+                  </div>
+                  <div class="option-lines"></div>
+                </article>
+                <p class="program-bonus">Kickoff bonus: first edge re-shape included.</p>
+              </div>
+            </div>
+
+            <div class="program-layout">
+              <article class="option-card" data-option="1">
+                <div class="option-header">
+                  <div>
+                    <h4 class="option-title">Front / Back options</h4>
+                    <p class="option-desc">Front only? Add the backyard or go full pass.</p>
+                  </div>
+                  <div class="option-price"></div>
+                </div>
+                <p class="option-note">Includes trimming and line edging along sidewalks and fences.</p>
+                <div class="option-lines"></div>
+              </article>
+              <article class="option-card" data-option="2">
+                <div class="option-header">
+                  <div>
+                    <h4 class="option-title">Detail finishes</h4>
+                    <p class="option-desc">Each visit includes trimming, edging, sweeping or blowing walkways, and fuel.</p>
+                  </div>
+                  <div class="option-price"></div>
+                </div>
+                <p class="option-note">Gate careful and tidy.</p>
+                <div class="option-lines"></div>
+              </article>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
   </section>
 
   <section class="section" id="quote">
@@ -90,7 +190,7 @@
           <li>Hands-on installation and clean finish</li>
         </ul>
       </div>
-      <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
+      <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id" data-service-form="landscaping">
         <label>
           Name
           <input type="text" name="name" required />
@@ -102,6 +202,15 @@
         <label>
           Email (optional)
           <input type="email" name="email" />
+        </label>
+        <label>
+          Service tier
+          <select name="tier">
+            <option value="">Select Alpha, Beta, or Delta</option>
+            <option value="Alpha Landscape Program">Alpha Landscape Program (Top tier)</option>
+            <option value="Beta Landscape Program">Beta Landscape Program (Balanced)</option>
+            <option value="Delta Landscape Program">Delta Landscape Program (Value)</option>
+          </select>
         </label>
         <label>
           Address / Area
