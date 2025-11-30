@@ -65,6 +65,265 @@ if (backToTop) {
   toggleBackToTop();
 }
 
+// Program selector for lawn packages
+const programCards = document.querySelectorAll('.program-card');
+const programTitle = document.getElementById('program-title');
+const programTier = document.getElementById('program-tier');
+const programDescription = document.getElementById('program-description');
+const programFeatures = document.querySelectorAll('.program-feature');
+const packageOptions = document.getElementById('package-options');
+const priceAmount = document.getElementById('price-amount');
+const priceNote = document.getElementById('price-note');
+const offerSticker = document.getElementById('offer-sticker');
+const packageSummaryField = document.getElementById('package-summary');
+const selectPackageButton = document.getElementById('select-package-button');
+let selectedProgramKey = 'alpha';
+let selectedPackageId = '';
+
+const programs = {
+  alpha: {
+    name: 'Alpha Turf Program',
+    tier: '(Top Tier)',
+    description:
+      'Weekly mowing, trimming, edging, and fertilizer with owner check-ins so the lawn always looks showcase ready.',
+    offer: 'Kickoff bonus: first edge re-shape included',
+    features: [
+      {
+        title: 'Weekly or Bi-weekly',
+        text: 'Choose a steady weekly cadence for the sharpest finish, or bi-weekly for well-kept lines at a lighter pace.',
+      },
+      {
+        title: 'Front / Back options',
+        text: 'Customize the service area—front, back, or full property—so we focus exactly where you need.',
+      },
+      {
+        title: 'Detail finishes',
+        text: 'Deep edging, tight trimming around beds and fence lines, plus careful gate handling every single visit.',
+      },
+    ],
+    packages: [
+      {
+        id: 'alpha-weekly',
+        label: 'Weekly service',
+        description: 'Show-home ready finish throughout the season.',
+        price: '$119 / visit',
+        frequency: 'Weekly',
+      },
+      {
+        id: 'alpha-biweekly',
+        label: 'Bi-weekly service',
+        description: 'Reliable upkeep with a little more breathing room.',
+        price: '$139 / visit',
+        frequency: 'Bi-weekly',
+      },
+    ],
+  },
+  beta: {
+    name: 'Beta Turf Program',
+    tier: '(Balanced)',
+    description:
+      'Dependable mowing and edging for busy schedules—keeps your property neat without overthinking the upkeep.',
+    offer: '',
+    features: [
+      {
+        title: 'Balanced cadence',
+        text: 'Pick weekly or bi-weekly visits based on how fast your grass grows and how manicured you want the finish.',
+      },
+      {
+        title: 'Area coverage',
+        text: 'Front, back, or full-yard coverage so you can match the service to your budget.',
+      },
+      {
+        title: 'Cleanup included',
+        text: 'Trim, edge, and blow down hard surfaces so everything is tidy before we leave.',
+      },
+    ],
+    packages: [
+      {
+        id: 'beta-weekly',
+        label: 'Weekly service',
+        description: 'Steady visits for consistent curb appeal.',
+        price: '$99 / visit',
+        frequency: 'Weekly',
+      },
+      {
+        id: 'beta-biweekly',
+        label: 'Bi-weekly service',
+        description: 'Budget-friendly cadence that keeps things trimmed back.',
+        price: '$115 / visit',
+        frequency: 'Bi-weekly',
+      },
+    ],
+  },
+  delta: {
+    name: 'Delta Turf Program',
+    tier: '(Value)',
+    description: 'Essential mowing and tidy edges when you want things clean without extra frills.',
+    offer: 'Seasonal saver available',
+    features: [
+      {
+        title: 'Flexible visits',
+        text: 'Stretch visits to match your budget or tighten the cadence during peak growth.',
+      },
+      {
+        title: 'Just the areas you need',
+        text: 'Dial in service to the front, back, or full yard depending on the week.',
+      },
+      {
+        title: 'No-surprise pricing',
+        text: 'Clear rates per visit so you always know what to expect on your invoice.',
+      },
+    ],
+    packages: [
+      {
+        id: 'delta-weekly',
+        label: 'Weekly service',
+        description: 'Keeps fast-growing lawns under control.',
+        price: '$89 / visit',
+        frequency: 'Weekly',
+      },
+      {
+        id: 'delta-biweekly',
+        label: 'Bi-weekly service',
+        description: 'Stretch the budget while staying tidy.',
+        price: '$99 / visit',
+        frequency: 'Bi-weekly',
+      },
+    ],
+  },
+};
+
+const setPrice = (pkg) => {
+  if (!priceAmount || !priceNote) return;
+  priceAmount.textContent = pkg.price;
+  priceNote.textContent = pkg.frequency;
+};
+
+const updateQuoteSummary = (programKey, pkg) => {
+  const program = programs[programKey];
+  if (!program || !pkg || !packageSummaryField) return;
+  packageSummaryField.value = `${program.name} — ${pkg.label} (${pkg.price}, ${pkg.frequency})`;
+};
+
+const setSelection = (programKey, pkg) => {
+  selectedProgramKey = programKey;
+  selectedPackageId = pkg.id;
+  setPrice(pkg);
+  updateQuoteSummary(programKey, pkg);
+};
+
+const getPackageById = (programKey, packageId) => {
+  const program = programs[programKey];
+  if (!program) return undefined;
+  return program.packages.find((pkg) => pkg.id === packageId);
+};
+
+const renderPackages = (programKey) => {
+  if (!packageOptions) return;
+  const program = programs[programKey];
+  if (!program) return;
+  packageOptions.innerHTML = '';
+
+  program.packages.forEach((pkg, index) => {
+    const option = document.createElement('label');
+    option.className = 'package-option';
+
+    const input = document.createElement('input');
+    input.type = 'radio';
+    input.name = 'package-choice';
+    input.value = pkg.id;
+    input.checked = index === 0;
+    input.addEventListener('change', () => setSelection(programKey, pkg));
+
+    const textBlock = document.createElement('div');
+    const title = document.createElement('div');
+    title.className = 'package-name';
+    title.textContent = pkg.label;
+
+    const desc = document.createElement('div');
+    desc.className = 'package-description';
+    desc.textContent = pkg.description;
+
+    textBlock.append(title, desc);
+
+    const price = document.createElement('div');
+    price.className = 'package-price';
+    price.textContent = pkg.price;
+
+    option.append(input, textBlock, price);
+    packageOptions.append(option);
+
+    if (index === 0) {
+      setSelection(programKey, pkg);
+    }
+  });
+};
+
+const renderProgram = (key) => {
+  const program = programs[key];
+  if (!program) return;
+  selectedProgramKey = key;
+
+  programCards.forEach((card) => {
+    card.classList.toggle('is-selected', card.dataset.program === key);
+  });
+
+  if (programTitle) programTitle.textContent = program.name;
+  if (programTier) programTier.textContent = program.tier;
+  if (programDescription) programDescription.textContent = program.description;
+
+  program.features.forEach((feature, idx) => {
+    const target = Array.from(programFeatures).find((card) => card.dataset.slot === idx.toString());
+    if (!target) return;
+    const title = target.querySelector('h3');
+    const text = target.querySelector('p');
+    if (title) title.textContent = feature.title;
+    if (text) text.textContent = feature.text;
+  });
+
+  renderPackages(key);
+
+  if (offerSticker) {
+    if (program.offer) {
+      offerSticker.textContent = program.offer;
+      offerSticker.hidden = false;
+    } else {
+      offerSticker.hidden = true;
+    }
+  }
+};
+
+if (programCards.length && programFeatures.length && packageOptions) {
+  programCards.forEach((card) => {
+    card.addEventListener('click', () => renderProgram(card.dataset.program || ''));
+  });
+  renderProgram('alpha');
+}
+
+if (selectPackageButton) {
+  selectPackageButton.addEventListener('click', () => {
+    const currentProgram = programs[selectedProgramKey];
+    if (!currentProgram) return;
+
+    const checkedPackage = document.querySelector('input[name="package-choice"]:checked');
+    const resolvedPackage =
+      getPackageById(selectedProgramKey, checkedPackage?.value || selectedPackageId) || currentProgram.packages[0];
+
+    if (resolvedPackage) {
+      setSelection(selectedProgramKey, resolvedPackage);
+    }
+
+    const quoteSection = document.getElementById('quote');
+    if (quoteSection) {
+      quoteSection.scrollIntoView({ behavior: 'smooth' });
+      const firstField = quoteSection.querySelector('input, textarea, select');
+      if (firstField) {
+        firstField.focus({ preventScroll: true });
+      }
+    }
+  });
+}
+
 // Quote form validation + friendly feedback
 const quoteForm = document.querySelector('.quote-form');
 const statusEl = document.querySelector('.form-status');
