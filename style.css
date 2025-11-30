@@ -394,9 +394,15 @@ img {
   display: flex;
   flex-direction: column;
 }
+.feature-with-logo .feature-text h3 {
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  color: #e6c76e; /* matches your Alpha gold */
+}
 
 .feature-logo {
-  width: 40px;      /* adjust size as needed */
+  width: 150px;      /* adjust size as needed */
   height: auto;
   object-fit: contain;
   opacity: 0.9;     /* looks cleaner on dark backgrounds */
