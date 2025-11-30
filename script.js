@@ -76,6 +76,7 @@ const priceAmount = document.getElementById('price-amount');
 const priceNote = document.getElementById('price-note');
 const offerSticker = document.getElementById('offer-sticker');
 const packageSummaryField = document.getElementById('package-summary');
+const selectPackageButton = document.getElementById('select-package-button');
 let selectedProgramKey = 'alpha';
 let selectedPackageId = '';
 
@@ -211,6 +212,12 @@ const setSelection = (programKey, pkg) => {
   updateQuoteSummary(programKey, pkg);
 };
 
+const getPackageById = (programKey, packageId) => {
+  const program = programs[programKey];
+  if (!program) return undefined;
+  return program.packages.find((pkg) => pkg.id === packageId);
+};
+
 const renderPackages = (programKey) => {
   if (!packageOptions) return;
   const program = programs[programKey];
@@ -291,6 +298,30 @@ if (programCards.length && programFeatures.length && packageOptions) {
     card.addEventListener('click', () => renderProgram(card.dataset.program || ''));
   });
   renderProgram('alpha');
+}
+
+if (selectPackageButton) {
+  selectPackageButton.addEventListener('click', () => {
+    const currentProgram = programs[selectedProgramKey];
+    if (!currentProgram) return;
+
+    const checkedPackage = document.querySelector('input[name="package-choice"]:checked');
+    const resolvedPackage =
+      getPackageById(selectedProgramKey, checkedPackage?.value || selectedPackageId) || currentProgram.packages[0];
+
+    if (resolvedPackage) {
+      setSelection(selectedProgramKey, resolvedPackage);
+    }
+
+    const quoteSection = document.getElementById('quote');
+    if (quoteSection) {
+      quoteSection.scrollIntoView({ behavior: 'smooth' });
+      const firstField = quoteSection.querySelector('input, textarea, select');
+      if (firstField) {
+        firstField.focus({ preventScroll: true });
+      }
+    }
+  });
 }
 
 // Quote form validation + friendly feedback

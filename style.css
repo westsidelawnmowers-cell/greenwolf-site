@@ -569,6 +569,34 @@ img {
   margin-top: 1.5rem;
 }
 
+.select-package-cta {
+  margin-top: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 1.15rem;
+  border: 1px dashed var(--border);
+  border-radius: 1rem;
+  background: #f7f9f4;
+}
+
+.select-package-note {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .select-package-cta {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .select-package-cta .btn {
+    width: 100%;
+  }
+}
+
 .quote-block {
   background: linear-gradient(120deg, var(--forest), #183c2b);
   color: var(--cream);
