@@ -58,22 +58,82 @@
     <div class="container">
       <h2>Design, build, and maintain</h2>
       <p class="section-lead">Choose a full refresh or focused upgrades. We handle the planning, installation, and upkeep so your investment keeps looking great.</p>
-      <div class="service-grid">
-        <div class="card">
-          <h3>Garden refresh</h3>
-          <p>New plantings, soil and mulch, edging, and cleanup to bring beds back to life.</p>
+
+      <div class="programs-module" data-program-module="landscaping" data-summary-target="landscape-package-summary" data-quote-target="quote">
+        <div class="feature-row">
+          <button class="feature feature-with-logo program-card" type="button" data-program="signature">
+            <div class="feature-text">
+              <h3>Signature Build</h3>
+              <p>(Design + install)</p>
+            </div>
+            <div class="logo-placeholder" aria-hidden="true">Logo spot</div>
+          </button>
+
+          <button class="feature feature-with-logo program-card" type="button" data-program="refresh">
+            <div class="feature-text">
+              <h3>Garden Refresh</h3>
+              <p>(Beds &amp; borders)</p>
+            </div>
+            <div class="logo-placeholder" aria-hidden="true">Logo spot</div>
+          </button>
+
+          <button class="feature feature-with-logo program-card" type="button" data-program="maintain">
+            <div class="feature-text">
+              <h3>Maintenance Plan</h3>
+              <p>(Ongoing care)</p>
+            </div>
+            <div class="logo-placeholder" aria-hidden="true">Logo spot</div>
+          </button>
         </div>
-        <div class="card">
-          <h3>Stone & hard edges</h3>
-          <p>Rock, paver, and flagstone accents with tidy edging for lasting definition.</p>
-        </div>
-        <div class="card">
-          <h3>Lighting accents</h3>
-          <p>Low-voltage lighting to highlight walkways, beds, and architectural details.</p>
-        </div>
-        <div class="card">
-          <h3>Maintenance plans</h3>
-          <p>Seasonal pruning, bed weeding, mulch top-ups, and tidy weekly visits.</p>
+
+        <div class="divider"></div>
+
+        <div class="program-details" aria-live="polite">
+          <div class="program-header">
+            <div class="program-heading">
+              <p class="eyebrow">Selected program</p>
+              <h3 data-program-title>Signature Build</h3>
+              <p class="program-tier" data-program-tier>(Design + install)</p>
+            </div>
+            <div class="program-price">
+              <div class="price-chip">
+                <span class="price-amount" data-price-amount>Custom quote</span>
+                <span class="price-note" data-price-note>Project</span>
+              </div>
+              <span class="offer-sticker" data-offer-sticker hidden>Limited offer</span>
+            </div>
+          </div>
+
+          <p class="program-description" data-program-description>
+            Concept-to-completion builds with planting, stone, and lighting that feel cohesive and lasting.
+          </p>
+
+          <form class="package-form">
+            <fieldset>
+              <legend>Pick your landscape plan</legend>
+              <div class="package-options" data-package-options></div>
+            </fieldset>
+          </form>
+
+          <div class="card-grid program-feature-grid">
+            <article class="card program-feature" data-slot="0">
+              <h3>Design first</h3>
+              <p>Material palettes, planting plans, and layout to match your home.</p>
+            </article>
+            <article class="card program-feature" data-slot="1">
+              <h3>Built to last</h3>
+              <p>Proper bases, edging, and drainage with a clean finish.</p>
+            </article>
+            <article class="card program-feature" data-slot="2">
+              <h3>Lighting ready</h3>
+              <p>Low-voltage lighting options to highlight the new space.</p>
+            </article>
+          </div>
+
+          <div class="select-package-cta">
+            <p class="select-package-note">Select your project style, then jump straight to the quote form.</p>
+            <button class="btn btn-primary" type="button" data-select-package>Select this package &amp; go to quote</button>
+          </div>
         </div>
       </div>
     </div>
@@ -106,6 +166,17 @@
         <label>
           Address / Area
           <input type="text" name="address" placeholder="Street + neighborhood" required />
+        </label>
+        <label>
+          Selected landscaping package
+          <textarea
+            id="landscape-package-summary"
+            name="landscape_package_summary"
+            rows="2"
+            readonly
+            aria-live="polite"
+          >Select a landscaping program above to attach it to your quote.</textarea>
+          <span class="field-hint">Updates automatically when you choose a program and plan.</span>
         </label>
         <label>
           What would you like to build?

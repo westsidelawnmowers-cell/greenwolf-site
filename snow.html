@@ -58,33 +58,82 @@
     <div class="container">
       <h2>Snow services</h2>
       <p class="section-lead">Focused routes and careful clearing keep your property accessible and presentable all winter long.</p>
-      <div class="card-grid">
-        <article class="card">
-          <h3>Driveways & Walks</h3>
-          <p>Snowblower plus shovel finish on driveways, sidewalks, and approaches for a clean result every time.</p>
-        </article>
-        <article class="card">
-          <h3>Front Steps & Entry</h3>
-          <p>Hand-finished steps and porches with attention to rails and transitions to keep guests safe.</p>
-        </article>
-        <article class="card">
-          <h3>De-icing</h3>
-          <p>Ice melt available for concrete and paving stone surfaces upon request.</p>
-        </article>
-      </div>
-      <div class="divider"></div>
-      <div class="feature-row">
-        <div class="feature">
-          <h3>Route discipline</h3>
-          <p>Limited neighborhoods for fast response even during heavy snowfall.</p>
+
+      <div class="programs-module" data-program-module="snow" data-summary-target="snow-package-summary" data-quote-target="quote">
+        <div class="feature-row">
+          <button class="feature feature-with-logo program-card" type="button" data-program="route">
+            <div class="feature-text">
+              <h3>Route Priority Plan</h3>
+              <p>(Fastest response)</p>
+            </div>
+            <div class="logo-placeholder" aria-hidden="true">Logo spot</div>
+          </button>
+
+          <button class="feature feature-with-logo program-card" type="button" data-program="flex">
+            <div class="feature-text">
+              <h3>Flexible Per-Push</h3>
+              <p>(On-demand)</p>
+            </div>
+            <div class="logo-placeholder" aria-hidden="true">Logo spot</div>
+          </button>
+
+          <button class="feature feature-with-logo program-card" type="button" data-program="walk">
+            <div class="feature-text">
+              <h3>Walk &amp; Entry Focus</h3>
+              <p>(Light coverage)</p>
+            </div>
+            <div class="logo-placeholder" aria-hidden="true">Logo spot</div>
+          </button>
         </div>
-        <div class="feature">
-          <h3>Photo updates</h3>
-          <p>Optional text or email updates so you know exactly when service is complete.</p>
-        </div>
-        <div class="feature">
-          <h3>Flexible coverage</h3>
-          <p>Pick per-push, monthly, or full-season plans that match your budget and snow patterns.</p>
+
+        <div class="divider"></div>
+
+        <div class="program-details" aria-live="polite">
+          <div class="program-header">
+            <div class="program-heading">
+              <p class="eyebrow">Selected program</p>
+              <h3 data-program-title>Route Priority Plan</h3>
+              <p class="program-tier" data-program-tier>(Fastest response)</p>
+            </div>
+            <div class="program-price">
+              <div class="price-chip">
+                <span class="price-amount" data-price-amount>$219 / month</span>
+                <span class="price-note" data-price-note>Seasonal plan</span>
+              </div>
+              <span class="offer-sticker" data-offer-sticker hidden>Limited offer</span>
+            </div>
+          </div>
+
+          <p class="program-description" data-program-description>
+            Dedicated route timing with driveway and walk clearing after each snowfall so you can move right away.
+          </p>
+
+          <form class="package-form">
+            <fieldset>
+              <legend>Pick your snow plan</legend>
+              <div class="package-options" data-package-options></div>
+            </fieldset>
+          </form>
+
+          <div class="card-grid program-feature-grid">
+            <article class="card program-feature" data-slot="0">
+              <h3>Driveways &amp; walks</h3>
+              <p>Snowblower plus shovel finish on driveways, sidewalks, and approaches for a clean result every time.</p>
+            </article>
+            <article class="card program-feature" data-slot="1">
+              <h3>Front steps &amp; entry</h3>
+              <p>Hand-finished steps and porches with attention to rails and transitions to keep guests safe.</p>
+            </article>
+            <article class="card program-feature" data-slot="2">
+              <h3>De-icing option</h3>
+              <p>Ice melt available for concrete and paving stone surfaces upon request.</p>
+            </article>
+          </div>
+
+          <div class="select-package-cta">
+            <p class="select-package-note">Select your plan, then jump straight to the quote form.</p>
+            <button class="btn btn-primary" type="button" data-select-package>Select this package &amp; go to quote</button>
+          </div>
         </div>
       </div>
     </div>
@@ -112,6 +161,17 @@
         <label>
           Address / Area
           <input type="text" name="address" placeholder="Street + neighborhood" required />
+        </label>
+        <label>
+          Selected snow package
+          <textarea
+            id="snow-package-summary"
+            name="snow_package_summary"
+            rows="2"
+            readonly
+            aria-live="polite"
+          >Select a snow program above to attach it to your quote.</textarea>
+          <span class="field-hint">Updates automatically when you choose a program and plan.</span>
         </label>
         <label>
           Which snow plan do you prefer?

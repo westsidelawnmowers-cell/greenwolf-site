@@ -61,80 +61,81 @@ Lawncare That Cares
     <h2>Lawn programs</h2>
     <p class="section-lead">Choose the visit cadence and coverage that fits your property. We keep edges crisp and clippings cleared.</p>
 
-    <!-- GREEN CARDS NOW FIRST -->
-    <div class="feature-row">
-      <button class="feature feature-with-logo program-card" type="button" data-program="alpha">
-        <div class="feature-text">
-          <h3>Alpha Turf Program</h3>
-          <p>(Top Tier)</p>
-        </div>
-        <img src="images/Lawn Program Golden.png" alt="Wolf Logo" class="feature-logo">
-      </button>
-
-      <button class="feature feature-with-logo program-card" type="button" data-program="beta">
-        <div class="feature-text">
-          <h3>Beta Turf Program</h3>
-          <p>(Balanced)</p>
-        </div>
-        <div class="logo-placeholder" aria-hidden="true">Logo spot</div>
-      </button>
-
-      <button class="feature feature-with-logo program-card" type="button" data-program="delta">
-        <div class="feature-text">
-          <h3>Delta Turf Program</h3>
-          <p>(Value)</p>
-        </div>
-        <div class="logo-placeholder" aria-hidden="true">Logo spot</div>
-      </button>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="program-details" aria-live="polite">
-      <div class="program-header">
-        <div class="program-heading">
-          <p class="eyebrow">Selected program</p>
-          <h3 id="program-title">Alpha Turf Program</h3>
-          <p class="program-tier" id="program-tier">(Top Tier)</p>
-        </div>
-        <div class="program-price">
-          <div class="price-chip" id="price-chip">
-            <span class="price-amount" id="price-amount">$119 / visit</span>
-            <span class="price-note" id="price-note">Weekly</span>
+    <div class="programs-module" data-program-module="lawn" data-summary-target="lawn-package-summary" data-quote-target="quote">
+      <div class="feature-row">
+        <button class="feature feature-with-logo program-card" type="button" data-program="alpha">
+          <div class="feature-text">
+            <h3>Alpha Turf Program</h3>
+            <p>(Top Tier)</p>
           </div>
-          <span class="offer-sticker" id="offer-sticker" hidden>Limited offer</span>
+          <img src="images/Lawn Program Golden.png" alt="Wolf Logo" class="feature-logo">
+        </button>
+
+        <button class="feature feature-with-logo program-card" type="button" data-program="beta">
+          <div class="feature-text">
+            <h3>Beta Turf Program</h3>
+            <p>(Balanced)</p>
+          </div>
+          <div class="logo-placeholder" aria-hidden="true">Logo spot</div>
+        </button>
+
+        <button class="feature feature-with-logo program-card" type="button" data-program="delta">
+          <div class="feature-text">
+            <h3>Delta Turf Program</h3>
+            <p>(Value)</p>
+          </div>
+          <div class="logo-placeholder" aria-hidden="true">Logo spot</div>
+        </button>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="program-details" aria-live="polite">
+        <div class="program-header">
+          <div class="program-heading">
+            <p class="eyebrow">Selected program</p>
+            <h3 id="program-title" data-program-title>Alpha Turf Program</h3>
+            <p class="program-tier" id="program-tier" data-program-tier>(Top Tier)</p>
+          </div>
+          <div class="program-price">
+            <div class="price-chip" id="price-chip">
+              <span class="price-amount" id="price-amount" data-price-amount>$119 / visit</span>
+              <span class="price-note" id="price-note" data-price-note>Weekly</span>
+            </div>
+            <span class="offer-sticker" id="offer-sticker" data-offer-sticker hidden>Limited offer</span>
+          </div>
         </div>
-      </div>
 
-      <p class="program-description" id="program-description">
-        Premium weekly mowing, trimming, edging, and fertilizer for a consistently polished yard.
-      </p>
+        <p class="program-description" id="program-description" data-program-description>
+          Premium weekly mowing, trimming, edging, and fertilizer for a consistently polished yard.
+        </p>
 
-      <form class="package-form" id="package-form">
-        <fieldset>
-          <legend>Pick your visit plan</legend>
-          <div class="package-options" id="package-options"></div>
-        </fieldset>
-      </form>
+        <form class="package-form" id="package-form">
+          <fieldset>
+            <legend>Pick your visit plan</legend>
+            <div class="package-options" id="package-options" data-package-options></div>
+          </fieldset>
+        </form>
 
-      <div class="card-grid program-feature-grid">
-        <article class="card program-feature" data-slot="0">
-          <h3>Weekly or Bi-weekly</h3>
-          <p>Regular mowing, trimming, edging, and fertilizer for a consistently polished yard. Please fill the form below</p>
-        </article>
-        <article class="card program-feature" data-slot="1">
-          <h3>Front / Back options</h3>
-          <p>Select the areas you need serviced—front, back, or full property.</p>
-        </article>
-        <article class="card program-feature" data-slot="2">
-          <h3>Detail finishes</h3>
-          <p>Pathway edging, fence-line trimming, and careful gate handling each visit.</p>
-        </article>
-      </div>
+        <div class="card-grid program-feature-grid">
+          <article class="card program-feature" data-slot="0">
+            <h3>Weekly or Bi-weekly</h3>
+            <p>Regular mowing, trimming, edging, and fertilizer for a consistently polished yard. Please fill the form below</p>
+          </article>
+          <article class="card program-feature" data-slot="1">
+            <h3>Front / Back options</h3>
+            <p>Select the areas you need serviced—front, back, or full property.</p>
+          </article>
+          <article class="card program-feature" data-slot="2">
+            <h3>Detail finishes</h3>
+            <p>Pathway edging, fence-line trimming, and careful gate handling each visit.</p>
+          </article>
+        </div>
 
-      <div class="select-package-cta">
-        <p class="select-package-note">Select your program and plan, then jump straight to the quote form.</p>
-        <button class="btn btn-primary" type="button" id="select-package-button">Select this package &amp; go to quote</button>
+        <div class="select-package-cta">
+          <p class="select-package-note">Select your program and plan, then jump straight to the quote form.</p>
+          <button class="btn btn-primary" type="button" id="select-package-button" data-select-package>Select this package &amp; go to quote</button>
+        </div>
       </div>
     </div>
 
@@ -168,7 +169,7 @@ Lawncare That Cares
         <label>
           Selected lawn package
           <textarea
-            id="package-summary"
+            id="lawn-package-summary"
             name="package_summary"
             rows="2"
             readonly

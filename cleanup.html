@@ -58,33 +58,82 @@
     <div class="container">
       <h2>Cleanup bundles</h2>
       <p class="section-lead">Pick the seasonal refresh your property needs. We tidy, haul away debris, and leave your space ready for what’s next.</p>
-      <div class="card-grid">
-        <article class="card">
-          <h3>Spring reset</h3>
-          <p>Debris removal, first edging, and lawn prep so you start the season right.</p>
-        </article>
-        <article class="card">
-          <h3>Fall clean sweep</h3>
-          <p>Leaf removal, final trim, and bed touch-ups before winter arrives.</p>
-        </article>
-        <article class="card">
-          <h3>Add-on hauling</h3>
-          <p>Optional hauling for branches and bagged debris—just tell us what needs to go.</p>
-        </article>
-      </div>
-      <div class="divider"></div>
-      <div class="feature-row">
-        <div class="feature">
-          <h3>Careful detailing</h3>
-          <p>Edge refreshes, pathway cleanup, and debris cleared from hard surfaces.</p>
+
+      <div class="programs-module" data-program-module="cleanup" data-summary-target="cleanup-package-summary" data-quote-target="quote">
+        <div class="feature-row">
+          <button class="feature feature-with-logo program-card" type="button" data-program="spring">
+            <div class="feature-text">
+              <h3>Spring Reset</h3>
+              <p>(Fresh start)</p>
+            </div>
+            <div class="logo-placeholder" aria-hidden="true">Logo spot</div>
+          </button>
+
+          <button class="feature feature-with-logo program-card" type="button" data-program="fall">
+            <div class="feature-text">
+              <h3>Fall Clean Sweep</h3>
+              <p>(Pre-winter)</p>
+            </div>
+            <div class="logo-placeholder" aria-hidden="true">Logo spot</div>
+          </button>
+
+          <button class="feature feature-with-logo program-card" type="button" data-program="tidy">
+            <div class="feature-text">
+              <h3>Tidy Touch-ups</h3>
+              <p>(Light service)</p>
+            </div>
+            <div class="logo-placeholder" aria-hidden="true">Logo spot</div>
+          </button>
         </div>
-        <div class="feature">
-          <h3>Flexible timing</h3>
-          <p>Schedule before snow melt, pre-summer, or ahead of winter freeze-up.</p>
-        </div>
-        <div class="feature">
-          <h3>Polished finish</h3>
-          <p>We tidy beds, gather leaves, and leave your property photo-ready.</p>
+
+        <div class="divider"></div>
+
+        <div class="program-details" aria-live="polite">
+          <div class="program-header">
+            <div class="program-heading">
+              <p class="eyebrow">Selected program</p>
+              <h3 data-program-title>Spring Reset</h3>
+              <p class="program-tier" data-program-tier>(Fresh start)</p>
+            </div>
+            <div class="program-price">
+              <div class="price-chip">
+                <span class="price-amount" data-price-amount>$249+</span>
+                <span class="price-note" data-price-note>Per cleanup</span>
+              </div>
+              <span class="offer-sticker" data-offer-sticker hidden>Limited offer</span>
+            </div>
+          </div>
+
+          <p class="program-description" data-program-description>
+            Debris removal, first edging, and prep so the lawn and beds start the season clean.
+          </p>
+
+          <form class="package-form">
+            <fieldset>
+              <legend>Pick your cleanup</legend>
+              <div class="package-options" data-package-options></div>
+            </fieldset>
+          </form>
+
+          <div class="card-grid program-feature-grid">
+            <article class="card program-feature" data-slot="0">
+              <h3>Careful detailing</h3>
+              <p>Edge refreshes, pathway cleanup, and debris cleared from hard surfaces.</p>
+            </article>
+            <article class="card program-feature" data-slot="1">
+              <h3>Flexible timing</h3>
+              <p>Schedule before snow melt, pre-summer, or ahead of winter freeze-up.</p>
+            </article>
+            <article class="card program-feature" data-slot="2">
+              <h3>Polished finish</h3>
+              <p>We tidy beds, gather leaves, and leave your property photo-ready.</p>
+            </article>
+          </div>
+
+          <div class="select-package-cta">
+            <p class="select-package-note">Select your cleanup, then jump straight to the quote form.</p>
+            <button class="btn btn-primary" type="button" data-select-package>Select this package &amp; go to quote</button>
+          </div>
         </div>
       </div>
     </div>
@@ -112,6 +161,17 @@
         <label>
           Address / Area
           <input type="text" name="address" placeholder="Street + neighborhood" required />
+        </label>
+        <label>
+          Selected cleanup package
+          <textarea
+            id="cleanup-package-summary"
+            name="cleanup_package_summary"
+            rows="2"
+            readonly
+            aria-live="polite"
+          >Select a cleanup program above to attach it to your quote.</textarea>
+          <span class="field-hint">Updates automatically when you choose a program and plan.</span>
         </label>
         <label>
           Cleanup details
