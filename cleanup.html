@@ -19,7 +19,13 @@
           <p class="tagline">Seasonal resets made easy</p>
         </div>
       </div>
-      <nav class="main-nav" aria-label="Primary">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-label">Menu</span>
+      </button>
+      <nav class="main-nav" id="primary-nav" aria-label="Primary">
         <a href="index.html#services">Services</a>
         <a href="snow.html">Snow</a>
         <a href="lawn.html">Lawn</a>
@@ -58,35 +64,158 @@
     <div class="container">
       <h2>Cleanup bundles</h2>
       <p class="section-lead">Pick the seasonal refresh your property needs. We tidy, haul away debris, and leave your space ready for what’s next.</p>
-      <div class="card-grid">
-        <article class="card">
-          <h3>Spring reset</h3>
-          <p>Debris removal, first edging, and lawn prep so you start the season right.</p>
-        </article>
-        <article class="card">
-          <h3>Fall clean sweep</h3>
-          <p>Leaf removal, final trim, and bed touch-ups before winter arrives.</p>
-        </article>
-        <article class="card">
-          <h3>Add-on hauling</h3>
-          <p>Optional hauling for branches and bagged debris—just tell us what needs to go.</p>
-        </article>
+      <div class="programs" data-service="cleanup">
+        <div class="feature-row program-card-row">
+          <button class="feature feature-with-logo program-card" type="button" data-program="alpha">
+            <div class="feature-text">
+              <h3>Alpha Cleanup Program</h3>
+              <p>(Top Tier)</p>
+            </div>
+            <div class="program-meta">
+              <span class="program-price">$219 / visit</span>
+              <span class="program-frequency">Deep seasonal</span>
+              <span class="program-bonus">Haul-away included</span>
+            </div>
+            <img src="images/Lawn Program Golden.png" alt="Wolf Logo" class="feature-logo" />
+          </button>
+
+          <button class="feature feature-with-logo program-card" type="button" data-program="beta">
+            <div class="feature-text">
+              <h3>Beta Cleanup Program</h3>
+              <p>(Balanced)</p>
+            </div>
+            <div class="program-meta">
+              <span class="program-price">$169 / visit</span>
+              <span class="program-frequency">Standard reset</span>
+              <span class="program-bonus">Hauling included</span>
+            </div>
+            <img src="images/Lawn Program Silver.png" alt="Wolf Logo" class="feature-logo" />
+          </button>
+
+          <button class="feature feature-with-logo program-card" type="button" data-program="delta">
+            <div class="feature-text">
+              <h3>Delta Cleanup Program</h3>
+              <p>(Value)</p>
+            </div>
+            <div class="program-meta">
+              <span class="program-price">$119 / visit</span>
+              <span class="program-frequency">Front-yard focus</span>
+              <span class="program-bonus">Bagged for pickup</span>
+            </div>
+            <img src="images/Lawn Program Bronze.png" alt="Wolf Logo" class="feature-logo" />
+          </button>
+        </div>
+
+    <div class="program-body program-showcase">
+      <div class="program-stage">
+        <div class="program-spotlight">
+          <div class="spotlight-top">
+            <div>
+              <p class="eyebrow">Selected program</p>
+              <p class="tier-tag">Alpha • Top tier</p>
+              <h3 class="program-title">Deep seasonal reset</h3>
+              <p class="program-description">Full yard sweep with detailed bed work, shrub shaping, and hauling included so the property is spotless.</p>
+              <ul class="tier-pills"></ul>
+            </div>
+            <div class="price-stack">
+              <div class="price-chip">
+                <span class="price-value">$219</span>
+                <span class="price-term">/ visit</span>
+                <span class="price-frequency">Deep seasonal</span>
+              </div>
+              <p class="program-bonus">Hauling included with premium pruning add-ons available.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="program-main">
+          <section class="program-board detail-board">
+            <div class="board-header">
+              <p class="eyebrow">What's included</p>
+              <h4>Debris, detail, extras</h4>
+            </div>
+            <div class="detail-grid tier-differences">
+              <article class="card detail-card" data-detail="0">
+                <div class="detail-step">01</div>
+                <div>
+                  <h3>Debris scope</h3>
+                  <p>Full leaf, branch, and winter debris removal with bagging and haul away.</p>
+                </div>
+              </article>
+              <article class="card detail-card" data-detail="1">
+                <div class="detail-step">02</div>
+                <div>
+                  <h3>Detailing</h3>
+                  <p>Bed clean-outs, edging refresh, and pathway sweeps for a tidy finish.</p>
+                </div>
+              </article>
+              <article class="card detail-card" data-detail="2">
+                <div class="detail-step">03</div>
+                <div>
+                  <h3>Optional extras</h3>
+                  <p>Light shrub trimming and fertilizer touch-up available on premium visits.</p>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="program-board plan-board">
+            <div class="board-header">
+              <p class="eyebrow">Visit plans</p>
+              <h4>Pick the scope that fits</h4>
+            </div>
+            <div class="option-list two-column">
+              <article class="option-card" data-option="0">
+                <div class="option-header">
+                  <div>
+                    <h4 class="option-title">Full property reset</h4>
+                    <p class="option-desc">Leaf, stick, and debris removal with bed detailing and haul-away.</p>
+                  </div>
+                <div class="option-price">$219 / visit</div>
+              </div>
+              <p class="option-note">Ideal for spring or fall transitions.</p>
+              <label class="option-select">
+                <input type="checkbox" class="option-check" />
+                <span>Add to quote</span>
+              </label>
+              <div class="option-lines"></div>
+            </article>
+            <article class="option-card" data-option="1">
+                <div class="option-header">
+                  <div>
+                    <h4 class="option-title">Standard cleanup</h4>
+                    <p class="option-desc">Leaf and debris clear-out with bagging for pickup or haul-away.</p>
+                  </div>
+                <div class="option-price">$169 / visit</div>
+              </div>
+              <p class="option-note">Add pruning or fertilizer as needed.</p>
+              <label class="option-select">
+                <input type="checkbox" class="option-check" />
+                <span>Add to quote</span>
+              </label>
+              <div class="option-lines"></div>
+            </article>
+            <article class="option-card" data-option="2">
+                <div class="option-header">
+                  <div>
+                    <h4 class="option-title">Front-yard focus</h4>
+                    <p class="option-desc">High-visibility tidy for entries and walks with optional backyard add-on.</p>
+                  </div>
+                <div class="option-price">$119 / visit</div>
+              </div>
+              <p class="option-note">Bagged for city pickup if preferred.</p>
+              <label class="option-select">
+                <input type="checkbox" class="option-check" />
+                <span>Add to quote</span>
+              </label>
+              <div class="option-lines"></div>
+            </article>
+            </div>
+          </section>
+        </div>
       </div>
-      <div class="divider"></div>
-      <div class="feature-row">
-        <div class="feature">
-          <h3>Careful detailing</h3>
-          <p>Edge refreshes, pathway cleanup, and debris cleared from hard surfaces.</p>
+    </div>
         </div>
-        <div class="feature">
-          <h3>Flexible timing</h3>
-          <p>Schedule before snow melt, pre-summer, or ahead of winter freeze-up.</p>
-        </div>
-        <div class="feature">
-          <h3>Polished finish</h3>
-          <p>We tidy beds, gather leaves, and leave your property photo-ready.</p>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -96,7 +225,7 @@
         <h2>Request a cleanup quote</h2>
         <p class="section-lead">Share the services you want, the areas to focus on, and any hauling needs. We’ll send back a clear plan.</p>
       </div>
-      <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
+      <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id" data-service-form="cleanup">
         <label>
           Name
           <input type="text" name="name" required />
@@ -109,6 +238,20 @@
           Email (optional)
           <input type="email" name="email" />
         </label>
+        <label>
+          Service tier
+          <select name="tier">
+            <option value="">Select Alpha, Beta, or Delta</option>
+            <option value="Alpha Cleanup Program">Alpha Cleanup Program (Top tier)</option>
+            <option value="Beta Cleanup Program">Beta Cleanup Program (Balanced)</option>
+            <option value="Delta Cleanup Program">Delta Cleanup Program (Value)</option>
+          </select>
+        </label>
+        <div class="selected-features-block">
+          <p class="small-text">Selected features for your quote</p>
+          <ul class="selected-features-list"></ul>
+          <input type="hidden" name="selected_features" value="" />
+        </div>
         <label>
           Address / Area
           <input type="text" name="address" placeholder="Street + neighborhood" required />
