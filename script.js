@@ -115,43 +115,71 @@ if (backToTop) {
   toggleBackToTop();
 }
 
-// Quote form validation + friendly feedback
-const quoteForm = document.querySelector('.quote-form');
-const statusEl = document.querySelector('.form-status');
+// Quote form validation + friendly feedback (uses Formspree endpoint)
+const FORM_ENDPOINT = 'https://formspree.io/f/mblrpavw';
 
-const setStatus = (message, type = 'info') => {
-  if (!statusEl) return;
-  statusEl.textContent = message;
-  statusEl.dataset.type = type;
+const validateForm = (form) => {
+  const formData = new FormData(form);
+  const name = (formData.get('name') || '').toString().trim();
+  const phone = (formData.get('phone') || '').toString().trim();
+  const email = (formData.get('email') || '').toString().trim();
+  const area = (formData.get('address') || '').toString().trim();
+
+  const errors = [];
+  if (!name) errors.push('Please include your name.');
+  if (!phone.match(/^[+\d][\d\s()-]{6,}$/)) {
+    errors.push('Add a reachable phone number (digits only is fine).');
+  }
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errors.push('That email doesn’t look quite right.');
+  }
+  if (!area) errors.push('Let us know your neighborhood so we can quote quickly.');
+
+  return errors;
 };
 
-if (quoteForm) {
-  quoteForm.addEventListener('submit', (event) => {
-    const formData = new FormData(quoteForm);
-    const name = (formData.get('name') || '').toString().trim();
-    const phone = (formData.get('phone') || '').toString().trim();
-    const email = (formData.get('email') || '').toString().trim();
-    const area = (formData.get('address') || '').toString().trim();
+document.querySelectorAll('.quote-form').forEach((quoteForm) => {
+  const statusEl = quoteForm.querySelector('.form-status');
+  if (FORM_ENDPOINT) {
+    quoteForm.action = FORM_ENDPOINT;
+  }
 
-    const errors = [];
-    if (!name) errors.push('Please include your name.');
-    if (!phone.match(/^[+\d][\d\s()-]{6,}$/)) {
-      errors.push('Add a reachable phone number (digits only is fine).');
-    }
-    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      errors.push('That email doesn’t look quite right.');
-    }
-    if (!area) errors.push('Let us know your neighborhood so we can quote quickly.');
+  const setStatus = (message, type = 'info') => {
+    if (!statusEl) return;
+    statusEl.textContent = message;
+    statusEl.dataset.type = type;
+  };
 
+  quoteForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const errors = validateForm(quoteForm);
     if (errors.length) {
-      event.preventDefault();
       setStatus(errors[0], 'error');
       return;
     }
 
     setStatus('Sending your request…', 'info');
+
+    try {
+      const formData = new FormData(quoteForm);
+      const response = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        body: formData,
+        headers: { Accept: 'application/json' },
+      });
+
+      if (!response.ok) {
+        throw new Error('Form submit failed');
+      }
+
+      setStatus('Thanks! We received your request and will confirm details shortly.', 'success');
+      quoteForm.reset();
+    } catch (error) {
+      setStatus('We could not send your request. Please email or call us directly and we will help right away.', 'error');
+    }
   });
-}
+});
 
 // Tier program toggles
 const programContent = {
