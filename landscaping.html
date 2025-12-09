@@ -58,39 +58,74 @@
     <div class="container">
       <h2>Design, build, and maintain</h2>
       <p class="section-lead">Choose a full refresh or focused upgrades. We handle the planning, installation, and upkeep so your investment keeps looking great.</p>
-      <div class="service-grid">
-        <div class="card">
-          <h3>Garden refresh</h3>
-          <p>New plantings, soil and mulch, edging, and cleanup to bring beds back to life.</p>
+              <div class="programs" data-service="landscaping">
+      <div class="feature-row program-card-row">
+        <button class="feature feature-with-logo program-card" type="button" data-program="alpha">
+          <div class="feature-text">
+            <h3>Alpha Landscape Program</h3>
+            <p>(Top tier)</p>
+          </div>
+          <div class="program-meta">
+            <span class="program-price">$199 / visit</span>
+            <span class="program-frequency">Premium builds</span>
+            <span class="program-bonus">Design + install</span>
+          </div>
+          <img src="images/Lawn Program Golden.png" alt="Wolf Logo" class="feature-logo" />
+        </button>
+
+        <button class="feature feature-with-logo program-card" type="button" data-program="beta">
+          <div class="feature-text">
+            <h3>Beta Landscape Program</h3>
+            <p>(Balanced)</p>
+          </div>
+          <div class="program-meta">
+            <span class="program-price">$149 / visit</span>
+            <span class="program-frequency">Refresh projects</span>
+            <span class="program-bonus">Smart upgrades</span>
+          </div>
+          <img src="images/Lawn Program Silver.png" alt="Wolf Logo" class="feature-logo" />
+        </button>
+
+        <button class="feature feature-with-logo program-card" type="button" data-program="delta">
+          <div class="feature-text">
+            <h3>Delta Landscape Program</h3>
+            <p>(Value)</p>
+          </div>
+          <div class="program-meta">
+            <span class="program-price">$99 / visit</span>
+            <span class="program-frequency">Simple refresh</span>
+            <span class="program-bonus">Budget-friendly</span>
+          </div>
+          <img src="images/Lawn Program Bronze.png" alt="Wolf Logo" class="feature-logo" />
+        </button>
+      </div>
+
+      <div class="program-feature-box" aria-live="polite">
+        <div class="program-feature-header">
+          <div>
+            <p class="eyebrow">What’s included</p>
+            <h4 class="program-feature-title">Alpha Landscape Program</h4>
+          </div>
+          <span class="program-feature-price">$199 / visit</span>
         </div>
-        <div class="card">
-          <h3>Stone & hard edges</h3>
-          <p>Rock, paver, and flagstone accents with tidy edging for lasting definition.</p>
-        </div>
-        <div class="card">
-          <h3>Lighting accents</h3>
-          <p>Low-voltage lighting to highlight walkways, beds, and architectural details.</p>
-        </div>
-        <div class="card">
-          <h3>Maintenance plans</h3>
-          <p>Seasonal pruning, bed weeding, mulch top-ups, and tidy weekly visits.</p>
-        </div>
+        <ul class="program-feature-list">
+          <li>Design-led planning and installation</li>
+          <li>Premium materials and planting</li>
+          <li>Site cleanup and finishing touches</li>
+        </ul>
+        <button class="btn btn-primary program-select-btn" type="button">Select this package</button>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <section class="section" id="quote">
     <div class="container split-grid">
       <div>
-        <h2>Tell us about your project</h2>
-        <p class="section-lead">Share your ideas and timing. We’ll recommend materials, phases, and budgets that match your vision.</p>
-        <ul class="hero-bullets">
-          <li>Design-first recommendations</li>
-          <li>Clear phases for budget flexibility</li>
-          <li>Hands-on installation and clean finish</li>
-        </ul>
+        <h2>Request a landscaping quote</h2>
+        <p class="section-lead">Share the project scope, area, and timing you’re targeting. We’ll respond with options for your chosen package.</p>
       </div>
-      <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
+      <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id" data-service-form="landscaping">
         <label>
           Name
           <input type="text" name="name" required />
@@ -104,16 +139,25 @@
           <input type="email" name="email" />
         </label>
         <label>
+          Service tier
+          <select name="tier">
+            <option value="">Select Alpha, Beta, or Delta</option>
+            <option value="Alpha Landscape Program">Alpha Landscape Program (Top tier)</option>
+            <option value="Beta Landscape Program">Beta Landscape Program (Balanced)</option>
+            <option value="Delta Landscape Program">Delta Landscape Program (Value)</option>
+          </select>
+        </label>
+        <label>
           Address / Area
           <input type="text" name="address" placeholder="Street + neighborhood" required />
         </label>
         <label>
-          What would you like to build?
-          <textarea name="details" rows="4" placeholder="Beds, stonework, lighting, etc."></textarea>
+          What landscaping help do you need?
+          <textarea name="details" rows="4" placeholder="Design-build, refresh, timeline, etc."></textarea>
         </label>
         <button type="submit" class="btn btn-primary">Submit</button>
         <p class="form-status" aria-live="polite"></p>
-        <p class="form-footnote">Swap in your own Formspree or CRM endpoint to receive these requests.</p>
+        <p class="form-footnote">This form sends directly to our inbox. We never share your information.</p>
       </form>
     </div>
   </section>
