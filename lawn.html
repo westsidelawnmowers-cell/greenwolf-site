@@ -61,58 +61,32 @@ Lawncare That Cares
     <h2>Lawn programs</h2>
     <p class="section-lead">Choose the visit cadence and coverage that fits your property. We keep edges crisp and clippings cleared.</p>
 
-    <!-- GREEN CARDS NOW FIRST -->
-    <div class="feature-row">
+    <div class="programs" data-service="lawn">
+      <div class="feature-row program-card-row">
+        <button class="feature feature-with-logo program-card" type="button" data-program="alpha" data-program-label="Alpha Turf Program">
+          <div class="feature-text">
+            <h3>Alpha Turf Program</h3>
+          </div>
+          <img src="images/Lawn Program Golden.png" alt="Wolf Logo" class="feature-logo" />
+        </button>
 
-      <!-- Alpha card -->
-      <div class="feature-row">
-          <button class="feature feature-with-logo program-card" type="button" data-program="alpha">
-            <div class="feature-text">
-              <h3>Alpha Turf Program</h3>
-              <p>(Top Tier)</p>
-            </div>
-            <img src="images/Lawn Program Golden.png" alt="Wolf Logo" class="feature-logo" />
-          </button>
+        <button class="feature feature-with-logo program-card" type="button" data-program="beta" data-program-label="Beta Turf Program">
+          <div class="feature-text">
+            <h3>Beta Turf Program</h3>
+          </div>
+          <img src="images/Lawn Program Silver.png" alt="Wolf Logo" class="feature-logo" />
+        </button>
 
-          <button class="feature feature-with-logo program-card" type="button" data-program="beta">
-            <div class="feature-text">
-              <h3>Beta Turf Program</h3>
-              <p>(Balanced)</p>
-            </div>
-             <img src="images/Lawn Program Silver.png" alt="Wolf Logo" class="feature-logo" />
-          </button>
-
-          <button class="feature feature-with-logo program-card" type="button" data-program="delta">
-            <div class="feature-text">
-              <h3>Delta Turf Program</h3>
-              <p>(Value)</p>
-            </div>
-            <img src="images/Lawn Program Bronze.png" alt="Wolf Logo" class="feature-logo" />
-          </button>
-        </div>
-
-
-    <div class="divider"></div>
-
-    <!-- WHITE CARDS NOW BELOW -->
-    <div class="card-grid">
-      <article class="card">
-        <h3>Weekly or Bi-weekly</h3>
-        <p>Regular mowing, trimming, edging, and fertilizer for a consistently polished yard. Please fill the form below</p>
-      </article>
-      <article class="card">
-        <h3>Front / Back options</h3>
-        <p>Select the areas you need serviced—front, back, or full property.</p>
-      </article>
-      <article class="card">
-        <h3>Detail finishes</h3>
-        <p>Pathway edging, fence-line trimming, and careful gate handling each visit.</p>
-      </article>
+        <button class="feature feature-with-logo program-card" type="button" data-program="delta" data-program-label="Delta Turf Program">
+          <div class="feature-text">
+            <h3>Delta Turf Program</h3>
+          </div>
+          <img src="images/Lawn Program Bronze.png" alt="Wolf Logo" class="feature-logo" />
+        </button>
+      </div>
     </div>
-
   </div>
 </section>
-
 
   <section class="section" id="quote">
     <div class="container split-grid">
@@ -120,7 +94,7 @@ Lawncare That Cares
         <h2>Request a lawn quote</h2>
         <p class="section-lead">Tell us the size of your yard, visit frequency, and any special notes. We’ll respond with clear pricing.</p>
       </div>
-      <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
+      <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id" data-service-form="lawn">
         <label>
           Name
           <input type="text" name="name" required />
@@ -132,6 +106,15 @@ Lawncare That Cares
         <label>
           Email (optional)
           <input type="email" name="email" />
+        </label>
+        <label>
+          Service tier
+          <select name="tier">
+            <option value="">Select Alpha, Beta, or Delta</option>
+            <option value="Alpha Turf Program">Alpha Turf Program (Top tier)</option>
+            <option value="Beta Turf Program">Beta Turf Program (Balanced)</option>
+            <option value="Delta Turf Program">Delta Turf Program (Value)</option>
+          </select>
         </label>
         <label>
           Address / Area

@@ -18,6 +18,56 @@ anchorLinks.forEach((link) => {
   });
 });
 
+// Hide header on swipe / scroll for mobile breathing room
+const header = document.querySelector('.site-header');
+if (header) {
+  let lastScrollY = window.scrollY;
+  let touchStartY = null;
+
+  const hideHeader = () => document.body.classList.add('nav-hidden');
+  const showHeader = () => document.body.classList.remove('nav-hidden');
+
+  window.addEventListener(
+    'scroll',
+    () => {
+      const currentY = window.scrollY;
+      if (currentY > lastScrollY + 12) {
+        hideHeader();
+      } else if (currentY < lastScrollY - 12) {
+        showHeader();
+      }
+      lastScrollY = currentY;
+    },
+    { passive: true }
+  );
+
+  window.addEventListener(
+    'touchstart',
+    (event) => {
+      touchStartY = event.touches[0]?.clientY ?? null;
+    },
+    { passive: true }
+  );
+
+  window.addEventListener(
+    'touchmove',
+    (event) => {
+      if (touchStartY === null) return;
+      const currentY = event.touches[0]?.clientY ?? 0;
+      const delta = touchStartY - currentY;
+      if (Math.abs(delta) > 24) {
+        if (delta > 0) {
+          hideHeader();
+        } else {
+          showHeader();
+        }
+        touchStartY = null;
+      }
+    },
+    { passive: true }
+  );
+}
+
 // Click highlight for interactive elements
 const clickables = document.querySelectorAll('a, button, .card, .pill');
 clickables.forEach((el) => {
@@ -102,3 +152,27 @@ if (quoteForm) {
     setStatus('Sending your request…', 'info');
   });
 }
+
+// Tier program toggles
+const programSections = document.querySelectorAll('.programs');
+
+programSections.forEach((section) => {
+  const service = section.dataset.service;
+  const cards = Array.from(section.querySelectorAll('.program-card'));
+  const form = service ? document.querySelector(`form[data-service-form="${service}"]`) : null;
+  const tierSelect = form?.querySelector('select[name="tier"]');
+
+  const setActive = (card) => {
+    cards.forEach((c) => c.classList.toggle('is-active', c === card));
+    const label = (card.dataset.programLabel || card.querySelector('h3')?.textContent || '').trim();
+    if (tierSelect && label) {
+      tierSelect.value = label;
+    }
+  };
+
+  cards.forEach((card, index) => {
+    card.addEventListener('click', () => setActive(card));
+    if (index === 0) setActive(card);
+  });
+});
+
