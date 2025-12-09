@@ -65,6 +65,51 @@ if (backToTop) {
   toggleBackToTop();
 }
 
+// Hide dashboard/nav on scroll or swipe
+const siteHeader = document.querySelector('.site-header');
+if (siteHeader) {
+  let lastScrollY = window.scrollY;
+  let touchStartY = 0;
+
+  const setHeaderHidden = (hidden) => {
+    siteHeader.classList.toggle('is-hidden', hidden);
+  };
+
+  const handleScrollHide = () => {
+    const currentY = window.scrollY;
+    const scrolledDown = currentY - lastScrollY > 12;
+    const scrolledUp = lastScrollY - currentY > 12;
+
+    if (scrolledDown && currentY > 80) {
+      setHeaderHidden(true);
+    } else if (scrolledUp || currentY < 40) {
+      setHeaderHidden(false);
+    }
+
+    lastScrollY = currentY;
+  };
+
+  window.addEventListener('scroll', handleScrollHide, { passive: true });
+
+  window.addEventListener(
+    'touchstart',
+    (event) => {
+      touchStartY = event.touches[0]?.clientY || 0;
+    },
+    { passive: true }
+  );
+
+  window.addEventListener(
+    'touchmove',
+    (event) => {
+      const delta = (event.touches[0]?.clientY || 0) - touchStartY;
+      if (delta < -28) setHeaderHidden(true);
+      if (delta > 22) setHeaderHidden(false);
+    },
+    { passive: true }
+  );
+}
+
 // Quote form validation + friendly feedback
 const quoteForm = document.querySelector('.quote-form');
 const statusEl = document.querySelector('.form-status');
@@ -568,6 +613,91 @@ const programContent = {
   },
 };
 
+const featureSelections = {};
+
+const getFeatureSet = (service) => {
+  if (!featureSelections[service]) featureSelections[service] = new Set();
+  return featureSelections[service];
+};
+
+const updateFeatureSummary = (service) => {
+  const summary = document.querySelector(`[data-feature-summary="${service}"]`);
+  const list = summary?.querySelector('.selected-feature-list');
+  const hiddenInput = document.querySelector(
+    `form[data-service-form="${service}"] input[name="selectedFeatures"]`
+  );
+  const detailsField = document.querySelector(
+    `form[data-service-form="${service}"] textarea[name="details"]`
+  );
+
+  const selections = Array.from(getFeatureSet(service));
+
+  if (list) {
+    list.innerHTML = '';
+    if (!selections.length) {
+      const empty = document.createElement('span');
+      empty.className = 'muted-text';
+      empty.textContent = 'No features selected yet.';
+      list.appendChild(empty);
+    } else {
+      selections.forEach((label) => {
+        const chip = document.createElement('span');
+        chip.className = 'feature-chip';
+        chip.textContent = label;
+        chip.setAttribute('role', 'listitem');
+        list.appendChild(chip);
+      });
+    }
+  }
+
+  if (hiddenInput) hiddenInput.value = selections.join('; ');
+  if (detailsField && selections.length) {
+    detailsField.placeholder = `Include: ${selections.join(', ')}`;
+  }
+};
+
+const syncFeatureToggle = (inputEl, service, label) => {
+  if (!inputEl) return;
+
+  const previous = inputEl.dataset.featureLabel;
+  if (previous && previous !== label && inputEl.checked) {
+    getFeatureSet(service).delete(previous);
+    inputEl.checked = false;
+  }
+
+  inputEl.dataset.featureLabel = label;
+  inputEl.value = label;
+
+  inputEl.onchange = () => {
+    const featureSet = getFeatureSet(service);
+    if (inputEl.checked) {
+      featureSet.add(label);
+    } else {
+      featureSet.delete(label);
+    }
+    updateFeatureSummary(service);
+  };
+};
+
+const ensureFeatureToggle = (container, service) => {
+  if (!container) return null;
+  let toggle = container.querySelector('input.feature-select');
+  if (!toggle) {
+    const wrap = document.createElement('label');
+    wrap.className = 'feature-toggle';
+    toggle = document.createElement('input');
+    toggle.type = 'checkbox';
+    toggle.className = 'feature-select';
+    const text = document.createElement('span');
+    text.textContent = 'Add to quote';
+    wrap.appendChild(toggle);
+    wrap.appendChild(text);
+    container.appendChild(wrap);
+  }
+  toggle.dataset.service = service;
+  return toggle;
+};
+
 const syncFormTier = (service, value) => {
   const form = document.querySelector(`form[data-service-form="${service}"]`);
   if (!form) return;
@@ -648,6 +778,12 @@ programSections.forEach((section) => {
     detailCards.forEach((card, index) => {
       const detail = tier.details[index];
       if (!detail) {
+        const toggle = card.querySelector('input.feature-select');
+        const oldLabel = toggle?.dataset.featureLabel;
+        if (toggle?.checked && oldLabel) {
+          getFeatureSet(service).delete(oldLabel);
+          toggle.checked = false;
+        }
         card.style.display = 'none';
         return;
       }
@@ -656,11 +792,20 @@ programSections.forEach((section) => {
       const paragraph = card.querySelector('p');
       if (heading) heading.textContent = detail.title;
       if (paragraph) paragraph.textContent = detail.text;
+
+      const toggle = ensureFeatureToggle(card, service);
+      syncFeatureToggle(toggle, service, detail.title);
     });
 
     optionCards.forEach((card, index) => {
       const option = tier.options?.[index];
       if (!option) {
+        const toggle = card.querySelector('input.feature-select');
+        const oldLabel = toggle?.dataset.featureLabel;
+        if (toggle?.checked && oldLabel) {
+          getFeatureSet(service).delete(oldLabel);
+          toggle.checked = false;
+        }
         card.style.display = 'none';
         return;
       }
@@ -718,14 +863,20 @@ programSections.forEach((section) => {
           lines.style.display = 'none';
         }
       }
+
+      const toggle = ensureFeatureToggle(card, service);
+      syncFeatureToggle(toggle, service, option.title);
     });
 
     syncFormTier(service, tier.label);
+    updateFeatureSummary(service);
   };
 
   programCards.forEach((card) => {
     card.addEventListener('click', () => {
       renderTier(card.dataset.program || 'alpha');
+      const featureBoard = section.querySelector('.program-main') || section.querySelector('.program-body');
+      featureBoard?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
 
