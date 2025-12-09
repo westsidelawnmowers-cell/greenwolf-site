@@ -58,45 +58,76 @@
     <div class="container">
       <h2>Snow services</h2>
       <p class="section-lead">Focused routes and careful clearing keep your property accessible and presentable all winter long.</p>
-      <div class="card-grid">
-        <article class="card">
-          <h3>Driveways & Walks</h3>
-          <p>Snowblower plus shovel finish on driveways, sidewalks, and approaches for a clean result every time.</p>
-        </article>
-        <article class="card">
-          <h3>Front Steps & Entry</h3>
-          <p>Hand-finished steps and porches with attention to rails and transitions to keep guests safe.</p>
-        </article>
-        <article class="card">
-          <h3>De-icing</h3>
-          <p>Ice melt available for concrete and paving stone surfaces upon request.</p>
-        </article>
+                  <div class="programs" data-service="snow">
+      <div class="feature-row program-card-row">
+        <button class="feature feature-with-logo program-card" type="button" data-program="alpha">
+          <div class="feature-text">
+            <h3>Alpha Snow Program</h3>
+            <p>(Top tier)</p>
+          </div>
+          <div class="program-meta">
+            <span class="program-price">$179 / month</span>
+            <span class="program-frequency">Priority route</span>
+            <span class="program-bonus">First-wave response</span>
+          </div>
+          <img src="images/Lawn Program Golden.png" alt="Wolf Logo" class="feature-logo" />
+        </button>
+
+        <button class="feature feature-with-logo program-card" type="button" data-program="beta">
+          <div class="feature-text">
+            <h3>Beta Snow Program</h3>
+            <p>(Balanced)</p>
+          </div>
+          <div class="program-meta">
+            <span class="program-price">$139 / month</span>
+            <span class="program-frequency">Standard route</span>
+            <span class="program-bonus">Every snowfall</span>
+          </div>
+          <img src="images/Lawn Program Silver.png" alt="Wolf Logo" class="feature-logo" />
+        </button>
+
+        <button class="feature feature-with-logo program-card" type="button" data-program="delta">
+          <div class="feature-text">
+            <h3>Delta Snow Program</h3>
+            <p>(Value)</p>
+          </div>
+          <div class="program-meta">
+            <span class="program-price">$79 / visit</span>
+            <span class="program-frequency">As-available</span>
+            <span class="program-bonus">Driveway focus</span>
+          </div>
+          <img src="images/Lawn Program Bronze.png" alt="Wolf Logo" class="feature-logo" />
+        </button>
       </div>
-      <div class="divider"></div>
-      <div class="feature-row">
-        <div class="feature">
-          <h3>Route discipline</h3>
-          <p>Limited neighborhoods for fast response even during heavy snowfall.</p>
+
+      <div class="program-feature-box" data-service-box="snow">
+        <div class="feature-box-header">
+          <div>
+            <p class="feature-box-eyebrow">Selected package</p>
+            <h3 class="feature-box-name">Alpha Snow Program</h3>
+          </div>
+          <div class="feature-box-meta">
+            <span class="feature-box-price">$179 / month</span>
+            <span class="feature-box-frequency">Priority route</span>
+          </div>
         </div>
-        <div class="feature">
-          <h3>Photo updates</h3>
-          <p>Optional text or email updates so you know exactly when service is complete.</p>
-        </div>
-        <div class="feature">
-          <h3>Flexible coverage</h3>
-          <p>Pick per-push, monthly, or full-season plans that match your budget and snow patterns.</p>
-        </div>
+        <ul class="feature-box-list">
+          <li>Automatic clearing after each snowfall.</li>
+          <li>Driveway, walkways, and steps included.</li>
+          <li>De-icing available plus photo updates.</li>
+        </ul>
+        <button class="btn btn-primary select-package" type="button">Select this package</button>
       </div>
     </div>
-  </section>
-
+  </div>
+</section>
   <section class="section" id="quote">
     <div class="container split-grid">
       <div>
         <h2>Request a snow quote</h2>
         <p class="section-lead">Tell us your address, snow plan preference, and any special access needs. We’ll reply quickly.</p>
       </div>
-      <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
+      <form method="POST" class="quote-form" action="https://formspree.io/f/mblrpavw" data-service-form="snow">
         <label>
           Name
           <input type="text" name="name" required />
@@ -108,6 +139,15 @@
         <label>
           Email (optional)
           <input type="email" name="email" />
+        </label>
+        <label>
+          Service tier
+          <select name="tier">
+            <option value="">Select Alpha, Beta, or Delta</option>
+            <option value="Alpha Snow Program">Alpha Snow Program (Top tier)</option>
+            <option value="Beta Snow Program">Beta Snow Program (Balanced)</option>
+            <option value="Delta Snow Program">Delta Snow Program (Value)</option>
+          </select>
         </label>
         <label>
           Address / Area
