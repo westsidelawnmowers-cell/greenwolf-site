@@ -53,7 +53,7 @@ Lawncare That Cares
     </div>
   </section>
 
- <section class="section service-hero" id="details">
+  <section class="section service-hero" id="details">
   <div class="container">
     <h2>Lawn programs</h2>
     <p class="section-lead">Choose the visit cadence and coverage that fits your property. We keep edges crisp and clippings cleared.</p>
@@ -89,12 +89,65 @@ Lawncare That Cares
         </div>
 
 
-    <div class="divider"></div>
+  <div class="divider"></div>
 
-    <!-- WHITE CARDS NOW BELOW -->
-    <div class="card-grid">
-      <article class="card">
-        <h3>Weekly or Bi-weekly</h3>
+  <section class="section package-picker" id="packages">
+    <div class="container package-layout">
+      <div>
+        <p class="eyebrow">Pick your extras</p>
+        <h3>Bundle the lawn services you need</h3>
+        <p class="section-lead">Tap a package to see details and add it to your quote. Your selections are pushed straight into the form below.</p>
+
+        <div class="package-nav" role="list">
+          <button class="package-option is-active" type="button" role="listitem" data-package="Fertilizer Program" data-description="Balanced, eco-forward fertilizer plan to keep colour and density all season." data-features="Improves overall lawn health|Strengthens turf even during drought|Micronutrient blend for fast green-up and deep roots">
+            <span class="option-title">Fertilizer Program</span>
+            <span class="option-note">Improved formula</span>
+          </button>
+          <button class="package-option" type="button" role="listitem" data-package="SoilBooster™" data-description="Premium soil nourishment that feeds the roots and revitalizes tired turf." data-features="Feeds root systems so lawns stay resilient|Speeds up colour recovery after stress|Supports thicker turf and fewer bare spots">
+            <span class="option-title">SoilBooster™</span>
+            <span class="option-note">Deep nourishment</span>
+          </button>
+          <button class="package-option" type="button" role="listitem" data-package="Weed & Vegetation Control" data-description="Targeted suppression for weeds, fence lines, and rock beds so your yard stays tidy." data-features="Controls broadleaf weeds before they spread|Keeps rock beds and hard edges crisp|Owner-led inspections each visit">
+            <span class="option-title">Weed & Vegetation Control</span>
+            <span class="option-note">Stay ahead of growth</span>
+          </button>
+          <button class="package-option" type="button" role="listitem" data-package="Aeration" data-description="Core aeration to relieve compaction and let water and nutrients sink in." data-features="Breaks up compacted soil for easier growth|Improves drainage and reduces pooling|Primes your lawn for fertilizer uptake">
+            <span class="option-title">Aeration</span>
+            <span class="option-note">Spring + fall slots</span>
+          </button>
+          <button class="package-option" type="button" role="listitem" data-package="Overseeding" data-description="Thickening application to fill thin spots and resist weeds." data-features="Adds fresh seed to thin and patchy areas|Promotes thicker turf with fewer bare spots|Pairs well with fertilizer for quick results">
+            <span class="option-title">Overseeding</span>
+            <span class="option-note">Pair with fertilizer</span>
+          </button>
+          <button class="package-option" type="button" role="listitem" data-package="ClearPatch" data-description="Spot repair bundle for high-traffic or pet-damaged areas." data-features="Levels ruts and minor low spots|Top-dress and seed for quick fill-in|Includes watering guidance so it takes">
+            <span class="option-title">ClearPatch</span>
+            <span class="option-note">Fix problem areas</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="package-panel">
+        <div class="panel-head">
+          <p class="eyebrow">Package details</p>
+          <span class="pill pill-soft">Auto-added to quote form</span>
+        </div>
+        <h3 id="packageTitle">Fertilizer Program</h3>
+        <p id="packageDescription">Balanced, eco-forward fertilizer plan to keep colour and density all season.</p>
+        <ul id="packageFeatureList" class="feature-list">
+          <li>Improves overall lawn health</li>
+          <li>Strengthens turf even during drought</li>
+          <li>Micronutrient blend for fast green-up and deep roots</li>
+        </ul>
+        <button type="button" class="btn btn-primary" id="togglePackageBtn" data-package-key="Fertilizer Program">Add package to quote</button>
+        <p class="panel-help">Select as many packages as you need. We’ll send them with your contact details.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHITE CARDS NOW BELOW -->
+  <div class="card-grid">
+    <article class="card">
+      <h3>Weekly or Bi-weekly</h3>
         <p>Regular mowing, trimming, edging, and fertilizer for a consistently polished yard. Please fill the form below</p>
       </article>
       <article class="card">
@@ -118,6 +171,19 @@ Lawncare That Cares
         <p class="section-lead">Tell us the size of your yard, visit frequency, and any special notes. We’ll respond with clear pricing.</p>
       </div>
       <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
+        <div class="selected-summary">
+          <div class="selected-summary__header">
+            <div>
+              <p class="eyebrow">Selected packages</p>
+              <h4 class="selected-summary__title">We’ll include these in your request</h4>
+            </div>
+            <p class="selected-summary__note">Pick options above — we’ll attach them here automatically.</p>
+          </div>
+          <div class="selected-tags" id="selectedTags">
+            <span class="tag">Fertilizer Program</span>
+          </div>
+          <input type="hidden" name="selectedPackages" id="selectedPackagesInput" value="Fertilizer Program" />
+        </div>
         <label>
           Name
           <input type="text" name="name" required />
