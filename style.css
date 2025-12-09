@@ -1317,6 +1317,86 @@ img {
   letter-spacing: 0.01em;
 }
 
+/* Simplified program layout */
+.programs {
+  background: linear-gradient(180deg, #f8f5ec, #f4f5f0);
+  border: 1px solid rgba(18, 52, 31, 0.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.program-card-row {
+  background: #102418;
+  box-shadow: none;
+  padding: 0.6rem;
+}
+
+.program-card-row::after {
+  display: none;
+}
+
+.program-card {
+  box-shadow: 0 8px 14px rgba(0, 0, 0, 0.14);
+}
+
+.program-body {
+  background: #ffffff;
+  border: 1px solid #e6e1cf;
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.1);
+  border-radius: 1.2rem;
+  padding: 1.4rem;
+}
+
+.program-body.is-collapsed {
+  display: none;
+}
+
+.program-spotlight,
+.program-board,
+.option-card,
+.detail-card {
+  background: linear-gradient(180deg, #fdfaf3, #f7f6f1);
+  border: 1px solid #e6e1cf;
+  box-shadow: none;
+}
+
+.program-main {
+  background: #ffffff;
+  border-radius: 1rem;
+  gap: 1rem;
+}
+
+.board-header h4,
+.program-description,
+.option-note,
+.option-desc,
+.option-price,
+.detail-card p {
+  color: #163322;
+}
+
+.price-chip {
+  background: #fdf7e8;
+  color: #0f2417;
+  border: 1px solid #e6c76e;
+  box-shadow: none;
+}
+
+.price-chip .price-frequency {
+  color: inherit;
+}
+
+.program-bonus {
+  background: #fdf7e8;
+  border: 1px solid #e6c76e;
+  color: #4a3b15;
+  box-shadow: none;
+}
+
+.option-line {
+  background: #f5f4ee;
+  border: 1px solid #e6e1cf;
+}
+
 .selected-features {
   background: #f7f3ea;
   border: 1px solid #d6c8aa;

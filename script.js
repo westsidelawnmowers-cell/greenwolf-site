@@ -656,6 +656,11 @@ programSections.forEach((section) => {
   const summaryBonusEls = section.querySelectorAll('.program-summary .program-bonus');
   const optionCards = Array.from(section.querySelectorAll('.option-card'));
   const programCards = Array.from(section.querySelectorAll('.program-card'));
+  const programBody = section.querySelector('.program-body');
+
+  if (programBody) {
+    programBody.classList.add('is-collapsed');
+  }
 
   const setText = (nodeList, value) => {
     nodeList?.forEach?.((node) => {
@@ -838,10 +843,11 @@ programSections.forEach((section) => {
   programCards.forEach((card) => {
     card.addEventListener('click', () => {
       renderTier(card.dataset.program || 'alpha');
+      if (programBody) {
+        programBody.classList.remove('is-collapsed');
+      }
       const target = section.querySelector('.program-main') || section;
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
-
-  renderTier('alpha');
 });
