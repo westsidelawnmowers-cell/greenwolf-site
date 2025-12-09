@@ -627,6 +627,40 @@ const syncFormTier = (service, value) => {
   }
 };
 
+const fillFormDetails = (service, tierKey, tier) => {
+  const form = document.querySelector(`form[data-service-form="${service}"]`);
+  if (!form || !tier) return;
+
+  syncFormTier(service, tier.label);
+
+  const detailsField = form.querySelector('textarea[name="details"]');
+  if (detailsField) {
+    const bullets = (tier.details || tier.options || [])
+      .slice(0, 3)
+      .map((item) => item.text || item.description || item.title)
+      .filter(Boolean);
+    const priceText = [tier.price, tier.term].filter(Boolean).join(' ');
+    const summaryParts = [
+      `${tier.label} selected`,
+      tier.frequency ? `Frequency: ${tier.frequency}` : '',
+      priceText ? `Price: ${priceText}` : '',
+      bullets.length ? `Includes: ${bullets.join(' • ')}` : '',
+    ].filter(Boolean);
+
+    detailsField.value = summaryParts.join('. ') + '.';
+  }
+};
+
+const scrollToForm = (service) => {
+  const form = document.querySelector(`form[data-service-form="${service}"]`);
+  if (!form) return;
+  form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const firstField = form.querySelector('input, select, textarea');
+  if (firstField) {
+    setTimeout(() => firstField.focus({ preventScroll: true }), 300);
+  }
+};
+
 const programSections = document.querySelectorAll('.programs');
 
 programSections.forEach((section) => {
@@ -635,6 +669,12 @@ programSections.forEach((section) => {
   if (!service || !serviceContent) return;
 
   const programCards = Array.from(section.querySelectorAll('.program-card'));
+  const featureBox = section.querySelector('.program-feature-box');
+  const featureName = featureBox?.querySelector('.feature-box-name');
+  const featurePrice = featureBox?.querySelector('.feature-box-price');
+  const featureFrequency = featureBox?.querySelector('.feature-box-frequency');
+  const featureList = featureBox?.querySelector('.feature-box-list');
+  const selectPackageBtn = featureBox?.querySelector('.select-package');
 
   const renderTier = (tierKey) => {
     const tier = serviceContent[tierKey];
@@ -658,12 +698,51 @@ programSections.forEach((section) => {
       }
     });
 
+    if (featureBox && featureName && featurePrice && featureFrequency && featureList) {
+      featureBox.classList.add('is-visible');
+      featureName.textContent = tier.label;
+      featurePrice.textContent = [tier.price, tier.term].filter(Boolean).join(' ');
+      featureFrequency.textContent = tier.frequency || '';
+      featureList.innerHTML = '';
+
+      const bulletItems = (tier.details || tier.options || [])
+        .slice(0, 3)
+        .map((item) => item.text || item.description || item.title)
+        .filter(Boolean);
+
+      if (bulletItems.length === 0) {
+        const li = document.createElement('li');
+        li.textContent = 'Package details will be confirmed in your quote.';
+        featureList.appendChild(li);
+      } else {
+        bulletItems.forEach((text) => {
+          const li = document.createElement('li');
+          li.textContent = text;
+          featureList.appendChild(li);
+        });
+      }
+    }
+
+    if (selectPackageBtn) {
+      selectPackageBtn.textContent = `Select ${tier.label}`;
+      selectPackageBtn.dataset.tierKey = tierKey;
+    }
+
     syncFormTier(service, tier.label);
   };
 
   programCards.forEach((card) => {
     card.addEventListener('click', () => renderTier(card.dataset.program || 'alpha'));
   });
+
+  if (selectPackageBtn) {
+    selectPackageBtn.addEventListener('click', () => {
+      const tierKey = selectPackageBtn.dataset.tierKey || 'alpha';
+      const tier = serviceContent[tierKey];
+      fillFormDetails(service, tierKey, tier);
+      scrollToForm(service);
+    });
+  }
 
   renderTier('alpha');
 });
