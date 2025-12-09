@@ -634,113 +634,12 @@ programSections.forEach((section) => {
   const serviceContent = programContent[service];
   if (!service || !serviceContent) return;
 
-  const selection = new Set();
-  const selectionList = document.querySelector(
-    `form[data-service-form="${service}"] .selected-features-list`
-  );
-  const selectionEmpty = document.querySelector(
-    `form[data-service-form="${service}"] .selected-features-empty`
-  );
-  const selectionField = document.querySelector(
-    `form[data-service-form="${service}"] input[name="selectedFeatures"]`
-  );
-
-  const tagEls = section.querySelectorAll('.tier-tag');
-  const titleEls = section.querySelectorAll('.program-title');
-  const descEls = section.querySelectorAll('.program-description');
-  const pillList = section.querySelector('.tier-pills');
-  const detailCards = Array.from(section.querySelectorAll('.tier-differences [data-detail]'));
-  const priceValueEls = section.querySelectorAll('.program-summary .price-value');
-  const priceTermEls = section.querySelectorAll('.program-summary .price-term');
-  const priceFrequencyEls = section.querySelectorAll('.program-summary .price-frequency');
-  const summaryBonusEls = section.querySelectorAll('.program-summary .program-bonus');
-  const optionCards = Array.from(section.querySelectorAll('.option-card'));
   const programCards = Array.from(section.querySelectorAll('.program-card'));
-  const programModal = section.querySelector('.program-modal');
-  const modalPanel = programModal?.querySelector('.program-modal__panel');
-  const modalClose = programModal?.querySelector('.program-modal__close');
-  const modalBackdrop = programModal?.querySelector('.program-modal__backdrop');
-
-  if (modalPanel) {
-    modalPanel.setAttribute('tabindex', '-1');
-  }
-
-  const closeModal = () => {
-    if (!programModal) return;
-    programModal.classList.remove('is-open');
-    programModal.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('program-modal-open');
-  };
-
-  const openModal = () => {
-    if (!programModal) return;
-    programModal.classList.add('is-open');
-    programModal.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('program-modal-open');
-    modalPanel?.focus({ preventScroll: true });
-  };
-
-  if (modalClose) modalClose.addEventListener('click', closeModal);
-  if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
-  window.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && programModal?.classList.contains('is-open')) {
-      closeModal();
-    }
-  });
-
-  const setText = (nodeList, value) => {
-    nodeList?.forEach?.((node) => {
-      if (node) node.textContent = value;
-    });
-  };
-
-  const updateSelectionUI = () => {
-    if (selectionList) {
-      selectionList.innerHTML = '';
-      selection.forEach((label) => {
-        const li = document.createElement('li');
-        li.textContent = label;
-        selectionList.appendChild(li);
-      });
-      selectionList.classList.toggle('is-hidden', selection.size === 0);
-    }
-    if (selectionEmpty) selectionEmpty.classList.toggle('is-hidden', selection.size > 0);
-    if (selectionField) selectionField.value = Array.from(selection).join('; ');
-  };
-
-  const toggleFeature = (element) => {
-    const label = (element.dataset.featureLabel || element.textContent || '').trim();
-    if (!label) return;
-    if (selection.has(label)) {
-      selection.delete(label);
-    } else {
-      selection.add(label);
-    }
-    element.classList.toggle('is-picked', selection.has(label));
-    element.setAttribute('aria-pressed', selection.has(label).toString());
-    updateSelectionUI();
-  };
-
-  const makeSelectable = (element) => {
-    if (!element) return;
-    element.classList.add('is-selectable');
-    element.setAttribute('tabindex', '0');
-    element.setAttribute('role', 'button');
-    element.addEventListener('click', () => toggleFeature(element));
-    element.addEventListener('keypress', (event) => {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        toggleFeature(element);
-      }
-    });
-  };
+  if (!programCards.length) return;
 
   const renderTier = (tierKey) => {
     const tier = serviceContent[tierKey];
     if (!tier) return;
-
-    selection.clear();
-    updateSelectionUI();
 
     programCards.forEach((card) => {
       const cardKey = card.dataset.program;
@@ -760,116 +659,14 @@ programSections.forEach((section) => {
       }
     });
 
-    setText(tagEls, tier.tag);
-    setText(titleEls, tier.title);
-    setText(descEls, tier.description);
-    setText(priceValueEls, tier.price || '');
-    setText(priceTermEls, tier.term || '');
-    setText(priceFrequencyEls, tier.frequency || '');
-    summaryBonusEls.forEach((bonusEl) => {
-      bonusEl.textContent = tier.bonus || '';
-      bonusEl.classList.toggle('is-hidden', !tier.bonus);
-    });
-
-    if (pillList) {
-      pillList.innerHTML = '';
-      tier.pills.forEach((pill) => {
-        const li = document.createElement('li');
-        li.className = 'pill';
-        li.textContent = pill;
-        pillList.appendChild(li);
-      });
-    }
-
-    detailCards.forEach((card, index) => {
-      const detail = tier.details[index];
-      if (!detail) {
-        card.style.display = 'none';
-        return;
-      }
-      card.style.display = '';
-      const heading = card.querySelector('h3');
-      const paragraph = card.querySelector('p');
-      if (heading) heading.textContent = detail.title;
-      if (paragraph) paragraph.textContent = detail.text;
-      card.dataset.featureLabel = detail.title || '';
-      card.classList.remove('is-picked');
-    });
-
-    optionCards.forEach((card, index) => {
-      const option = tier.options?.[index];
-      if (!option) {
-        card.style.display = 'none';
-        return;
-      }
-      card.style.display = '';
-      const title = card.querySelector('.option-title');
-      const desc = card.querySelector('.option-desc');
-      const note = card.querySelector('.option-note');
-      const price = card.querySelector('.option-price');
-      const lines = card.querySelector('.option-lines');
-
-      if (title) title.textContent = option.title || '';
-      if (desc) desc.textContent = option.description || '';
-      if (note) {
-        note.textContent = option.note || '';
-        note.classList.toggle('is-hidden', !option.note);
-      }
-      if (price) {
-        price.textContent = option.price || '';
-        price.classList.toggle('is-hidden', Boolean(option.suboptions?.length));
-      }
-
-      if (lines) {
-        lines.innerHTML = '';
-        if (option.suboptions?.length) {
-          lines.style.display = 'grid';
-          option.suboptions.forEach((sub) => {
-            const line = document.createElement('div');
-            line.className = 'option-line';
-
-            const info = document.createElement('div');
-            const label = document.createElement('p');
-            label.className = 'option-label';
-            label.textContent = sub.label || '';
-            info.appendChild(label);
-
-            if (sub.note) {
-              const subNote = document.createElement('p');
-              subNote.className = 'option-note';
-              subNote.textContent = sub.note;
-              info.appendChild(subNote);
-            }
-
-            line.appendChild(info);
-
-            if (sub.price) {
-              const subPrice = document.createElement('div');
-              subPrice.className = 'option-price';
-              subPrice.textContent = sub.price;
-              line.appendChild(subPrice);
-            }
-
-            lines.appendChild(line);
-          });
-        } else {
-          lines.style.display = 'none';
-        }
-      }
-
-      card.dataset.featureLabel = option.title || '';
-      card.classList.remove('is-picked');
-    });
-
     syncFormTier(service, tier.label);
   };
 
-  [...detailCards, ...optionCards].forEach((card) => makeSelectable(card));
-
   programCards.forEach((card) => {
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-pressed', 'false');
     card.addEventListener('click', () => {
       renderTier(card.dataset.program || 'alpha');
-      openModal();
     });
   });
 
