@@ -56,36 +56,44 @@
 
   <section class="section service-hero" id="details">
     <div class="container">
-      <h2>Snow services</h2>
-      <p class="section-lead">Focused routes and careful clearing keep your property accessible and presentable all winter long.</p>
-      <div class="card-grid">
-        <article class="card">
-          <h3>Driveways & Walks</h3>
-          <p>Snowblower plus shovel finish on driveways, sidewalks, and approaches for a clean result every time.</p>
+      <h2>Snow packages</h2>
+      <p class="section-lead">Pick the coverage you need. Selecting a package drops it right into your quote.</p>
+      <div class="package-grid">
+        <article class="package-card">
+          <div class="package-meta">Snow removal</div>
+          <h3 class="package-name">Per-Push Clear</h3>
+          <p class="package-price">Book as it snows</p>
+          <ul class="package-list">
+            <li>Driveway and walk clearing after each snowfall</li>
+            <li>Front steps and porch shovel finish</li>
+            <li>Great for flexible, pay-per-visit coverage</li>
+          </ul>
+          <button class="btn btn-primary package-select" type="button" data-service="Snow Removal" data-package="Per-Push Clear" data-default-label="Select package">Select package</button>
         </article>
-        <article class="card">
-          <h3>Front Steps & Entry</h3>
-          <p>Hand-finished steps and porches with attention to rails and transitions to keep guests safe.</p>
+
+        <article class="package-card">
+          <div class="package-meta">Snow removal</div>
+          <h3 class="package-name">Monthly Route</h3>
+          <p class="package-price">Flat rate per month</p>
+          <ul class="package-list">
+            <li>Priority route visits during storms</li>
+            <li>Sidewalks, approaches, and entryways included</li>
+            <li>Ideal for homes wanting predictable pricing</li>
+          </ul>
+          <button class="btn btn-primary package-select" type="button" data-service="Snow Removal" data-package="Monthly Route" data-default-label="Select package">Select package</button>
         </article>
-        <article class="card">
-          <h3>De-icing</h3>
-          <p>Ice melt available for concrete and paving stone surfaces upon request.</p>
+
+        <article class="package-card">
+          <div class="package-meta">Snow removal</div>
+          <h3 class="package-name">Full-Season Care</h3>
+          <p class="package-price">All winter long</p>
+          <ul class="package-list">
+            <li>Set-and-forget coverage from first snow to melt</li>
+            <li>De-icing available for concrete and paving stone</li>
+            <li>Text/photo updates on request</li>
+          </ul>
+          <button class="btn btn-primary package-select" type="button" data-service="Snow Removal" data-package="Full-Season Care" data-default-label="Select package">Select package</button>
         </article>
-      </div>
-      <div class="divider"></div>
-      <div class="feature-row">
-        <div class="feature">
-          <h3>Route discipline</h3>
-          <p>Limited neighborhoods for fast response even during heavy snowfall.</p>
-        </div>
-        <div class="feature">
-          <h3>Photo updates</h3>
-          <p>Optional text or email updates so you know exactly when service is complete.</p>
-        </div>
-        <div class="feature">
-          <h3>Flexible coverage</h3>
-          <p>Pick per-push, monthly, or full-season plans that match your budget and snow patterns.</p>
-        </div>
       </div>
     </div>
   </section>
@@ -94,32 +102,48 @@
     <div class="container split-grid">
       <div>
         <h2>Request a snow quote</h2>
-        <p class="section-lead">Tell us your address, snow plan preference, and any special access needs. We’ll reply quickly.</p>
+        <p class="section-lead">Select a package, add your address, and we’ll confirm your spot on the route.</p>
       </div>
-      <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
+      <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id" data-default-service="Snow Removal">
         <label>
           Name
-          <input type="text" name="name" required />
+          <input type="text" name="name" required placeholder="Your full name" />
         </label>
         <label>
           Phone
-          <input type="tel" name="phone" required />
-        </label>
-        <label>
-          Email (optional)
-          <input type="email" name="email" />
+          <input type="tel" name="phone" required placeholder="Best number to reach you" />
         </label>
         <label>
           Address / Area
           <input type="text" name="address" placeholder="Street + neighborhood" required />
         </label>
         <label>
-          Which snow plan do you prefer?
-          <textarea name="details" rows="4" placeholder="Per push, monthly, or full-season"></textarea>
+          Service needed
+          <select name="service" required>
+            <option value="">Select a service</option>
+            <option value="Snow Removal">Snow Removal</option>
+            <option value="Lawn Care">Lawn Care</option>
+            <option value="Landscaping">Landscaping</option>
+            <option value="Seasonal Cleanup">Seasonal Cleanup</option>
+          </select>
         </label>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="selected-summary">
+          <div class="selected-header">
+            <p class="small-text">Selected items</p>
+            <p class="small-text">Tap any item to remove it or add more above.</p>
+          </div>
+          <div class="selected-items" aria-live="polite">
+            <p class="selected-placeholder">Pick a package or add-on to attach it to your quote.</p>
+          </div>
+          <input type="hidden" name="packages" value="" />
+        </div>
+        <label>
+          Access or timing notes
+          <textarea name="details" rows="3" placeholder="Gate code, ice melt preference, or timing requests"></textarea>
+        </label>
+        <button type="submit" class="btn btn-primary">Send my quote</button>
         <p class="form-status" aria-live="polite"></p>
-        <p class="form-footnote">This form sends directly to our inbox. We never share your information.</p>
+        <p class="form-footnote">Quick form—name, phone, and address are all we need to reserve your route.</p>
       </form>
     </div>
   </section>

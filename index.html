@@ -160,37 +160,53 @@
     <div class="container split-grid">
       <div>
         <h2>Request a free quote</h2>
-        <p class="section-lead">Share your property details and the service you need. We’ll respond quickly with clear next steps.</p>
+        <p class="section-lead">Pick the service, add your address, and we’ll reply with simple next steps.</p>
         <ul class="hero-bullets">
           <li>Same-day replies when possible</li>
-          <li>Snow, lawn, and cleanup options</li>
+          <li>Snow, lawn, landscaping, and cleanup options</li>
           <li>No pressure—cancel anytime</li>
         </ul>
       </div>
       <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
         <label>
           Name
-          <input type="text" name="name" required />
+          <input type="text" name="name" required placeholder="Your full name" />
         </label>
         <label>
           Phone
-          <input type="tel" name="phone" required />
-        </label>
-        <label>
-          Email (optional)
-          <input type="email" name="email" />
+          <input type="tel" name="phone" required placeholder="Best number to reach you" />
         </label>
         <label>
           Address / Area
           <input type="text" name="address" placeholder="Street + neighborhood" required />
         </label>
         <label>
-          What do you need done?
-          <textarea name="details" rows="4" placeholder="Snow removal, lawn care, cleanup, etc."></textarea>
+          Service needed
+          <select name="service" required>
+            <option value="">Select a service</option>
+            <option value="Lawn Care">Lawn Care</option>
+            <option value="Snow Removal">Snow Removal</option>
+            <option value="Landscaping">Landscaping</option>
+            <option value="Seasonal Cleanup">Seasonal Cleanup</option>
+          </select>
         </label>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="selected-summary">
+          <div class="selected-header">
+            <p class="small-text">Selected items</p>
+            <p class="small-text">Tap to remove or add more from the service pages.</p>
+          </div>
+          <div class="selected-items" aria-live="polite">
+            <p class="selected-placeholder">Pick packages or add-ons on any service page and they’ll land here automatically.</p>
+          </div>
+          <input type="hidden" name="packages" value="" />
+        </div>
+        <label>
+          Anything we should know?
+          <textarea name="details" rows="3" placeholder="Gate code, yard size, project ideas, or timing"></textarea>
+        </label>
+        <button type="submit" class="btn btn-primary">Send my quote</button>
         <p class="form-status" aria-live="polite"></p>
-        <p class="form-footnote">This form sends directly to our inbox. We never share your information.</p>
+        <p class="form-footnote">Quick form—name, phone, and address are all we need to start your quote.</p>
       </form>
     </div>
   </section>
