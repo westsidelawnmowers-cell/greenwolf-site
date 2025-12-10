@@ -66,32 +66,29 @@ if (backToTop) {
 }
 
 // Quote form validation + friendly feedback
-const quoteForm = document.querySelector('.quote-form');
-const statusEl = document.querySelector('.form-status');
+const quoteForms = document.querySelectorAll('.quote-form');
 
-const setStatus = (message, type = 'info') => {
-  if (!statusEl) return;
-  statusEl.textContent = message;
-  statusEl.dataset.type = type;
-};
+quoteForms.forEach((quoteForm) => {
+  const statusEl = quoteForm.querySelector('.form-status');
 
-if (quoteForm) {
+  const setStatus = (message, type = 'info') => {
+    if (!statusEl) return;
+    statusEl.textContent = message;
+    statusEl.dataset.type = type;
+  };
+
   quoteForm.addEventListener('submit', (event) => {
     const formData = new FormData(quoteForm);
     const name = (formData.get('name') || '').toString().trim();
     const phone = (formData.get('phone') || '').toString().trim();
-    const email = (formData.get('email') || '').toString().trim();
-    const area = (formData.get('address') || '').toString().trim();
+    const service = (formData.get('service') || '').toString().trim();
 
     const errors = [];
     if (!name) errors.push('Please include your name.');
     if (!phone.match(/^[+\d][\d\s()-]{6,}$/)) {
       errors.push('Add a reachable phone number (digits only is fine).');
     }
-    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      errors.push('That email doesn’t look quite right.');
-    }
-    if (!area) errors.push('Let us know your neighborhood so we can quote quickly.');
+    if (!service) errors.push('Select the service you want quoted.');
 
     if (errors.length) {
       event.preventDefault();
@@ -101,4 +98,42 @@ if (quoteForm) {
 
     setStatus('Sending your request…', 'info');
   });
-}
+});
+
+// Package selection -> quote form helper
+const packageButtons = document.querySelectorAll('.add-package');
+
+packageButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const { packageName, packageDetails, service, targetForm } = button.dataset;
+    const target = (targetForm && document.getElementById(targetForm)) || document.querySelector('.quote-form');
+    if (!target) return;
+
+    const serviceSelect = target.querySelector('select[name="service"]');
+    const packageInput = target.querySelector('input[name="package"]');
+    const detailsField = target.querySelector('textarea[name="details"]');
+    const statusEl = target.querySelector('.form-status');
+
+    if (serviceSelect && service) {
+      const option = Array.from(serviceSelect.options).find((opt) => opt.value === service);
+      if (option) serviceSelect.value = service;
+    }
+
+    if (packageInput && packageName) {
+      packageInput.value = packageName;
+    }
+
+    if (detailsField && packageDetails) {
+      const current = detailsField.value.trim();
+      const detailLine = `${packageName} — ${packageDetails}`;
+      detailsField.value = current ? `${current}\n${detailLine}` : detailLine;
+    }
+
+    if (statusEl && packageName) {
+      statusEl.textContent = `${packageName} added to your quote.`;
+      statusEl.dataset.type = 'info';
+    }
+
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});

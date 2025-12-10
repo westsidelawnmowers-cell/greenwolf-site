@@ -109,6 +109,79 @@
     </div>
   </section>
 
+  <section class="section" id="packages">
+    <div class="container">
+      <h2>Pick a package</h2>
+      <p class="section-lead">Choose a starting point for any service. Tap “Add to quote” and we’ll fill the form for you.</p>
+
+      <div class="package-grid">
+        <article class="package-card">
+          <div class="package-header">
+            <span class="package-label">Snow</span>
+            <span class="package-price">Per push</span>
+          </div>
+          <h3>Quick clear</h3>
+          <ul class="package-list">
+            <li>Driveway, front walk, and steps cleared</li>
+            <li>Shovel finish with optional ice melt</li>
+          </ul>
+          <div class="package-actions">
+            <span class="package-note">Winter ready</span>
+            <button class="btn btn-primary add-package" type="button" data-package-name="Quick clear" data-package-details="Per-push driveway, walk, and step clearing" data-service="Snow Removal" data-target-form="main-quote-form">Add to quote</button>
+          </div>
+        </article>
+
+        <article class="package-card">
+          <div class="package-header">
+            <span class="package-label">Lawn</span>
+            <span class="package-price">Full yard</span>
+          </div>
+          <h3>Whole yard care</h3>
+          <ul class="package-list">
+            <li>Front and back mowing with edging</li>
+            <li>Line trimming and cleanup every visit</li>
+          </ul>
+          <div class="package-actions">
+            <span class="package-note">Weekly or bi-weekly</span>
+            <button class="btn btn-primary add-package" type="button" data-package-name="Whole yard care" data-package-details="Front and back mowing, trimming, and edging" data-service="Lawn Care" data-target-form="main-quote-form">Add to quote</button>
+          </div>
+        </article>
+
+        <article class="package-card">
+          <div class="package-header">
+            <span class="package-label">Landscaping</span>
+            <span class="package-price">Refresh</span>
+          </div>
+          <h3>Garden lift</h3>
+          <ul class="package-list">
+            <li>Plants, mulch, and edge clean-up</li>
+            <li>Better lines for beds and borders</li>
+          </ul>
+          <div class="package-actions">
+            <span class="package-note">Fast curb appeal</span>
+            <button class="btn btn-primary add-package" type="button" data-package-name="Garden lift" data-package-details="Planting, mulch, and edging refresh" data-service="Landscaping" data-target-form="main-quote-form">Add to quote</button>
+          </div>
+        </article>
+
+        <article class="package-card">
+          <div class="package-header">
+            <span class="package-label">Cleanup</span>
+            <span class="package-price">Seasonal</span>
+          </div>
+          <h3>Fall clean sweep</h3>
+          <ul class="package-list">
+            <li>Leaf removal with bed and edge tidy-up</li>
+            <li>Optional branch hauling</li>
+          </ul>
+          <div class="package-actions">
+            <span class="package-note">Ready for winter</span>
+            <button class="btn btn-primary add-package" type="button" data-package-name="Fall clean sweep" data-package-details="Leaf cleanup with edging and optional hauling" data-service="Seasonal Cleanup" data-target-form="main-quote-form">Add to quote</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="about">
     <div class="container split-grid">
       <div>
@@ -160,37 +233,53 @@
     <div class="container split-grid">
       <div>
         <h2>Request a free quote</h2>
-        <p class="section-lead">Share your property details and the service you need. We’ll respond quickly with clear next steps.</p>
-        <ul class="hero-bullets">
-          <li>Same-day replies when possible</li>
-          <li>Snow, lawn, and cleanup options</li>
-          <li>No pressure—cancel anytime</li>
-        </ul>
+        <p class="section-lead">Pick a package above or keep it simple with quick details. We’ll respond fast with clear next steps.</p>
       </div>
-      <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
-        <label>
-          Name
-          <input type="text" name="name" required />
-        </label>
-        <label>
-          Phone
-          <input type="tel" name="phone" required />
-        </label>
-        <label>
-          Email (optional)
-          <input type="email" name="email" />
-        </label>
-        <label>
-          Address / Area
-          <input type="text" name="address" placeholder="Street + neighborhood" required />
-        </label>
-        <label>
-          What do you need done?
-          <textarea name="details" rows="4" placeholder="Snow removal, lawn care, cleanup, etc."></textarea>
-        </label>
-        <button type="submit" class="btn btn-primary">Submit</button>
+      <form id="main-quote-form" method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
+        <div class="form-grid">
+          <label>
+            Name
+            <input type="text" name="name" required />
+          </label>
+          <label>
+            Phone
+            <input type="tel" name="phone" required />
+          </label>
+          <label>
+            Service
+            <select name="service" required>
+              <option value="">Select a service</option>
+              <option value="Snow Removal">Snow Removal</option>
+              <option value="Lawn Care">Lawn Care</option>
+              <option value="Landscaping">Landscaping</option>
+              <option value="Seasonal Cleanup">Seasonal Cleanup</option>
+            </select>
+          </label>
+          <label>
+            Package
+            <input type="text" name="package" placeholder="Tap a package above or add your own" />
+          </label>
+          <label class="full-row">
+            Property notes
+            <textarea name="details" rows="3" placeholder="Access notes, timing, size, or anything else helpful"></textarea>
+          </label>
+          <label>
+            Address / Area (optional)
+            <input type="text" name="address" placeholder="Street + neighborhood" />
+          </label>
+          <label>
+            Preferred start
+            <select name="start">
+              <option value="As soon as available">As soon as available</option>
+              <option value="This week">This week</option>
+              <option value="Next week">Next week</option>
+              <option value="Next month">Next month</option>
+            </select>
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Send my quote</button>
         <p class="form-status" aria-live="polite"></p>
-        <p class="form-footnote">This form sends directly to our inbox. We never share your information.</p>
+        <p class="form-footnote">Select a package and we’ll auto-fill the form. Prefer custom? Add notes and we’ll take it from there.</p>
       </form>
     </div>
   </section>
