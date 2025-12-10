@@ -53,94 +53,128 @@ Lawncare That Cares
     </div>
   </section>
 
- <section class="section service-hero" id="details">
-  <div class="container">
-    <h2>Lawn programs</h2>
-    <p class="section-lead">Choose the visit cadence and coverage that fits your property. We keep edges crisp and clippings cleared.</p>
+  <section class="section service-hero" id="details">
+    <div class="container">
+      <h2>Lawn packages</h2>
+      <p class="section-lead">Tap a package to drop it into your quote. We’ll confirm pricing once we know your yard size.</p>
 
-    <!-- GREEN CARDS NOW FIRST -->
-    <div class="feature-row">
+      <div class="package-grid">
+        <article class="package-card">
+          <div class="package-meta">Lawn care</div>
+          <h3 class="package-name">Trim & Tidy</h3>
+          <p class="package-price">Weekly or bi-weekly mowing</p>
+          <ul class="package-list">
+            <li>Front and/or back mowing with clean edges</li>
+            <li>Trimming, edging, and light debris clear</li>
+            <li>Ideal for small to mid-sized lots</li>
+          </ul>
+          <button class="btn btn-primary package-select" type="button" data-service="Lawn Care" data-package="Trim & Tidy">Select package</button>
+        </article>
 
-      <!-- Alpha card -->
-      <div class="feature-row">
-          <button class="feature feature-with-logo program-card" type="button" data-program="alpha">
-            <div class="feature-text">
-              <h3>Alpha Turf Program</h3>
-              <p>(Top Tier)</p>
-            </div>
-            <img src="images/Lawn Program Golden.png" alt="Wolf Logo" class="feature-logo" />
-          </button>
+        <article class="package-card">
+          <div class="package-meta">Lawn care</div>
+          <h3 class="package-name">Front & Back Plus</h3>
+          <p class="package-price">Full property visit</p>
+          <ul class="package-list">
+            <li>Front, back, and side mowing every visit</li>
+            <li>Gate care, fence-line trimming, and clean blow-off</li>
+            <li>Optional fertilizer timing noted on quote</li>
+          </ul>
+          <button class="btn btn-primary package-select" type="button" data-service="Lawn Care" data-package="Front & Back Plus">Select package</button>
+        </article>
 
-          <button class="feature feature-with-logo program-card" type="button" data-program="beta">
-            <div class="feature-text">
-              <h3>Beta Turf Program</h3>
-              <p>(Balanced)</p>
-            </div>
-             <img src="images/Lawn Program Silver.png" alt="Wolf Logo" class="feature-logo" />
-          </button>
-
-          <button class="feature feature-with-logo program-card" type="button" data-program="delta">
-            <div class="feature-text">
-              <h3>Delta Turf Program</h3>
-              <p>(Value)</p>
-            </div>
-            <img src="images/Lawn Program Bronze.png" alt="Wolf Logo" class="feature-logo" />
-          </button>
-        </div>
-
-
-    <div class="divider"></div>
-
-    <!-- WHITE CARDS NOW BELOW -->
-    <div class="card-grid">
-      <article class="card">
-        <h3>Weekly or Bi-weekly</h3>
-        <p>Regular mowing, trimming, edging, and fertilizer for a consistently polished yard. Please fill the form below</p>
-      </article>
-      <article class="card">
-        <h3>Front / Back options</h3>
-        <p>Select the areas you need serviced—front, back, or full property.</p>
-      </article>
-      <article class="card">
-        <h3>Detail finishes</h3>
-        <p>Pathway edging, fence-line trimming, and careful gate handling each visit.</p>
-      </article>
+        <article class="package-card">
+          <div class="package-meta">Lawn care</div>
+          <h3 class="package-name">Showcase Stripes</h3>
+          <p class="package-price">Premium finish</p>
+          <ul class="package-list">
+            <li>Striping pattern, fine edging, and detail passes</li>
+            <li>Bagging on request for first/last cuts</li>
+            <li>Owner check-ins during peak season</li>
+          </ul>
+          <button class="btn btn-primary package-select" type="button" data-service="Lawn Care" data-package="Showcase Stripes">Select package</button>
+        </article>
+      </div>
     </div>
+  </section>
 
-  </div>
-</section>
+  <section class="section alt-section" id="lawn-options">
+    <div class="container">
+      <h2>Mix-and-match lawn services</h2>
+      <p class="section-lead">Add any combination of the options below. We’ll bundle them into one quote along with your mowing program.</p>
+      <button class="btn btn-outline read-more-toggle" type="button" data-target="lawn-option-notes" aria-expanded="false" aria-controls="lawn-option-notes">Read more about these options</button>
+      <div class="read-more-panel" id="lawn-option-notes" hidden>
+        <p>Each add-on is built to solve a specific lawn issue. Choose the ones that fit what you’re seeing and we’ll line them up with your mowing schedule.</p>
+        <ul>
+          <li><strong>Aeration</strong> opens compacted soil so water and nutrients reach the roots.</li>
+          <li><strong>Dethatching</strong> removes the thick, spongy layer that can choke out new growth.</li>
+          <li><strong>Fertilizer program</strong> keeps grass fed through spring, summer, and fall for thicker coverage.</li>
+          <li><strong>Overseeding</strong> fills thin or bare patches with fresh seed to even out the lawn.</li>
+          <li><strong>Top dressing</strong> adds a fine layer of soil/compost to level bumps and boost soil health.</li>
+          <li><strong>Lawn rolling</strong> smooths minor frost heaves and uneven spots after winter.</li>
+          <li><strong>Garden bed edging</strong> defines borders so mulch and soil stay neat beside grass.</li>
+          <li><strong>Tree / shrub shaping</strong> trims small trees and bushes to keep sightlines tidy.</li>
+        </ul>
+      </div>
+      <div class="option-grid">
+        <button class="option-select" type="button" data-option="Aeration">Aeration</button>
+        <button class="option-select" type="button" data-option="Dethatching">Dethatching</button>
+        <button class="option-select" type="button" data-option="Fertilizer program">Fertilizer program</button>
+        <button class="option-select" type="button" data-option="Overseeding">Overseeding</button>
+        <button class="option-select" type="button" data-option="Top dressing">Top dressing</button>
+        <button class="option-select" type="button" data-option="Lawn rolling">Lawn rolling</button>
+        <button class="option-select" type="button" data-option="Garden bed edging">Garden bed edging</button>
+        <button class="option-select" type="button" data-option="Tree / shrub shaping">Tree / shrub shaping</button>
+      </div>
+    </div>
+  </section>
 
 
   <section class="section" id="quote">
     <div class="container split-grid">
       <div>
         <h2>Request a lawn quote</h2>
-        <p class="section-lead">Tell us the size of your yard, visit frequency, and any special notes. We’ll respond with clear pricing.</p>
+        <p class="section-lead">Pick a package, tell us your address, and we’ll text or call back with simple pricing.</p>
       </div>
-      <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
+      <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id" data-default-service="Lawn Care">
         <label>
           Name
-          <input type="text" name="name" required />
+          <input type="text" name="name" required placeholder="Your full name" />
         </label>
         <label>
           Phone
-          <input type="tel" name="phone" required />
-        </label>
-        <label>
-          Email (optional)
-          <input type="email" name="email" />
+          <input type="tel" name="phone" required placeholder="Best number to reach you" />
         </label>
         <label>
           Address / Area
           <input type="text" name="address" placeholder="Street + neighborhood" required />
         </label>
         <label>
-          Which lawn service do you need?
-          <textarea name="details" rows="4" placeholder="Weekly mowing, bi-weekly, front/back only, etc."></textarea>
+          Service needed
+          <select name="service" required>
+            <option value="">Select a service</option>
+            <option value="Lawn Care">Lawn Care</option>
+            <option value="Snow Removal">Snow Removal</option>
+            <option value="Landscaping">Landscaping</option>
+            <option value="Seasonal Cleanup">Seasonal Cleanup</option>
+          </select>
         </label>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="selected-summary">
+          <div class="summary-head">
+            <p class="small-text">Selected for quote</p>
+            <button class="link-btn clear-selections" type="button">Clear all</button>
+          </div>
+          <div class="selection-badges" data-empty-text="Tap select above to add items to your quote."></div>
+          <input type="hidden" name="package" value="" />
+          <input type="hidden" name="selections" value="" />
+        </div>
+        <label>
+          Anything we should know?
+          <textarea name="details" rows="3" placeholder="Gate code, yard size, or timing notes"></textarea>
+        </label>
+        <button type="submit" class="btn btn-primary">Send my quote</button>
         <p class="form-status" aria-live="polite"></p>
-        <p class="form-footnote">This form sends directly to our inbox. We never share your information.</p>
+        <p class="form-footnote">Quick form—name, phone, and address are all we need to start your quote.</p>
       </form>
     </div>
   </section>
