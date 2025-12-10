@@ -113,6 +113,30 @@
           Address / Area
           <input type="text" name="address" placeholder="Street + neighborhood" required />
         </label>
+        <fieldset class="service-options">
+          <legend>Choose your services</legend>
+          <p class="service-note">Mix and match snow with any other service. We can bundle visits for better scheduling.</p>
+          <div class="service-option">
+            <input type="checkbox" id="service-snow" name="services" value="Snow removal" checked />
+            <label for="service-snow">Snow removal</label>
+          </div>
+          <div class="service-option">
+            <input type="checkbox" id="service-lawn" name="services" value="Lawn care" />
+            <label for="service-lawn">Lawn care</label>
+          </div>
+          <div class="service-option">
+            <input type="checkbox" id="service-land" name="services" value="Landscaping projects" />
+            <label for="service-land">Landscaping projects</label>
+          </div>
+          <div class="service-option">
+            <input type="checkbox" id="service-cleanup" name="services" value="Seasonal cleanups" />
+            <label for="service-cleanup">Seasonal cleanups</label>
+          </div>
+          <div class="service-option">
+            <input type="checkbox" id="service-hauling" name="services" value="Hauling / disposal" />
+            <label for="service-hauling">Hauling / disposal</label>
+          </div>
+        </fieldset>
         <label>
           Which snow plan do you prefer?
           <textarea name="details" rows="4" placeholder="Per push, monthly, or full-season"></textarea>

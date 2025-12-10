@@ -134,6 +134,30 @@ Lawncare That Cares
           Address / Area
           <input type="text" name="address" placeholder="Street + neighborhood" required />
         </label>
+        <fieldset class="service-options">
+          <legend>Choose your services</legend>
+          <p class="service-note">Mix and match mowing with other services—bundle visits to save trips.</p>
+          <div class="service-option">
+            <input type="checkbox" id="service-lawn-lawn" name="services" value="Lawn care" checked />
+            <label for="service-lawn-lawn">Lawn care</label>
+          </div>
+          <div class="service-option">
+            <input type="checkbox" id="service-snow-lawn" name="services" value="Snow removal" />
+            <label for="service-snow-lawn">Snow removal</label>
+          </div>
+          <div class="service-option">
+            <input type="checkbox" id="service-land-lawn" name="services" value="Landscaping projects" />
+            <label for="service-land-lawn">Landscaping projects</label>
+          </div>
+          <div class="service-option">
+            <input type="checkbox" id="service-cleanup-lawn" name="services" value="Seasonal cleanups" />
+            <label for="service-cleanup-lawn">Seasonal cleanups</label>
+          </div>
+          <div class="service-option">
+            <input type="checkbox" id="service-hauling-lawn" name="services" value="Hauling / disposal" />
+            <label for="service-hauling-lawn">Hauling / disposal</label>
+          </div>
+        </fieldset>
         <label>
           Which lawn service do you need?
           <textarea name="details" rows="4" placeholder="Weekly mowing, bi-weekly, front/back only, etc."></textarea>

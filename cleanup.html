@@ -113,6 +113,30 @@
           Address / Area
           <input type="text" name="address" placeholder="Street + neighborhood" required />
         </label>
+        <fieldset class="service-options">
+          <legend>Choose your services</legend>
+          <p class="service-note">Mix and match cleanups with other services so we can take care of everything in one visit.</p>
+          <div class="service-option">
+            <input type="checkbox" id="service-cleanup-cleanup" name="services" value="Seasonal cleanups" checked />
+            <label for="service-cleanup-cleanup">Seasonal cleanups</label>
+          </div>
+          <div class="service-option">
+            <input type="checkbox" id="service-lawn-cleanup" name="services" value="Lawn care" />
+            <label for="service-lawn-cleanup">Lawn care</label>
+          </div>
+          <div class="service-option">
+            <input type="checkbox" id="service-snow-cleanup" name="services" value="Snow removal" />
+            <label for="service-snow-cleanup">Snow removal</label>
+          </div>
+          <div class="service-option">
+            <input type="checkbox" id="service-land-cleanup" name="services" value="Landscaping projects" />
+            <label for="service-land-cleanup">Landscaping projects</label>
+          </div>
+          <div class="service-option">
+            <input type="checkbox" id="service-hauling-cleanup" name="services" value="Hauling / disposal" />
+            <label for="service-hauling-cleanup">Hauling / disposal</label>
+          </div>
+        </fieldset>
         <label>
           Cleanup details
           <textarea name="details" rows="4" placeholder="Spring reset, fall clean sweep, hauling, etc."></textarea>
