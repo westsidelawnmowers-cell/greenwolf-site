@@ -65,19 +65,19 @@ if (backToTop) {
   toggleBackToTop();
 }
 
-// Quote form validation + friendly feedback
-const quoteForm = document.querySelector('.quote-form');
-const statusEl = document.querySelector('.form-status');
+// Quote form validation + friendly feedback (works for all forms)
+const quoteForms = document.querySelectorAll('.quote-form');
 
-const setStatus = (message, type = 'info') => {
-  if (!statusEl) return;
-  statusEl.textContent = message;
-  statusEl.dataset.type = type;
-};
+quoteForms.forEach((form) => {
+  const statusEl = form.querySelector('.form-status');
+  const setStatus = (message, type = 'info') => {
+    if (!statusEl) return;
+    statusEl.textContent = message;
+    statusEl.dataset.type = type;
+  };
 
-if (quoteForm) {
-  quoteForm.addEventListener('submit', (event) => {
-    const formData = new FormData(quoteForm);
+  form.addEventListener('submit', (event) => {
+    const formData = new FormData(form);
     const name = (formData.get('name') || '').toString().trim();
     const phone = (formData.get('phone') || '').toString().trim();
     const email = (formData.get('email') || '').toString().trim();
@@ -101,4 +101,37 @@ if (quoteForm) {
 
     setStatus('Sending your request…', 'info');
   });
-}
+});
+
+// Package selection → quote form auto-fill
+const packageGrids = document.querySelectorAll('.package-grid');
+
+packageGrids.forEach((grid) => {
+  const targetFormId = grid.dataset.form;
+  const radios = grid.querySelectorAll('input[type="radio"]');
+
+  radios.forEach((radio) => {
+    radio.addEventListener('change', () => {
+      const packageLabel = radio.dataset.package || radio.value;
+      const form =
+        (targetFormId && document.getElementById(targetFormId)) ||
+        grid.closest('section')?.querySelector('.quote-form') ||
+        document.querySelector('.quote-form');
+
+      // Toggle selected style
+      radios.forEach((other) => other.closest('.package-card')?.classList.remove('is-selected'));
+      radio.closest('.package-card')?.classList.add('is-selected');
+
+      if (!form) return;
+      const selectedField = form.querySelector('.selected-package');
+      const detailsField = form.querySelector('textarea[name="details"]');
+
+      if (selectedField) {
+        selectedField.value = packageLabel;
+      }
+      if (detailsField && !detailsField.value.trim()) {
+        detailsField.value = `Package: ${packageLabel}\nNotes: `;
+      }
+    });
+  });
+});

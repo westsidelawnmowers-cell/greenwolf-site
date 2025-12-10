@@ -56,25 +56,47 @@
 
   <section class="section service-hero">
     <div class="container">
-      <h2>Design, build, and maintain</h2>
-      <p class="section-lead">Choose a full refresh or focused upgrades. We handle the planning, installation, and upkeep so your investment keeps looking great.</p>
-      <div class="service-grid">
-        <div class="card">
-          <h3>Garden refresh</h3>
-          <p>New plantings, soil and mulch, edging, and cleanup to bring beds back to life.</p>
-        </div>
-        <div class="card">
-          <h3>Stone & hard edges</h3>
-          <p>Rock, paver, and flagstone accents with tidy edging for lasting definition.</p>
-        </div>
-        <div class="card">
-          <h3>Lighting accents</h3>
-          <p>Low-voltage lighting to highlight walkways, beds, and architectural details.</p>
-        </div>
-        <div class="card">
-          <h3>Maintenance plans</h3>
-          <p>Seasonal pruning, bed weeding, mulch top-ups, and tidy weekly visits.</p>
-        </div>
+      <h2>Landscaping packages</h2>
+      <p class="section-lead">Three simple bundles—pick one and it fills the quote form below automatically.</p>
+      <div class="package-grid" data-form="landscape-quote-form">
+        <label class="package-card">
+          <input type="radio" name="landscape-package" data-package="Planting Refresh — Beds + mulch" />
+          <div class="package-top">
+            <span class="package-name">Planting Refresh</span>
+            <span class="package-tag">Beds + mulch</span>
+          </div>
+          <ul class="package-list">
+            <li>New plants and soil top-up</li>
+            <li>Mulch install and clean edging</li>
+            <li>Weed and debris cleanup</li>
+          </ul>
+        </label>
+
+        <label class="package-card">
+          <input type="radio" name="landscape-package" data-package="Stone & Path — Rock + pavers" />
+          <div class="package-top">
+            <span class="package-name">Stone & Path</span>
+            <span class="package-tag">Rock + pavers</span>
+          </div>
+          <ul class="package-list">
+            <li>Rock or paver accents</li>
+            <li>Defined borders and steps</li>
+            <li>Clean, low-maintenance finish</li>
+          </ul>
+        </label>
+
+        <label class="package-card">
+          <input type="radio" name="landscape-package" data-package="Curb Appeal — Full front upgrade" />
+          <div class="package-top">
+            <span class="package-name">Curb Appeal</span>
+            <span class="package-tag">Full front upgrade</span>
+          </div>
+          <ul class="package-list">
+            <li>Planting plan + stone accents</li>
+            <li>Lighting highlights</li>
+            <li>Follow-up maintenance visit</li>
+          </ul>
+        </label>
       </div>
     </div>
   </section>
@@ -82,38 +104,51 @@
   <section class="section" id="quote">
     <div class="container split-grid">
       <div>
-        <h2>Tell us about your project</h2>
-        <p class="section-lead">Share your ideas and timing. We’ll recommend materials, phases, and budgets that match your vision.</p>
+        <h2>Quick landscaping quote</h2>
+        <p class="section-lead">Choose a bundle, share your address, and we’ll reply with materials, timing, and a clear price.</p>
         <ul class="hero-bullets">
-          <li>Design-first recommendations</li>
-          <li>Clear phases for budget flexibility</li>
-          <li>Hands-on installation and clean finish</li>
+          <li>Packages drop into the form automatically</li>
+          <li>Design-first guidance</li>
+          <li>Simple phases for budget flexibility</li>
         </ul>
       </div>
-      <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
+      <form method="POST" class="quote-form simple-quote" id="landscape-quote-form" action="https://formspree.io/f/your-form-id">
+        <div class="input-row">
+          <label>
+            Name
+            <input type="text" name="name" autocomplete="name" required />
+          </label>
+          <label>
+            Phone
+            <input type="tel" name="phone" autocomplete="tel" placeholder="(###) ###-####" required />
+          </label>
+        </div>
         <label>
-          Name
-          <input type="text" name="name" required />
+          Service address
+          <input type="text" name="address" placeholder="Street + neighborhood" autocomplete="street-address" required />
         </label>
+        <div class="input-row">
+          <label>
+            Service needed
+            <select name="service" required>
+              <option value="">Select an option</option>
+              <option>Planting refresh</option>
+              <option>Stone or pathway upgrade</option>
+              <option>Full curb appeal package</option>
+            </select>
+          </label>
+          <label>
+            Selected package
+            <input class="selected-package" type="text" name="selected_package" placeholder="Choose a package above" readonly required />
+          </label>
+        </div>
         <label>
-          Phone
-          <input type="tel" name="phone" required />
+          Notes (optional)
+          <textarea name="details" rows="3" placeholder="Materials you like, timelines, or inspirations."></textarea>
         </label>
-        <label>
-          Email (optional)
-          <input type="email" name="email" />
-        </label>
-        <label>
-          Address / Area
-          <input type="text" name="address" placeholder="Street + neighborhood" required />
-        </label>
-        <label>
-          What would you like to build?
-          <textarea name="details" rows="4" placeholder="Beds, stonework, lighting, etc."></textarea>
-        </label>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Send quote request</button>
         <p class="form-status" aria-live="polite"></p>
-        <p class="form-footnote">Swap in your own Formspree or CRM endpoint to receive these requests.</p>
+        <p class="form-footnote">We’ll reply quickly with next steps.</p>
       </form>
     </div>
   </section>
