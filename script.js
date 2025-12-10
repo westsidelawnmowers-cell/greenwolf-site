@@ -65,31 +65,123 @@ if (backToTop) {
   toggleBackToTop();
 }
 
-// Quote form validation + friendly feedback
-const quoteForm = document.querySelector('.quote-form');
-const statusEl = document.querySelector('.form-status');
+// Quote form validation + friendly feedback + package syncing
+const quoteForms = document.querySelectorAll('.quote-form');
+const packageButtons = document.querySelectorAll('.package-select');
+const selectionState = new Map();
 
-const setStatus = (message, type = 'info') => {
-  if (!statusEl) return;
-  statusEl.textContent = message;
-  statusEl.dataset.type = type;
+const refreshButtonState = (button) => {
+  const key = button.dataset.key;
+  const isActive = key ? selectionState.has(key) : false;
+  const defaultText = button.dataset.defaultText || button.textContent.trim();
+
+  button.dataset.defaultText = defaultText;
+  button.textContent = isActive ? 'Selected' : defaultText;
+  button.closest('.package-card')?.classList.toggle('is-selected', isActive);
 };
 
-if (quoteForm) {
-  quoteForm.addEventListener('submit', (event) => {
-    const formData = new FormData(quoteForm);
+const syncSelectedLists = () => {
+  const labels = Array.from(selectionState.values());
+  const keys = Array.from(selectionState.keys());
+
+  quoteForms.forEach((form) => {
+    const hiddenInput = form.querySelector('input[name="packages"]');
+    const tagList = form.querySelector('.selected-tags');
+    const placeholder = form.querySelector('.selected-placeholder');
+
+    if (hiddenInput) {
+      hiddenInput.value = labels.join(', ');
+    }
+
+    if (placeholder) {
+      placeholder.classList.toggle('is-hidden', labels.length > 0);
+    }
+
+    if (tagList) {
+      tagList.innerHTML = '';
+      labels.forEach((label, index) => {
+        const pill = document.createElement('button');
+        pill.type = 'button';
+        pill.className = 'selected-tag';
+        pill.dataset.removeKey = keys[index];
+        pill.innerHTML = `<span>${label}</span><span aria-hidden="true">×</span>`;
+        pill.setAttribute('aria-label', `Remove ${label} from quote`);
+        tagList.appendChild(pill);
+      });
+    }
+  });
+
+  packageButtons.forEach(refreshButtonState);
+};
+
+packageButtons.forEach((button) => {
+  const pkg = button.dataset.package || button.textContent.trim();
+  const service = button.dataset.service || '';
+  const key = button.dataset.key || `${service}:${pkg}`;
+  button.dataset.key = key;
+  button.dataset.defaultText = button.dataset.defaultText || button.textContent.trim();
+
+  button.addEventListener('click', () => {
+    const label = service ? `${pkg} (${service})` : pkg;
+    if (selectionState.has(key)) {
+      selectionState.delete(key);
+    } else {
+      selectionState.set(key, label);
+
+      // If only one service is chosen, gently set it on the form dropdowns
+      if (service) {
+        quoteForms.forEach((form) => {
+          const select = form.querySelector('select[name="service"]');
+          if (select && (!select.value || select.dataset.auto === 'true')) {
+            select.value = service;
+            select.dataset.auto = 'true';
+          }
+        });
+      }
+    }
+
+    syncSelectedLists();
+  });
+});
+
+document.addEventListener('click', (event) => {
+  const removeBtn = event.target.closest('.selected-tag');
+  if (!removeBtn?.dataset.removeKey) return;
+
+  selectionState.delete(removeBtn.dataset.removeKey);
+  syncSelectedLists();
+});
+
+quoteForms.forEach((form) => {
+  const statusEl = form.querySelector('.form-status');
+  const setStatus = (message, type = 'info') => {
+    if (!statusEl) return;
+    statusEl.textContent = message;
+    statusEl.dataset.type = type;
+  };
+
+  const defaultService = form.dataset.defaultService;
+  const serviceSelect = form.querySelector('select[name="service"]');
+  if (defaultService && serviceSelect) {
+    serviceSelect.value = defaultService;
+  }
+
+  if (serviceSelect) {
+    serviceSelect.addEventListener('change', () => {
+      serviceSelect.dataset.auto = 'false';
+    });
+  }
+
+  form.addEventListener('submit', (event) => {
+    const formData = new FormData(form);
     const name = (formData.get('name') || '').toString().trim();
     const phone = (formData.get('phone') || '').toString().trim();
-    const email = (formData.get('email') || '').toString().trim();
     const area = (formData.get('address') || '').toString().trim();
 
     const errors = [];
     if (!name) errors.push('Please include your name.');
     if (!phone.match(/^[+\d][\d\s()-]{6,}$/)) {
       errors.push('Add a reachable phone number (digits only is fine).');
-    }
-    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      errors.push('That email doesn’t look quite right.');
     }
     if (!area) errors.push('Let us know your neighborhood so we can quote quickly.');
 
@@ -101,4 +193,6 @@ if (quoteForm) {
 
     setStatus('Sending your request…', 'info');
   });
-}
+});
+
+syncSelectedLists();
