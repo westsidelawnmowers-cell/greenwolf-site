@@ -65,6 +65,99 @@ if (backToTop) {
   toggleBackToTop();
 }
 
+// Package picker -> quote form sync
+// Keeps the package detail panel, tags, and hidden input aligned so the form submits
+// exactly what the visitor chooses.
+const packageOptions = Array.from(document.querySelectorAll('.package-option'));
+const packageTitle = document.getElementById('packageTitle');
+const packageDescription = document.getElementById('packageDescription');
+const packageFeatureList = document.getElementById('packageFeatureList');
+const togglePackageBtn = document.getElementById('togglePackageBtn');
+const selectedTags = document.getElementById('selectedTags');
+const selectedPackagesInput = document.getElementById('selectedPackagesInput');
+
+if (packageOptions.length && packageTitle && packageDescription && packageFeatureList && togglePackageBtn && selectedTags && selectedPackagesInput) {
+  // Allow preselected values from the hidden input but default to an empty set
+  const initialPackages = selectedPackagesInput.value
+    .split(',')
+    .map((pkg) => pkg.trim())
+    .filter(Boolean);
+  const selectedPackages = new Set(initialPackages);
+  let activePackage = packageOptions[0];
+
+  const updateSelectedTags = () => {
+    selectedTags.innerHTML = '';
+    if (!selectedPackages.size) {
+      const emptyTag = document.createElement('span');
+      emptyTag.className = 'tag tag-empty';
+      emptyTag.textContent = 'No packages selected yet';
+      selectedTags.append(emptyTag);
+    } else {
+      selectedPackages.forEach((pkg) => {
+        const tag = document.createElement('span');
+        tag.className = 'tag';
+        tag.textContent = pkg;
+        selectedTags.append(tag);
+      });
+    }
+
+    selectedPackagesInput.value = Array.from(selectedPackages).join(', ');
+    packageOptions.forEach((option) => {
+      option.classList.toggle('is-selected', selectedPackages.has(option.dataset.package));
+    });
+    const activeName = activePackage.dataset.package;
+    const activeSelected = selectedPackages.has(activeName);
+    togglePackageBtn.textContent = activeSelected
+      ? `Remove “${activeName}”`
+      : `Add “${activeName}” to quote`;
+    togglePackageBtn.setAttribute('aria-pressed', activeSelected.toString());
+  };
+
+  const setActivePackage = (option) => {
+    activePackage.classList.remove('is-active');
+    activePackage = option;
+    activePackage.classList.add('is-active');
+
+    packageTitle.textContent = option.dataset.package;
+    packageDescription.textContent = option.dataset.description;
+
+    packageFeatureList.innerHTML = '';
+    const features = (option.dataset.features || '').split('|').filter(Boolean);
+    features.forEach((feature) => {
+      const li = document.createElement('li');
+      li.textContent = feature;
+      packageFeatureList.append(li);
+    });
+
+    togglePackageBtn.dataset.packageKey = option.dataset.package;
+    updateSelectedTags();
+  };
+
+  togglePackageBtn.addEventListener('click', () => {
+    const pkg = togglePackageBtn.dataset.packageKey;
+    if (!pkg) return;
+    if (selectedPackages.has(pkg)) {
+      selectedPackages.delete(pkg);
+    } else {
+      selectedPackages.add(pkg);
+    }
+    updateSelectedTags();
+  });
+
+  packageOptions.forEach((option) => {
+    option.addEventListener('click', () => setActivePackage(option));
+    option.addEventListener('keydown', (event) => {
+      // Let keyboard users toggle using Enter/Space for a smoother experience
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        setActivePackage(option);
+      }
+    });
+  });
+
+  setActivePackage(activePackage);
+}
+
 // Quote form validation + friendly feedback
 const quoteForm = document.querySelector('.quote-form');
 const statusEl = document.querySelector('.form-status');
