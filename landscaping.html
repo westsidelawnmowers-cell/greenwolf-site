@@ -57,25 +57,36 @@
   <section class="section service-hero">
     <div class="container">
       <h2>Design, build, and maintain</h2>
-      <p class="section-lead">Choose a full refresh or focused upgrades. We handle the planning, installation, and upkeep so your investment keeps looking great.</p>
-      <div class="service-grid">
-        <div class="card">
-          <h3>Garden refresh</h3>
-          <p>New plantings, soil and mulch, edging, and cleanup to bring beds back to life.</p>
-        </div>
-        <div class="card">
-          <h3>Stone & hard edges</h3>
-          <p>Rock, paver, and flagstone accents with tidy edging for lasting definition.</p>
-        </div>
-        <div class="card">
-          <h3>Lighting accents</h3>
-          <p>Low-voltage lighting to highlight walkways, beds, and architectural details.</p>
-        </div>
-        <div class="card">
-          <h3>Maintenance plans</h3>
-          <p>Seasonal pruning, bed weeding, mulch top-ups, and tidy weekly visits.</p>
-        </div>
+      <p class="section-lead">Pick a simple package to get started. Tap one to drop it straight into your quote.</p>
+      <div class="package-grid">
+        <article class="package-card" data-service="Landscaping" data-package="Front entry refresh">
+          <h3>Front entry refresh</h3>
+          <p>Bed reshaping, new plants, fresh mulch, and clean edging to upgrade curb appeal fast.</p>
+          <div class="package-meta">
+            <span class="badge">1-2 days</span>
+            <span>Planting + mulch</span>
+          </div>
+        </article>
+
+        <article class="package-card" data-service="Landscaping" data-package="Stone + lighting accents">
+          <h3>Stone + lighting</h3>
+          <p>Rock or paver borders with low-voltage path lighting to define beds and walkways.</p>
+          <div class="package-meta">
+            <span class="badge">Weekend build</span>
+            <span>Hard edges</span>
+          </div>
+        </article>
+
+        <article class="package-card" data-service="Landscaping" data-package="Full design with maintenance">
+          <h3>Full design + care</h3>
+          <p>Scaled plan, phased install, and seasonal bed maintenance so the new look stays crisp.</p>
+          <div class="package-meta">
+            <span class="badge">Plan + upkeep</span>
+            <span>Most detailed</span>
+          </div>
+        </article>
       </div>
+      <p class="package-selection-note">Select a package to add it to your quote.</p>
     </div>
   </section>
 
@@ -83,7 +94,7 @@
     <div class="container split-grid">
       <div>
         <h2>Tell us about your project</h2>
-        <p class="section-lead">Share your ideas and timing. We’ll recommend materials, phases, and budgets that match your vision.</p>
+        <p class="section-lead">Pick a package or outline your vision. We’ll follow up with the simplest way to get it built.</p>
         <ul class="hero-bullets">
           <li>Design-first recommendations</li>
           <li>Clear phases for budget flexibility</li>
@@ -91,14 +102,16 @@
         </ul>
       </div>
       <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
-        <label>
-          Name
-          <input type="text" name="name" required />
-        </label>
-        <label>
-          Phone
-          <input type="tel" name="phone" required />
-        </label>
+        <div class="form-row">
+          <label>
+            Name
+            <input type="text" name="name" required />
+          </label>
+          <label>
+            Phone
+            <input type="tel" name="phone" required />
+          </label>
+        </div>
         <label>
           Email (optional)
           <input type="email" name="email" />
@@ -107,13 +120,29 @@
           Address / Area
           <input type="text" name="address" placeholder="Street + neighborhood" required />
         </label>
+        <div class="form-row">
+          <label>
+            Service
+            <select name="service" required>
+              <option value="">Select a service</option>
+              <option value="Lawn Care">Lawn Care</option>
+              <option value="Snow Removal">Snow Removal</option>
+              <option value="Landscaping" selected>Landscaping</option>
+              <option value="Seasonal Cleanup">Seasonal Cleanup</option>
+            </select>
+          </label>
+          <label>
+            Package selected
+            <input type="text" name="package" placeholder="Choose a package above" readonly />
+          </label>
+        </div>
         <label>
-          What would you like to build?
-          <textarea name="details" rows="4" placeholder="Beds, stonework, lighting, etc."></textarea>
+          Property notes
+          <textarea name="details" rows="4" placeholder="Materials you like, slopes to consider, or timing."></textarea>
         </label>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Send quote</button>
         <p class="form-status" aria-live="polite"></p>
-        <p class="form-footnote">Swap in your own Formspree or CRM endpoint to receive these requests.</p>
+        <p class="form-footnote">Selecting a package above adds it here automatically. We never share your information.</p>
       </form>
     </div>
   </section>
