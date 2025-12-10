@@ -66,22 +66,24 @@ if (backToTop) {
 }
 
 // Quote form validation + friendly feedback
-const quoteForm = document.querySelector('.quote-form');
-const statusEl = document.querySelector('.form-status');
+const quoteForms = document.querySelectorAll('.quote-form');
 
-const setStatus = (message, type = 'info') => {
-  if (!statusEl) return;
-  statusEl.textContent = message;
-  statusEl.dataset.type = type;
-};
+quoteForms.forEach((form) => {
+  const statusEl = form.querySelector('.form-status');
 
-if (quoteForm) {
-  quoteForm.addEventListener('submit', (event) => {
-    const formData = new FormData(quoteForm);
+  const setStatus = (message, type = 'info') => {
+    if (!statusEl) return;
+    statusEl.textContent = message;
+    statusEl.dataset.type = type;
+  };
+
+  form.addEventListener('submit', (event) => {
+    const formData = new FormData(form);
     const name = (formData.get('name') || '').toString().trim();
     const phone = (formData.get('phone') || '').toString().trim();
     const email = (formData.get('email') || '').toString().trim();
     const area = (formData.get('address') || '').toString().trim();
+    const service = (formData.get('service') || '').toString().trim();
 
     const errors = [];
     if (!name) errors.push('Please include your name.');
@@ -91,7 +93,8 @@ if (quoteForm) {
     if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       errors.push('That email doesn’t look quite right.');
     }
-    if (!area) errors.push('Let us know your neighborhood so we can quote quickly.');
+    if (!area) errors.push('Share your area or address so we can quote quickly.');
+    if (!service) errors.push('Pick a service so we route your request correctly.');
 
     if (errors.length) {
       event.preventDefault();
@@ -101,4 +104,39 @@ if (quoteForm) {
 
     setStatus('Sending your request…', 'info');
   });
-}
+});
+
+// Package selection -> quote form sync
+const packageCards = document.querySelectorAll('.package-card');
+const serviceField = document.querySelector('select[name="service"]');
+const packageField = document.querySelector('input[name="package"]');
+const selectionNote = document.querySelector('.package-selection-note');
+
+packageCards.forEach((card) => {
+  card.addEventListener('click', () => {
+    const selectedPackage = card.dataset.package;
+    const selectedService = card.dataset.service;
+
+    packageCards.forEach((item) => {
+      item.classList.toggle('is-selected', item === card);
+    });
+
+    if (serviceField) {
+      const option = Array.from(serviceField.options).find(
+        (opt) => opt.value === selectedService
+      );
+      if (option) {
+        serviceField.value = selectedService;
+      }
+    }
+
+    if (packageField) {
+      packageField.value = `${selectedService}: ${selectedPackage}`;
+    }
+
+    if (selectionNote) {
+      selectionNote.textContent = `${selectedPackage} added to your quote.`;
+      selectionNote.dataset.state = 'active';
+    }
+  });
+});

@@ -160,22 +160,24 @@
     <div class="container split-grid">
       <div>
         <h2>Request a free quote</h2>
-        <p class="section-lead">Share your property details and the service you need. We’ll respond quickly with clear next steps.</p>
+        <p class="section-lead">Pick a service, add a package from any page, and we’ll reply with a straightforward price.</p>
         <ul class="hero-bullets">
           <li>Same-day replies when possible</li>
-          <li>Snow, lawn, and cleanup options</li>
+          <li>Snow, lawn, landscaping, and cleanup options</li>
           <li>No pressure—cancel anytime</li>
         </ul>
       </div>
       <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
-        <label>
-          Name
-          <input type="text" name="name" required />
-        </label>
-        <label>
-          Phone
-          <input type="tel" name="phone" required />
-        </label>
+        <div class="form-row">
+          <label>
+            Name
+            <input type="text" name="name" required />
+          </label>
+          <label>
+            Phone
+            <input type="tel" name="phone" required />
+          </label>
+        </div>
         <label>
           Email (optional)
           <input type="email" name="email" />
@@ -184,13 +186,29 @@
           Address / Area
           <input type="text" name="address" placeholder="Street + neighborhood" required />
         </label>
+        <div class="form-row">
+          <label>
+            Service
+            <select name="service" required>
+              <option value="">Select a service</option>
+              <option value="Lawn Care">Lawn Care</option>
+              <option value="Snow Removal">Snow Removal</option>
+              <option value="Landscaping">Landscaping</option>
+              <option value="Seasonal Cleanup">Seasonal Cleanup</option>
+            </select>
+          </label>
+          <label>
+            Package selected
+            <input type="text" name="package" placeholder="Optional: add a package from a service page" />
+          </label>
+        </div>
         <label>
-          What do you need done?
-          <textarea name="details" rows="4" placeholder="Snow removal, lawn care, cleanup, etc."></textarea>
+          Property notes
+          <textarea name="details" rows="4" placeholder="Tell us what you need—snow plan, mowing, landscaping, or cleanup."></textarea>
         </label>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Send quote</button>
         <p class="form-status" aria-live="polite"></p>
-        <p class="form-footnote">This form sends directly to our inbox. We never share your information.</p>
+        <p class="form-footnote">Selecting a package on a service page will drop it into this field automatically.</p>
       </form>
     </div>
   </section>
