@@ -67,7 +67,12 @@ if (backToTop) {
 
 // Quote form validation + friendly feedback
 const quoteForm = document.querySelector('.quote-form');
-const statusEl = document.querySelector('.form-status');
+const statusEl = quoteForm?.querySelector('.form-status');
+const selectedPackageEl = quoteForm?.querySelector('.selected-package');
+const packageInput = quoteForm?.querySelector('input[name="package"]');
+const serviceSelect = quoteForm?.querySelector('select[name="service"]');
+
+const packageButtons = document.querySelectorAll('.package-select');
 
 const setStatus = (message, type = 'info') => {
   if (!statusEl) return;
@@ -75,21 +80,43 @@ const setStatus = (message, type = 'info') => {
   statusEl.dataset.type = type;
 };
 
+const updatePackage = (button) => {
+  const pkg = button.dataset.package || '';
+  const service = button.dataset.service || '';
+
+  packageButtons.forEach((btn) => btn.closest('.package-card')?.classList.remove('is-selected'));
+  button.closest('.package-card')?.classList.add('is-selected');
+
+  if (packageInput) packageInput.value = pkg;
+  if (serviceSelect && service) serviceSelect.value = service;
+  if (selectedPackageEl) {
+    selectedPackageEl.textContent = pkg ? `${pkg}${service ? ` (${service})` : ''}` : 'Tap a package above to attach it automatically.';
+    selectedPackageEl.classList.toggle('is-empty', !pkg);
+  }
+};
+
+packageButtons.forEach((button) => {
+  button.addEventListener('click', () => updatePackage(button));
+});
+
+if (quoteForm && serviceSelect) {
+  const defaultService = quoteForm.dataset.defaultService;
+  if (defaultService) {
+    serviceSelect.value = defaultService;
+  }
+}
+
 if (quoteForm) {
   quoteForm.addEventListener('submit', (event) => {
     const formData = new FormData(quoteForm);
     const name = (formData.get('name') || '').toString().trim();
     const phone = (formData.get('phone') || '').toString().trim();
-    const email = (formData.get('email') || '').toString().trim();
     const area = (formData.get('address') || '').toString().trim();
 
     const errors = [];
     if (!name) errors.push('Please include your name.');
     if (!phone.match(/^[+\d][\d\s()-]{6,}$/)) {
       errors.push('Add a reachable phone number (digits only is fine).');
-    }
-    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      errors.push('That email doesn’t look quite right.');
     }
     if (!area) errors.push('Let us know your neighborhood so we can quote quickly.');
 
