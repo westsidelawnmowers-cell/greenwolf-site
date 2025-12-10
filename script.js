@@ -76,6 +76,7 @@ const serviceSelect = quoteForm?.querySelector('select[name="service"]');
 
 const packageButtons = document.querySelectorAll('.package-select');
 const optionButtons = document.querySelectorAll('.option-select');
+const readMoreButtons = document.querySelectorAll('.read-more');
 
 const selections = new Map();
 
@@ -180,7 +181,27 @@ optionButtons.forEach((button) => {
       selections.set(key, { label: option, kind: 'option', raw: option });
     }
 
-    renderSelections();
+  renderSelections();
+});
+});
+
+readMoreButtons.forEach((button) => {
+  const targetId = button.dataset.target;
+  const description = targetId ? document.getElementById(targetId) : null;
+
+  if (!description) return;
+
+  const setExpanded = (expanded) => {
+    description.hidden = !expanded;
+    button.textContent = expanded ? 'Hide details' : 'Read more';
+    button.setAttribute('aria-expanded', expanded.toString());
+  };
+
+  setExpanded(false);
+
+  button.addEventListener('click', () => {
+    const isExpanded = button.getAttribute('aria-expanded') === 'true';
+    setExpanded(!isExpanded);
   });
 });
 

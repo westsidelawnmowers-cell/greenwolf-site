@@ -370,6 +370,16 @@ img {
   margin-top: 1.25rem;
 }
 
+.option-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 0.95rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  padding: 0.5rem 0.5rem 0.75rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
 .option-select {
   display: flex;
   justify-content: space-between;
@@ -403,6 +413,18 @@ img {
   border-color: var(--gold);
   box-shadow: 0 16px 28px rgba(0, 0, 0, 0.08), 0 0 0 4px rgba(249, 237, 199, 0.4);
   background: linear-gradient(180deg, #fffdf6, #f9fbf7);
+}
+
+.option-info {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0 0.25rem 0.15rem;
+}
+
+.option-description {
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.35;
 }
 
 .package-name {
