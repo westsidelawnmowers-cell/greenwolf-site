@@ -16,8 +16,7 @@
         </div>
         <div class="logo-text">
           <h1>Green Wolf </h1>
-Lawncare That Cares
-
+          <p class="tagline">Lawncare That Cares</p>
         </div>
       </div>
       <nav class="main-nav" aria-label="Primary">
@@ -46,69 +45,118 @@ Lawncare That Cares
           <a class="btn btn-outline" href="index.html#contact">Call / text us</a>
         </div>
       </div>
-     <div class="hero-media">
-  <img src="images/9.jpeg" alt="Lawn photo" class="hero-img">
-</div>
+      <div class="hero-media">
+        <img src="images/9.jpeg" alt="Lawn photo" class="hero-img">
+      </div>
 
     </div>
   </section>
 
- <section class="section service-hero" id="details">
-  <div class="container">
-    <h2>Lawn programs</h2>
-    <p class="section-lead">Choose the visit cadence and coverage that fits your property. We keep edges crisp and clippings cleared.</p>
+  <section class="section service-hero" id="details">
+    <div class="container">
+      <h2>Lawn programs</h2>
+      <p class="section-lead">Choose the visit cadence and coverage that fits your property. We keep edges crisp and clippings cleared.</p>
 
-    <!-- GREEN CARDS NOW FIRST -->
-    <div class="feature-row">
+      <!-- Tiered program cards keep the main offerings visible -->
+      <div class="feature-row program-row">
+        <button class="feature feature-with-logo program-card" type="button" data-program="alpha">
+          <div class="feature-text">
+            <h3>Alpha Turf Program</h3>
+            <p>(Top Tier)</p>
+          </div>
+          <img src="images/Lawn Program Golden.png" alt="Alpha program badge" class="feature-logo" />
+        </button>
 
-      <!-- Alpha card -->
-      <div class="feature-row">
-          <button class="feature feature-with-logo program-card" type="button" data-program="alpha">
-            <div class="feature-text">
-              <h3>Alpha Turf Program</h3>
-              <p>(Top Tier)</p>
+        <button class="feature feature-with-logo program-card" type="button" data-program="beta">
+          <div class="feature-text">
+            <h3>Beta Turf Program</h3>
+            <p>(Balanced)</p>
+          </div>
+          <img src="images/Lawn Program Silver.png" alt="Beta program badge" class="feature-logo" />
+        </button>
+
+        <button class="feature feature-with-logo program-card" type="button" data-program="delta">
+          <div class="feature-text">
+            <h3>Delta Turf Program</h3>
+            <p>(Value)</p>
+          </div>
+          <img src="images/Lawn Program Bronze.png" alt="Delta program badge" class="feature-logo" />
+        </button>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Package picker drives the quote form below -->
+      <div class="package-picker" id="packages">
+        <div class="package-layout">
+          <div>
+            <p class="eyebrow">Pick your extras</p>
+            <h3>Bundle the lawn services you need</h3>
+            <p class="section-lead">Tap a package to see details and add it to your quote. Your selections are pushed straight into the form below.</p>
+
+            <div class="package-nav" role="list">
+              <button class="package-option is-active" type="button" role="listitem" data-package="Fertilizer Program" data-description="Balanced, eco-forward fertilizer plan to keep colour and density all season." data-features="Improves overall lawn health|Strengthens turf even during drought|Micronutrient blend for fast green-up and deep roots">
+                <span class="option-title">Fertilizer Program</span>
+                <span class="option-note">Improved formula</span>
+              </button>
+              <button class="package-option" type="button" role="listitem" data-package="SoilBooster™" data-description="Premium soil nourishment that feeds the roots and revitalizes tired turf." data-features="Feeds root systems so lawns stay resilient|Speeds up colour recovery after stress|Supports thicker turf and fewer bare spots">
+                <span class="option-title">SoilBooster™</span>
+                <span class="option-note">Deep nourishment</span>
+              </button>
+              <button class="package-option" type="button" role="listitem" data-package="Weed & Vegetation Control" data-description="Targeted suppression for weeds, fence lines, and rock beds so your yard stays tidy." data-features="Controls broadleaf weeds before they spread|Keeps rock beds and hard edges crisp|Owner-led inspections each visit">
+                <span class="option-title">Weed & Vegetation Control</span>
+                <span class="option-note">Stay ahead of growth</span>
+              </button>
+              <button class="package-option" type="button" role="listitem" data-package="Aeration" data-description="Core aeration to relieve compaction and let water and nutrients sink in." data-features="Breaks up compacted soil for easier growth|Improves drainage and reduces pooling|Primes your lawn for fertilizer uptake">
+                <span class="option-title">Aeration</span>
+                <span class="option-note">Spring + fall slots</span>
+              </button>
+              <button class="package-option" type="button" role="listitem" data-package="Overseeding" data-description="Thickening application to fill thin spots and resist weeds." data-features="Adds fresh seed to thin and patchy areas|Promotes thicker turf with fewer bare spots|Pairs well with fertilizer for quick results">
+                <span class="option-title">Overseeding</span>
+                <span class="option-note">Pair with fertilizer</span>
+              </button>
+              <button class="package-option" type="button" role="listitem" data-package="ClearPatch" data-description="Spot repair bundle for high-traffic or pet-damaged areas." data-features="Levels ruts and minor low spots|Top-dress and seed for quick fill-in|Includes watering guidance so it takes">
+                <span class="option-title">ClearPatch</span>
+                <span class="option-note">Fix problem areas</span>
+              </button>
             </div>
-            <img src="images/Lawn Program Golden.png" alt="Wolf Logo" class="feature-logo" />
-          </button>
+          </div>
 
-          <button class="feature feature-with-logo program-card" type="button" data-program="beta">
-            <div class="feature-text">
-              <h3>Beta Turf Program</h3>
-              <p>(Balanced)</p>
+          <div class="package-panel">
+            <div class="panel-head">
+              <p class="eyebrow">Package details</p>
+              <span class="pill pill-soft">Auto-added to quote form</span>
             </div>
-             <img src="images/Lawn Program Silver.png" alt="Wolf Logo" class="feature-logo" />
-          </button>
-
-          <button class="feature feature-with-logo program-card" type="button" data-program="delta">
-            <div class="feature-text">
-              <h3>Delta Turf Program</h3>
-              <p>(Value)</p>
-            </div>
-            <img src="images/Lawn Program Bronze.png" alt="Wolf Logo" class="feature-logo" />
-          </button>
+            <h3 id="packageTitle">Fertilizer Program</h3>
+            <p id="packageDescription">Balanced, eco-forward fertilizer plan to keep colour and density all season.</p>
+            <ul id="packageFeatureList" class="feature-list">
+              <li>Improves overall lawn health</li>
+              <li>Strengthens turf even during drought</li>
+              <li>Micronutrient blend for fast green-up and deep roots</li>
+            </ul>
+            <button type="button" class="btn btn-primary" id="togglePackageBtn" data-package-key="Fertilizer Program">Add package to quote</button>
+            <p class="panel-help">Select as many packages as you need. We’ll send them with your contact details.</p>
+          </div>
         </div>
+      </div>
 
-
-    <div class="divider"></div>
-
-    <!-- WHITE CARDS NOW BELOW -->
-    <div class="card-grid">
-      <article class="card">
-        <h3>Weekly or Bi-weekly</h3>
-        <p>Regular mowing, trimming, edging, and fertilizer for a consistently polished yard. Please fill the form below</p>
-      </article>
-      <article class="card">
-        <h3>Front / Back options</h3>
-        <p>Select the areas you need serviced—front, back, or full property.</p>
-      </article>
-      <article class="card">
-        <h3>Detail finishes</h3>
-        <p>Pathway edging, fence-line trimming, and careful gate handling each visit.</p>
-      </article>
+      <!-- Fast-read cards stay in the same container for consistent spacing -->
+      <div class="card-grid">
+        <article class="card">
+          <h3>Weekly or Bi-weekly</h3>
+          <p>Regular mowing, trimming, edging, and fertilizer for a consistently polished yard. Please fill the form below</p>
+        </article>
+        <article class="card">
+          <h3>Front / Back options</h3>
+          <p>Select the areas you need serviced—front, back, or full property.</p>
+        </article>
+        <article class="card">
+          <h3>Detail finishes</h3>
+          <p>Pathway edging, fence-line trimming, and careful gate handling each visit.</p>
+        </article>
+      </div>
     </div>
-
-  </div>
-</section>
+  </section>
 
 
   <section class="section" id="quote">
@@ -118,6 +166,20 @@ Lawncare That Cares
         <p class="section-lead">Tell us the size of your yard, visit frequency, and any special notes. We’ll respond with clear pricing.</p>
       </div>
       <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
+        <!-- Package tags + hidden input are kept in sync via script.js -->
+        <div class="selected-summary">
+          <div class="selected-summary__header">
+            <div>
+              <p class="eyebrow">Selected packages</p>
+              <h4 class="selected-summary__title">We’ll include these in your request</h4>
+            </div>
+            <p class="selected-summary__note">Pick options above — we’ll attach them here automatically.</p>
+          </div>
+          <div class="selected-tags" id="selectedTags">
+            <span class="tag">No packages selected yet</span>
+          </div>
+          <input type="hidden" name="selectedPackages" id="selectedPackagesInput" value="" />
+        </div>
         <label>
           Name
           <input type="text" name="name" required />
