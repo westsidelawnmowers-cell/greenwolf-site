@@ -73,16 +73,33 @@ const packageFeatureList = document.getElementById('packageFeatureList');
 const togglePackageBtn = document.getElementById('togglePackageBtn');
 const selectedTags = document.getElementById('selectedTags');
 const selectedPackagesInput = document.getElementById('selectedPackagesInput');
+const clearPackagesBtn = document.getElementById('clearPackagesBtn');
 
-if (packageOptions.length && packageTitle && packageDescription && packageFeatureList && togglePackageBtn && selectedTags && selectedPackagesInput) {
-  const selectedPackages = new Set([selectedPackagesInput.value].filter(Boolean));
+// Keep package selection UI and the hidden form input synchronized.
+if (
+  packageOptions.length &&
+  packageTitle &&
+  packageDescription &&
+  packageFeatureList &&
+  togglePackageBtn &&
+  selectedTags &&
+  selectedPackagesInput
+) {
+  // Load any pre-filled values (comma separated) so resubmits stay consistent.
+  const initialPackages = (selectedPackagesInput.value || '')
+    .split(',')
+    .map((pkg) => pkg.trim())
+    .filter(Boolean);
+
+  const selectedPackages = new Set(initialPackages);
   let activePackage = packageOptions[0];
 
-  const updateSelectedTags = () => {
+  const renderSelectedTags = () => {
     selectedTags.innerHTML = '';
+
     if (!selectedPackages.size) {
       const emptyTag = document.createElement('span');
-      emptyTag.className = 'tag';
+      emptyTag.className = 'tag tag-empty';
       emptyTag.textContent = 'No packages selected yet';
       selectedTags.append(emptyTag);
     } else {
@@ -90,18 +107,40 @@ if (packageOptions.length && packageTitle && packageDescription && packageFeatur
         const tag = document.createElement('span');
         tag.className = 'tag';
         tag.textContent = pkg;
+
+        // Inline remove action keeps the form in sync without scrolling back up.
+        const removeBtn = document.createElement('button');
+        removeBtn.type = 'button';
+        removeBtn.className = 'tag-remove';
+        removeBtn.setAttribute('aria-label', `Remove ${pkg} from quote`);
+        removeBtn.textContent = '×';
+        removeBtn.addEventListener('click', () => {
+          selectedPackages.delete(pkg);
+          updateSelections();
+        });
+
+        tag.append(removeBtn);
         selectedTags.append(tag);
       });
     }
+  };
 
+  const updateSelections = () => {
+    renderSelectedTags();
     selectedPackagesInput.value = Array.from(selectedPackages).join(', ');
+
     packageOptions.forEach((option) => {
       option.classList.toggle('is-selected', selectedPackages.has(option.dataset.package));
     });
+
     const activeName = activePackage.dataset.package;
-    togglePackageBtn.textContent = selectedPackages.has(activeName)
-      ? 'Remove package'
-      : 'Add package to quote';
+    const isActiveSelected = selectedPackages.has(activeName);
+    togglePackageBtn.textContent = isActiveSelected ? 'Remove package' : 'Add package to quote';
+    togglePackageBtn.setAttribute('aria-pressed', String(isActiveSelected));
+
+    if (clearPackagesBtn) {
+      clearPackagesBtn.disabled = !selectedPackages.size;
+    }
   };
 
   const setActivePackage = (option) => {
@@ -113,7 +152,10 @@ if (packageOptions.length && packageTitle && packageDescription && packageFeatur
     packageDescription.textContent = option.dataset.description;
 
     packageFeatureList.innerHTML = '';
-    const features = (option.dataset.features || '').split('|').filter(Boolean);
+    const features = (option.dataset.features || '')
+      .split('|')
+      .map((feature) => feature.trim())
+      .filter(Boolean);
     features.forEach((feature) => {
       const li = document.createElement('li');
       li.textContent = feature;
@@ -121,23 +163,32 @@ if (packageOptions.length && packageTitle && packageDescription && packageFeatur
     });
 
     togglePackageBtn.dataset.packageKey = option.dataset.package;
-    updateSelectedTags();
+    updateSelections();
   };
 
   togglePackageBtn.addEventListener('click', () => {
     const pkg = togglePackageBtn.dataset.packageKey;
     if (!pkg) return;
+
     if (selectedPackages.has(pkg)) {
       selectedPackages.delete(pkg);
     } else {
       selectedPackages.add(pkg);
     }
-    updateSelectedTags();
+    updateSelections();
   });
 
   packageOptions.forEach((option) => {
     option.addEventListener('click', () => setActivePackage(option));
   });
+
+  if (clearPackagesBtn) {
+    clearPackagesBtn.addEventListener('click', () => {
+      selectedPackages.clear();
+      updateSelections();
+    });
+    clearPackagesBtn.disabled = !selectedPackages.size;
+  }
 
   setActivePackage(activePackage);
 }

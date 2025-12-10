@@ -15,9 +15,8 @@
           <img src="Green-Wolf.png" alt="Green Wolf Logo" />
         </div>
         <div class="logo-text">
-          <h1>Green Wolf </h1>
-Lawncare That Cares
-
+          <h1>Green Wolf</h1>
+          <p class="tagline">Lawncare that cares</p>
         </div>
       </div>
       <nav class="main-nav" aria-label="Primary">
@@ -46,58 +45,73 @@ Lawncare That Cares
           <a class="btn btn-outline" href="index.html#contact">Call / text us</a>
         </div>
       </div>
-     <div class="hero-media">
-  <img src="images/9.jpeg" alt="Lawn photo" class="hero-img">
-</div>
+      <div class="hero-media">
+        <img src="images/9.jpeg" alt="Lawn photo" class="hero-img" />
+      </div>
 
     </div>
   </section>
 
   <section class="section service-hero" id="details">
-  <div class="container">
-    <h2>Lawn programs</h2>
-    <p class="section-lead">Choose the visit cadence and coverage that fits your property. We keep edges crisp and clippings cleared.</p>
+    <div class="container">
+      <h2>Lawn programs</h2>
+      <p class="section-lead">Choose the visit cadence and coverage that fits your property. We keep edges crisp and clippings cleared.</p>
 
-    <!-- GREEN CARDS NOW FIRST -->
-    <div class="feature-row">
+      <!-- At-a-glance program buttons live here so visitors can compare tiers quickly. -->
+      <div class="feature-row program-row">
+        <button class="feature feature-with-logo program-card" type="button" data-program="alpha">
+          <div class="feature-text">
+            <h3>Alpha Turf Program</h3>
+            <p>(Top Tier)</p>
+          </div>
+          <img src="images/Lawn Program Golden.png" alt="Wolf Logo" class="feature-logo" />
+        </button>
 
-      <!-- Alpha card -->
-      <div class="feature-row">
-          <button class="feature feature-with-logo program-card" type="button" data-program="alpha">
-            <div class="feature-text">
-              <h3>Alpha Turf Program</h3>
-              <p>(Top Tier)</p>
-            </div>
-            <img src="images/Lawn Program Golden.png" alt="Wolf Logo" class="feature-logo" />
-          </button>
+        <button class="feature feature-with-logo program-card" type="button" data-program="beta">
+          <div class="feature-text">
+            <h3>Beta Turf Program</h3>
+            <p>(Balanced)</p>
+          </div>
+          <img src="images/Lawn Program Silver.png" alt="Wolf Logo" class="feature-logo" />
+        </button>
 
-          <button class="feature feature-with-logo program-card" type="button" data-program="beta">
-            <div class="feature-text">
-              <h3>Beta Turf Program</h3>
-              <p>(Balanced)</p>
-            </div>
-             <img src="images/Lawn Program Silver.png" alt="Wolf Logo" class="feature-logo" />
-          </button>
+        <button class="feature feature-with-logo program-card" type="button" data-program="delta">
+          <div class="feature-text">
+            <h3>Delta Turf Program</h3>
+            <p>(Value)</p>
+          </div>
+          <img src="images/Lawn Program Bronze.png" alt="Wolf Logo" class="feature-logo" />
+        </button>
+      </div>
 
-          <button class="feature feature-with-logo program-card" type="button" data-program="delta">
-            <div class="feature-text">
-              <h3>Delta Turf Program</h3>
-              <p>(Value)</p>
-            </div>
-            <img src="images/Lawn Program Bronze.png" alt="Wolf Logo" class="feature-logo" />
-          </button>
-        </div>
+      <div class="divider"></div>
 
-
-  <div class="divider"></div>
+      <!-- Quick bullet cards to clarify what stays consistent across programs. -->
+      <div class="card-grid">
+        <article class="card">
+          <h3>Weekly or Bi-weekly</h3>
+          <p>Regular mowing, trimming, edging, and fertilizer for a consistently polished yard. Please fill the form below</p>
+        </article>
+        <article class="card">
+          <h3>Front / Back options</h3>
+          <p>Select the areas you need serviced—front, back, or full property.</p>
+        </article>
+        <article class="card">
+          <h3>Detail finishes</h3>
+          <p>Pathway edging, fence-line trimming, and careful gate handling each visit.</p>
+        </article>
+      </div>
+    </div>
+  </section>
 
   <section class="section package-picker" id="packages">
     <div class="container package-layout">
       <div>
         <p class="eyebrow">Pick your extras</p>
         <h3>Bundle the lawn services you need</h3>
-        <p class="section-lead">Tap a package to see details and add it to your quote. Your selections are pushed straight into the form below.</p>
+        <p class="section-lead">Tap a package to see details and add it to your quote. Your selections update the form below instantly.</p>
 
+        <!-- Each button drives the details panel and can be toggled into the quote below. -->
         <div class="package-nav" role="list">
           <button class="package-option is-active" type="button" role="listitem" data-package="Fertilizer Program" data-description="Balanced, eco-forward fertilizer plan to keep colour and density all season." data-features="Improves overall lawn health|Strengthens turf even during drought|Micronutrient blend for fast green-up and deep roots">
             <span class="option-title">Fertilizer Program</span>
@@ -139,29 +153,10 @@ Lawncare That Cares
           <li>Micronutrient blend for fast green-up and deep roots</li>
         </ul>
         <button type="button" class="btn btn-primary" id="togglePackageBtn" data-package-key="Fertilizer Program">Add package to quote</button>
-        <p class="panel-help">Select as many packages as you need. We’ll send them with your contact details.</p>
+        <p class="panel-help">Select as many packages as you need. The box below updates to match what you choose here.</p>
       </div>
     </div>
   </section>
-
-  <!-- WHITE CARDS NOW BELOW -->
-  <div class="card-grid">
-    <article class="card">
-      <h3>Weekly or Bi-weekly</h3>
-        <p>Regular mowing, trimming, edging, and fertilizer for a consistently polished yard. Please fill the form below</p>
-      </article>
-      <article class="card">
-        <h3>Front / Back options</h3>
-        <p>Select the areas you need serviced—front, back, or full property.</p>
-      </article>
-      <article class="card">
-        <h3>Detail finishes</h3>
-        <p>Pathway edging, fence-line trimming, and careful gate handling each visit.</p>
-      </article>
-    </div>
-
-  </div>
-</section>
 
 
   <section class="section" id="quote">
@@ -177,12 +172,16 @@ Lawncare That Cares
               <p class="eyebrow">Selected packages</p>
               <h4 class="selected-summary__title">We’ll include these in your request</h4>
             </div>
-            <p class="selected-summary__note">Pick options above — we’ll attach them here automatically.</p>
+            <div class="summary-actions">
+              <p class="selected-summary__note">Pick options above — we’ll attach them here automatically.</p>
+              <button type="button" class="btn btn-outline btn-compact" id="clearPackagesBtn">Clear selections</button>
+            </div>
           </div>
-          <div class="selected-tags" id="selectedTags">
-            <span class="tag">Fertilizer Program</span>
+          <!-- The tags inside this container are injected by script.js to mirror the package picker. -->
+          <div class="selected-tags" id="selectedTags" aria-live="polite">
+            <span class="tag tag-empty">No packages selected yet</span>
           </div>
-          <input type="hidden" name="selectedPackages" id="selectedPackagesInput" value="Fertilizer Program" />
+          <input type="hidden" name="selectedPackages" id="selectedPackagesInput" value="" />
         </div>
         <label>
           Name
