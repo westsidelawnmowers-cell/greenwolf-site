@@ -58,34 +58,57 @@
     <div class="container">
       <h2>Cleanup bundles</h2>
       <p class="section-lead">Pick the seasonal refresh your property needs. We tidy, haul away debris, and leave your space ready for what’s next.</p>
-      <div class="card-grid">
-        <article class="card">
+      <div class="package-grid">
+        <article class="package-card">
+          <div class="package-header">
+            <span class="package-label">Cleanup</span>
+            <span class="package-price">Spring</span>
+          </div>
           <h3>Spring reset</h3>
-          <p>Debris removal, first edging, and lawn prep so you start the season right.</p>
+          <ul class="package-list">
+            <li>Leaf and debris removal with first edging</li>
+            <li>Bed touch-ups and light pruning</li>
+            <li>Ready for your mowing season</li>
+          </ul>
+          <div class="package-actions">
+            <span class="package-note">Great for April–May</span>
+            <button class="btn btn-primary add-package" type="button" data-package-name="Spring reset" data-package-details="Leaf removal, edging, and bed touch-ups" data-service="Seasonal Cleanup" data-target-form="cleanup-quote-form">Add to quote</button>
+          </div>
         </article>
-        <article class="card">
+
+        <article class="package-card">
+          <div class="package-header">
+            <span class="package-label">Cleanup</span>
+            <span class="package-price">Fall</span>
+          </div>
           <h3>Fall clean sweep</h3>
-          <p>Leaf removal, final trim, and bed touch-ups before winter arrives.</p>
+          <ul class="package-list">
+            <li>Leaf collection and final trim before winter</li>
+            <li>Bed and edge tidy-up</li>
+            <li>Optional haul-away for debris</li>
+          </ul>
+          <div class="package-actions">
+            <span class="package-note">Best before snowfall</span>
+            <button class="btn btn-primary add-package" type="button" data-package-name="Fall clean sweep" data-package-details="Leaf cleanup with edging and optional hauling" data-service="Seasonal Cleanup" data-target-form="cleanup-quote-form">Add to quote</button>
+          </div>
         </article>
-        <article class="card">
-          <h3>Add-on hauling</h3>
-          <p>Optional hauling for branches and bagged debris—just tell us what needs to go.</p>
+
+        <article class="package-card">
+          <div class="package-header">
+            <span class="package-label">Cleanup</span>
+            <span class="package-price">Add-on</span>
+          </div>
+          <h3>Haul & detail</h3>
+          <ul class="package-list">
+            <li>Branch and bagged debris hauling</li>
+            <li>Hard-surface blow off and sweep</li>
+            <li>Pairs with any seasonal cleanup</li>
+          </ul>
+          <div class="package-actions">
+            <span class="package-note">Add disposal</span>
+            <button class="btn btn-primary add-package" type="button" data-package-name="Haul & detail" data-package-details="Branch hauling plus hard-surface cleanup" data-service="Seasonal Cleanup" data-target-form="cleanup-quote-form">Add to quote</button>
+          </div>
         </article>
-      </div>
-      <div class="divider"></div>
-      <div class="feature-row">
-        <div class="feature">
-          <h3>Careful detailing</h3>
-          <p>Edge refreshes, pathway cleanup, and debris cleared from hard surfaces.</p>
-        </div>
-        <div class="feature">
-          <h3>Flexible timing</h3>
-          <p>Schedule before snow melt, pre-summer, or ahead of winter freeze-up.</p>
-        </div>
-        <div class="feature">
-          <h3>Polished finish</h3>
-          <p>We tidy beds, gather leaves, and leave your property photo-ready.</p>
-        </div>
       </div>
     </div>
   </section>
@@ -94,32 +117,53 @@
     <div class="container split-grid">
       <div>
         <h2>Request a cleanup quote</h2>
-        <p class="section-lead">Share the services you want, the areas to focus on, and any hauling needs. We’ll send back a clear plan.</p>
+        <p class="section-lead">Pick a package or keep it simple and tell us what you need. We’ll reply with a clear plan.</p>
       </div>
-      <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
-        <label>
-          Name
-          <input type="text" name="name" required />
-        </label>
-        <label>
-          Phone
-          <input type="tel" name="phone" required />
-        </label>
-        <label>
-          Email (optional)
-          <input type="email" name="email" />
-        </label>
-        <label>
-          Address / Area
-          <input type="text" name="address" placeholder="Street + neighborhood" required />
-        </label>
-        <label>
-          Cleanup details
-          <textarea name="details" rows="4" placeholder="Spring reset, fall clean sweep, hauling, etc."></textarea>
-        </label>
-        <button type="submit" class="btn btn-primary">Submit</button>
+      <form id="cleanup-quote-form" method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
+        <div class="form-grid">
+          <label>
+            Name
+            <input type="text" name="name" required />
+          </label>
+          <label>
+            Phone
+            <input type="tel" name="phone" required />
+          </label>
+          <label>
+            Service
+            <select name="service" required>
+              <option value="">Select a service</option>
+              <option value="Seasonal Cleanup" selected>Seasonal Cleanup</option>
+              <option value="Lawn Care">Lawn Care</option>
+              <option value="Snow Removal">Snow Removal</option>
+              <option value="Landscaping">Landscaping</option>
+            </select>
+          </label>
+          <label>
+            Package
+            <input type="text" name="package" placeholder="Add a package above or type your request" />
+          </label>
+          <label class="full-row">
+            Property notes
+            <textarea name="details" rows="3" placeholder="Leaf volume, hauling needs, gates, pets, timing"></textarea>
+          </label>
+          <label>
+            Address / Area (optional)
+            <input type="text" name="address" placeholder="Street + neighborhood" />
+          </label>
+          <label>
+            Preferred start
+            <select name="start">
+              <option value="As soon as available">As soon as available</option>
+              <option value="This week">This week</option>
+              <option value="Next week">Next week</option>
+              <option value="Next month">Next month</option>
+            </select>
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Send my quote</button>
         <p class="form-status" aria-live="polite"></p>
-        <p class="form-footnote">This form sends directly to our inbox. We never share your information.</p>
+        <p class="form-footnote">Tap a cleanup package to auto-fill, or share a quick note above. We’ll send a simple plan.</p>
       </form>
     </div>
   </section>

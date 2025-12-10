@@ -53,94 +53,118 @@ Lawncare That Cares
     </div>
   </section>
 
- <section class="section service-hero" id="details">
-  <div class="container">
-    <h2>Lawn programs</h2>
-    <p class="section-lead">Choose the visit cadence and coverage that fits your property. We keep edges crisp and clippings cleared.</p>
+  <section class="section service-hero" id="details">
+    <div class="container">
+      <h2>Lawn packages</h2>
+      <p class="section-lead">Pick a visit cadence and coverage level. Select a package to drop it straight into your quote.</p>
 
-    <!-- GREEN CARDS NOW FIRST -->
-    <div class="feature-row">
+      <div class="package-grid">
+        <article class="package-card">
+          <div class="package-header">
+            <span class="package-label">Lawn care</span>
+            <span class="package-price">Front yard focus</span>
+          </div>
+          <h3>Trim & tidy</h3>
+          <ul class="package-list">
+            <li>Front-only mowing with crisp edging</li>
+            <li>Weekly or bi-weekly visit options</li>
+            <li>Clippings cleared from walks and drive</li>
+          </ul>
+          <div class="package-actions">
+            <span class="package-note">Great for smaller lots</span>
+            <button class="btn btn-primary add-package" type="button" data-package-name="Trim & tidy" data-package-details="Front-only mowing with edging and cleanup" data-service="Lawn Care" data-target-form="lawn-quote-form">Add to quote</button>
+          </div>
+        </article>
 
-      <!-- Alpha card -->
-      <div class="feature-row">
-          <button class="feature feature-with-logo program-card" type="button" data-program="alpha">
-            <div class="feature-text">
-              <h3>Alpha Turf Program</h3>
-              <p>(Top Tier)</p>
-            </div>
-            <img src="images/Lawn Program Golden.png" alt="Wolf Logo" class="feature-logo" />
-          </button>
+        <article class="package-card">
+          <div class="package-header">
+            <span class="package-label">Lawn care</span>
+            <span class="package-price">Full property</span>
+          </div>
+          <h3>Whole yard care</h3>
+          <ul class="package-list">
+            <li>Front and back mowing with line trimming</li>
+            <li>Pathway edging and gate care each visit</li>
+            <li>Perfect for consistent curb appeal</li>
+          </ul>
+          <div class="package-actions">
+            <span class="package-note">Most popular</span>
+            <button class="btn btn-primary add-package" type="button" data-package-name="Whole yard care" data-package-details="Front and back mowing, trimming, and edging" data-service="Lawn Care" data-target-form="lawn-quote-form">Add to quote</button>
+          </div>
+        </article>
 
-          <button class="feature feature-with-logo program-card" type="button" data-program="beta">
-            <div class="feature-text">
-              <h3>Beta Turf Program</h3>
-              <p>(Balanced)</p>
-            </div>
-             <img src="images/Lawn Program Silver.png" alt="Wolf Logo" class="feature-logo" />
-          </button>
-
-          <button class="feature feature-with-logo program-card" type="button" data-program="delta">
-            <div class="feature-text">
-              <h3>Delta Turf Program</h3>
-              <p>(Value)</p>
-            </div>
-            <img src="images/Lawn Program Bronze.png" alt="Wolf Logo" class="feature-logo" />
-          </button>
-        </div>
-
-
-    <div class="divider"></div>
-
-    <!-- WHITE CARDS NOW BELOW -->
-    <div class="card-grid">
-      <article class="card">
-        <h3>Weekly or Bi-weekly</h3>
-        <p>Regular mowing, trimming, edging, and fertilizer for a consistently polished yard. Please fill the form below</p>
-      </article>
-      <article class="card">
-        <h3>Front / Back options</h3>
-        <p>Select the areas you need serviced—front, back, or full property.</p>
-      </article>
-      <article class="card">
-        <h3>Detail finishes</h3>
-        <p>Pathway edging, fence-line trimming, and careful gate handling each visit.</p>
-      </article>
+        <article class="package-card">
+          <div class="package-header">
+            <span class="package-label">Lawn care</span>
+            <span class="package-price">Premium finish</span>
+          </div>
+          <h3>Showcase stripes</h3>
+          <ul class="package-list">
+            <li>Striping finish with edging and trimming</li>
+            <li>Optional fertilizer and weed touch-ups</li>
+            <li>Photo-ready results every visit</li>
+          </ul>
+          <div class="package-actions">
+            <span class="package-note">Upgraded detail</span>
+            <button class="btn btn-primary add-package" type="button" data-package-name="Showcase stripes" data-package-details="Striped mow, edging, trimming, and polish" data-service="Lawn Care" data-target-form="lawn-quote-form">Add to quote</button>
+          </div>
+        </article>
+      </div>
     </div>
-
-  </div>
-</section>
+  </section>
 
 
   <section class="section" id="quote">
     <div class="container split-grid">
       <div>
         <h2>Request a lawn quote</h2>
-        <p class="section-lead">Tell us the size of your yard, visit frequency, and any special notes. We’ll respond with clear pricing.</p>
+        <p class="section-lead">Choose a package or tell us what you need. We keep the form simple so you get a clear answer quickly.</p>
       </div>
-      <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
-        <label>
-          Name
-          <input type="text" name="name" required />
-        </label>
-        <label>
-          Phone
-          <input type="tel" name="phone" required />
-        </label>
-        <label>
-          Email (optional)
-          <input type="email" name="email" />
-        </label>
-        <label>
-          Address / Area
-          <input type="text" name="address" placeholder="Street + neighborhood" required />
-        </label>
-        <label>
-          Which lawn service do you need?
-          <textarea name="details" rows="4" placeholder="Weekly mowing, bi-weekly, front/back only, etc."></textarea>
-        </label>
-        <button type="submit" class="btn btn-primary">Submit</button>
+      <form id="lawn-quote-form" method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
+        <div class="form-grid">
+          <label>
+            Name
+            <input type="text" name="name" required />
+          </label>
+          <label>
+            Phone
+            <input type="tel" name="phone" required />
+          </label>
+          <label>
+            Service
+            <select name="service" required>
+              <option value="">Select a service</option>
+              <option value="Lawn Care" selected>Lawn Care</option>
+              <option value="Snow Removal">Snow Removal</option>
+              <option value="Landscaping">Landscaping</option>
+              <option value="Seasonal Cleanup">Seasonal Cleanup</option>
+            </select>
+          </label>
+          <label>
+            Package
+            <input type="text" name="package" placeholder="Select a package above or type your plan" />
+          </label>
+          <label class="full-row">
+            Property notes
+            <textarea name="details" rows="3" placeholder="Front yard only, dog in yard, gate code, visit frequency, etc."></textarea>
+          </label>
+          <label>
+            Address / Area (optional)
+            <input type="text" name="address" placeholder="Street + neighborhood" />
+          </label>
+          <label>
+            Preferred start
+            <select name="start">
+              <option value="As soon as available">As soon as available</option>
+              <option value="This week">This week</option>
+              <option value="Next week">Next week</option>
+              <option value="Next month">Next month</option>
+            </select>
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Send my quote</button>
         <p class="form-status" aria-live="polite"></p>
-        <p class="form-footnote">This form sends directly to our inbox. We never share your information.</p>
+        <p class="form-footnote">Tap a package to auto-fill, or jot your notes above—we’ll reply fast with clear pricing.</p>
       </form>
     </div>
   </section>

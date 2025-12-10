@@ -58,34 +58,57 @@
     <div class="container">
       <h2>Snow services</h2>
       <p class="section-lead">Focused routes and careful clearing keep your property accessible and presentable all winter long.</p>
-      <div class="card-grid">
-        <article class="card">
-          <h3>Driveways & Walks</h3>
-          <p>Snowblower plus shovel finish on driveways, sidewalks, and approaches for a clean result every time.</p>
+      <div class="package-grid">
+        <article class="package-card">
+          <div class="package-header">
+            <span class="package-label">Snow</span>
+            <span class="package-price">Per push</span>
+          </div>
+          <h3>Quick clear</h3>
+          <ul class="package-list">
+            <li>Driveway and front walk cleared after each snowfall</li>
+            <li>Shovel finish on steps and porch</li>
+            <li>Ice melt available on request</li>
+          </ul>
+          <div class="package-actions">
+            <span class="package-note">Pay per visit</span>
+            <button class="btn btn-primary add-package" type="button" data-package-name="Quick clear" data-package-details="Per-push driveway, walk, and step clearing" data-service="Snow Removal" data-target-form="snow-quote-form">Add to quote</button>
+          </div>
         </article>
-        <article class="card">
-          <h3>Front Steps & Entry</h3>
-          <p>Hand-finished steps and porches with attention to rails and transitions to keep guests safe.</p>
+
+        <article class="package-card">
+          <div class="package-header">
+            <span class="package-label">Snow</span>
+            <span class="package-price">Monthly</span>
+          </div>
+          <h3>Route regular</h3>
+          <ul class="package-list">
+            <li>Priority routing during storms</li>
+            <li>Front steps, walks, and drive included</li>
+            <li>Great for homes and small storefronts</li>
+          </ul>
+          <div class="package-actions">
+            <span class="package-note">Predictable pricing</span>
+            <button class="btn btn-primary add-package" type="button" data-package-name="Route regular" data-package-details="Monthly snow route with priority timing" data-service="Snow Removal" data-target-form="snow-quote-form">Add to quote</button>
+          </div>
         </article>
-        <article class="card">
-          <h3>De-icing</h3>
-          <p>Ice melt available for concrete and paving stone surfaces upon request.</p>
+
+        <article class="package-card">
+          <div class="package-header">
+            <span class="package-label">Snow</span>
+            <span class="package-price">Seasonal</span>
+          </div>
+          <h3>Full season priority</h3>
+          <ul class="package-list">
+            <li>All winter coverage with fixed monthly rate</li>
+            <li>Storm check-ins and photo updates</li>
+            <li>Includes steps, walkways, and driveway</li>
+          </ul>
+          <div class="package-actions">
+            <span class="package-note">Best for peace of mind</span>
+            <button class="btn btn-primary add-package" type="button" data-package-name="Full season priority" data-package-details="All-winter coverage with updates" data-service="Snow Removal" data-target-form="snow-quote-form">Add to quote</button>
+          </div>
         </article>
-      </div>
-      <div class="divider"></div>
-      <div class="feature-row">
-        <div class="feature">
-          <h3>Route discipline</h3>
-          <p>Limited neighborhoods for fast response even during heavy snowfall.</p>
-        </div>
-        <div class="feature">
-          <h3>Photo updates</h3>
-          <p>Optional text or email updates so you know exactly when service is complete.</p>
-        </div>
-        <div class="feature">
-          <h3>Flexible coverage</h3>
-          <p>Pick per-push, monthly, or full-season plans that match your budget and snow patterns.</p>
-        </div>
       </div>
     </div>
   </section>
@@ -94,32 +117,53 @@
     <div class="container split-grid">
       <div>
         <h2>Request a snow quote</h2>
-        <p class="section-lead">Tell us your address, snow plan preference, and any special access needs. We’ll reply quickly.</p>
+        <p class="section-lead">Pick a plan or tell us what you need. We keep the form simple so you get a quick answer.</p>
       </div>
-      <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
-        <label>
-          Name
-          <input type="text" name="name" required />
-        </label>
-        <label>
-          Phone
-          <input type="tel" name="phone" required />
-        </label>
-        <label>
-          Email (optional)
-          <input type="email" name="email" />
-        </label>
-        <label>
-          Address / Area
-          <input type="text" name="address" placeholder="Street + neighborhood" required />
-        </label>
-        <label>
-          Which snow plan do you prefer?
-          <textarea name="details" rows="4" placeholder="Per push, monthly, or full-season"></textarea>
-        </label>
-        <button type="submit" class="btn btn-primary">Submit</button>
+      <form id="snow-quote-form" method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
+        <div class="form-grid">
+          <label>
+            Name
+            <input type="text" name="name" required />
+          </label>
+          <label>
+            Phone
+            <input type="tel" name="phone" required />
+          </label>
+          <label>
+            Service
+            <select name="service" required>
+              <option value="">Select a service</option>
+              <option value="Snow Removal" selected>Snow Removal</option>
+              <option value="Lawn Care">Lawn Care</option>
+              <option value="Landscaping">Landscaping</option>
+              <option value="Seasonal Cleanup">Seasonal Cleanup</option>
+            </select>
+          </label>
+          <label>
+            Package
+            <input type="text" name="package" placeholder="Add a package above or type your plan" />
+          </label>
+          <label class="full-row">
+            Property notes
+            <textarea name="details" rows="3" placeholder="Driveway size, walk length, steps, preferred timing"></textarea>
+          </label>
+          <label>
+            Address / Area (optional)
+            <input type="text" name="address" placeholder="Street + neighborhood" />
+          </label>
+          <label>
+            Preferred start
+            <select name="start">
+              <option value="As soon as snow hits">As soon as snow hits</option>
+              <option value="This week">This week</option>
+              <option value="Next week">Next week</option>
+              <option value="Next month">Next month</option>
+            </select>
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Send my quote</button>
         <p class="form-status" aria-live="polite"></p>
-        <p class="form-footnote">This form sends directly to our inbox. We never share your information.</p>
+        <p class="form-footnote">Tap a snow package to auto-fill the form. We’ll confirm pricing and timing right away.</p>
       </form>
     </div>
   </section>
