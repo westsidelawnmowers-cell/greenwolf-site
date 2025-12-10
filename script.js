@@ -68,12 +68,33 @@ if (backToTop) {
 // Quote form validation + friendly feedback
 const quoteForm = document.querySelector('.quote-form');
 const statusEl = document.querySelector('.form-status');
+const programButtons = document.querySelectorAll('.program-select');
+const lawnDetailsField = document.getElementById('lawn-service-details');
 
 const setStatus = (message, type = 'info') => {
   if (!statusEl) return;
   statusEl.textContent = message;
   statusEl.dataset.type = type;
 };
+
+programButtons.forEach((button) => {
+  button.addEventListener('click', (event) => {
+    event.preventDefault();
+    const programName = button.dataset.programName || 'Lawn program';
+    if (lawnDetailsField) {
+      lawnDetailsField.value = `${programName} - please include yard size, front/back coverage, and preferred visit frequency.`;
+    }
+
+    const quoteSection = document.getElementById('quote');
+    if (quoteSection) {
+      quoteSection.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    if (lawnDetailsField) {
+      lawnDetailsField.focus();
+    }
+  });
+});
 
 if (quoteForm) {
   quoteForm.addEventListener('submit', (event) => {
