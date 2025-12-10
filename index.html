@@ -160,37 +160,49 @@
     <div class="container split-grid">
       <div>
         <h2>Request a free quote</h2>
-        <p class="section-lead">Share your property details and the service you need. We’ll respond quickly with clear next steps.</p>
+        <p class="section-lead">A quick form with the basics. We’ll reply in clear language—no jargon, no pushy follow-ups.</p>
         <ul class="hero-bullets">
-          <li>Same-day replies when possible</li>
-          <li>Snow, lawn, and cleanup options</li>
-          <li>No pressure—cancel anytime</li>
+          <li>Snow, lawn, landscaping, and cleanups</li>
+          <li>Pick your service for faster answers</li>
+          <li>We confirm by text or email</li>
         </ul>
       </div>
-      <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
-        <label>
-          Name
-          <input type="text" name="name" required />
-        </label>
-        <label>
-          Phone
-          <input type="tel" name="phone" required />
-        </label>
+      <form method="POST" class="quote-form simple-quote" id="home-quote-form" action="https://formspree.io/f/your-form-id">
+        <div class="input-row">
+          <label>
+            Name
+            <input type="text" name="name" autocomplete="name" required />
+          </label>
+          <label>
+            Phone
+            <input type="tel" name="phone" autocomplete="tel" placeholder="(###) ###-####" required />
+          </label>
+        </div>
         <label>
           Email (optional)
-          <input type="email" name="email" />
+          <input type="email" name="email" autocomplete="email" placeholder="you@example.com" />
         </label>
         <label>
           Address / Area
-          <input type="text" name="address" placeholder="Street + neighborhood" required />
+          <input type="text" name="address" placeholder="Street + neighborhood" autocomplete="street-address" required />
         </label>
         <label>
-          What do you need done?
-          <textarea name="details" rows="4" placeholder="Snow removal, lawn care, cleanup, etc."></textarea>
+          Service needed
+          <select name="service" required>
+            <option value="">Select an option</option>
+            <option>Snow removal</option>
+            <option>Lawn care</option>
+            <option>Landscaping</option>
+            <option>Seasonal cleanup</option>
+          </select>
         </label>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <label>
+          Notes (optional)
+          <textarea name="details" rows="3" placeholder="Share timing, access info, or package picked."></textarea>
+        </label>
+        <button type="submit" class="btn btn-primary">Send quote request</button>
         <p class="form-status" aria-live="polite"></p>
-        <p class="form-footnote">This form sends directly to our inbox. We never share your information.</p>
+        <p class="form-footnote">We never share your information.</p>
       </form>
     </div>
   </section>
