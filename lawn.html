@@ -60,10 +60,17 @@ Lawncare That Cares
       <p class="section-lead">Tap a package to drop it into your quote. We’ll confirm pricing once we know your yard size.</p>
 
       <div class="package-grid">
-        <article class="package-card">
+        <article class="package-card" data-price-weekly="75" data-price-ten="82" data-price-biweekly="88" data-discount="10">
           <div class="package-meta">ALPHA TURF PROGRAM</div>
           <h3 class="package-name">Showcase Stripes</h3>
-          <p class="package-price">Weekly or Every-10 days mowing</p>
+          <div class="package-price" aria-live="polite"></div>
+          <div class="frequency-toggle" role="radiogroup" aria-label="Select mowing frequency">
+            <button class="frequency-option is-active" type="button" data-frequency="weekly" aria-pressed="true">
+              Weekly <span class="frequency-badge">10% off</span>
+            </button>
+            <button class="frequency-option" type="button" data-frequency="ten" aria-pressed="false">Every 10 days</button>
+            <button class="frequency-option" type="button" data-frequency="biweekly" aria-pressed="false">Bi-weekly</button>
+          </div>
           <ul class="package-list">
             <li>Striping pattern, fine edging, and detail passes</li>
             <li>Trimming, edging, and Bagging on Every Second Cut</li>
@@ -72,10 +79,17 @@ Lawncare That Cares
           <button class="btn btn-primary package-select" type="button" data-service="Lawn Care" data-package="Trim & Tidy">Select</button>
         </article>
 
-        <article class="package-card">
+        <article class="package-card" data-price-weekly="65" data-price-ten="72" data-price-biweekly="78" data-discount="10">
           <div class="package-meta">BETA TURF PROGRAM</div>
           <h3 class="package-name">Front & Back Plus</h3>
-          <p class="package-price">Weekly, Every-10days or by-Weekly</p>
+          <div class="package-price" aria-live="polite"></div>
+          <div class="frequency-toggle" role="radiogroup" aria-label="Select mowing frequency">
+            <button class="frequency-option is-active" type="button" data-frequency="weekly" aria-pressed="true">
+              Weekly <span class="frequency-badge">10% off</span>
+            </button>
+            <button class="frequency-option" type="button" data-frequency="ten" aria-pressed="false">Every 10 days</button>
+            <button class="frequency-option" type="button" data-frequency="biweekly" aria-pressed="false">Bi-weekly</button>
+          </div>
           <ul class="package-list">
             <li>Front, back, and side mowing every visit</li>
             <li>Gate care, fence-line trimming, and clean blow-off</li>
@@ -84,10 +98,17 @@ Lawncare That Cares
           <button class="btn btn-primary package-select" type="button" data-service="Lawn Care" data-package="Front & Back Plus">Select</button>
         </article>
 
-        <article class="package-card">
+        <article class="package-card" data-price-weekly="55" data-price-ten="62" data-price-biweekly="68" data-discount="10">
           <div class="package-meta">DELTA TURF PROGRAM</div>
           <h3 class="package-name">Trim & Tidy</h3>
-          <p class="package-price">Weekly, Every-10days or by-Weekly</p>
+          <div class="package-price" aria-live="polite"></div>
+          <div class="frequency-toggle" role="radiogroup" aria-label="Select mowing frequency">
+            <button class="frequency-option is-active" type="button" data-frequency="weekly" aria-pressed="true">
+              Weekly <span class="frequency-badge">10% off</span>
+            </button>
+            <button class="frequency-option" type="button" data-frequency="ten" aria-pressed="false">Every 10 days</button>
+            <button class="frequency-option" type="button" data-frequency="biweekly" aria-pressed="false">Bi-weekly</button>
+          </div>
           <ul class="package-list">
             <li>Front and Back Mowing with clean edges</li>
             <li>Trimming, edging, and light debris Clear</li>

@@ -81,6 +81,65 @@ const readMoreButtons = document.querySelectorAll('.read-more');
 
 const selections = new Map();
 
+const formatPrice = (value) => `$${Number(value).toFixed(0)}`;
+
+const frequencyLabels = {
+  weekly: 'Weekly',
+  ten: 'Every 10 days',
+  biweekly: 'Bi-weekly',
+};
+
+const renderPackagePrice = (card, frequency) => {
+  const priceEl = card.querySelector('.package-price');
+  if (!priceEl) return;
+
+  const priceKey = `price${frequency.charAt(0).toUpperCase()}${frequency.slice(1)}`;
+  const basePrice = Number(card.dataset[priceKey]);
+  if (!basePrice) return;
+
+  const discount = frequency === 'weekly' ? Number(card.dataset.discount || 0) : 0;
+  const finalPrice = discount ? basePrice * (1 - discount / 100) : basePrice;
+  const hasDiscount = discount > 0 && frequency === 'weekly';
+  const freqLabel = frequencyLabels[frequency] || frequency;
+
+  priceEl.innerHTML = hasDiscount
+    ? `<div class="price-row"><span class="price-current">${formatPrice(finalPrice)}</span><span class="price-original">${formatPrice(basePrice)}</span></div><div class="price-frequency">per visit (${freqLabel})</div><div class="price-badge">${discount}% off weekly care</div>`
+    : `<div class="price-row"><span class="price-current">${formatPrice(finalPrice)}</span></div><div class="price-frequency">per visit (${freqLabel})</div>`;
+
+  card.dataset.selectedFrequency = frequency;
+  card.classList.toggle('has-discount', hasDiscount);
+};
+
+const setupFrequencyToggles = () => {
+  const packageCards = document.querySelectorAll('.package-card');
+
+  packageCards.forEach((card) => {
+    const frequencyButtons = card.querySelectorAll('.frequency-option');
+    if (!frequencyButtons.length) return;
+
+    const setFrequency = (freq) => {
+      frequencyButtons.forEach((button) => {
+        const isActive = button.dataset.frequency === freq;
+        button.classList.toggle('is-active', isActive);
+        button.setAttribute('aria-pressed', isActive.toString());
+      });
+
+      renderPackagePrice(card, freq);
+    };
+
+    setFrequency('weekly');
+
+    frequencyButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const nextFrequency = button.dataset.frequency || 'weekly';
+        setFrequency(nextFrequency);
+      });
+    });
+  });
+};
+
+setupFrequencyToggles();
+
 const setStatus = (message, type = 'info') => {
   if (!statusEl) return;
   statusEl.textContent = message;
