@@ -75,11 +75,51 @@ const selectionBadges = quoteForm?.querySelector('.selection-badges');
 const clearSelectionsBtn = quoteForm?.querySelector('.clear-selections');
 const serviceSelect = quoteForm?.querySelector('select[name="service"]');
 
-const packageButtons = document.querySelectorAll('.package-select');
-const optionButtons = document.querySelectorAll('.option-select');
-const readMoreButtons = document.querySelectorAll('.read-more');
+const packageCards = document.querySelectorAll('.package-card');
+  const packageButtons = document.querySelectorAll('.package-select');
+  const optionButtons = document.querySelectorAll('.option-select');
+  const readMoreButtons = document.querySelectorAll('.read-more');
+  const frequencyButtons = document.querySelectorAll('.freq-option');
 
 const selections = new Map();
+
+const frequencySettings = {
+  weekly: { label: 'Weekly', discount: true },
+  every10: { label: 'Every 10 days', discount: false },
+  biweekly: { label: 'Bi-weekly', discount: false },
+};
+
+const getActiveFrequency = (card) => card?.querySelector('.freq-option.is-active')?.dataset.frequency || 'weekly';
+
+const updatePackagePrice = (card, frequency) => {
+  if (!card) return;
+
+  const priceEl = card.querySelector('.package-price');
+  const discountFlag = card.querySelector('.discount-flag');
+  const priceValue = priceEl?.dataset?.[frequency];
+
+  if (priceEl && priceValue) {
+    priceEl.textContent = `From $${priceValue} / visit`;
+  }
+
+  const isDiscount = Boolean(frequencySettings[frequency]?.discount);
+  if (discountFlag) {
+    discountFlag.classList.toggle('is-active', isDiscount);
+    discountFlag.hidden = !isDiscount;
+  }
+};
+
+const buildPackageLabel = (pkg, card, service) => {
+  const frequency = getActiveFrequency(card);
+  const frequencyLabel = frequencySettings[frequency]?.label || '';
+  const priceText = card?.querySelector('.package-price')?.textContent || '';
+
+  const labelParts = [service ? `${pkg} (${service})` : pkg];
+  if (frequencyLabel) labelParts.push(`— ${frequencyLabel}`);
+  if (priceText) labelParts.push(`(${priceText})`);
+
+  return { label: labelParts.join(' '), frequencyLabel };
+};
 
 const setStatus = (message, type = 'info') => {
   if (!statusEl) return;
@@ -134,10 +174,47 @@ const renderSelections = () => {
   selectionsInput.value = joined;
 };
 
+const updateSelectedPackage = (card) => {
+  if (!card) return;
+
+  const button = card.querySelector('.package-select');
+  const pkg = button?.dataset.package || '';
+  const service = button?.dataset.service || '';
+  const key = `package-${pkg}`;
+
+  if (!pkg || !selections.has(key)) return;
+
+  const { label, frequencyLabel } = buildPackageLabel(pkg, card, service);
+  selections.set(key, { label, kind: 'package', raw: pkg });
+
+  if (packageInput) packageInput.value = [pkg, frequencyLabel].filter(Boolean).join(' - ');
+  if (serviceSelect && service) serviceSelect.value = service;
+  renderSelections();
+};
+
+packageCards.forEach((card) => {
+  updatePackagePrice(card, getActiveFrequency(card));
+});
+
+frequencyButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const parentCard = button.closest('.package-card');
+    if (!parentCard) return;
+
+    parentCard.querySelectorAll('.freq-option').forEach((btn) => {
+      btn.classList.toggle('is-active', btn === button);
+    });
+
+    const frequency = button.dataset.frequency || 'weekly';
+    updatePackagePrice(parentCard, frequency);
+    updateSelectedPackage(parentCard);
+  });
+});
+
 const handlePackageSelect = (button) => {
   const pkg = button.dataset.package || '';
   const service = button.dataset.service || '';
-  const label = service ? `${pkg} (${service})` : pkg;
+  const { label, frequencyLabel } = buildPackageLabel(pkg, button.closest('.package-card'), service);
 
   packageButtons.forEach((btn) => {
     const isActive = btn === button;
@@ -151,7 +228,7 @@ const handlePackageSelect = (button) => {
 
   selections.set(`package-${pkg}`, { label, kind: 'package', raw: pkg });
 
-  if (packageInput) packageInput.value = pkg;
+  if (packageInput) packageInput.value = [pkg, frequencyLabel].filter(Boolean).join(' - ');
   if (serviceSelect && service) serviceSelect.value = service;
   renderSelections();
 };
