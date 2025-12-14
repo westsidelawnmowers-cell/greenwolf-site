@@ -78,8 +78,76 @@ const serviceSelect = quoteForm?.querySelector('select[name="service"]');
 const packageButtons = document.querySelectorAll('.package-select');
 const optionButtons = document.querySelectorAll('.option-select');
 const readMoreButtons = document.querySelectorAll('.read-more');
+const packageCards = document.querySelectorAll('.package-card');
 
 const selections = new Map();
+
+const frequencyLabels = {
+  weekly: 'Weekly',
+  every10: 'Every 10 days',
+  biweekly: 'Bi-weekly',
+};
+
+const formatPrice = (value) => {
+  const numeric = Number(value);
+  if (Number.isNaN(numeric)) return '';
+  return `$${numeric.toFixed(0)}`;
+};
+
+const updatePackageSelectionLabel = (card) => {
+  if (!card) return;
+  const pkgName = card.dataset.packageName || card.querySelector('.package-name')?.textContent || '';
+  const activeFrequency = card.dataset.activeFrequency || 'weekly';
+  const key = `package-${pkgName}`;
+  const current = selections.get(key);
+
+  if (!current) return;
+
+  const label = `${pkgName} - ${frequencyLabels[activeFrequency] || activeFrequency}`;
+  selections.set(key, { ...current, label, frequency: activeFrequency });
+  if (packageInput) packageInput.value = label;
+  renderSelections();
+};
+
+const setPackageFrequency = (card, frequency) => {
+  if (!card) return;
+  const buttons = card.querySelectorAll('.frequency-btn');
+  const priceEl = card.querySelector('.package-price-value');
+  const freqLabelEl = card.querySelector('.package-frequency-label');
+
+  const priceKey = `price${frequency.charAt(0).toUpperCase()}${frequency.slice(1)}`;
+  const priceValue = card.dataset[priceKey];
+
+  card.dataset.activeFrequency = frequency;
+
+  buttons.forEach((btn) => {
+    btn.classList.toggle('is-active', btn.dataset.frequency === frequency);
+  });
+
+  if (priceEl && priceValue) {
+    priceEl.textContent = formatPrice(priceValue);
+  }
+
+  if (freqLabelEl) {
+    const label = frequencyLabels[frequency] ? `${frequencyLabels[frequency]} service` : '';
+    freqLabelEl.textContent = label;
+  }
+
+  updatePackageSelectionLabel(card);
+};
+
+packageCards.forEach((card) => {
+  const initialFrequency = card.dataset.defaultFrequency || 'weekly';
+  setPackageFrequency(card, initialFrequency);
+
+  const buttons = card.querySelectorAll('.frequency-btn');
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const nextFrequency = btn.dataset.frequency || 'weekly';
+      setPackageFrequency(card, nextFrequency);
+    });
+  });
+});
 
 const setStatus = (message, type = 'info') => {
   if (!statusEl) return;
@@ -87,7 +155,7 @@ const setStatus = (message, type = 'info') => {
   statusEl.dataset.type = type;
 };
 
-const renderSelections = () => {
+function renderSelections() {
   if (!selectionBadges || !selectionsInput) return;
 
   selectionBadges.innerHTML = '';
@@ -132,12 +200,14 @@ const renderSelections = () => {
     .join(', ');
 
   selectionsInput.value = joined;
-};
+}
 
 const handlePackageSelect = (button) => {
-  const pkg = button.dataset.package || '';
-  const service = button.dataset.service || '';
-  const label = service ? `${pkg} (${service})` : pkg;
+  const card = button.closest('.package-card');
+  const pkg = button.dataset.package || card?.dataset.packageName || '';
+  const service = button.dataset.service || card?.dataset.service || '';
+  const frequency = card?.dataset.activeFrequency || 'weekly';
+  const label = `${pkg} - ${frequencyLabels[frequency] || frequency}${service ? ` (${service})` : ''}`;
 
   packageButtons.forEach((btn) => {
     const isActive = btn === button;
@@ -149,9 +219,9 @@ const handlePackageSelect = (button) => {
     if (item.kind === 'package') selections.delete(key);
   });
 
-  selections.set(`package-${pkg}`, { label, kind: 'package', raw: pkg });
+  selections.set(`package-${pkg}`, { label, kind: 'package', raw: pkg, frequency });
 
-  if (packageInput) packageInput.value = pkg;
+  if (packageInput) packageInput.value = label;
   if (serviceSelect && service) serviceSelect.value = service;
   renderSelections();
 };
