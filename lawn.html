@@ -60,10 +60,15 @@ Lawncare That Cares
       <p class="section-lead">Tap a package to drop it into your quote. We’ll confirm pricing once we know your yard size.</p>
 
       <div class="package-grid">
-        <article class="package-card">
+        <article class="package-card" data-package-key="alpha">
           <div class="package-meta">ALPHA TURF PROGRAM</div>
           <h3 class="package-name">Showcase Stripes</h3>
-          <p class="package-price">Weekly or Every-10 days mowing</p>
+          <p class="package-price" data-package-price>Weekly mowing · $89 / visit</p>
+          <div class="frequency-row" role="group" aria-label="Select mowing frequency">
+            <button class="frequency-btn is-active" type="button" data-frequency="weekly">Weekly <span class="discount-flag">10% off</span></button>
+            <button class="frequency-btn" type="button" data-frequency="every10">Every 10 days</button>
+            <button class="frequency-btn" type="button" data-frequency="biweekly">Bi-weekly</button>
+          </div>
           <ul class="package-list">
             <li>Striping pattern, fine edging, and detail passes</li>
             <li>Trimming, edging, and Bagging on Every Second Cut</li>
@@ -72,10 +77,15 @@ Lawncare That Cares
           <button class="btn btn-primary package-select" type="button" data-service="Lawn Care" data-package="Trim & Tidy">Select</button>
         </article>
 
-        <article class="package-card">
+        <article class="package-card" data-package-key="beta">
           <div class="package-meta">BETA TURF PROGRAM</div>
           <h3 class="package-name">Front & Back Plus</h3>
-          <p class="package-price">Weekly, Every-10days or by-Weekly</p>
+          <p class="package-price" data-package-price>Weekly mowing · $75 / visit</p>
+          <div class="frequency-row" role="group" aria-label="Select mowing frequency">
+            <button class="frequency-btn is-active" type="button" data-frequency="weekly">Weekly <span class="discount-flag">10% off</span></button>
+            <button class="frequency-btn" type="button" data-frequency="every10">Every 10 days</button>
+            <button class="frequency-btn" type="button" data-frequency="biweekly">Bi-weekly</button>
+          </div>
           <ul class="package-list">
             <li>Front, back, and side mowing every visit</li>
             <li>Gate care, fence-line trimming, and clean blow-off</li>
@@ -84,10 +94,15 @@ Lawncare That Cares
           <button class="btn btn-primary package-select" type="button" data-service="Lawn Care" data-package="Front & Back Plus">Select</button>
         </article>
 
-        <article class="package-card">
+        <article class="package-card" data-package-key="delta">
           <div class="package-meta">DELTA TURF PROGRAM</div>
           <h3 class="package-name">Trim & Tidy</h3>
-          <p class="package-price">Weekly, Every-10days or by-Weekly</p>
+          <p class="package-price" data-package-price>Weekly mowing · $62 / visit</p>
+          <div class="frequency-row" role="group" aria-label="Select mowing frequency">
+            <button class="frequency-btn is-active" type="button" data-frequency="weekly">Weekly <span class="discount-flag">10% off</span></button>
+            <button class="frequency-btn" type="button" data-frequency="every10">Every 10 days</button>
+            <button class="frequency-btn" type="button" data-frequency="biweekly">Bi-weekly</button>
+          </div>
           <ul class="package-list">
             <li>Front and Back Mowing with clean edges</li>
             <li>Trimming, edging, and light debris Clear</li>

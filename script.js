@@ -78,8 +78,34 @@ const serviceSelect = quoteForm?.querySelector('select[name="service"]');
 const packageButtons = document.querySelectorAll('.package-select');
 const optionButtons = document.querySelectorAll('.option-select');
 const readMoreButtons = document.querySelectorAll('.read-more');
+const packageCards = document.querySelectorAll('[data-package-key]');
+const frequencyButtons = document.querySelectorAll('.frequency-btn');
 
 const selections = new Map();
+
+const packagePricing = {
+  alpha: {
+    frequencies: {
+      weekly: { label: 'Weekly', price: '$89 / visit', discount: true },
+      every10: { label: 'Every 10 days', price: '$95 / visit', discount: false },
+      biweekly: { label: 'Bi-weekly', price: '$105 / visit', discount: false },
+    },
+  },
+  beta: {
+    frequencies: {
+      weekly: { label: 'Weekly', price: '$75 / visit', discount: true },
+      every10: { label: 'Every 10 days', price: '$82 / visit', discount: false },
+      biweekly: { label: 'Bi-weekly', price: '$90 / visit', discount: false },
+    },
+  },
+  delta: {
+    frequencies: {
+      weekly: { label: 'Weekly', price: '$62 / visit', discount: true },
+      every10: { label: 'Every 10 days', price: '$68 / visit', discount: false },
+      biweekly: { label: 'Bi-weekly', price: '$76 / visit', discount: false },
+    },
+  },
+};
 
 const setStatus = (message, type = 'info') => {
   if (!statusEl) return;
@@ -134,10 +160,26 @@ const renderSelections = () => {
   selectionsInput.value = joined;
 };
 
+const getActiveFrequency = (card) => {
+  if (!card) return null;
+  const key = card.dataset.packageKey;
+  const activeBtn = card.querySelector('.frequency-btn.is-active');
+  const pricing = key ? packagePricing[key] : null;
+  const freqKey = activeBtn?.dataset.frequency;
+  const freqData = freqKey && pricing ? pricing.frequencies[freqKey] : null;
+  if (freqData) {
+    return { key: freqKey, label: freqData.label, price: freqData.price };
+  }
+  return null;
+};
+
 const handlePackageSelect = (button) => {
   const pkg = button.dataset.package || '';
   const service = button.dataset.service || '';
   const label = service ? `${pkg} (${service})` : pkg;
+  const card = button.closest('.package-card');
+  const freq = getActiveFrequency(card);
+  const labelWithFreq = freq ? `${label} – ${freq.label} (${freq.price})` : label;
 
   packageButtons.forEach((btn) => {
     const isActive = btn === button;
@@ -149,9 +191,9 @@ const handlePackageSelect = (button) => {
     if (item.kind === 'package') selections.delete(key);
   });
 
-  selections.set(`package-${pkg}`, { label, kind: 'package', raw: pkg });
+  selections.set(`package-${pkg}`, { label: labelWithFreq, kind: 'package', raw: pkg });
 
-  if (packageInput) packageInput.value = pkg;
+  if (packageInput) packageInput.value = freq ? `${pkg} – ${freq.label}` : pkg;
   if (serviceSelect && service) serviceSelect.value = service;
   renderSelections();
 };
@@ -183,6 +225,48 @@ optionButtons.forEach((button) => {
     }
 
     renderSelections();
+  });
+});
+
+const setFrequency = (card, nextKey) => {
+  const key = card.dataset.packageKey;
+  const pricing = packagePricing[key];
+  if (!pricing) return;
+  const freq = pricing.frequencies[nextKey] || pricing.frequencies.weekly;
+  const priceEl = card.querySelector('[data-package-price]');
+  if (priceEl) {
+    priceEl.textContent = `${freq.label} mowing · ${freq.price}`;
+  }
+  card.dataset.activeFrequency = nextKey;
+  card.dataset.activeFrequencyLabel = freq.label;
+  card.dataset.activePrice = freq.price;
+
+  card.querySelectorAll('.frequency-btn').forEach((btn) => {
+    const isActive = btn.dataset.frequency === nextKey;
+    btn.classList.toggle('is-active', isActive);
+    const flag = btn.querySelector('.discount-flag');
+    if (flag) {
+      const hasDiscount = pricing.frequencies[btn.dataset.frequency]?.discount;
+      flag.hidden = !hasDiscount;
+      flag.classList.toggle('is-active', isActive && !!hasDiscount);
+    }
+  });
+};
+
+packageCards.forEach((card) => {
+  setFrequency(card, 'weekly');
+});
+
+frequencyButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const card = button.closest('.package-card');
+    const nextKey = button.dataset.frequency;
+    if (!card || !nextKey) return;
+    setFrequency(card, nextKey);
+    const activeSelectButton = card.querySelector('.package-select');
+    if (activeSelectButton?.closest('.package-card')?.classList.contains('is-selected')) {
+      handlePackageSelect(activeSelectButton);
+    }
   });
 });
 
