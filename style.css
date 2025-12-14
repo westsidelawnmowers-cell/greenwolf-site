@@ -363,6 +363,50 @@ img {
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08), 0 0 0 6px rgba(249, 237, 199, 0.4);
 }
 
+.frequency-toggle {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+
+.frequency-option {
+  border: 1px solid var(--border);
+  background: #ffffff;
+  color: var(--forest);
+  padding: 0.6rem 0.75rem;
+  border-radius: 0.65rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, transform 0.18s ease;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  text-align: center;
+}
+
+.frequency-option:hover {
+  border-color: rgba(230, 199, 110, 0.5);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+}
+
+.frequency-option.is-active {
+  border-color: var(--gold);
+  background: linear-gradient(180deg, #fffdf6, #f6fbf3);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.08), 0 0 0 4px rgba(249, 237, 199, 0.4);
+}
+
+.frequency-badge {
+  background: rgba(230, 199, 110, 0.18);
+  color: var(--pine);
+  border-radius: 999px;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
 .option-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -461,8 +505,48 @@ img {
 }
 
 .package-price {
+  display: grid;
+  gap: 0.35rem;
+  color: var(--pine);
+}
+
+.price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+}
+
+.price-current {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--forest);
+}
+
+.price-original {
+  text-decoration: line-through;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.price-frequency {
   font-weight: 700;
   color: var(--pine);
+}
+
+.price-badge {
+  display: inline-flex;
+  width: fit-content;
+  background: rgba(230, 199, 110, 0.18);
+  color: var(--forest);
+  padding: 0.3rem 0.55rem;
+  border-radius: 999px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.package-card.has-discount {
+  border-color: rgba(230, 199, 110, 0.65);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08), 0 0 0 6px rgba(249, 237, 199, 0.4);
 }
 
 .package-list {
