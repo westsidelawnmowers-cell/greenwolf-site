@@ -231,10 +231,17 @@ if (quoteForm && serviceSelect) {
 
 if (quoteForm) {
   quoteForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
     const formData = new FormData(quoteForm);
     const name = (formData.get('name') || '').toString().trim();
     const phone = (formData.get('phone') || '').toString().trim();
     const area = (formData.get('address') || '').toString().trim();
+    const email = (formData.get('email') || '').toString().trim();
+    const service = (formData.get('service') || '').toString();
+    const pkg = (formData.get('package') || '').toString();
+    const picks = (formData.get('selections') || '').toString();
+    const details = (formData.get('details') || '').toString();
 
     const errors = [];
     if (!name) errors.push('Please include your name.');
@@ -244,11 +251,54 @@ if (quoteForm) {
     if (!area) errors.push('Let us know your neighborhood so we can quote quickly.');
 
     if (errors.length) {
-      event.preventDefault();
       setStatus(errors[0], 'error');
       return;
     }
 
-    setStatus('Sending your request…', 'info');
+    const tallyFormId = quoteForm.dataset.tallyForm || '';
+    const tallyFormUrl =
+      quoteForm.dataset.tallyUrl || (tallyFormId ? `https://tally.so/r/${tallyFormId}` : '');
+
+    if (!tallyFormUrl) {
+      setStatus('Unable to open Tally form. Please call or email us instead.', 'error');
+      return;
+    }
+
+    const prefill = {
+      name,
+      phone,
+      email,
+      address: area,
+      service,
+      package: pkg,
+      selections: picks,
+      details,
+    };
+
+    const openWithTally = () => {
+      setStatus('Opening secure Tally form…', 'info');
+      const target = tallyFormId || tallyFormUrl;
+
+      if (window.Tally?.openPopup) {
+        window.Tally.openPopup(target, {
+          layout: 'modal',
+          width: 520,
+          hideTitle: true,
+          alignLeft: true,
+          emoji: { text: '🌲', animation: 'wave' },
+          prefill,
+        });
+        return;
+      }
+
+      const url = new URL(tallyFormUrl);
+      Object.entries(prefill).forEach(([key, value]) => {
+        if (value) url.searchParams.set(key, value);
+      });
+      window.open(url.toString(), '_blank', 'noopener');
+      setStatus('Opening Tally in a new tab…', 'info');
+    };
+
+    openWithTally();
   });
 }
