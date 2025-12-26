@@ -68,12 +68,14 @@ if (backToTop) {
 
 // Quote form validation + friendly feedback
 const quoteForm = document.querySelector('.quote-form');
+const tallyFormUrl = document.body.dataset.tallyFormUrl || 'https://tally.so/r/w2xMe1';
 const statusEl = quoteForm?.querySelector('.form-status');
 const packageInput = quoteForm?.querySelector('input[name="package"]');
 const selectionsInput = quoteForm?.querySelector('input[name="selections"]');
 const selectionBadges = quoteForm?.querySelector('.selection-badges');
 const clearSelectionsBtn = quoteForm?.querySelector('.clear-selections');
 const serviceSelect = quoteForm?.querySelector('select[name="service"]');
+const defaultService = quoteForm?.dataset.defaultService;
 
 const packageButtons = document.querySelectorAll('.package-select');
 const optionButtons = document.querySelectorAll('.option-select');
@@ -132,6 +134,22 @@ const renderSelections = () => {
     .join(', ');
 
   selectionsInput.value = joined;
+};
+
+const resetSelections = () => {
+  selections.clear();
+  packageButtons.forEach((btn) => {
+    btn.closest('.package-card')?.classList.remove('is-selected');
+    btn.textContent = 'Select package';
+  });
+  optionButtons.forEach((btn) => {
+    setOptionButtonContent(btn, false);
+  });
+  if (packageInput) packageInput.value = '';
+  if (serviceSelect) {
+    serviceSelect.value = defaultService || '';
+  }
+  renderSelections();
 };
 
 const handlePackageSelect = (button) => {
@@ -209,24 +227,12 @@ renderSelections();
 
 if (clearSelectionsBtn) {
   clearSelectionsBtn.addEventListener('click', () => {
-    selections.clear();
-    packageButtons.forEach((btn) => {
-      btn.closest('.package-card')?.classList.remove('is-selected');
-      btn.textContent = 'Select package';
-    });
-    optionButtons.forEach((btn) => {
-      setOptionButtonContent(btn, false);
-    });
-    if (packageInput) packageInput.value = '';
-    renderSelections();
+    resetSelections();
   });
 }
 
-if (quoteForm && serviceSelect) {
-  const defaultService = quoteForm.dataset.defaultService;
-  if (defaultService) {
-    serviceSelect.value = defaultService;
-  }
+if (quoteForm && serviceSelect && defaultService) {
+  serviceSelect.value = defaultService;
 }
 
 if (quoteForm) {
@@ -249,6 +255,24 @@ if (quoteForm) {
       return;
     }
 
-    setStatus('Sending your request…', 'info');
+    event.preventDefault();
+
+    const url = new URL(tallyFormUrl);
+    url.searchParams.set('Name', name);
+    url.searchParams.set('Phone', phone);
+    url.searchParams.set('Address / Area', area);
+    url.searchParams.set('Service needed', (formData.get('service') || '').toString());
+    url.searchParams.set('Selected items', (formData.get('selections') || '').toString());
+    url.searchParams.set('Package choice', (formData.get('package') || '').toString());
+    url.searchParams.set('Details', (formData.get('details') || '').toString());
+
+    const tallyWindow = window.open(url.toString(), '_blank', 'noopener');
+    if (!tallyWindow) {
+      window.location.href = url.toString();
+    }
+
+    quoteForm.reset();
+    resetSelections();
+    setStatus('Opening Tally to finish your quote…', 'success');
   });
 }
