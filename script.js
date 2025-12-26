@@ -79,12 +79,56 @@ const packageButtons = document.querySelectorAll('.package-select');
 const optionButtons = document.querySelectorAll('.option-select');
 const readMoreButtons = document.querySelectorAll('.read-more');
 
+const tallyFormUrl = quoteForm?.dataset.tallyForm || quoteForm?.getAttribute('action');
+let tallyScriptPromise = null;
+
 const selections = new Map();
 
 const setStatus = (message, type = 'info') => {
   if (!statusEl) return;
   statusEl.textContent = message;
   statusEl.dataset.type = type;
+};
+
+const loadTallyEmbed = () => {
+  if (tallyScriptPromise) return tallyScriptPromise;
+
+  tallyScriptPromise = new Promise((resolve) => {
+    if (window.Tally) {
+      resolve(window.Tally);
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = 'https://tally.so/widgets/embed.js';
+    script.async = true;
+    script.onload = () => resolve(window.Tally);
+    script.onerror = () => resolve(null);
+    document.body.appendChild(script);
+  });
+
+  return tallyScriptPromise;
+};
+
+const buildPrefill = (formData) => {
+  const entries = {
+    Name: formData.get('name'),
+    Phone: formData.get('phone'),
+    'Address / Area': formData.get('address'),
+    Service: formData.get('service'),
+    Package: formData.get('package'),
+    Selections: formData.get('selections'),
+    Details: formData.get('details'),
+  };
+
+  const prefill = {};
+
+  Object.entries(entries).forEach(([key, value]) => {
+    const trimmed = (value || '').toString().trim();
+    if (trimmed) prefill[key] = trimmed;
+  });
+
+  return prefill;
 };
 
 const renderSelections = () => {
@@ -249,6 +293,48 @@ if (quoteForm) {
       return;
     }
 
-    setStatus('Sending your request…', 'info');
+    event.preventDefault();
+
+    const prefill = buildPrefill(formData);
+    const targetUrl = tallyFormUrl || quoteForm.getAttribute('action') || '';
+
+    if (!targetUrl) {
+      setStatus('Form temporarily unavailable. Please call or email us.', 'error');
+      return;
+    }
+
+    const fallbackUrl = (() => {
+      const url = new URL(targetUrl);
+
+      Object.entries(prefill).forEach(([key, value]) => {
+        url.searchParams.set(key, value);
+      });
+      url.searchParams.set('sourcePage', window.location.pathname);
+
+      return url.toString();
+    })();
+
+    setStatus('Opening secure Tally form…', 'info');
+
+    loadTallyEmbed()
+      .then((tally) => {
+        if (tally?.openPopup) {
+          tally.openPopup(targetUrl, {
+            layout: 'modal',
+            width: 640,
+            hideTitle: true,
+            prefill,
+            hiddenFields: { sourcePage: window.location.pathname },
+          });
+          return;
+        }
+
+        window.open(fallbackUrl, '_blank');
+        setStatus('Please finish the quote in the Tally window we opened.', 'info');
+      })
+      .catch(() => {
+        window.open(fallbackUrl, '_blank');
+        setStatus('Please finish the quote in the Tally window we opened.', 'info');
+      });
   });
 }
