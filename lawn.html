@@ -54,10 +54,69 @@
     </div>
   </section>
 
+  <section class="section alt-section" id="addons">
+    <div class="container">
+      <h2>Popular add-ons</h2>
+      <p class="section-lead">Optional extras you can select in the Jobber quote form for a dialed-in lawn visit.</p>
+      <div class="addon-grid">
+        <details class="addon-card">
+          <summary>
+            <div class="addon-title">
+              <span class="pill">Add-on</span>
+              <div>
+                <h3>Bagging & haul-away</h3>
+                <p class="addon-subtitle">Clippings and light debris removed after every cut.</p>
+              </div>
+            </div>
+            <div class="addon-toggle-group">
+              <span class="addon-toggle-open">Read more</span>
+              <span class="addon-toggle-close">Hide details</span>
+            </div>
+          </summary>
+          <p>We collect and haul away clippings, light branches, and surface debris so your lawn and hard surfaces stay clean.</p>
+        </details>
+
+        <details class="addon-card">
+          <summary>
+            <div class="addon-title">
+              <span class="pill">Add-on</span>
+              <div>
+                <h3>Aeration & overseeding</h3>
+                <p class="addon-subtitle">Pair with mowing to boost lawn health.</p>
+              </div>
+            </div>
+            <div class="addon-toggle-group">
+              <span class="addon-toggle-open">Read more</span>
+              <span class="addon-toggle-close">Hide details</span>
+            </div>
+          </summary>
+          <p>Core aeration opens the soil so water and nutrients reach roots, and overseeding fills thin spots for a thicker turf.</p>
+        </details>
+
+        <details class="addon-card">
+          <summary>
+            <div class="addon-title">
+              <span class="pill">Add-on</span>
+              <div>
+                <h3>Hedge & shrub shaping</h3>
+                <p class="addon-subtitle">Keep bushes neat alongside your mow.</p>
+              </div>
+            </div>
+            <div class="addon-toggle-group">
+              <span class="addon-toggle-open">Read more</span>
+              <span class="addon-toggle-close">Hide details</span>
+            </div>
+          </summary>
+          <p>Light trimming for hedges, shrubs, and fence lines to maintain crisp lines and improve curb appeal between full cleanups.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <section class="section service-hero" id="details">
     <div class="container">
       <h2>Lawn packages</h2>
-      <p class="section-lead">Tap a package to drop it into your quote. We’ll confirm pricing once we know your yard size.</p>
+      <p class="section-lead">Review our programs, then complete the quote form below to book your spot.</p>
 
       <div class="package-grid">
         <article class="package-card">
@@ -69,8 +128,6 @@
             <li>Trimming, edging, and Bagging on Every Second Cut</li>
             <li>Unlimmited Weed Control and Fertilizer</li>
           </ul>
-          <!-- NOTE: Your original data-package text was swapped; I kept YOUR structure but corrected the package value -->
-          <button class="btn btn-primary package-select" type="button" data-service="Lawn Care" data-package="Showcase Stripes">Select</button>
         </article>
 
         <article class="package-card">
@@ -82,7 +139,6 @@
             <li>Gate care, fence-line trimming, and clean blow-off</li>
             <li>Season Long Fertilizer</li>
           </ul>
-          <button class="btn btn-primary package-select" type="button" data-service="Lawn Care" data-package="Front & Back Plus">Select</button>
         </article>
 
         <article class="package-card">
@@ -94,97 +150,7 @@
             <li>Trimming, edging, and light debris Clear</li>
             <li>Ideal For Small to Mid-sized lots</li>
           </ul>
-          <button class="btn btn-primary package-select" type="button" data-service="Lawn Care" data-package="Trim & Tidy">Select</button>
         </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section alt-section" id="lawn-options">
-    <div class="container">
-      <h2>Mix-and-match lawn services</h2>
-      <p class="section-lead">Add any combination of the options below. We’ll bundle them into one quote along with your mowing program.</p>
-
-      <div class="option-grid">
-        <div class="option-card">
-          <div class="option-top">
-            <button class="option-select" type="button" data-option="Aeration"></button>
-            <button class="read-more" type="button" aria-expanded="false" aria-controls="option-desc-aeration">Read more</button>
-          </div>
-          <p class="option-description" id="option-desc-aeration" hidden>
-            Pulls small plugs so water, air, and nutrients reach the roots for thicker, healthier turf.
-          </p>
-        </div>
-
-        <div class="option-card">
-          <div class="option-top">
-            <button class="option-select" type="button" data-option="Dethatching"></button>
-            <button class="read-more" type="button" aria-expanded="false" aria-controls="option-desc-dethatching">Read more</button>
-          </div>
-          <p class="option-description" id="option-desc-dethatching" hidden>
-            Lifts and removes the matted thatch layer so new grass can breathe and fill in thin areas.
-          </p>
-        </div>
-
-        <div class="option-card">
-          <div class="option-top">
-            <button class="option-select" type="button" data-option="Fertilizer program"></button>
-            <button class="read-more" type="button" aria-expanded="false" aria-controls="option-desc-fertilizer">Read more</button>
-          </div>
-          <p class="option-description" id="option-desc-fertilizer" hidden>
-            Season-long feeding plan tailored to Saskatoon weather for steady colour and growth.
-          </p>
-        </div>
-
-        <div class="option-card">
-          <div class="option-top">
-            <button class="option-select" type="button" data-option="Overseeding"></button>
-            <button class="read-more" type="button" aria-expanded="false" aria-controls="option-desc-overseeding">Read more</button>
-          </div>
-          <p class="option-description" id="option-desc-overseeding" hidden>
-            Adds fresh seed to bare or tired spots after prep work so the lawn thickens evenly.
-          </p>
-        </div>
-
-        <div class="option-card">
-          <div class="option-top">
-            <button class="option-select" type="button" data-option="Top dressing"></button>
-            <button class="read-more" type="button" aria-expanded="false" aria-controls="option-desc-topdressing">Read more</button>
-          </div>
-          <p class="option-description" id="option-desc-topdressing" hidden>
-            A thin layer of compost/soil that levels small dips and feeds the lawn between services.
-          </p>
-        </div>
-
-        <div class="option-card">
-          <div class="option-top">
-            <button class="option-select" type="button" data-option="Lawn rolling"></button>
-            <button class="read-more" type="button" aria-expanded="false" aria-controls="option-desc-rolling">Read more</button>
-          </div>
-          <p class="option-description" id="option-desc-rolling" hidden>
-            Light roll to press down frost heaves and smooth bumpy spots without compacting the soil.
-          </p>
-        </div>
-
-        <div class="option-card">
-          <div class="option-top">
-            <button class="option-select" type="button" data-option="Garden bed edging"></button>
-            <button class="read-more" type="button" aria-expanded="false" aria-controls="option-desc-edging">Read more</button>
-          </div>
-          <p class="option-description" id="option-desc-edging" hidden>
-            Hand-cut, crisp edges where lawn meets beds or sidewalks for a neat, defined border.
-          </p>
-        </div>
-
-        <div class="option-card">
-          <div class="option-top">
-            <button class="option-select" type="button" data-option="Tree / shrub shaping"></button>
-            <button class="read-more" type="button" aria-expanded="false" aria-controls="option-desc-shaping">Read more</button>
-          </div>
-          <p class="option-description" id="option-desc-shaping" hidden>
-            Prunes small trees and shrubs to remove dead growth, lift canopies, and keep tidy silhouettes.
-          </p>
-        </div>
       </div>
     </div>
   </section>
@@ -193,30 +159,13 @@
     <div class="container split-grid">
       <div>
         <h2>Request a lawn quote</h2>
-        <p class="section-lead">Pick a package, add options, then complete the short form below—stays on this page.</p>
+        <p class="section-lead">Review the programs above and send the quick Jobber form—no need to mix and match here.</p>
       </div>
 
-      <!-- Your selection summary stays on YOUR site UI -->
+      <!-- Jobber embedded form (customers do NOT leave your website) -->
       <div class="quote-form">
-        <div class="selected-summary">
-          <div class="summary-head">
-            <p class="small-text">Selected for quote</p>
-            <button class="link-btn clear-selections" type="button">Clear all</button>
-          </div>
-          <div class="selection-badges" data-empty-text="Tap select above to add items to your quote."></div>
-
-          <!-- Optional: shows a plain text summary (handy even if a customer screenshots) -->
-          <label style="display:block; margin-top:12px;">
-            Selection summary (auto)
-            <textarea class="selection-text" rows="3" readonly placeholder="Your selections will appear here."></textarea>
-          </label>
-
-          <p class="form-status" aria-live="polite"></p>
-          <p class="form-footnote">Now fill the form below to send it to us in Jobber.</p>
-        </div>
-
-        <!-- Jobber embedded form (customers do NOT leave your website) -->
         <div id="3c172ced-8b36-4bb8-9d18-1e266af1c21a-2133761"></div>
+        <p class="form-footnote">Tell us your yard size and preferred visit frequency—we’ll reply with pricing.</p>
       </div>
     </div>
   </section>
