@@ -386,40 +386,10 @@ img {
   gap: 0.6rem;
 }
 
-.option-select {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.85rem 1rem;
-  border: 1px solid var(--border);
-  border-radius: 0.9rem;
-  background: #ffffff;
+.option-name {
+  margin: 0;
+  font-size: 1rem;
   color: var(--forest);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
-  cursor: pointer;
-  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
-  flex: 1;
-}
-
-.option-select .option-label {
-  font-weight: 700;
-}
-
-.option-select .option-status {
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-
-.option-select:hover {
-  transform: translateY(-2px);
-  border-color: rgba(230, 199, 110, 0.5);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
-}
-
-.option-select.is-selected {
-  border-color: var(--gold);
-  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.08), 0 0 0 4px rgba(249, 237, 199, 0.4);
-  background: linear-gradient(180deg, #fffdf6, #f9fbf7);
 }
 
 .read-more {
@@ -631,63 +601,6 @@ img {
 
 .form-status[data-type='info'] {
   color: var(--forest);
-}
-
-.selected-summary {
-  background: #f9fbf7;
-  border: 1px dashed rgba(230, 199, 110, 0.5);
-  border-radius: 0.85rem;
-  padding: 0.85rem 1rem;
-  color: var(--forest);
-  display: grid;
-  gap: 0.75rem;
-}
-
-.summary-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-}
-
-.selection-badges {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.selection-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.35rem 0.7rem;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: #fff;
-  color: var(--pine);
-  font-weight: 700;
-  cursor: pointer;
-  transition: border-color 0.18s ease, box-shadow 0.18s ease;
-}
-
-.selection-chip:hover {
-  border-color: var(--gold);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
-}
-
-.selected-empty {
-  color: var(--muted);
-  font-weight: 600;
-}
-
-.link-btn {
-  background: none;
-  border: none;
-  color: var(--muted);
-  font-weight: 700;
-  cursor: pointer;
-  text-decoration: underline;
 }
 
 .footer {
