@@ -1,4 +1,3 @@
-
 // Footer year
 const yearSpan = document.getElementById('year');
 if (yearSpan) {
@@ -66,14 +65,17 @@ if (backToTop) {
   toggleBackToTop();
 }
 
-// Quote form validation + friendly feedback
-const quoteForm = document.querySelector('.quote-form');
-const statusEl = quoteForm?.querySelector('.form-status');
-const packageInput = quoteForm?.querySelector('input[name="package"]');
-const selectionsInput = quoteForm?.querySelector('input[name="selections"]');
-const selectionBadges = quoteForm?.querySelector('.selection-badges');
-const clearSelectionsBtn = quoteForm?.querySelector('.clear-selections');
-const serviceSelect = quoteForm?.querySelector('select[name="service"]');
+/* ---------------------------
+   Package + Options Selector
+----------------------------*/
+
+// NOTE: The old form submit (Formspree) is removed.
+// You now embed Jobber's form, so customers stay on your site.
+
+const statusEl = document.querySelector('.form-status');
+const selectionBadges = document.querySelector('.selection-badges');
+const clearSelectionsBtn = document.querySelector('.clear-selections');
+const selectionText = document.querySelector('.selection-text');
 
 const packageButtons = document.querySelectorAll('.package-select');
 const optionButtons = document.querySelectorAll('.option-select');
@@ -88,50 +90,54 @@ const setStatus = (message, type = 'info') => {
 };
 
 const renderSelections = () => {
-  if (!selectionBadges || !selectionsInput) return;
+  if (!selectionBadges) return;
 
   selectionBadges.innerHTML = '';
 
   if (!selections.size) {
     const empty = document.createElement('p');
     empty.className = 'selected-empty';
-    empty.textContent = selectionBadges.dataset.emptyText || 'Tap select above to add items to your quote.';
+    empty.textContent =
+      selectionBadges.dataset.emptyText || 'Tap select above to add items to your quote.';
     selectionBadges.appendChild(empty);
-  } else {
-    selections.forEach((item, key) => {
-      const chip = document.createElement('button');
-      chip.type = 'button';
-      chip.className = 'selection-chip';
-      chip.dataset.key = key;
-      chip.innerHTML = `<span>${item.label}</span><span aria-hidden="true">×</span>`;
-      chip.setAttribute('aria-label', `Remove ${item.label} from quote`);
-      chip.addEventListener('click', () => {
-        selections.delete(key);
-        if (item.kind === 'package') {
-          packageButtons.forEach((btn) => {
-            const isMatch = btn.dataset.package === item.raw;
-            btn.closest('.package-card')?.classList.toggle('is-selected', false);
-            btn.textContent = isMatch ? 'Select package' : btn.textContent;
-          });
-          if (packageInput) packageInput.value = '';
-        } else if (item.kind === 'option') {
-          optionButtons.forEach((btn) => {
-            if (btn.dataset.option === item.raw) {
-              setOptionButtonContent(btn, false);
-            }
-          });
-        }
-        renderSelections();
-      });
-      selectionBadges.appendChild(chip);
-    });
+    if (selectionText) selectionText.value = '';
+    setStatus('', 'info');
+    return;
   }
+
+  selections.forEach((item, key) => {
+    const chip = document.createElement('button');
+    chip.type = 'button';
+    chip.className = 'selection-chip';
+    chip.dataset.key = key;
+    chip.innerHTML = `<span>${item.label}</span><span aria-hidden="true">×</span>`;
+    chip.setAttribute('aria-label', `Remove ${item.label} from quote`);
+    chip.addEventListener('click', () => {
+      selections.delete(key);
+
+      if (item.kind === 'package') {
+        packageButtons.forEach((btn) => {
+          btn.closest('.package-card')?.classList.remove('is-selected');
+          btn.textContent = 'Select package';
+        });
+      } else if (item.kind === 'option') {
+        optionButtons.forEach((btn) => {
+          if (btn.dataset.option === item.raw) setOptionButtonContent(btn, false);
+        });
+      }
+
+      renderSelections();
+    });
+
+    selectionBadges.appendChild(chip);
+  });
 
   const joined = Array.from(selections.values())
     .map((item) => item.label)
     .join(', ');
 
-  selectionsInput.value = joined;
+  if (selectionText) selectionText.value = joined;
+  setStatus('Selections saved. Now complete the form below.', 'info');
 };
 
 const handlePackageSelect = (button) => {
@@ -139,20 +145,19 @@ const handlePackageSelect = (button) => {
   const service = button.dataset.service || '';
   const label = service ? `${pkg} (${service})` : pkg;
 
+  // UI highlight
   packageButtons.forEach((btn) => {
     const isActive = btn === button;
     btn.closest('.package-card')?.classList.toggle('is-selected', isActive);
     btn.textContent = isActive ? 'Selected' : 'Select package';
   });
 
+  // Only allow ONE package at a time
   selections.forEach((item, key) => {
     if (item.kind === 'package') selections.delete(key);
   });
 
   selections.set(`package-${pkg}`, { label, kind: 'package', raw: pkg });
-
-  if (packageInput) packageInput.value = pkg;
-  if (serviceSelect && service) serviceSelect.value = service;
   renderSelections();
 };
 
@@ -176,11 +181,8 @@ optionButtons.forEach((button) => {
 
     setOptionButtonContent(button, !alreadySelected);
 
-    if (alreadySelected) {
-      selections.delete(key);
-    } else {
-      selections.set(key, { label: option, kind: 'option', raw: option });
-    }
+    if (alreadySelected) selections.delete(key);
+    else selections.set(key, { label: option, kind: 'option', raw: option });
 
     renderSelections();
   });
@@ -189,7 +191,6 @@ optionButtons.forEach((button) => {
 readMoreButtons.forEach((button) => {
   const descId = button.getAttribute('aria-controls');
   const desc = descId ? document.getElementById(descId) : null;
-
   if (!desc) return;
 
   desc.hidden = true;
@@ -210,45 +211,16 @@ renderSelections();
 if (clearSelectionsBtn) {
   clearSelectionsBtn.addEventListener('click', () => {
     selections.clear();
+
     packageButtons.forEach((btn) => {
       btn.closest('.package-card')?.classList.remove('is-selected');
       btn.textContent = 'Select package';
     });
+
     optionButtons.forEach((btn) => {
       setOptionButtonContent(btn, false);
     });
-    if (packageInput) packageInput.value = '';
+
     renderSelections();
-  });
-}
-
-if (quoteForm && serviceSelect) {
-  const defaultService = quoteForm.dataset.defaultService;
-  if (defaultService) {
-    serviceSelect.value = defaultService;
-  }
-}
-
-if (quoteForm) {
-  quoteForm.addEventListener('submit', (event) => {
-    const formData = new FormData(quoteForm);
-    const name = (formData.get('name') || '').toString().trim();
-    const phone = (formData.get('phone') || '').toString().trim();
-    const area = (formData.get('address') || '').toString().trim();
-
-    const errors = [];
-    if (!name) errors.push('Please include your name.');
-    if (!phone.match(/^[+\d][\d\s()-]{6,}$/)) {
-      errors.push('Add a reachable phone number (digits only is fine).');
-    }
-    if (!area) errors.push('Let us know your neighborhood so we can quote quickly.');
-
-    if (errors.length) {
-      event.preventDefault();
-      setStatus(errors[0], 'error');
-      return;
-    }
-
-    setStatus('Sending your request…', 'info');
   });
 }
