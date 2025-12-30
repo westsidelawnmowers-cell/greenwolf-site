@@ -8,7 +8,10 @@
   <meta name="description" content="Lawn mowing, trimming, and edging for Saskatoon homes and businesses." />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body
+  data-jobber-request-url="https://clienthub.getjobber.com/client_hubs/greenwolf-maintenance-landscaping-inc/public/work_request/new"
+  data-jobber-portal-url="https://clienthub.getjobber.com/client_hubs/greenwolf-maintenance-landscaping-inc/client_portal"
+>
   <header class="site-header">
     <div class="container header-content">
       <div class="logo-block">
@@ -27,6 +30,7 @@ Lawncare That Cares
         <a href="index.html#gallery">Gallery</a>
         <a href="#reviews">Reviews</a>
         <a href="#quote">Quote</a>
+        <a class="client-portal-link" data-jobber-link="portal">Client portal</a>
       </nav>
       <a class="btn btn-primary" href="#quote">Get a Quote</a>
     </div>
@@ -233,6 +237,16 @@ Lawncare That Cares
         <button type="submit" class="btn btn-primary">Send my quote</button>
         <p class="form-status" aria-live="polite"></p>
         <p class="form-footnote">Quick form—name, phone, and address are all we need to start your quote.</p>
+        <div class="jobber-cta" data-jobber-container>
+          <div class="jobber-cta__text">
+            <h3>Use our Jobber client hub</h3>
+            <p class="small-text">Request lawn service, approve work, and pay invoices online.</p>
+          </div>
+          <div class="jobber-cta__actions">
+            <a class="btn btn-primary" data-jobber-link="request" target="_blank" rel="noreferrer noopener">Request through Jobber</a>
+            <a class="btn btn-outline" data-jobber-link="portal" target="_blank" rel="noreferrer noopener">Open client portal</a>
+          </div>
+        </div>
       </form>
     </div>
   </section>

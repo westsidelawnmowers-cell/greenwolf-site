@@ -5,6 +5,40 @@ if (yearSpan) {
   yearSpan.textContent = new Date().getFullYear();
 }
 
+// Jobber links and client portal wiring
+const jobberRequestUrl = document.body?.dataset.jobberRequestUrl || '';
+const jobberPortalUrl = document.body?.dataset.jobberPortalUrl || '';
+
+const syncJobberLink = (link, url) => {
+  if (!url) {
+    link.remove();
+    return false;
+  }
+  link.href = url;
+  link.target = '_blank';
+  link.rel = 'noreferrer noopener';
+  return true;
+};
+
+const wireJobberLinks = () => {
+  const portalLinks = document.querySelectorAll('[data-jobber-link="portal"]');
+  const requestLinks = document.querySelectorAll('[data-jobber-link="request"]');
+
+  const hasPortal = Boolean(jobberPortalUrl);
+  const hasRequest = Boolean(jobberRequestUrl);
+
+  portalLinks.forEach((link) => syncJobberLink(link, jobberPortalUrl));
+  requestLinks.forEach((link) => syncJobberLink(link, jobberRequestUrl));
+
+  document.querySelectorAll('[data-jobber-container]').forEach((container) => {
+    if (!hasPortal && !hasRequest) {
+      container.remove();
+    }
+  });
+};
+
+wireJobberLinks();
+
 // Smooth scrolling for on-page anchors
 const anchorLinks = document.querySelectorAll('a[href^="#"]');
 anchorLinks.forEach((link) => {
@@ -74,6 +108,10 @@ const selectionsInput = quoteForm?.querySelector('input[name="selections"]');
 const selectionBadges = quoteForm?.querySelector('.selection-badges');
 const clearSelectionsBtn = quoteForm?.querySelector('.clear-selections');
 const serviceSelect = quoteForm?.querySelector('select[name="service"]');
+
+if (quoteForm && jobberRequestUrl) {
+  quoteForm.action = jobberRequestUrl;
+}
 
 const packageButtons = document.querySelectorAll('.package-select');
 const optionButtons = document.querySelectorAll('.option-select');
