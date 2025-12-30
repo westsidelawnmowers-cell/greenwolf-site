@@ -49,6 +49,21 @@ revealElements.forEach((element) => {
   revealObserver.observe(element);
 });
 
+// Hide header on downward scroll
+const siteHeader = document.querySelector('.site-header');
+if (siteHeader) {
+  let lastScroll = window.scrollY;
+
+  const handleHeaderHide = () => {
+    const current = window.scrollY;
+    const scrollingDown = current > lastScroll && current > 120;
+    siteHeader.classList.toggle('is-hidden', scrollingDown);
+    lastScroll = current;
+  };
+
+  document.addEventListener('scroll', handleHeaderHide, { passive: true });
+}
+
 // Back to top button
 const backToTop = document.querySelector('.back-to-top');
 if (backToTop) {

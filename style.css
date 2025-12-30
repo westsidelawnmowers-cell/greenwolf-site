@@ -88,6 +88,12 @@ img {
   border-bottom: 1px solid var(--border);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
   backdrop-filter: blur(10px);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+.site-header.is-hidden {
+  transform: translateY(-110%);
+  box-shadow: none;
 }
 
 .header-content {
