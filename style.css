@@ -506,6 +506,84 @@ img {
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.04);
 }
 
+.addon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.1rem;
+}
+
+.addon-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 1.05rem;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.addon-card summary {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.15rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.addon-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.addon-header h3 {
+  margin: 0.25rem 0 0.3rem;
+  color: var(--forest);
+}
+
+.addon-header p {
+  color: var(--muted);
+  margin: 0;
+}
+
+.read-more {
+  font-weight: 700;
+  color: var(--forest);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.read-more::after {
+  content: '▾';
+  font-size: 0.9rem;
+}
+
+.addon-card:hover .read-more {
+  border-color: rgba(230, 199, 110, 0.4);
+  background: rgba(230, 199, 110, 0.08);
+}
+
+.addon-card[open] .read-more::after {
+  content: '▴';
+}
+
+.addon-body {
+  border-top: 1px solid var(--border);
+  padding: 0.1rem 1.15rem 1rem;
+  color: var(--muted);
+  display: grid;
+  gap: 0.55rem;
+}
+
+.addon-body ul {
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
 .click-flash {
   outline: 2px solid rgba(230, 199, 110, 0.8);
   outline-offset: 2px;
