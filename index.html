@@ -6,6 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Premium landscaping, lawn care, and snow removal services in Saskatoon." />
   <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="https://d3ey4dbjkt2f6s.cloudfront.net/assets/external/work_request_embed.css"
+    media="screen"
+  />
 </head>
 <body>
   <header class="site-header">
@@ -167,46 +172,15 @@
           <li>No pressure—cancel anytime</li>
         </ul>
       </div>
-      <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
-        <label>
-          Name
-          <input type="text" name="name" required placeholder="Your full name" />
-        </label>
-        <label>
-          Phone
-          <input type="tel" name="phone" required placeholder="Best number to reach you" />
-        </label>
-        <label>
-          Address / Area
-          <input type="text" name="address" placeholder="Street + neighborhood" required />
-        </label>
-        <label>
-          Service needed
-          <select name="service" required>
-            <option value="">Select a service</option>
-            <option value="Lawn Care">Lawn Care</option>
-            <option value="Snow Removal">Snow Removal</option>
-            <option value="Landscaping">Landscaping</option>
-            <option value="Seasonal Cleanup">Seasonal Cleanup</option>
-          </select>
-        </label>
-        <div class="selected-summary">
-          <div class="summary-head">
-            <p class="small-text">Selected for quote</p>
-            <button class="link-btn clear-selections" type="button">Clear all</button>
-          </div>
-          <div class="selection-badges" data-empty-text="Pick a package on any service page and it will appear here."></div>
-          <input type="hidden" name="package" value="" />
-          <input type="hidden" name="selections" value="" />
+      <div class="quote-form jobber-form">
+        <p class="small-text">
+          Use the embedded Jobber form to select the service you need, add your address, and share any details.
+          Everything stays on this page for a quick, clean quote request.
+        </p>
+        <div class="jobber-embed" aria-label="Request a quote with Jobber">
+          <div id="3c172ced-8b36-4bb8-9d18-1e266af1c21a-2133761"></div>
         </div>
-        <label>
-          Anything we should know?
-          <textarea name="details" rows="3" placeholder="Gate code, yard size, project ideas, or timing"></textarea>
-        </label>
-        <button type="submit" class="btn btn-primary">Send my quote</button>
-        <p class="form-status" aria-live="polite"></p>
-        <p class="form-footnote">Quick form—name, phone, and address are all we need to start your quote.</p>
-      </form>
+      </div>
     </div>
   </section>
 
@@ -311,5 +285,10 @@
   <script src="https://elfsightcdn.com/platform.js" async></script>
 
   <script src="script.js"></script>
+  <script
+    src="https://d3ey4dbjkt2f6s.cloudfront.net/assets/static_link/work_request_embed_snippet.js"
+    clienthub_id="3c172ced-8b36-4bb8-9d18-1e266af1c21a-2133761"
+    form_url="https://clienthub.getjobber.com/client_hubs/3c172ced-8b36-4bb8-9d18-1e266af1c21a/public/work_request/embedded_work_request_form?form_id=2133761"
+  ></script>
 </body>
 </html>
