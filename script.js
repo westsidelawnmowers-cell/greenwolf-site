@@ -65,4 +65,20 @@ if (backToTop) {
   toggleBackToTop();
 }
 
+// Add-on "Read more" toggles
+const addonToggles = document.querySelectorAll('.addon-toggle');
+addonToggles.forEach((button) => {
+  button.addEventListener('click', () => {
+    const card = button.closest('.addon-card');
+    const details = card?.querySelector('.addon-more');
+    const isOpen = card?.classList.toggle('is-open');
+    if (details) {
+      const shouldShow = Boolean(isOpen);
+      details.hidden = !shouldShow;
+      button.setAttribute('aria-expanded', String(shouldShow));
+      button.textContent = shouldShow ? 'Hide details' : 'Read more';
+    }
+  });
+});
+
 // Jobber embeds handle form submission; no extra JS needed for selections
