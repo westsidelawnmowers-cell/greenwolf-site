@@ -77,7 +77,6 @@ const selectionBadges = document.querySelector('.selection-badges');
 const clearSelectionsBtn = document.querySelector('.clear-selections');
 const selectionText = document.querySelector('.selection-text');
 
-const packageButtons = document.querySelectorAll('.package-select');
 const optionButtons = document.querySelectorAll('.option-select');
 const readMoreButtons = document.querySelectorAll('.read-more');
 
@@ -115,12 +114,7 @@ const renderSelections = () => {
     chip.addEventListener('click', () => {
       selections.delete(key);
 
-      if (item.kind === 'package') {
-        packageButtons.forEach((btn) => {
-          btn.closest('.package-card')?.classList.remove('is-selected');
-          btn.textContent = 'Select package';
-        });
-      } else if (item.kind === 'option') {
+      if (item.kind === 'option') {
         optionButtons.forEach((btn) => {
           if (btn.dataset.option === item.raw) setOptionButtonContent(btn, false);
         });
@@ -139,31 +133,6 @@ const renderSelections = () => {
   if (selectionText) selectionText.value = joined;
   setStatus('Selections saved. Now complete the form below.', 'info');
 };
-
-const handlePackageSelect = (button) => {
-  const pkg = button.dataset.package || '';
-  const service = button.dataset.service || '';
-  const label = service ? `${pkg} (${service})` : pkg;
-
-  // UI highlight
-  packageButtons.forEach((btn) => {
-    const isActive = btn === button;
-    btn.closest('.package-card')?.classList.toggle('is-selected', isActive);
-    btn.textContent = isActive ? 'Selected' : 'Select package';
-  });
-
-  // Only allow ONE package at a time
-  selections.forEach((item, key) => {
-    if (item.kind === 'package') selections.delete(key);
-  });
-
-  selections.set(`package-${pkg}`, { label, kind: 'package', raw: pkg });
-  renderSelections();
-};
-
-packageButtons.forEach((button) => {
-  button.addEventListener('click', () => handlePackageSelect(button));
-});
 
 const setOptionButtonContent = (button, isSelected) => {
   const optionLabel = button.dataset.option || button.textContent || '';
@@ -211,11 +180,6 @@ renderSelections();
 if (clearSelectionsBtn) {
   clearSelectionsBtn.addEventListener('click', () => {
     selections.clear();
-
-    packageButtons.forEach((btn) => {
-      btn.closest('.package-card')?.classList.remove('is-selected');
-      btn.textContent = 'Select package';
-    });
 
     optionButtons.forEach((btn) => {
       setOptionButtonContent(btn, false);
