@@ -586,6 +586,19 @@ img {
   gap: 0.9rem;
 }
 
+.jobber-embed {
+  background: #f9fbf7;
+  border: 1px dashed rgba(230, 199, 110, 0.6);
+  border-radius: 0.95rem;
+  padding: 1rem;
+}
+
+.jobber-embed iframe {
+  width: 100%;
+  border: none;
+  min-height: 760px;
+}
+
 .quote-form label {
   display: block;
   font-weight: 600;
