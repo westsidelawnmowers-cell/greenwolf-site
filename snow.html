@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Route-based snow removal for Saskatoon homes and small businesses." />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://d3ey4dbjkt2f6s.cloudfront.net/assets/external/work_request_embed.css" media="screen" />
 </head>
 <body>
   <header class="site-header">
@@ -90,37 +91,66 @@
     </div>
   </section>
 
+  <section class="section addon-section">
+    <div class="container">
+      <h2>Snow add-ons explained</h2>
+      <p class="section-lead">Add any extras in the Jobber form so we price your route correctly.</p>
+
+      <div class="addon-grid">
+        <article class="addon-card">
+          <div class="addon-top">
+            <h3>Ice melt application</h3>
+            <span class="pill">Safety add-on</span>
+          </div>
+          <p class="addon-summary">Concrete-safe melt for steps, walks, and transitions after clearing.</p>
+          <div class="addon-more" hidden>
+            <p>Targets icy patches and refreeze areas so foot traffic stays safe.</p>
+            <p>Available per visit or bundled with your preferred snow plan.</p>
+          </div>
+          <button class="addon-toggle" type="button" aria-expanded="false">Read more</button>
+        </article>
+
+        <article class="addon-card">
+          <div class="addon-top">
+            <h3>Sand / grit for traction</h3>
+            <span class="pill">Driveway assist</span>
+          </div>
+          <p class="addon-summary">Adds traction on sloped or shaded areas that refreeze quickly.</p>
+          <div class="addon-more" hidden>
+            <p>Great for commercial entries, alleys, and vehicle turnarounds.</p>
+            <p>We sweep residual grit at season’s end if requested.</p>
+          </div>
+          <button class="addon-toggle" type="button" aria-expanded="false">Read more</button>
+        </article>
+
+        <article class="addon-card">
+          <div class="addon-top">
+            <h3>Windrow & berm pushback</h3>
+            <span class="pill">After plows</span>
+          </div>
+          <p class="addon-summary">Clears city plow ridges and drifted piles blocking drive approaches.</p>
+          <div class="addon-more" hidden>
+            <p>We return after street plows or heavy winds to reopen access.</p>
+            <p>Mention how often your street is plowed so we can schedule extra checks.</p>
+          </div>
+          <button class="addon-toggle" type="button" aria-expanded="false">Read more</button>
+        </article>
+      </div>
+
+      <p class="addon-footnote">Note your add-ons in the quote form below and we’ll include them in your snow plan.</p>
+    </div>
+  </section>
+
   <section class="section" id="quote">
     <div class="container split-grid">
       <div>
         <h2>Request a snow quote</h2>
         <p class="section-lead">Tell us your address, snow plan preference, and any special access needs. We’ll reply quickly.</p>
       </div>
-      <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
-        <label>
-          Name
-          <input type="text" name="name" required />
-        </label>
-        <label>
-          Phone
-          <input type="tel" name="phone" required />
-        </label>
-        <label>
-          Email (optional)
-          <input type="email" name="email" />
-        </label>
-        <label>
-          Address / Area
-          <input type="text" name="address" placeholder="Street + neighborhood" required />
-        </label>
-        <label>
-          Which snow plan do you prefer?
-          <textarea name="details" rows="4" placeholder="Per push, monthly, or full-season"></textarea>
-        </label>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <p class="form-status" aria-live="polite"></p>
-        <p class="form-footnote">This form sends directly to our inbox. We never share your information.</p>
-      </form>
+      <div class="quote-form">
+        <div id="3c172ced-8b36-4bb8-9d18-1e266af1c21a-2133761"></div>
+        <p class="form-footnote">Tell us your route type (per push, monthly, or full-season) and we’ll confirm pricing.</p>
+      </div>
     </div>
   </section>
 
@@ -179,5 +209,10 @@
 
   <button class="back-to-top" type="button" aria-label="Back to top">↑</button>
   <script src="script.js"></script>
+  <script
+    src="https://d3ey4dbjkt2f6s.cloudfront.net/assets/static_link/work_request_embed_snippet.js"
+    clienthub_id="3c172ced-8b36-4bb8-9d18-1e266af1c21a-2133761"
+    form_url="https://clienthub.getjobber.com/client_hubs/3c172ced-8b36-4bb8-9d18-1e266af1c21a/public/work_request/embedded_work_request_form?form_id=2133761">
+  </script>
 </body>
 </html>
