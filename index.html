@@ -7,7 +7,8 @@
   <meta name="description" content="Premium landscaping, lawn care, and snow removal services in Saskatoon." />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<!-- Set data-jobber-hub-id to your Jobber client hub ID to activate the portal buttons. -->
+<body data-jobber-hub-id="your-hub-id">
   <header class="site-header">
     <div class="container header-content">
       <div class="logo-block">
@@ -24,6 +25,7 @@
         <a href="#services">Services</a>
         <a href="#about">About</a>
         <a href="#areas">Areas</a>
+        <a href="#client-portal">Client portal</a>
         <a href="#quote">Quote</a>
         <a href="#gallery">Gallery</a>
         <a href="#reviews">Reviews</a>
@@ -166,6 +168,14 @@
           <li>Snow, lawn, landscaping, and cleanup options</li>
           <li>No pressure—cancel anytime</li>
         </ul>
+        <div class="jobber-inline">
+          <div class="jobber-inline__text">
+            <p class="small-text">Already work with us? Request service or approve quotes in our Jobber client hub.</p>
+          </div>
+          <div class="jobber-inline__actions">
+            <a class="btn btn-outline" data-jobber-request href="#client-portal">Open client portal</a>
+          </div>
+        </div>
       </div>
       <form method="POST" class="quote-form" action="https://formspree.io/f/your-form-id">
         <label>
@@ -207,6 +217,52 @@
         <p class="form-status" aria-live="polite"></p>
         <p class="form-footnote">Quick form—name, phone, and address are all we need to start your quote.</p>
       </form>
+    </div>
+  </section>
+
+  <section class="section alt-section" id="client-portal">
+    <div class="container portal-grid">
+      <div class="portal-copy">
+        <h2>Client portal powered by Jobber</h2>
+        <p class="section-lead">Book work, approve quotes, and pay online through our secure Jobber client hub.</p>
+        <ul class="hero-bullets">
+          <li>Request new work or updates 24/7</li>
+          <li>Review and approve quotes in one place</li>
+          <li>Pay invoices online with card or bank</li>
+        </ul>
+        <div class="jobber-buttons">
+          <a class="btn btn-primary" data-jobber-request href="#">Request or approve work</a>
+          <a class="btn btn-outline" data-jobber-payment href="#">Pay an invoice online</a>
+        </div>
+        <p class="small-text jobber-config-warning">Add your Jobber client hub ID to the <code>data-jobber-hub-id</code> attribute on the <code>&lt;body&gt;</code> tag to activate these buttons.</p>
+      </div>
+      <div class="portal-card">
+        <p class="portal-badge">Jobber Client Hub</p>
+        <h3>Fast, secure client access</h3>
+        <div class="portal-steps">
+          <div class="portal-step">
+            <span class="portal-step__icon">①</span>
+            <div>
+              <p class="portal-step__title">Log in or create your portal</p>
+              <p class="small-text">Use the same email you receive job updates with.</p>
+            </div>
+          </div>
+          <div class="portal-step">
+            <span class="portal-step__icon">②</span>
+            <div>
+              <p class="portal-step__title">Request service or approve quotes</p>
+              <p class="small-text">Confirm the details you want and leave notes for our crew.</p>
+            </div>
+          </div>
+          <div class="portal-step">
+            <span class="portal-step__icon">③</span>
+            <div>
+              <p class="portal-step__title">Pay securely online</p>
+              <p class="small-text">Credit card and bank options are available right in the portal.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
