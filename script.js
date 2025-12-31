@@ -70,11 +70,31 @@ const siteHeader = document.querySelector('.site-header');
 if (siteHeader) {
   let lastScrollY = window.scrollY;
   let ticking = false;
+  let upwardTravel = 0;
+
+  const HIDE_OFFSET = 120;
+  const SHOW_DELTA = 48;
 
   const updateHeaderVisibility = () => {
     const currentY = window.scrollY;
-    const shouldHide = currentY > lastScrollY && currentY > 120;
-    siteHeader.classList.toggle('is-hidden', shouldHide);
+    const delta = currentY - lastScrollY;
+
+    if (currentY <= HIDE_OFFSET) {
+      siteHeader.classList.remove('is-hidden');
+      upwardTravel = 0;
+    } else if (delta > 4) {
+      // Scrolling down: hide quickly and reset upward tracking
+      siteHeader.classList.add('is-hidden');
+      upwardTravel = 0;
+    } else if (delta < -2) {
+      // Scrolling up: accumulate distance before revealing
+      upwardTravel += Math.abs(delta);
+      if (upwardTravel >= SHOW_DELTA) {
+        siteHeader.classList.remove('is-hidden');
+        upwardTravel = 0;
+      }
+    }
+
     lastScrollY = currentY;
     ticking = false;
   };
