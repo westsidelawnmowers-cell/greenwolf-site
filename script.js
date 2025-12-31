@@ -70,11 +70,23 @@ const siteHeader = document.querySelector('.site-header');
 if (siteHeader) {
   let lastScrollY = window.scrollY;
   let ticking = false;
+  const minimumScroll = 120;
+  const upwardThreshold = 12;
+  const downwardThreshold = 6;
 
   const updateHeaderVisibility = () => {
     const currentY = window.scrollY;
-    const shouldHide = currentY > lastScrollY && currentY > 120;
-    siteHeader.classList.toggle('is-hidden', shouldHide);
+    const delta = currentY - lastScrollY;
+    const pastMinimum = currentY > minimumScroll;
+
+    if (!pastMinimum) {
+      siteHeader.classList.remove('is-hidden');
+    } else if (delta > downwardThreshold) {
+      siteHeader.classList.add('is-hidden');
+    } else if (delta < -upwardThreshold) {
+      siteHeader.classList.remove('is-hidden');
+    }
+
     lastScrollY = currentY;
     ticking = false;
   };
