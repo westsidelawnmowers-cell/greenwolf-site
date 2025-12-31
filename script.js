@@ -69,12 +69,27 @@ if (backToTop) {
 const siteHeader = document.querySelector('.site-header');
 if (siteHeader) {
   let lastScrollY = window.scrollY;
+  let lastHideY = window.scrollY;
   let ticking = false;
 
   const updateHeaderVisibility = () => {
     const currentY = window.scrollY;
-    const shouldHide = currentY > lastScrollY && currentY > 120;
-    siteHeader.classList.toggle('is-hidden', shouldHide);
+    const delta = currentY - lastScrollY;
+    const isNearTop = currentY < 80;
+    const headerIsHidden = siteHeader.classList.contains('is-hidden');
+
+    if (isNearTop) {
+      siteHeader.classList.remove('is-hidden');
+    } else if (!headerIsHidden && delta > 6 && currentY > 120) {
+      siteHeader.classList.add('is-hidden');
+      lastHideY = currentY;
+    } else if (
+      headerIsHidden &&
+      (delta < -18 || lastHideY - currentY > 28)
+    ) {
+      siteHeader.classList.remove('is-hidden');
+    }
+
     lastScrollY = currentY;
     ticking = false;
   };
