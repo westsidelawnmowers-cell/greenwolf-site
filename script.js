@@ -65,19 +65,30 @@ if (backToTop) {
   toggleBackToTop();
 }
 
-// Hide header on downward scroll, reveal on upward scroll
-const header = document.querySelector('.site-header');
-if (header) {
+// Hide header on scroll down
+const siteHeader = document.querySelector('.site-header');
+if (siteHeader) {
   let lastScrollY = window.scrollY;
-  const handleHeaderVisibility = () => {
+  let ticking = false;
+
+  const updateHeaderVisibility = () => {
     const currentY = window.scrollY;
-    const isScrollingDown = currentY > lastScrollY;
-    const beyondThreshold = currentY > 120;
-    header.classList.toggle('is-hidden', isScrollingDown && beyondThreshold);
+    const shouldHide = currentY > lastScrollY && currentY > 120;
+    siteHeader.classList.toggle('is-hidden', shouldHide);
     lastScrollY = currentY;
+    ticking = false;
   };
 
-  document.addEventListener('scroll', handleHeaderVisibility, { passive: true });
+  document.addEventListener(
+    'scroll',
+    () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateHeaderVisibility);
+        ticking = true;
+      }
+    },
+    { passive: true }
+  );
 }
 
 // Jobber embeds handle form submission; no extra JS needed for selections

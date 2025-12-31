@@ -88,13 +88,13 @@ img {
   border-bottom: 1px solid var(--border);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
   backdrop-filter: blur(10px);
-  transition: transform 0.32s ease, opacity 0.32s ease, box-shadow 0.32s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
 }
 
 .site-header.is-hidden {
-  transform: translateY(-120%);
-  opacity: 0.02;
+  transform: translateY(-105%);
   box-shadow: none;
+  opacity: 0.92;
 }
 
 .header-content {
