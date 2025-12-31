@@ -65,16 +65,32 @@ if (backToTop) {
   toggleBackToTop();
 }
 
-// Hide header on scroll down
+// Hide header on scroll down with a small tolerance to prevent jitter
 const siteHeader = document.querySelector('.site-header');
 if (siteHeader) {
   let lastScrollY = window.scrollY;
+  let lastToggleY = window.scrollY;
   let ticking = false;
+  const hideOffset = 120;
+  const revealTolerance = 14;
 
   const updateHeaderVisibility = () => {
     const currentY = window.scrollY;
-    const shouldHide = currentY > lastScrollY && currentY > 120;
-    siteHeader.classList.toggle('is-hidden', shouldHide);
+    const scrollingDown = currentY > lastScrollY;
+    const scrollingUp = currentY < lastScrollY;
+
+    const shouldHide = scrollingDown && currentY > hideOffset;
+    const shouldShow =
+      (scrollingUp && lastToggleY - currentY > revealTolerance) || currentY <= hideOffset;
+
+    if (shouldHide) {
+      siteHeader.classList.add('is-hidden');
+      lastToggleY = currentY;
+    } else if (shouldShow) {
+      siteHeader.classList.remove('is-hidden');
+      lastToggleY = currentY;
+    }
+
     lastScrollY = currentY;
     ticking = false;
   };
