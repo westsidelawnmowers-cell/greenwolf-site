@@ -497,6 +497,12 @@ img {
   width: fit-content;
 }
 
+.package-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
 .pill-list {
   list-style: none;
   display: flex;
@@ -1051,4 +1057,3 @@ img {
   object-fit: cover;
   display: block;
 }
-
