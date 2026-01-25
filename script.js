@@ -49,6 +49,24 @@ revealElements.forEach((element) => {
   revealObserver.observe(element);
 });
 
+// Package cards scroll to quote form
+const packageCards = document.querySelectorAll('.package-card[data-scroll-target]');
+if (packageCards.length) {
+  packageCards.forEach((card) => {
+    card.addEventListener('click', (event) => {
+      if (event.target.closest('a')) return;
+      const targetId = card.dataset.scrollTarget;
+      if (!targetId) return;
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+      }
+      packageCards.forEach((item) => item.classList.remove('is-selected'));
+      card.classList.add('is-selected');
+    });
+  });
+}
+
 // Back to top button
 const backToTop = document.querySelector('.back-to-top');
 if (backToTop) {
