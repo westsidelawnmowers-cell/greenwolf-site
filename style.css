@@ -497,6 +497,11 @@ img {
   width: fit-content;
 }
 
+.package-quote {
+  margin-top: 0.35rem;
+  justify-self: start;
+}
+
 .pill-list {
   list-style: none;
   display: flex;
@@ -1051,4 +1056,3 @@ img {
   object-fit: cover;
   display: block;
 }
-
