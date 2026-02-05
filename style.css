@@ -479,6 +479,14 @@ img {
   color: var(--muted);
 }
 
+.package-actions {
+  margin-top: 0.5rem;
+}
+
+.package-actions .btn {
+  width: 100%;
+}
+
 .package-list li::before {
   content: '• ';
   color: var(--gold);
@@ -1051,4 +1059,3 @@ img {
   object-fit: cover;
   display: block;
 }
-
