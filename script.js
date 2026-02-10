@@ -18,6 +18,39 @@ anchorLinks.forEach((link) => {
   });
 });
 
+// Jobber client hub links
+const jobberHubId = document.body?.dataset.jobberHubId;
+const jobberRequestUrl =
+  jobberHubId && jobberHubId !== 'your-hub-id'
+    ? `https://clienthub.getjobber.com/client_hubs/${jobberHubId}/public/work_request/new`
+    : null;
+const jobberPaymentUrl =
+  jobberHubId && jobberHubId !== 'your-hub-id'
+    ? `https://clienthub.getjobber.com/client_hubs/${jobberHubId}/payments/new`
+    : null;
+
+const wireJobberLinks = (selector, url) => {
+  const links = document.querySelectorAll(selector);
+  links.forEach((link) => {
+    if (url) {
+      link.href = url;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.dataset.inactive = 'false';
+    } else {
+      link.dataset.inactive = 'true';
+    }
+  });
+};
+
+wireJobberLinks('[data-jobber-request]', jobberRequestUrl);
+wireJobberLinks('[data-jobber-payment]', jobberPaymentUrl);
+
+const jobberWarning = document.querySelector('.jobber-config-warning');
+if (jobberWarning && jobberRequestUrl) {
+  jobberWarning.hidden = true;
+}
+
 // Click highlight for interactive elements
 const clickables = document.querySelectorAll('a, button, .card, .pill');
 clickables.forEach((el) => {
