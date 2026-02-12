@@ -584,12 +584,12 @@ img {
 }
 
 .portal-highlight {
-  background: linear-gradient(140deg, #0c2117, #183f2d);
-  color: var(--cream);
-  border: 2px solid #6fe6a9;
+  background: linear-gradient(130deg, #fffdfa, #f5f8f2);
+  color: var(--pine);
+  border: 2px solid rgba(230, 199, 110, 0.85);
   border-radius: 1.4rem;
   padding: 2rem;
-  box-shadow: 0 20px 42px rgba(0, 0, 0, 0.25), 0 0 0 6px rgba(111, 230, 169, 0.2);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
 }
 
 .portal-label {
@@ -597,9 +597,9 @@ img {
   align-items: center;
   padding: 0.35rem 0.8rem;
   border-radius: 999px;
-  background: rgba(111, 230, 169, 0.15);
-  border: 1px solid rgba(111, 230, 169, 0.7);
-  color: #b5ffd8;
+  background: rgba(230, 199, 110, 0.18);
+  border: 1px solid rgba(230, 199, 110, 0.7);
+  color: var(--forest);
   font-weight: 800;
   letter-spacing: 0.04em;
   margin-bottom: 0.7rem;
@@ -610,7 +610,7 @@ img {
 .portal-highlight h2,
 .portal-highlight .section-lead,
 .portal-list li {
-  color: var(--cream);
+  color: var(--pine);
 }
 
 .portal-list {
@@ -618,19 +618,19 @@ img {
 }
 
 .portal-list li::before {
-  background: #6fe6a9;
+  background: var(--gold);
 }
 
 .btn-portal {
-  background: linear-gradient(135deg, #6fe6a9, #d6ffe7);
-  color: #063720;
-  border: 2px solid #6fe6a9;
-  box-shadow: 0 12px 24px rgba(111, 230, 169, 0.4);
+  background: linear-gradient(135deg, var(--forest), #24553d);
+  color: var(--cream);
+  border: 2px solid rgba(230, 199, 110, 0.85);
+  box-shadow: 0 12px 24px rgba(15, 45, 31, 0.25);
 }
 
 .btn-portal:hover {
   transform: translateY(-2px);
-  box-shadow: 0 16px 28px rgba(111, 230, 169, 0.55);
+  box-shadow: 0 16px 28px rgba(15, 45, 31, 0.34);
 }
 
 .quote-form {
