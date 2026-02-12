@@ -583,6 +583,56 @@ img {
   box-shadow: var(--shadow), 0 0 0 6px rgba(249, 237, 199, 0.2);
 }
 
+.portal-highlight {
+  background: linear-gradient(140deg, #0c2117, #183f2d);
+  color: var(--cream);
+  border: 2px solid #6fe6a9;
+  border-radius: 1.4rem;
+  padding: 2rem;
+  box-shadow: 0 20px 42px rgba(0, 0, 0, 0.25), 0 0 0 6px rgba(111, 230, 169, 0.2);
+}
+
+.portal-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(111, 230, 169, 0.15);
+  border: 1px solid rgba(111, 230, 169, 0.7);
+  color: #b5ffd8;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.7rem;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+
+.portal-highlight h2,
+.portal-highlight .section-lead,
+.portal-list li {
+  color: var(--cream);
+}
+
+.portal-list {
+  margin-bottom: 1.2rem;
+}
+
+.portal-list li::before {
+  background: #6fe6a9;
+}
+
+.btn-portal {
+  background: linear-gradient(135deg, #6fe6a9, #d6ffe7);
+  color: #063720;
+  border: 2px solid #6fe6a9;
+  box-shadow: 0 12px 24px rgba(111, 230, 169, 0.4);
+}
+
+.btn-portal:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 28px rgba(111, 230, 169, 0.55);
+}
+
 .quote-form {
   background: var(--card);
   border: 1px solid var(--border);
@@ -1084,4 +1134,3 @@ img {
   object-fit: cover;
   display: block;
 }
-
