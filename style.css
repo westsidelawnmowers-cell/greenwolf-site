@@ -358,7 +358,7 @@ img {
   gap: 0.8rem;
   transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
 }
-<!--This Graphics are for Best Seller and Discount Ribbion-->
+/*--This Graphics are for Best Seller and Discount Ribbion*/
 .package-card--featured {
   position: relative;
   overflow: hidden;
@@ -387,7 +387,7 @@ img {
   background: #2f7d32;
   border-radius: 0 1.1rem 0 0.7rem;
 }
-<!--This Graphics are for Best Seller and Discount Ribbion-->
+/*This Graphics are for Best Seller and Discount Ribbion*/
 
 
 .package-card:hover {
