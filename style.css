@@ -359,6 +359,35 @@ img {
   transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
 }
 
+.package-card--featured {
+  position: relative;
+  overflow: hidden;
+}
+
+.corner-ribbon {
+  position: absolute;
+  top: 0;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #ffffff;
+  z-index: 2;
+}
+
+.corner-ribbon-left {
+  left: 0;
+  background: #d96b2b;
+  border-radius: 1.1rem 0 0.7rem 0;
+}
+
+.corner-ribbon-right {
+  right: 0;
+  background: #2f7d32;
+  border-radius: 0 1.1rem 0 0.7rem;
+}
+
 .package-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow);
@@ -1084,4 +1113,3 @@ img {
   object-fit: cover;
   display: block;
 }
-
