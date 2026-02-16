@@ -357,6 +357,36 @@ img {
   display: grid;
   gap: 0.8rem;
   transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.featured-package {
+  border-color: rgba(230, 199, 110, 0.7);
+}
+
+.package-ribbon {
+  position: absolute;
+  top: 0.85rem;
+  padding: 0.25rem 0.8rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #fff;
+  border-radius: 999px;
+  z-index: 2;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
+}
+
+.package-ribbon-left {
+  left: 0.85rem;
+  background: linear-gradient(135deg, #2f7d45, #246436);
+}
+
+.package-ribbon-right {
+  right: 0.85rem;
+  background: linear-gradient(135deg, #d4af37, #b7871d);
 }
 
 .package-card:hover {
@@ -1084,4 +1114,3 @@ img {
   object-fit: cover;
   display: block;
 }
-
