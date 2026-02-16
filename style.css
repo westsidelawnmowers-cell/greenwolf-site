@@ -356,6 +356,8 @@ img {
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
   display: grid;
   gap: 0.8rem;
+  position: relative;
+  overflow: hidden;
   transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
 }
 
@@ -368,6 +370,38 @@ img {
 .package-card.is-selected {
   border-color: var(--gold);
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08), 0 0 0 6px rgba(249, 237, 199, 0.4);
+}
+
+.package-ribbon {
+  position: absolute;
+  top: 0.75rem;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #ffffff;
+  border-radius: 999px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.package-ribbon--left {
+  left: 0.75rem;
+  background: linear-gradient(135deg, #2c9a5f, #1f6b41);
+}
+
+.package-ribbon--right {
+  right: 0.75rem;
+  background: linear-gradient(135deg, #d18d1f, #b97400);
+}
+
+.package-card--featured {
+  border-color: rgba(209, 141, 31, 0.5);
+}
+
+.package-card--featured .package-meta {
+  margin-top: 2rem;
 }
 
 .option-grid {
@@ -1084,4 +1118,3 @@ img {
   object-fit: cover;
   display: block;
 }
-
