@@ -836,30 +836,69 @@ img {
   gap: 1.1rem;
 }
 
-.auto-gallery {
-  border-radius: 1.2rem;
+
+.camera-roll {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.roll-group {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.roll-group h3 {
+  color: var(--forest);
+  font-size: 1.15rem;
+}
+
+.roll-row {
   overflow: hidden;
+  border-radius: 1rem;
   border: 1px solid rgba(230, 199, 110, 0.45);
-  box-shadow: 0 22px 38px rgba(0, 0, 0, 0.14);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
 }
 
-.auto-gallery-track {
+.roll-track {
   display: flex;
-  will-change: transform;
-  transition: transform 1.5s ease;
+  width: max-content;
+  gap: 0.7rem;
+  padding: 0.7rem;
+  animation: roll-left var(--roll-duration, 42s) linear infinite;
 }
 
-.auto-gallery-slide {
-  min-width: 100%;
-  margin: 0;
-  aspect-ratio: 16 / 10;
+.roll-track[data-direction='right'] {
+  animation-name: roll-right;
 }
 
-.auto-gallery-slide img {
-  width: 100%;
-  height: 100%;
+.roll-track img {
+  width: clamp(220px, 30vw, 360px);
+  aspect-ratio: 4 / 3;
   object-fit: cover;
+  border-radius: 0.75rem;
 }
+
+@keyframes roll-left {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - 0.35rem));
+  }
+}
+
+@keyframes roll-right {
+  from {
+    transform: translateX(calc(-50% - 0.35rem));
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
 
 .review-summary {
   display: grid;
