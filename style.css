@@ -836,6 +836,70 @@ img {
   gap: 1.1rem;
 }
 
+
+.camera-roll {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.roll-group {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.roll-group h3 {
+  color: var(--forest);
+  font-size: 1.15rem;
+}
+
+.roll-row {
+  overflow: hidden;
+  border-radius: 1rem;
+  border: 1px solid rgba(230, 199, 110, 0.45);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+}
+
+.roll-track {
+  display: flex;
+  width: max-content;
+  gap: 0.7rem;
+  padding: 0.7rem;
+  animation: roll-left var(--roll-duration, 42s) linear infinite;
+}
+
+.roll-track[data-direction='right'] {
+  animation-name: roll-right;
+}
+
+.roll-track img {
+  width: clamp(220px, 30vw, 360px);
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 0.75rem;
+}
+
+@keyframes roll-left {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - 0.35rem));
+  }
+}
+
+@keyframes roll-right {
+  from {
+    transform: translateX(calc(-50% - 0.35rem));
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+
 .review-summary {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -1115,4 +1179,3 @@ img {
   object-fit: cover;
   display: block;
 }
-
