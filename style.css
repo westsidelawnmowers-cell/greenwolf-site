@@ -836,6 +836,63 @@ img {
   gap: 1.1rem;
 }
 
+.camera-roll {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.camera-roll-row {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.camera-roll-row h3 {
+  color: var(--forest);
+}
+
+.camera-roll-viewport {
+  overflow: hidden;
+  border-radius: 1rem;
+  border: 1px solid rgba(230, 199, 110, 0.45);
+  box-shadow: 0 18px 28px rgba(0, 0, 0, 0.1);
+}
+
+.camera-roll-track {
+  display: flex;
+  width: max-content;
+  gap: 0.7rem;
+  padding: 0.7rem;
+  animation: cameraRoll var(--roll-speed, 46s) linear infinite;
+}
+
+.camera-roll-track--reverse {
+  animation-direction: reverse;
+}
+
+.camera-roll-track img {
+  width: clamp(180px, 24vw, 320px);
+  height: clamp(150px, 18vw, 240px);
+  border-radius: 0.85rem;
+  object-fit: cover;
+  flex: 0 0 auto;
+}
+
+@keyframes cameraRoll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - 0.35rem));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .camera-roll-track {
+    animation: none;
+  }
+}
+
 .review-summary {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -1115,4 +1172,3 @@ img {
   object-fit: cover;
   display: block;
 }
-
