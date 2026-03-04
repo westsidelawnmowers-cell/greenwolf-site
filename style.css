@@ -836,6 +836,64 @@ img {
   gap: 1.1rem;
 }
 
+.camera-roll {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.camera-roll-row {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.camera-roll-row h3 {
+  color: var(--forest);
+}
+
+.camera-roll-viewport {
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid rgba(230, 199, 110, 0.45);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+  background: #fff;
+}
+
+.camera-roll-track {
+  --duration: 36s;
+  display: flex;
+  gap: 0.45rem;
+  width: max-content;
+  padding: 0.45rem;
+  animation: camera-roll var(--duration) linear infinite;
+}
+
+.camera-roll-track--reverse {
+  animation-direction: reverse;
+}
+
+.camera-roll-track img {
+  width: clamp(220px, 25vw, 340px);
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  flex-shrink: 0;
+}
+
+.camera-roll-viewport:hover .camera-roll-track,
+.camera-roll-viewport:focus-within .camera-roll-track {
+  animation-play-state: paused;
+}
+
+@keyframes camera-roll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - 0.225rem));
+  }
+}
+
 .review-summary {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -1115,4 +1173,3 @@ img {
   object-fit: cover;
   display: block;
 }
-
