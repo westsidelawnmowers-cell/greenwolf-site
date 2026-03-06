@@ -1,5 +1,4 @@
-﻿const SITE_PHONE_DISPLAY = '639-597-9351';
-const SITE_PHONE_URI = '+16395979351';
+﻿const SITE_PHONE_URI = '+16395979351';
 
 function getPageKey() {
   const path = window.location.pathname;
@@ -7,8 +6,9 @@ function getPageKey() {
   return base ? base.toLowerCase() : 'index.html';
 }
 
-function getQuoteHref() {
-  return document.getElementById('quote') ? '#quote' : 'index.html#quote';
+function getPrimaryCtaHref() {
+  if (document.getElementById('quote')) return '#quote';
+  return getPageKey() === 'index.html' ? '#services' : 'index.html#services';
 }
 
 function emitAnalyticsEvent(eventName, params = {}) {
@@ -182,224 +182,13 @@ function setupMobileNav() {
   });
 }
 
-function injectHowItWorks() {
-  const quoteSection = document.getElementById('quote');
-  if (!quoteSection || document.getElementById('how-it-works')) return;
-
-  const section = document.createElement('section');
-  section.className = 'section alt-section';
-  section.id = 'how-it-works';
-  section.innerHTML = `
-    <div class="container">
-      <h2>How It Works</h2>
-      <p class="section-lead">Fast process, clear communication, and no pressure.</p>
-      <div class="how-it-works-grid">
-        <article class="how-step">
-          <span class="how-step-num">1</span>
-          <h3>Request Quote</h3>
-          <p>Choose your service and share your address in under 2 minutes.</p>
-        </article>
-        <article class="how-step">
-          <span class="how-step-num">2</span>
-          <h3>Confirm Plan</h3>
-          <p>We confirm timing, pricing, and service details with no hidden fees.</p>
-        </article>
-        <article class="how-step">
-          <span class="how-step-num">3</span>
-          <h3>Service Day</h3>
-          <p>Our crew completes the work and keeps you updated throughout.</p>
-        </article>
-      </div>
-    </div>
-  `;
-
-  quoteSection.parentNode.insertBefore(section, quoteSection);
-}
-
-function injectTrustStrip() {
-  const quoteSection = document.getElementById('quote');
-  if (!quoteSection) return;
-
-  const container = quoteSection.querySelector('.container');
-  if (!container || container.querySelector('.trust-strip')) return;
-
-  const strip = document.createElement('div');
-  strip.className = 'trust-strip';
-  strip.innerHTML = `
-    <span class="trust-pill">Owner-Operated</span>
-    <span class="trust-pill">Fully Insured</span>
-    <span class="trust-pill">5-Star Local Reputation</span>
-    <span class="trust-pill">Same-Day Reply (When Possible)</span>
-  `;
-
-  container.insertBefore(strip, container.firstChild);
-}
-
-function injectServiceAreaCard() {
-  const quoteSection = document.getElementById('quote');
-  if (!quoteSection) return;
-
-  const leftColumn = quoteSection.querySelector('.split-grid > div:first-child');
-  if (!leftColumn || leftColumn.querySelector('.service-area-card')) return;
-
-  const areaCard = document.createElement('div');
-  areaCard.className = 'service-area-card';
-  areaCard.innerHTML = `
-    <h3>Service Area & Response Time</h3>
-    <p><strong>Primary area:</strong> Saskatoon</p>
-    <p><strong>Response:</strong> Same-day replies when possible.</p>
-    <p><strong>Contact:</strong> <a href="tel:${SITE_PHONE_URI}" data-track="call_click">${SITE_PHONE_DISPLAY}</a> or <a href="mailto:info@greenwolf.work" data-track="email_click">info@greenwolf.work</a></p>
-  `;
-
-  leftColumn.appendChild(areaCard);
-}
-
-function injectPreQualificationCard() {
-  const quoteSection = document.getElementById('quote');
-  if (!quoteSection) return;
-
-  const leftColumn = quoteSection.querySelector('.split-grid > div:first-child');
-  if (!leftColumn || leftColumn.querySelector('.prequal-card')) return;
-
-  const card = document.createElement('form');
-  card.className = 'prequal-card';
-  card.id = 'prequal-form';
-  card.innerHTML = `
-    <h3>Quick Pre-Qualification</h3>
-    <p class="small-text">Share a few details so your quote is faster and more accurate.</p>
-    <label>Service
-      <select name="service" required>
-        <option value="">Select...</option>
-        <option>Lawn care</option>
-        <option>Weed control</option>
-        <option>Fertilization</option>
-        <option>Snow removal</option>
-        <option>Landscaping</option>
-        <option>Seasonal cleanup</option>
-      </select>
-    </label>
-    <label>Property type
-      <select name="property" required>
-        <option value="">Select...</option>
-        <option>Residential</option>
-        <option>Commercial</option>
-      </select>
-    </label>
-    <label>Property size
-      <select name="size" required>
-        <option value="">Select...</option>
-        <option>Small lot</option>
-        <option>Medium lot</option>
-        <option>Large lot</option>
-      </select>
-    </label>
-    <label>Preferred start
-      <select name="start" required>
-        <option value="">Select...</option>
-        <option>ASAP</option>
-        <option>Within 1 week</option>
-        <option>Within 2-4 weeks</option>
-      </select>
-    </label>
-    <button class="btn btn-primary" type="submit">Save details and continue</button>
-    <p class="small-text" id="prequal-status" aria-live="polite"></p>
-  `;
-
-  card.addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    const formData = new FormData(card);
-    const summary = `Service: ${formData.get('service')} | Property: ${formData.get('property')} | Size: ${formData.get('size')} | Start: ${formData.get('start')}`;
-    const status = card.querySelector('#prequal-status');
-
-    window.localStorage.setItem('greenwolf_prequal', summary);
-    if (status) {
-      status.textContent = `Saved: ${summary}. Add this in the quote notes.`;
-    }
-
-    emitAnalyticsEvent('prequal_submit', {
-      page: getPageKey(),
-      service: String(formData.get('service') || ''),
-      property: String(formData.get('property') || '')
-    });
-
-    const quoteForm = quoteSection.querySelector('.quote-form');
-    if (quoteForm) {
-      quoteForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
-
-  leftColumn.appendChild(card);
-}
-
-function injectFaqSection() {
-  if (document.getElementById('faq')) return;
-
-  const page = getPageKey();
-  const faqByPage = {
-    'index.html': {
-      title: 'Frequently Asked Questions',
-      items: [
-        ['Do you offer lawn care, weed control, and fertilization in Saskatoon?', 'Yes. We provide lawn mowing, weed control treatments, and fertilization plans in Saskatoon.'],
-        ['How quickly do you respond to new quote requests?', 'We aim to reply the same day when possible, especially during peak lawn season.'],
-        ['Do you service residential and commercial properties?', 'Yes. We work with both homeowners and commercial properties.'],
-        ['Do you have contracts?', 'We offer both recurring plans and one-time services depending on your needs.']
-      ]
-    },
-    'lawn.html': {
-      title: 'Lawn, Weed Control & Fertilization FAQs',
-      items: [
-        ['What lawn services are included?', 'We offer mowing, trimming, edging, weed control, and fertilization options.'],
-        ['How often should fertilizer be applied?', 'Most properties benefit from scheduled seasonal applications. We recommend a plan after reviewing your lawn condition.'],
-        ['Do weed control treatments harm healthy grass?', 'When applied properly, treatments target weeds while protecting healthy turf.'],
-        ['Can I book weed control without mowing?', 'Yes. Weed control and fertilization can be booked as standalone services.']
-      ]
-    }
-  };
-
-  const fallback = {
-    title: 'Frequently Asked Questions',
-    items: [
-      ['How do I request a quote?', 'Use the quote form on this page and include your service type and address.'],
-      ['How fast do you reply?', 'We reply as quickly as possible, often same-day during normal business hours.'],
-      ['Do you provide one-time and recurring service?', 'Yes. We offer both one-time jobs and recurring seasonal plans.']
-    ]
-  };
-
-  const faqContent = faqByPage[page] || fallback;
-  const reviewsSection = document.getElementById('reviews');
-  const footer = document.querySelector('footer.footer');
-  const anchor = reviewsSection || footer;
-  if (!anchor || !anchor.parentNode) return;
-
-  const section = document.createElement('section');
-  section.className = 'section alt-section';
-  section.id = 'faq';
-
-  const itemsHtml = faqContent.items
-    .map(
-      ([question, answer]) => `
-        <details class="faq-item">
-          <summary>${question}</summary>
-          <p>${answer}</p>
-        </details>
-      `
-    )
-    .join('');
-
-  section.innerHTML = `
-    <div class="container">
-      <h2>${faqContent.title}</h2>
-      <p class="section-lead">Quick answers to common questions before you book.</p>
-      <div class="faq-grid">${itemsHtml}</div>
-    </div>
-  `;
-
-  anchor.parentNode.insertBefore(section, anchor);
-}
-
 function setupMobileCtaBar() {
   if (document.querySelector('.mobile-cta-bar')) return;
+
+  const hasQuoteSection = Boolean(document.getElementById('quote'));
+  const primaryHref = getPrimaryCtaHref();
+  const primaryLabel = hasQuoteSection ? 'Get Quote' : 'Services';
+  const primaryTrack = hasQuoteSection ? 'quote_click' : 'services_click';
 
   const bar = document.createElement('div');
   bar.className = 'mobile-cta-bar';
@@ -408,7 +197,7 @@ function setupMobileCtaBar() {
   bar.innerHTML = `
     <a class="mobile-cta-btn" href="tel:${SITE_PHONE_URI}" data-track="call_click">Call</a>
     <a class="mobile-cta-btn" href="sms:${SITE_PHONE_URI}" data-track="text_click">Text</a>
-    <a class="mobile-cta-btn mobile-cta-btn--primary" href="${getQuoteHref()}" data-track="quote_click">Get Quote</a>
+    <a class="mobile-cta-btn mobile-cta-btn--primary" href="${primaryHref}" data-track="${primaryTrack}">${primaryLabel}</a>
   `;
 
   document.body.appendChild(bar);
@@ -436,6 +225,8 @@ function setupTracking() {
       emitAnalyticsEvent('client_portal_click', { page: getPageKey(), label });
     } else if (href.includes('#quote')) {
       emitAnalyticsEvent('quote_click', { page: getPageKey(), label });
+    } else if (href.includes('#services')) {
+      emitAnalyticsEvent('services_click', { page: getPageKey(), label });
     }
   });
 
@@ -494,23 +285,9 @@ function init() {
   setupBackToTop();
   setupHideHeaderOnScroll();
   setupMobileNav();
-
-  const page = getPageKey();
-  if (page === 'index.html') {
-    injectHowItWorks();
-    injectFaqSection();
-  }
-
   setupMobileCtaBar();
-
   optimizeMedia();
   setupTracking();
 }
 
 init();
-
-
-
-
-
-
