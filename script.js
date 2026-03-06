@@ -495,10 +495,12 @@ function init() {
   setupHideHeaderOnScroll();
   setupMobileNav();
 
-  injectHowItWorks();
-  injectTrustStrip();
-  injectServiceAreaCard();
-  injectFaqSection();
+  const page = getPageKey();
+  if (page === 'index.html') {
+    injectHowItWorks();
+    injectFaqSection();
+  }
+
   setupMobileCtaBar();
 
   optimizeMedia();
@@ -506,6 +508,9 @@ function init() {
 }
 
 init();
+
+
+
 
 
 
