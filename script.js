@@ -498,7 +498,6 @@ function init() {
   injectHowItWorks();
   injectTrustStrip();
   injectServiceAreaCard();
-  injectPreQualificationCard();
   injectFaqSection();
   setupMobileCtaBar();
 
@@ -507,3 +506,6 @@ function init() {
 }
 
 init();
+
+
+

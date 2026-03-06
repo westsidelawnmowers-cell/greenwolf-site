@@ -1365,3 +1365,35 @@ img {
     padding-bottom: 4.3rem;
   }
 }
+
+/* Jobber form UX tuning */
+.quote-form {
+  width: 100%;
+  max-width: 560px;
+  margin-inline: auto;
+}
+
+.quote-form > div[id] {
+  width: 100%;
+}
+
+.quote-form iframe {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+@media (max-width: 900px) {
+  #quote .split-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #quote .split-grid .quote-form {
+    order: 1;
+    max-width: 100%;
+    padding: 0.8rem;
+  }
+
+  #quote .split-grid > div:first-child {
+    order: 2;
+  }
+}
