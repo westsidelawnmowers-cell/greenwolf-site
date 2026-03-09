@@ -1,4 +1,4 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
 
 :root {
   --forest: #0f2d1f;
@@ -527,6 +527,192 @@ img {
   width: fit-content;
 }
 
+
+.plan-showcase {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.35rem;
+  align-items: stretch;
+}
+
+.plan-showcase .package-card {
+  position: relative;
+  padding: 0;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 2px solid transparent;
+  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  transform: translateY(0);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.plan-showcase .package-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 34px rgba(0, 0, 0, 0.12);
+}
+
+.plan-showcase .package-card-top {
+  padding: 1rem 1rem 0.85rem;
+  border-bottom: 1px solid rgba(15, 45, 31, 0.1);
+  display: grid;
+  gap: 0.5rem;
+}
+
+.plan-showcase .package-meta {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(15, 45, 31, 0.1);
+  border-radius: 0.7rem;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.plan-showcase .package-range {
+  margin: 0;
+  font-size: 2rem;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+  color: var(--pine);
+}
+
+.plan-showcase .package-card-body {
+  padding: 1rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.plan-showcase .package-name {
+  font-size: 1.55rem;
+  line-height: 1.2;
+}
+
+.plan-showcase .package-price {
+  font-weight: 600;
+  color: rgba(15, 45, 31, 0.84);
+}
+
+.plan-showcase .package-list {
+  gap: 0.48rem;
+}
+
+.plan-showcase .package-list li {
+  position: relative;
+  padding-left: 1.15rem;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(15, 45, 31, 0.08);
+  padding-bottom: 0.3rem;
+}
+
+.plan-showcase .package-list li:last-child {
+  border-bottom: 0;
+}
+
+.plan-showcase .package-list li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #1f6336;
+  font-weight: 900;
+}
+
+.plan-showcase .package-subhead {
+  margin: 0.35rem 0 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: rgba(15, 45, 31, 0.78);
+}
+
+.plan-showcase .package-list--expect li {
+  border-bottom: none;
+}
+
+.plan-showcase .End-line {
+  margin-top: 0.1rem;
+  font-size: 0.94rem;
+  line-height: 1.45;
+  color: rgba(15, 45, 31, 0.78);
+}
+
+.plan-showcase .package-card-footer {
+  margin-top: auto;
+  padding: 0 1rem 1rem;
+}
+
+.plan-showcase .package-card-footer .btn {
+  width: 100%;
+  border-radius: 0.6rem;
+  min-height: 2.85rem;
+  font-size: 1rem;
+}
+
+.plan-showcase .package-card--alpha {
+  background: linear-gradient(180deg, #eaf4f7, #e2eff4);
+  border-color: #a5c7d5;
+}
+
+.plan-showcase .package-card--beta {
+  background: linear-gradient(180deg, #f58e14, #f27f00);
+  border-color: #dd7300;
+  transform: translateY(-10px);
+}
+
+.plan-showcase .package-card--beta .package-name,
+.plan-showcase .package-card--beta .package-price,
+.plan-showcase .package-card--beta .package-subhead,
+.plan-showcase .package-card--beta .package-range,
+.plan-showcase .package-card--beta .End-line,
+.plan-showcase .package-card--beta .package-list {
+  color: #fff;
+}
+
+.plan-showcase .package-card--beta .package-list li {
+  border-bottom-color: rgba(255, 255, 255, 0.26);
+}
+
+.plan-showcase .package-card--beta .package-list li::before {
+  color: #fff;
+}
+
+.plan-showcase .package-card--beta .package-meta {
+  color: #1b1b1b;
+}
+
+.plan-showcase .package-card--beta .btn-primary {
+  background: #1f2937;
+  color: #fff;
+  box-shadow: none;
+}
+
+.plan-showcase .package-card--beta .btn-primary:hover {
+  background: #111827;
+  box-shadow: none;
+}
+
+.plan-showcase .package-card--delta {
+  background: linear-gradient(180deg, #e9f2e7, #deecdb);
+  border-color: #b8d0b5;
+}
+
+.plan-showcase .corner-ribbon-left {
+  border-radius: 0 0 0.7rem 0;
+}
+
+@media (max-width: 920px) {
+  .plan-showcase .package-card--beta {
+    transform: translateY(0);
+  }
+
+  .plan-showcase .package-name {
+    font-size: 1.3rem;
+  }
+}
 .pill-list {
   list-style: none;
   display: flex;
