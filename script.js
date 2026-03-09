@@ -1,4 +1,4 @@
-﻿const SITE_PHONE_URI = '+16395979351';
+const SITE_PHONE_URI = '+16395979351';
 
 function getPageKey() {
   const path = window.location.pathname;
@@ -248,6 +248,22 @@ function setupTracking() {
   }
 }
 
+function setupDetailsAccordion() {
+  const accordionGroups = document.querySelectorAll('[data-accordion="true"]');
+  accordionGroups.forEach((group) => {
+    const items = Array.from(group.querySelectorAll('details'));
+    items.forEach((item) => {
+      item.addEventListener('toggle', () => {
+        if (!item.open) return;
+        items.forEach((other) => {
+          if (other !== item) {
+            other.open = false;
+          }
+        });
+      });
+    });
+  });
+}
 function optimizeMedia() {
   document.querySelectorAll('img').forEach((img) => {
     if (!img.closest('.hero')) {
@@ -286,6 +302,7 @@ function init() {
   setupHideHeaderOnScroll();
   setupMobileNav();
   setupMobileCtaBar();
+  setupDetailsAccordion();
   optimizeMedia();
   setupTracking();
 }

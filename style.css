@@ -1245,6 +1245,119 @@ img {
   transform: translateY(-2px);
 }
 
+
+.addon-grid--lawn {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.addon-grid--lawn .addon-card--lawn {
+  border-radius: 1rem;
+  border: 1px solid rgba(15, 45, 31, 0.16);
+  background: linear-gradient(180deg, #f6faf5, #edf4ea);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+  padding: 0;
+}
+
+.addon-grid--lawn .addon-card--lawn summary {
+  padding: 1rem 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.addon-grid--lawn .addon-card--lawn h3 {
+  margin: 0;
+  font-size: 1.55rem;
+  line-height: 1.2;
+  color: var(--forest);
+}
+
+.addon-grid--lawn .addon-toggle {
+  min-width: 3.1rem;
+  min-height: 3.1rem;
+  border-radius: 999px;
+  padding: 0.45rem;
+  background: #dfe8da;
+  color: #102a1b;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  display: inline-grid;
+  place-items: center;
+}
+
+.addon-grid--lawn .addon-card--lawn .addon-body {
+  margin: 0;
+  padding: 0 1rem 1rem;
+  display: grid;
+  gap: 0.65rem;
+  color: var(--pine);
+}
+
+.addon-grid--lawn .addon-media {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(15, 45, 31, 0.15);
+  margin-top: 0.15rem;
+}
+
+.addon-grid--lawn .addon-body p {
+  margin: 0;
+}
+
+.addon-grid--lawn .addon-pair-title {
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: rgba(15, 45, 31, 0.75);
+}
+
+.addon-grid--lawn .addon-pair-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+}
+
+.addon-grid--lawn .addon-pair-list li {
+  border: 1px solid rgba(15, 45, 31, 0.18);
+  background: #ffffff;
+  color: #102a1b;
+  border-radius: 999px;
+  padding: 0.28rem 0.68rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.addon-grid--lawn .addon-card--lawn[open] {
+  border-color: rgba(15, 45, 31, 0.34);
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.1);
+}
+
+.addon-grid--lawn .addon-card--lawn[open] .addon-toggle {
+  background: #102a1b;
+  color: #f4f8f1;
+}
+
+@media (max-width: 760px) {
+  .addon-grid--lawn {
+    grid-template-columns: 1fr;
+  }
+
+  .addon-grid--lawn .addon-card--lawn h3 {
+    font-size: 1.28rem;
+  }
+}
+
 @media (max-width: 960px) {
   .header-content {
     flex-direction: column;
@@ -1485,6 +1598,7 @@ img {
   color: var(--forest);
   border-color: rgba(230, 199, 110, 0.65);
 }
+
 
 @media (max-width: 960px) {
   .header-content {
