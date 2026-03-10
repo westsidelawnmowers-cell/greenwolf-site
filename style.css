@@ -700,13 +700,37 @@ img {
   border-color: #b8d0b5;
 }
 
-.plan-showcase .corner-ribbon-left {
-  border-radius: 0 0 0.7rem 0;
+.plan-showcase .package-card--featured .package-card-top {
+  padding-top: 2.7rem;
+}
+
+.plan-showcase .package-card--featured .corner-ribbon-right {
+  top: 0.65rem;
+  right: 0.75rem;
+  left: auto;
+  background: linear-gradient(135deg, #f8b04f, #d66d1b);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  padding: 0.38rem 0.72rem;
+  font-size: 0.67rem;
+  letter-spacing: 0.02em;
+  box-shadow: 0 10px 20px rgba(92, 41, 6, 0.32);
 }
 
 @media (max-width: 920px) {
   .plan-showcase .package-card--beta {
     transform: translateY(0);
+  }
+
+  .plan-showcase .package-card--featured .package-card-top {
+    padding-top: 2.45rem;
+  }
+
+  .plan-showcase .package-card--featured .corner-ribbon-right {
+    top: 0.55rem;
+    right: 0.6rem;
+    font-size: 0.62rem;
+    padding: 0.32rem 0.56rem;
   }
 
   .plan-showcase .package-name {
