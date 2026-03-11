@@ -278,13 +278,7 @@ function optimizeMedia() {
     'lawn.html': 'images/9.jpeg',
     'landscaping.html': 'images/2001.jpg',
     'cleanup.html': 'images/2001.jpg',
-    'gallery.html': 'images/3001.jpeg',
-    'service-areas.html': 'images/1.jpeg',
-    'evergreen-saskatoon.html': 'images/1.jpeg',
-    'brighton-saskatoon.html': 'images/2.jpeg',
-    'stonebridge-saskatoon.html': 'images/3.jpg',
-    'rosewood-saskatoon.html': 'images/4.jpeg',
-    'willowgrove-saskatoon.html': 'images/5.jpeg'
+    'gallery.html': 'images/3001.jpeg'
   };
 
   const poster = pagePosterMap[getPageKey()] || 'images/1.jpeg';
