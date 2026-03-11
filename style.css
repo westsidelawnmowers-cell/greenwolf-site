@@ -1994,3 +1994,68 @@ img {
     padding: 0.4rem 0.65rem;
   }
 }
+.learning-page #learning-options {
+  background: radial-gradient(circle at 12% 18%, rgba(255, 244, 186, 0.55), transparent 42%),
+    radial-gradient(circle at 88% 82%, rgba(181, 233, 196, 0.45), transparent 38%),
+    linear-gradient(180deg, #f8fcf7, #f2f9f1);
+}
+
+.learning-page .learning-main-title {
+  display: inline-block;
+  padding: 0.4rem 0.95rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(130deg, #fff6c8 0%, #f5e08e 52%, #e6c76e 100%);
+  border: 1px solid rgba(230, 199, 110, 0.7);
+  box-shadow: 0 12px 24px rgba(230, 199, 110, 0.3);
+  color: var(--forest);
+}
+
+.learning-page .learning-choice-grid {
+  gap: 1.25rem;
+}
+
+.learning-page .learning-choice-card {
+  border: 1px solid rgba(230, 199, 110, 0.55);
+  background: linear-gradient(180deg, #ffffff 0%, #fff8dd 100%);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.07);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.learning-page .learning-choice-card:nth-child(2) {
+  background: linear-gradient(180deg, #ffffff 0%, #e9fff2 100%);
+  border-color: rgba(113, 177, 134, 0.45);
+}
+
+.learning-page .learning-choice-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.1);
+}
+
+.learning-page .learning-choice-card h3 {
+  color: var(--forest);
+}
+
+.learning-page .learning-pill-list {
+  margin: 0.9rem 0 1rem;
+}
+
+.learning-page .learning-pill-list .pill {
+  background: linear-gradient(180deg, #fffef7, #fff2c2);
+  border-color: rgba(230, 199, 110, 0.65);
+  color: #234734;
+}
+
+.learning-page .learning-choice-card:nth-child(2) .learning-pill-list .pill {
+  background: linear-gradient(180deg, #f6fff8, #e8f9ee);
+  border-color: rgba(111, 177, 132, 0.52);
+}
+
+.learning-page .learning-choice-card .btn-primary {
+  background: linear-gradient(135deg, #f9edbf, #e6c76e);
+  color: var(--forest);
+  box-shadow: 0 14px 26px rgba(230, 199, 110, 0.4);
+}
+
+.learning-page .learning-choice-card .btn-primary:hover {
+  box-shadow: 0 18px 30px rgba(230, 199, 110, 0.48);
+}
