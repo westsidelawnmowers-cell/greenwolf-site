@@ -278,7 +278,10 @@ function optimizeMedia() {
     'lawn.html': 'images/9.jpeg',
     'landscaping.html': 'images/2001.jpg',
     'cleanup.html': 'images/2001.jpg',
-    'gallery.html': 'images/3001.jpeg'
+    'gallery.html': 'images/3001.jpeg',
+    'learning.html': 'images/2006.jpg',
+    'green-wolf-blogs.html': 'images/3008.jpeg',
+    'library.html': 'images/2008.jpeg'
   };
 
   const poster = pagePosterMap[getPageKey()] || 'images/1.jpeg';
