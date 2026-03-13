@@ -107,6 +107,15 @@ function setupHideHeaderOnScroll() {
     const delta = currentY - lastScrollY;
     const isNearTop = currentY < 80;
     const headerIsHidden = siteHeader.classList.contains('is-hidden');
+    const navIsOpen = siteHeader.classList.contains('nav-open');
+
+    if (navIsOpen) {
+      siteHeader.classList.remove('is-hidden');
+      lastScrollY = currentY;
+      lastHideY = currentY;
+      ticking = false;
+      return;
+    }
 
     if (isNearTop) {
       siteHeader.classList.remove('is-hidden');
@@ -311,3 +320,4 @@ function init() {
 }
 
 init();
+
