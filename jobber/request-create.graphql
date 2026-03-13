@@ -1,0 +1,13 @@
+mutation WebsiteRequestCreate($input: RequestCreateInput!) {
+  requestCreate(input: $input) {
+    request {
+      id
+      title
+      createdAt
+    }
+    userErrors {
+      message
+      path
+    }
+  }
+}

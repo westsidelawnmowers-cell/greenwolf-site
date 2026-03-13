@@ -122,7 +122,7 @@
       <p class="section-lead">Pick a plan, then submit the quote form in one step.</p>
 
       <div class="package-grid plan-showcase">
-        <article class="package-card package-card--alpha">
+        <article class="package-card package-card--alpha" data-plan-code="alpha" data-plan-label="Alpha Turf Program">
           <div class="package-card-top">
             <div class="package-meta">ALPHA TURF PROGRAM</div>
             <p class="package-range">$295-$550</p>
@@ -139,11 +139,11 @@
             </ul>
           </div>
           <div class="package-card-footer">
-            <a class="btn btn-primary" href="#quote">Get a quote</a>
+            <a class="btn btn-primary plan-select-button" href="#quote" data-plan-code="alpha" data-plan-label="Alpha Turf Program">Get a quote</a>
           </div>
         </article>
 
-        <article class="package-card package-card--beta package-card--featured">
+        <article class="package-card package-card--beta package-card--featured" data-plan-code="beta" data-plan-label="Beta Turf Program">
           <span class="corner-ribbon corner-ribbon-right">20% OFF Booking Before May</span>
           <div class="package-card-top">
             <div class="package-meta">BETA TURF PROGRAM</div>
@@ -161,11 +161,11 @@
             </ul>
           </div>
           <div class="package-card-footer">
-            <a class="btn btn-primary" href="#quote">Get a quote</a>
+            <a class="btn btn-primary plan-select-button" href="#quote" data-plan-code="beta" data-plan-label="Beta Turf Program">Get a quote</a>
           </div>
         </article>
 
-        <article class="package-card package-card--delta">
+        <article class="package-card package-card--delta" data-plan-code="delta" data-plan-label="Delta Turf Program">
           <div class="package-card-top">
             <div class="package-meta">DELTA TURF PROGRAM</div>
             <p class="package-range">$120-$220</p>
@@ -182,7 +182,7 @@
             </ul>
           </div>
           <div class="package-card-footer">
-            <a class="btn btn-primary" href="#quote">Get a quote</a>
+            <a class="btn btn-primary plan-select-button" href="#quote" data-plan-code="delta" data-plan-label="Delta Turf Program">Get a quote</a>
           </div>
         </article>
       </div>
@@ -322,17 +322,89 @@
     </div>
   </section>
 
-    <section class="section" id="quote">
+  <section class="section" id="quote">
     <div class="container split-grid">
       <div>
         <h2>Request a lawn quote</h2>
         <p class="section-lead">Takes about 1 minute.</p>
         <p class="section-lead">No commitment required.</p>
         <p class="section-lead">Accurate pricing, no guessing.</p>
+        <p class="small-text" id="selected-plan-copy">Choose Alpha, Beta, or Delta above and the form will lock that plan in automatically.</p>
       </div>
       <div class="quote-form">
-        <div id="309320be-1d48-4310-a545-7a08dd1adf4f-2164449"></div>
-        <p class="form-footnote"></p>
+        <div class="form-shell">
+          <div class="selected-plan-banner" id="selected-plan-banner" aria-live="polite">
+            <span class="selected-plan-label">Selected plan</span>
+            <strong id="selected-plan-name">Not selected yet</strong>
+          </div>
+
+          <form id="lawn-quote-form" class="lead-form" novalidate>
+            <div class="form-grid form-grid--two">
+              <label class="field">
+                <span>First name</span>
+                <input type="text" name="firstName" autocomplete="given-name" required />
+              </label>
+              <label class="field">
+                <span>Last name</span>
+                <input type="text" name="lastName" autocomplete="family-name" required />
+              </label>
+            </div>
+
+            <div class="form-grid form-grid--two">
+              <label class="field">
+                <span>Phone</span>
+                <input type="tel" name="phone" autocomplete="tel" inputmode="tel" required />
+              </label>
+              <label class="field">
+                <span>Email</span>
+                <input type="email" name="email" autocomplete="email" required />
+              </label>
+            </div>
+
+            <label class="field">
+              <span>Selected plan</span>
+              <select id="planCode" name="planCode" required>
+                <option value="">Choose a lawn plan</option>
+                <option value="alpha">Alpha Turf Program</option>
+                <option value="beta">Beta Turf Program</option>
+                <option value="delta">Delta Turf Program</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Street address</span>
+              <input type="text" name="street1" autocomplete="address-line1" required />
+            </label>
+
+            <label class="field">
+              <span>Unit / suite (optional)</span>
+              <input type="text" name="street2" autocomplete="address-line2" />
+            </label>
+
+            <div class="form-grid form-grid--three">
+              <label class="field">
+                <span>City</span>
+                <input type="text" name="city" value="Saskatoon" autocomplete="address-level2" required />
+              </label>
+              <label class="field">
+                <span>Province</span>
+                <input type="text" name="province" value="SK" autocomplete="address-level1" required />
+              </label>
+              <label class="field">
+                <span>Postal code</span>
+                <input type="text" name="postalCode" autocomplete="postal-code" required />
+              </label>
+            </div>
+
+            <label class="field">
+              <span>Property details</span>
+              <textarea name="details" rows="5" placeholder="Gate access, pets, rough lot size, preferred start date, fertilizer interest, weeds, or anything we should know."></textarea>
+            </label>
+
+            <button class="btn btn-primary lead-form-submit" type="submit">Send to Green Wolf</button>
+            <p class="form-status" id="lawn-quote-status" aria-live="polite"></p>
+          </form>
+        </div>
       </div>
     </div>
   </section>
@@ -356,12 +428,13 @@
   <script src="https://elfsightcdn.com/platform.js" async></script>
   <script src="script.js"></script>
 
-  <!-- Jobber embed script -->
-  <script src="https://d3ey4dbjkt2f6s.cloudfront.net/assets/static_link/work_request_embed_snippet.js" 
-    clienthub_id="309320be-1d48-4310-a545-7a08dd1adf4f-2164449" 
-    form_url="https://clienthub.getjobber.com/client_hubs/309320be-1d48-4310-a545-7a08dd1adf4f/public/work_request/embedded_work_request_form?form_id=2164449"></script>
+
 </body>
 </html>
+
+
+
+
 
 
 
