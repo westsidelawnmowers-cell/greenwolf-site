@@ -805,7 +805,7 @@ img {
 
 .plan-showcase .package-card--featured .corner-ribbon-right {
   position: absolute;
-  top: -0.8rem;
+  top: 0.0rem;
   right: -0.7rem;
   z-index: 5;
   width: 6.1rem;
