@@ -1,14 +1,18 @@
 const SITE_PHONE_URI = '+16395979351';
 
 function getPageKey() {
-  const path = window.location.pathname;
-  const base = path.split('/').pop();
-  return base ? base.toLowerCase() : 'index.html';
+  const normalizedPath = window.location.pathname.replace(/\/+$/, '') || '/';
+  if (normalizedPath === '/' || normalizedPath === '/index.html') {
+    return 'home';
+  }
+
+  const base = normalizedPath.split('/').pop();
+  return (base || 'home').toLowerCase().replace(/\.html$/, '');
 }
 
 function getPrimaryCtaHref() {
   if (document.getElementById('quote')) return '#quote';
-  return getPageKey() === 'index.html' ? '#services' : 'index.html#services';
+  return getPageKey() === 'home' ? '#services' : '/#services';
 }
 
 function emitAnalyticsEvent(eventName, params = {}) {
@@ -282,15 +286,15 @@ function optimizeMedia() {
   });
 
   const pagePosterMap = {
-    'index.html': 'images/1.jpeg',
-    'snow.html': 'images/3001.jpeg',
-    'lawn.html': 'images/9.jpeg',
-    'landscaping.html': 'images/2001.jpg',
-    'cleanup.html': 'images/2001.jpg',
-    'gallery.html': 'images/3001.jpeg',
-    'learning.html': 'images/2006.jpg',
-    'green-wolf-blogs.html': 'images/3008.jpeg',
-    'library.html': 'images/2008.jpeg'
+    home: 'images/1.jpeg',
+    snow: 'images/3001.jpeg',
+    lawn: 'images/9.jpeg',
+    landscaping: 'images/2001.jpg',
+    cleanup: 'images/2001.jpg',
+    gallery: 'images/3001.jpeg',
+    learning: 'images/2006.jpg',
+    'green-wolf-blogs': 'images/3008.jpeg',
+    library: 'images/2008.jpeg'
   };
 
   const poster = pagePosterMap[getPageKey()] || 'images/1.jpeg';
