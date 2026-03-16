@@ -59,8 +59,13 @@ function setupClickFlash() {
 
 function setupRevealOnScroll() {
   const revealElements = document.querySelectorAll(
-    'section, .card, .feature, .quote-block, .hero-media, .hero h2, .hero p, .hero-bullets li, .hero-actions, .site-header'
+    '.card, .feature, .quote-block, .hero-media, .hero h2, .hero p, .hero-bullets li, .hero-actions, .site-header'
   );
+
+  if (!('IntersectionObserver' in window)) {
+    revealElements.forEach((element) => element.classList.add('is-visible'));
+    return;
+  }
 
   const revealObserver = new IntersectionObserver(
     (entries) => {
@@ -71,7 +76,7 @@ function setupRevealOnScroll() {
         }
       });
     },
-    { threshold: 0.16 }
+    { threshold: 0.08, rootMargin: '0px 0px -6% 0px' }
   );
 
   revealElements.forEach((element) => {

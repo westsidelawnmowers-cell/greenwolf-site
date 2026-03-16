@@ -349,6 +349,68 @@ img {
   text-align: center;
 }
 
+.camera-roll {
+  display: grid;
+  gap: 1.6rem;
+  margin-top: 2rem;
+}
+
+.camera-roll-row {
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(220, 214, 200, 0.9);
+  border-radius: 1.35rem;
+  padding: 1.15rem;
+  box-shadow: 0 18px 36px rgba(15, 45, 31, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+.camera-roll-row h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.4rem;
+  color: var(--forest);
+  margin-bottom: 0.85rem;
+}
+
+.camera-roll-viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 0.45rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(26, 74, 53, 0.65) rgba(230, 239, 228, 0.9);
+}
+
+.camera-roll-viewport::-webkit-scrollbar {
+  height: 10px;
+}
+
+.camera-roll-viewport::-webkit-scrollbar-track {
+  background: rgba(230, 239, 228, 0.9);
+  border-radius: 999px;
+}
+
+.camera-roll-viewport::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, rgba(15, 45, 31, 0.72), rgba(26, 74, 53, 0.78));
+  border-radius: 999px;
+}
+
+.camera-roll-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(220px, 280px);
+  gap: 0.9rem;
+  width: max-content;
+}
+
+.camera-roll-track img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 1rem;
+  border: 1px solid rgba(220, 214, 200, 0.9);
+  background: #e7eee2;
+  box-shadow: 0 14px 28px rgba(15, 45, 31, 0.08);
+}
+
 .split-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
