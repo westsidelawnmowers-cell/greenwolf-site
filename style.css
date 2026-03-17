@@ -940,6 +940,75 @@ img {
   background: linear-gradient(180deg, #275044 0%, #19392e 100%);
 }
 
+.seasonal-programs-page .plan-showcase .package-card {
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.seasonal-programs-page .plan-showcase .package-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(180deg, rgba(7, 16, 12, 0.34) 0%, rgba(7, 16, 12, 0.66) 100%),
+    var(--seasonal-card-image, none) center / cover no-repeat;
+}
+
+.seasonal-programs-page .plan-showcase .package-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.seasonal-programs-page .plan-showcase .package-card-top,
+.seasonal-programs-page .plan-showcase .package-card-body,
+.seasonal-programs-page .plan-showcase .package-card-footer {
+  background: rgba(10, 20, 16, 0.28);
+  backdrop-filter: blur(4px);
+}
+
+.seasonal-programs-page .plan-showcase .package-card-top {
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+
+.seasonal-programs-page .plan-showcase .package-card--alpha {
+  --seasonal-card-image: url('images/S1.png');
+}
+
+.seasonal-programs-page .plan-showcase .package-card--beta {
+  --seasonal-card-image: url('images/S4.png');
+}
+
+.seasonal-programs-page .plan-showcase .package-card--delta {
+  --seasonal-card-image: url('images/S7.png');
+  border-color: rgba(232, 224, 202, 0.34);
+  box-shadow: 0 16px 28px rgba(18, 24, 19, 0.18);
+}
+
+.seasonal-programs-page .plan-showcase .package-card--delta .package-card-top::before {
+  color: #f8f3e9;
+  background: rgba(10, 20, 16, 0.46);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+.seasonal-programs-page .plan-showcase .package-card--delta .package-meta {
+  background: rgba(255, 255, 255, 0.16);
+  color: #f8f3e9;
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.seasonal-programs-page .plan-showcase .package-card--delta .package-range,
+.seasonal-programs-page .plan-showcase .package-card--delta .package-name,
+.seasonal-programs-page .plan-showcase .package-card--delta .package-price,
+.seasonal-programs-page .plan-showcase .package-card--delta .package-list li,
+.seasonal-programs-page .plan-showcase .package-card--delta .package-list li::before {
+  color: #f8f3e9;
+}
+
+.seasonal-programs-page .plan-showcase .package-card--delta .package-list li {
+  border-bottom-color: rgba(255, 255, 255, 0.14);
+}
+
 .plan-showcase .package-card--featured {
   z-index: 2;
   transform: translateY(-0.1rem);
