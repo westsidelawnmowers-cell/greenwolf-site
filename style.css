@@ -964,7 +964,7 @@ img {
 .seasonal-programs-page .plan-showcase .package-card-body,
 .seasonal-programs-page .plan-showcase .package-card-footer {
   background: rgba(10, 20, 16, 0.28);
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(0px);
 }
 
 .seasonal-programs-page .plan-showcase .package-card-top {
