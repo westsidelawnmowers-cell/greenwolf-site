@@ -730,7 +730,7 @@ img {
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 50%;
-  background: #ffffff url('images/Green-Wolf.png') center / cover no-repeat;
+  background: #ffffff url('/Green-Wolf.png') center / cover no-repeat;
   box-shadow: 0 4px 10px rgba(12, 18, 14, 0.14);
 }
 
