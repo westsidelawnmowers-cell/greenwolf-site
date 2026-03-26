@@ -3,7 +3,11 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://greenwolf.work/</loc>
-    <lastmod>2026-03-13</lastmod>
+    <lastmod>2026-03-25</lastmod>
+  </url>
+  <url>
+    <loc>https://greenwolf.work/about-us</loc>
+    <lastmod>2026-03-25</lastmod>
   </url>
   <url>
     <loc>https://greenwolf.work/lawn</loc>
