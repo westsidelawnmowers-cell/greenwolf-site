@@ -293,6 +293,7 @@ function optimizeMedia() {
   const pagePosterMap = {
     home: 'images/1.jpeg',
     'about-us': 'images/2008.jpeg',
+    'specialty-lawn-treatments': 'images/S1.png',
     snow: 'images/3001.jpeg',
     lawn: 'images/9.jpeg',
     landscaping: 'images/2001.jpg',
