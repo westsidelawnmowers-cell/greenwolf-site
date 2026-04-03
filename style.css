@@ -1259,6 +1259,52 @@ img {
   max-width: 100% !important;
 }
 
+@media (max-width: 960px) {
+  body.has-mobile-cta {
+    padding-bottom: calc(5.75rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .mobile-cta-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 70;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.65rem;
+    padding: 0.8rem 1rem calc(0.8rem + env(safe-area-inset-bottom, 0px));
+    background: rgba(255, 254, 247, 0.96);
+    border-top: 1px solid rgba(15, 45, 31, 0.12);
+    box-shadow: 0 -14px 28px rgba(15, 45, 31, 0.12);
+    backdrop-filter: blur(12px);
+  }
+
+  .mobile-cta-btn {
+    min-height: 3.1rem;
+    padding: 0.8rem 0.7rem;
+    border-radius: 0.95rem;
+    border: 1px solid rgba(15, 45, 31, 0.14);
+    background: #ffffff;
+    color: var(--forest);
+    font-weight: 800;
+    text-align: center;
+    box-shadow: 0 12px 24px rgba(15, 45, 31, 0.08);
+  }
+
+  .mobile-cta-btn--primary {
+    border-color: rgba(230, 199, 110, 0.46);
+    background: var(--gold-gradient);
+    box-shadow: 0 12px 22px rgba(230, 199, 110, 0.28);
+  }
+}
+
+@media (min-width: 961px) {
+  .mobile-cta-bar {
+    display: none;
+  }
+}
+
 .contact-stack {
   display: grid;
   gap: 0.6rem;
