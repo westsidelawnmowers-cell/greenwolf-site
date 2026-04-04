@@ -580,7 +580,29 @@ img {
 
 .package-card.is-selected {
   border-color: var(--gold);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08), 0 0 0 6px rgba(249, 237, 199, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12), 0 0 0 7px rgba(249, 237, 199, 0.55);
+  transform: translateY(-6px);
+  position: relative;
+}
+
+.package-card.is-selected::after {
+  content: 'Selected';
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  padding: 0.32rem 0.75rem;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #1e6a3a, #134829);
+  color: #f5fff8;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 20px rgba(15, 45, 31, 0.18);
 }
 
 .option-grid {
@@ -1275,11 +1297,64 @@ img {
 
 .snow-selection-summary {
   display: grid;
-  gap: 0.28rem;
-  padding: 0.95rem 1rem;
-  border-radius: 1rem;
-  background: linear-gradient(180deg, rgba(255, 253, 246, 0.98), rgba(245, 248, 242, 0.98));
-  border: 1px solid rgba(230, 199, 110, 0.4);
+  gap: 0.5rem;
+  padding: 1.1rem 1.15rem;
+  border-radius: 1.1rem;
+  background: linear-gradient(135deg, #fff8df, #f7fbf1 54%, #edf7ef 100%);
+  border: 2px solid rgba(230, 199, 110, 0.55);
+  box-shadow: 0 14px 30px rgba(15, 45, 31, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.snow-selection-summary.is-active {
+  border-color: #1e6a3a;
+  background:
+    radial-gradient(circle at top right, rgba(230, 199, 110, 0.32), transparent 26%),
+    linear-gradient(135deg, #fff4ca, #eef8ef 56%, #e5f3e8 100%);
+  box-shadow: 0 18px 34px rgba(15, 45, 31, 0.12), 0 0 0 6px rgba(229, 243, 232, 0.8);
+}
+
+.snow-selection-topline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+}
+
+.snow-selection-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #1b5f35, #124224);
+  color: #f3fff7;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 18px rgba(15, 45, 31, 0.18);
+}
+
+.snow-selection-state {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  padding: 0.32rem 0.72rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(15, 45, 31, 0.1);
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.snow-selection-summary.is-active .snow-selection-state {
+  background: rgba(27, 95, 53, 0.12);
+  border-color: rgba(27, 95, 53, 0.22);
+  color: #18492b;
 }
 
 .snow-selection-label {
@@ -1292,7 +1367,14 @@ img {
 
 .snow-selection-summary strong {
   color: var(--forest);
-  font-size: 1rem;
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+
+.snow-selection-note {
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 700;
 }
 
 .snow-addon-panel {
@@ -1577,6 +1659,10 @@ img {
 
   .snow-addon-grid {
     grid-template-columns: 1fr;
+  }
+
+  .snow-selection-topline {
+    align-items: stretch;
   }
 
   .service-form-actions {

@@ -273,7 +273,10 @@ function setupSnowQuoteForm() {
   const packageCards = Array.from(document.querySelectorAll('[data-snow-package-card]'));
   const packageButtons = Array.from(document.querySelectorAll('[data-select-snow-package]'));
   const addonPanel = form.querySelector('[data-snow-addon-panel]');
+  const selectionSummary = form.querySelector('[data-snow-selection-summary]');
   const selectionText = form.querySelector('[data-selected-package-text]');
+  const selectionState = form.querySelector('[data-selected-package-state]');
+  const selectionNote = form.querySelector('[data-selected-package-note]');
   const status = form.querySelector('[data-form-status]');
   const submitButton = form.querySelector('button[type="submit"]');
   const endpoint = form.dataset.formEndpoint || '';
@@ -313,6 +316,18 @@ function setupSnowQuoteForm() {
 
     if (selectionText) {
       selectionText.textContent = `${selectedPackage.name} | ${selectedPackage.frequency}`;
+    }
+
+    if (selectionState) {
+      selectionState.textContent = 'Locked in';
+    }
+
+    if (selectionNote) {
+      selectionNote.textContent = 'This package will be included in your quote unless you change it above.';
+    }
+
+    if (selectionSummary) {
+      selectionSummary.classList.add('is-active');
     }
 
     if (addonPanel) {
