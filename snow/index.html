@@ -32,7 +32,6 @@
     gtag('config', 'AW-18029718143');
   </script>
   <link rel="stylesheet" href="/style.css" />
-  <link rel="stylesheet" href="https://d3ey4dbjkt2f6s.cloudfront.net/assets/external/work_request_embed.css" media="screen" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -299,15 +298,58 @@
     </div>
   </section>
 
-    <section class="section" id="quote">
+  <section class="section" id="quote">
     <div class="container split-grid">
       <div>
         <h2>Request a snow quote</h2>
-        <p class="section-lead">Tell us your address, snow plan preference, and any special access needs. We'll reply quickly.</p>
+        <p class="section-lead">Fill out the form and it goes straight to Green Wolf. We also save a backup copy to Google Sheets so your request does not get lost.</p>
       </div>
       <div class="quote-form">
-        <div id="309320be-1d48-4310-a545-7a08dd1adf4f-2164293"></div>
-        <p class="form-footnote">Tell us your route type (per push, monthly, or full-season) and we'll confirm pricing.</p>
+        <form
+          id="snow-quote-form"
+          class="service-form"
+          data-form-endpoint="https://script.google.com/macros/s/REPLACE_WITH_YOUR_DEPLOYMENT_ID/exec"
+          novalidate>
+          <input type="hidden" name="service" value="Snow Removal" />
+          <input type="hidden" name="source" value="https://greenwolf.work/snow" />
+          <input
+            class="form-honeypot"
+            type="text"
+            name="company"
+            tabindex="-1"
+            autocomplete="off"
+            aria-hidden="true" />
+
+          <div class="service-form-grid">
+            <label class="form-field">
+              <span class="form-label">Name</span>
+              <input class="form-input" type="text" name="name" autocomplete="name" required />
+            </label>
+
+            <label class="form-field">
+              <span class="form-label">Phone Number</span>
+              <input class="form-input" type="tel" name="phone" autocomplete="tel" required />
+            </label>
+
+            <label class="form-field form-field--full">
+              <span class="form-label">Address</span>
+              <input class="form-input" type="text" name="address" autocomplete="street-address" required />
+            </label>
+
+            <label class="form-field form-field--full">
+              <span class="form-label">Email</span>
+              <input class="form-input" type="email" name="email" autocomplete="email" required />
+            </label>
+          </div>
+
+          <div class="service-form-actions">
+            <button class="btn btn-primary" type="submit">Send Quote Request</button>
+            <a class="btn btn-outline" href="tel:+16395979351">Call Instead</a>
+          </div>
+
+          <p class="form-footnote">Snow service requests from this page email <strong>greenwolfsaskatoon@gmail.com</strong> and save to your Google Sheet backup.</p>
+          <p class="form-status" data-form-status aria-live="polite"></p>
+        </form>
       </div>
     </div>
   </section>
@@ -329,11 +371,6 @@
   <button class="back-to-top" type="button" aria-label="Back to top">&#8593;</button>
   <script src="https://elfsightcdn.com/platform.js" async></script>
   <script src="/script.js"></script>
-  <script
-    src="https://d3ey4dbjkt2f6s.cloudfront.net/assets/static_link/work_request_embed_snippet.js"
-    clienthub_id="309320be-1d48-4310-a545-7a08dd1adf4f-2164293"
-    form_url="https://clienthub.getjobber.com/client_hubs/309320be-1d48-4310-a545-7a08dd1adf4f/public/work_request/embedded_work_request_form?form_id=2164293">
-  </script>
 </body>
 </html>
 

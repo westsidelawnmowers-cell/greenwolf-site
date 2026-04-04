@@ -266,6 +266,63 @@ function setupTracking() {
   }
 }
 
+function setupSnowQuoteForm() {
+  const form = document.getElementById('snow-quote-form');
+  if (!form) return;
+
+  const status = form.querySelector('[data-form-status]');
+  const submitButton = form.querySelector('button[type="submit"]');
+  const endpoint = form.dataset.formEndpoint || '';
+
+  const setStatus = (message, state = '') => {
+    if (!status) return;
+    status.textContent = message;
+    status.className = `form-status${state ? ` is-${state}` : ''}`;
+  };
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    if (!form.reportValidity()) {
+      setStatus('Please fill out all required fields before sending.', 'error');
+      return;
+    }
+
+    const payload = new URLSearchParams(new FormData(form));
+    const honeypot = payload.get('company');
+    if (honeypot) return;
+
+    if (!endpoint || endpoint.includes('REPLACE_WITH_YOUR_DEPLOYMENT_ID')) {
+      setStatus('This snow form is not connected yet. Add your Google Apps Script web app URL first.', 'error');
+      return;
+    }
+
+    payload.append('submittedAt', new Date().toISOString());
+    payload.append('page', window.location.href);
+
+    form.classList.add('is-submitting');
+    submitButton.disabled = true;
+    setStatus('Sending your quote request...', 'pending');
+
+    try {
+      await fetch(endpoint, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: payload
+      });
+
+      emitAnalyticsEvent('snow_quote_submit', { page: getPageKey() });
+      form.reset();
+      setStatus('Your request was sent. Green Wolf will follow up shortly.', 'success');
+    } catch (error) {
+      setStatus('The form could not be sent. Call or text 639-597-9351 and we will handle it manually.', 'error');
+    } finally {
+      form.classList.remove('is-submitting');
+      submitButton.disabled = false;
+    }
+  });
+}
+
 function setupDetailsAccordion() {
   const accordionGroups = document.querySelectorAll('[data-accordion="true"]');
   accordionGroups.forEach((group) => {
@@ -325,6 +382,7 @@ function init() {
   setupHideHeaderOnScroll();
   setupMobileNav();
   setupMobileCtaBar();
+  setupSnowQuoteForm();
   setupDetailsAccordion();
   optimizeMedia();
   setupTracking();
