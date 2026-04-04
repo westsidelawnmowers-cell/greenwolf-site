@@ -9,14 +9,16 @@ function doGet() {
 
 function doPost(e) {
   const data = normalizeSubmission_(e);
+  const responseMode = data.responseMode || '';
+  const formKey = data.formKey || '';
 
   if (data.company) {
-    return jsonResponse_({ ok: true, skipped: true });
+    return buildResponse_({ success: true, skipped: true, message: 'Ignored spam submission.', formKey }, responseMode);
   }
 
   const missing = ['name', 'address', 'phone', 'email'].filter((field) => !data[field]);
   if (missing.length) {
-    return jsonResponse_({ ok: false, error: `Missing required fields: ${missing.join(', ')}` });
+    return buildResponse_({ success: false, error: `Missing required fields: ${missing.join(', ')}`, formKey }, responseMode);
   }
 
   const lock = LockService.getScriptLock();
@@ -43,7 +45,7 @@ function doPost(e) {
       body: buildPlainTextEmail_(data)
     });
 
-    return jsonResponse_({ ok: true });
+    return buildResponse_({ success: true, message: 'Form submitted successfully', formKey }, responseMode);
   } finally {
     lock.releaseLock();
   }
@@ -59,6 +61,8 @@ function normalizeSubmission_(e) {
     phone: clean_(params.phone) || clean_(params.phoneNumber),
     email: clean_(params.email) || clean_(params.emailAddress),
     message: clean_(params.message),
+    responseMode: clean_(params.responseMode),
+    formKey: clean_(params.formKey),
     source: clean_(params.source) || 'https://greenwolf.work/snow',
     page: clean_(params.page) || '',
     company: clean_(params.company)
@@ -117,4 +121,28 @@ function jsonResponse_(payload) {
   return ContentService
     .createTextOutput(JSON.stringify(payload))
     .setMimeType(ContentService.MimeType.JSON);
+}
+
+function buildResponse_(payload, responseMode) {
+  if (responseMode === 'iframe') {
+    return iframeResponse_(payload);
+  }
+
+  return jsonResponse_(payload);
+}
+
+function iframeResponse_(payload) {
+  const safePayload = JSON.stringify({
+    type: 'greenwolf_quote_result',
+    success: Boolean(payload.success),
+    message: payload.message || '',
+    error: payload.error || '',
+    formKey: payload.formKey || ''
+  });
+
+  return HtmlService.createHtmlOutput(
+    '<!doctype html><html><body><script>' +
+      'window.parent.postMessage(' + JSON.stringify(safePayload) + ', "*");' +
+    '</script></body></html>'
+  );
 }

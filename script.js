@@ -266,6 +266,29 @@ function setupTracking() {
   }
 }
 
+function parseQuoteResultMessage(data) {
+  if (!data) return null;
+
+  let payload = data;
+  if (typeof payload === 'string') {
+    try {
+      payload = JSON.parse(payload);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  if (!payload || payload.type !== 'greenwolf_quote_result') {
+    return null;
+  }
+
+  return payload;
+}
+
+function isTrustedQuoteOrigin(origin) {
+  return origin.includes('script.google.com') || origin.includes('script.googleusercontent.com');
+}
+
 function setupSnowQuoteForm() {
   const form = document.getElementById('snow-quote-form');
   if (!form) return;
@@ -280,13 +303,41 @@ function setupSnowQuoteForm() {
   const status = form.querySelector('[data-form-status]');
   const submitButton = form.querySelector('button[type="submit"]');
   const endpoint = form.dataset.formEndpoint || '';
+  const formKey = form.dataset.formKey || 'snow';
   const iframeTarget = 'snow-quote-submit-frame';
+  const iframe = document.querySelector(`iframe[name="${iframeTarget}"]`);
   let selectedPackage = null;
+  let awaitingResult = false;
+  let resultTimer = null;
 
   const setStatus = (message, state = '') => {
     if (!status) return;
     status.textContent = message;
     status.className = `form-status${state ? ` is-${state}` : ''}`;
+  };
+
+  const resetSubmissionState = () => {
+    awaitingResult = false;
+    if (resultTimer) {
+      window.clearTimeout(resultTimer);
+      resultTimer = null;
+    }
+    form.classList.remove('is-submitting');
+    submitButton.disabled = false;
+  };
+
+  const handleResultMessage = (success, message) => {
+    resetSubmissionState();
+
+    if (success) {
+      setStatus(message || 'Your request was sent. Green Wolf will follow up shortly.', 'success');
+      window.setTimeout(() => {
+        window.location.href = '/thank-you';
+      }, 250);
+      return;
+    }
+
+    setStatus(message || 'The form could not be confirmed. Please try again or call/text us.', 'error');
   };
 
   const splitName = (fullName) => {
@@ -348,6 +399,28 @@ function setupSnowQuoteForm() {
       const card = button.closest('[data-snow-package-card]');
       selectSnowPackage(card);
     });
+  });
+
+  window.addEventListener('message', (event) => {
+    if (!awaitingResult || !isTrustedQuoteOrigin(event.origin)) return;
+
+    const payload = parseQuoteResultMessage(event.data);
+    if (!payload || payload.formKey !== formKey) return;
+
+    handleResultMessage(Boolean(payload.success), payload.message || payload.error);
+  });
+
+  iframe?.addEventListener('load', () => {
+    if (!awaitingResult) return;
+
+    if (resultTimer) {
+      window.clearTimeout(resultTimer);
+    }
+
+    resultTimer = window.setTimeout(() => {
+      if (!awaitingResult) return;
+      handleResultMessage(false, 'Submission finished but no success confirmation came back. Update the Google Apps Script response code.');
+    }, 800);
   });
 
   form.addEventListener('submit', async (event) => {
@@ -421,16 +494,18 @@ function setupSnowQuoteForm() {
     form.action = endpoint;
     form.target = iframeTarget;
 
+    awaitingResult = true;
     form.classList.add('is-submitting');
     submitButton.disabled = true;
     setStatus('Sending your quote request...', 'pending');
+    resultTimer = window.setTimeout(() => {
+      if (!awaitingResult) return;
+      handleResultMessage(false, 'No response came back from the quote handler. Please try again.');
+    }, 12000);
 
     window.setTimeout(() => {
       form.submit();
       emitAnalyticsEvent('snow_quote_submit', { page: getPageKey() });
-      window.setTimeout(() => {
-        window.location.href = '/thank-you';
-      }, 1200);
     }, 50);
   });
 }
@@ -449,13 +524,41 @@ function setupLawnQuoteForm() {
   const status = form.querySelector('[data-form-status]');
   const submitButton = form.querySelector('button[type="submit"]');
   const endpoint = form.dataset.formEndpoint || '';
+  const formKey = form.dataset.formKey || 'lawn';
   const iframeTarget = 'lawn-quote-submit-frame';
+  const iframe = document.querySelector(`iframe[name="${iframeTarget}"]`);
   let selectedPackage = null;
+  let awaitingResult = false;
+  let resultTimer = null;
 
   const setStatus = (message, state = '') => {
     if (!status) return;
     status.textContent = message;
     status.className = `form-status${state ? ` is-${state}` : ''}`;
+  };
+
+  const resetSubmissionState = () => {
+    awaitingResult = false;
+    if (resultTimer) {
+      window.clearTimeout(resultTimer);
+      resultTimer = null;
+    }
+    form.classList.remove('is-submitting');
+    submitButton.disabled = false;
+  };
+
+  const handleResultMessage = (success, message) => {
+    resetSubmissionState();
+
+    if (success) {
+      setStatus(message || 'Your request was sent. Green Wolf will follow up shortly.', 'success');
+      window.setTimeout(() => {
+        window.location.href = '/thank-you';
+      }, 250);
+      return;
+    }
+
+    setStatus(message || 'The form could not be confirmed. Please try again or call/text us.', 'error');
   };
 
   const splitName = (fullName) => {
@@ -517,6 +620,28 @@ function setupLawnQuoteForm() {
       const card = button.closest('[data-lawn-package-card]');
       selectLawnPackage(card);
     });
+  });
+
+  window.addEventListener('message', (event) => {
+    if (!awaitingResult || !isTrustedQuoteOrigin(event.origin)) return;
+
+    const payload = parseQuoteResultMessage(event.data);
+    if (!payload || payload.formKey !== formKey) return;
+
+    handleResultMessage(Boolean(payload.success), payload.message || payload.error);
+  });
+
+  iframe?.addEventListener('load', () => {
+    if (!awaitingResult) return;
+
+    if (resultTimer) {
+      window.clearTimeout(resultTimer);
+    }
+
+    resultTimer = window.setTimeout(() => {
+      if (!awaitingResult) return;
+      handleResultMessage(false, 'Submission finished but no success confirmation came back. Update the Google Apps Script response code.');
+    }, 800);
   });
 
   form.addEventListener('submit', async (event) => {
@@ -592,16 +717,18 @@ function setupLawnQuoteForm() {
     form.action = endpoint;
     form.target = iframeTarget;
 
+    awaitingResult = true;
     form.classList.add('is-submitting');
     submitButton.disabled = true;
     setStatus('Sending your quote request...', 'pending');
+    resultTimer = window.setTimeout(() => {
+      if (!awaitingResult) return;
+      handleResultMessage(false, 'No response came back from the quote handler. Please try again.');
+    }, 12000);
 
     window.setTimeout(() => {
       form.submit();
       emitAnalyticsEvent('lawn_quote_submit', { page: getPageKey() });
-      window.setTimeout(() => {
-        window.location.href = '/thank-you';
-      }, 1200);
     }, 50);
   });
 }
