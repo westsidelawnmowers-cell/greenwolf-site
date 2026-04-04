@@ -308,10 +308,19 @@
         <form
           id="snow-quote-form"
           class="service-form"
-          data-form-endpoint="https://script.google.com/macros/s/AKfycbzS1lp3_24C2VhhKA7IBms-BSAcfOvAotDq2qE8n81RUKLrGITORDs6jWeBQANGJcqT/exec"
+          data-form-endpoint="https://script.google.com/macros/s/AKfycbxciAW0zgJ1wLP4Icx1DVQ_81rQBnegrhxoXW_1imOXFLMyd2PTtJcAiV6590YT4mWqsg/exec"
+          method="post"
           novalidate>
           <input type="hidden" name="service" value="Snow Removal" />
-          <input type="hidden" name="source" value="https://greenwolf.work/snow" />
+          <input type="hidden" name="source" value="Snow Service Website Form" />
+          <input type="hidden" name="page" value="https://greenwolf.work/snow" />
+          <input type="hidden" name="fullName" value="" />
+          <input type="hidden" name="firstName" value="" />
+          <input type="hidden" name="lastName" value="" />
+          <input type="hidden" name="phoneNumber" value="" />
+          <input type="hidden" name="emailAddress" value="" />
+          <input type="hidden" name="streetAddress" value="" />
+          <input type="hidden" name="message" value="" />
           <input
             class="form-honeypot"
             type="text"
@@ -350,6 +359,11 @@
           <p class="form-footnote">Snow service requests from this page email <strong>greenwolfsaskatoon@gmail.com</strong> and save to your Google Sheet backup.</p>
           <p class="form-status" data-form-status aria-live="polite"></p>
         </form>
+        <iframe
+          name="snow-quote-submit-frame"
+          class="form-submit-frame"
+          tabindex="-1"
+          aria-hidden="true"></iframe>
       </div>
     </div>
   </section>

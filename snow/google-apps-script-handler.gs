@@ -54,10 +54,10 @@ function normalizeSubmission_(e) {
 
   return {
     service: clean_(params.service) || 'Snow Removal',
-    name: clean_(params.name),
-    address: clean_(params.address),
-    phone: clean_(params.phone),
-    email: clean_(params.email),
+    name: clean_(params.name) || clean_(params.fullName) || joinName_(params.firstName, params.lastName),
+    address: clean_(params.address) || clean_(params.streetAddress),
+    phone: clean_(params.phone) || clean_(params.phoneNumber),
+    email: clean_(params.email) || clean_(params.emailAddress),
     message: clean_(params.message),
     source: clean_(params.source) || 'https://greenwolf.work/snow',
     page: clean_(params.page) || '',
@@ -107,6 +107,10 @@ function buildPlainTextEmail_(data) {
 
 function clean_(value) {
   return String(value || '').trim();
+}
+
+function joinName_(firstName, lastName) {
+  return [clean_(firstName), clean_(lastName)].filter(Boolean).join(' ').trim();
 }
 
 function jsonResponse_(payload) {

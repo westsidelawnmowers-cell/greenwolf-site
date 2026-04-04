@@ -273,11 +273,23 @@ function setupSnowQuoteForm() {
   const status = form.querySelector('[data-form-status]');
   const submitButton = form.querySelector('button[type="submit"]');
   const endpoint = form.dataset.formEndpoint || '';
+  const iframeTarget = 'snow-quote-submit-frame';
 
   const setStatus = (message, state = '') => {
     if (!status) return;
     status.textContent = message;
     status.className = `form-status${state ? ` is-${state}` : ''}`;
+  };
+
+  const splitName = (fullName) => {
+    const normalized = fullName.trim().replace(/\s+/g, ' ');
+    if (!normalized) return { firstName: '', lastName: '' };
+
+    const parts = normalized.split(' ');
+    return {
+      firstName: parts[0] || '',
+      lastName: parts.slice(1).join(' ')
+    };
   };
 
   form.addEventListener('submit', async (event) => {
@@ -297,29 +309,49 @@ function setupSnowQuoteForm() {
       return;
     }
 
-    payload.append('submittedAt', new Date().toISOString());
-    payload.append('page', window.location.href);
+    const nameInput = form.querySelector('[name="name"]');
+    const phoneInput = form.querySelector('[name="phone"]');
+    const emailInput = form.querySelector('[name="email"]');
+    const addressInput = form.querySelector('[name="address"]');
+    const messageInput = form.querySelector('[name="message"]');
+    const aliasFullName = form.querySelector('[name="fullName"]');
+    const aliasFirstName = form.querySelector('[name="firstName"]');
+    const aliasLastName = form.querySelector('[name="lastName"]');
+    const aliasPhone = form.querySelector('[name="phoneNumber"]');
+    const aliasEmail = form.querySelector('[name="emailAddress"]');
+    const aliasAddress = form.querySelector('[name="streetAddress"]');
+    const sourceInput = form.querySelector('[name="source"]');
+    const pageInput = form.querySelector('[name="page"]');
+
+    const nameParts = splitName(nameInput?.value || '');
+
+    if (aliasFullName) aliasFullName.value = nameInput?.value || '';
+    if (aliasFirstName) aliasFirstName.value = nameParts.firstName;
+    if (aliasLastName) aliasLastName.value = nameParts.lastName;
+    if (aliasPhone) aliasPhone.value = phoneInput?.value || '';
+    if (aliasEmail) aliasEmail.value = emailInput?.value || '';
+    if (aliasAddress) aliasAddress.value = addressInput?.value || '';
+    if (messageInput && !messageInput.value) messageInput.value = '';
+    if (sourceInput && !sourceInput.value) sourceInput.value = 'Snow Service Website Form';
+    if (pageInput) pageInput.value = window.location.href;
+
+    form.action = endpoint;
+    form.target = iframeTarget;
 
     form.classList.add('is-submitting');
     submitButton.disabled = true;
     setStatus('Sending your quote request...', 'pending');
 
-    try {
-      await fetch(endpoint, {
-        method: 'POST',
-        mode: 'no-cors',
-        body: payload
-      });
-
+    window.setTimeout(() => {
+      form.submit();
       emitAnalyticsEvent('snow_quote_submit', { page: getPageKey() });
-      form.reset();
-      setStatus('Your request was sent. Green Wolf will follow up shortly.', 'success');
-    } catch (error) {
-      setStatus('The form could not be sent. Call or text 639-597-9351 and we will handle it manually.', 'error');
-    } finally {
-      form.classList.remove('is-submitting');
-      submitButton.disabled = false;
-    }
+      window.setTimeout(() => {
+        form.reset();
+        form.classList.remove('is-submitting');
+        submitButton.disabled = false;
+        setStatus('Your request was sent. Green Wolf will follow up shortly.', 'success');
+      }, 1200);
+    }, 50);
   });
 }
 
