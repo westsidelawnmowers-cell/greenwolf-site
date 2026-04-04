@@ -33,7 +33,6 @@
     gtag('config', 'AW-18029718143');
   </script>
   <link rel="stylesheet" href="/style.css" />
-  <link rel="stylesheet" href="https://d3ey4dbjkt2f6s.cloudfront.net/assets/external/work_request_embed.css" media="screen" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -135,7 +134,7 @@
       <p class="section-lead">Choose your plan and request your quote in one simple step. All plans cover lawns up to 5,000 sq. ft.</p>
 
       <div class="package-grid plan-showcase">
-        <article class="package-card package-card--alpha">
+        <article class="package-card package-card--alpha" data-lawn-package-card data-package-name="Showcase Stripes | Premium" data-package-frequency="Every Week">
           <div class="package-card-top">
             <div class="package-meta">ALPHA TURF PROGRAM</div>
             <p class="package-range">$229-$349</p>
@@ -154,11 +153,11 @@
             </ul>
           </div>
           <div class="package-card-footer">
-            <a class="btn btn-primary" href="#quote">Get a quote</a>
+            <button class="btn btn-primary" type="button" data-select-lawn-package>Select this plan</button>
           </div>
         </article>
 
-        <article class="package-card package-card--beta package-card--featured">
+        <article class="package-card package-card--beta package-card--featured" data-lawn-package-card data-package-name="Healthy Lawns | Balanced" data-package-frequency="Every Second Week">
           <span class="corner-ribbon corner-ribbon-right"><span class="corner-ribbon-text">Best<br>Seller</span></span>
           <div class="package-card-top">
             <div class="package-meta">BETA TURF PROGRAM</div>
@@ -177,11 +176,11 @@
             </ul>
           </div>
           <div class="package-card-footer">
-            <a class="btn btn-primary" href="#quote">Get a quote</a>
+            <button class="btn btn-primary" type="button" data-select-lawn-package>Select this plan</button>
           </div>
         </article>
 
-        <article class="package-card package-card--delta">
+        <article class="package-card package-card--delta" data-lawn-package-card data-package-name="Trim & Tidy | Essentials" data-package-frequency="Every Second Week">
           <div class="package-card-top">
             <div class="package-meta">DELTA TURF PROGRAM</div>
             <p class="package-range">$119-$219</p>
@@ -198,142 +197,9 @@
             </ul>
           </div>
           <div class="package-card-footer">
-            <a class="btn btn-primary" href="#quote">Get a quote</a>
+            <button class="btn btn-primary" type="button" data-select-lawn-package>Select this plan</button>
           </div>
         </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section alt-section" id="weed-control-fertilization">
-    <div class="container">
-      <h2>Specialty Lawn Treatments</h2>
-      <p class="section-lead">Targeted services designed to restore lawn health and improve turf quality.</p>
-      <div class="addon-grid addon-grid--lawn" data-accordion="true">
-        <details class="addon-card addon-card--lawn">
-          <summary>
-            <h3>Aeration</h3>
-            <span class="addon-toggle">Read</span>
-          </summary>
-          <div class="addon-body">
-            <img class="addon-media" src="/images/S1.png" alt="Lawn aeration service" loading="lazy" decoding="async" />
-            <p>Core aeration opens compacted soil so air, water, and nutrients can reach roots faster.</p>
-            <p class="addon-pair-title">Works best with</p>
-            <ul class="addon-pair-list">
-              <li>Overseeding</li>
-              <li>Fertilizer Program</li>
-            </ul>
-          </div>
-        </details>
-
-        <details class="addon-card addon-card--lawn">
-          <summary>
-            <h3>Dethatching</h3>
-            <span class="addon-toggle">Read</span>
-          </summary>
-          <div class="addon-body">
-            <img class="addon-media" src="/images/S2.png" alt="Lawn dethatching service" loading="lazy" decoding="async" />
-            <p>Dethatching removes built-up dead grass so moisture and nutrients can move back into the soil.</p>
-            <p class="addon-pair-title">Works best with</p>
-            <ul class="addon-pair-list">
-              <li>Aeration</li>
-              <li>Overseeding</li>
-            </ul>
-          </div>
-        </details>
-
-        <details class="addon-card addon-card--lawn">
-          <summary>
-            <h3>Fertilizer Program</h3>
-            <span class="addon-toggle">Read</span>
-          </summary>
-          <div class="addon-body">
-            <img class="addon-media" src="/images/S3.png" alt="Lawn fertilizer service" loading="lazy" decoding="async" />
-            <p>Targeted feeding keeps turf greener, thicker, and more resilient through the full season.</p>
-            <p class="addon-pair-title">Works best with</p>
-            <ul class="addon-pair-list">
-              <li>Weed Control</li>
-              <li>Aeration</li>
-            </ul>
-          </div>
-        </details>
-
-        <details class="addon-card addon-card--lawn">
-          <summary>
-            <h3>Weed Control</h3>
-            <span class="addon-toggle">Read</span>
-          </summary>
-          <div class="addon-body">
-            <img class="addon-media" src="/images/S4.png" alt="Lawn weed control service" loading="lazy" decoding="async" />
-            <p>Professional treatments target broadleaf weeds while protecting healthy turf growth.</p>
-            <p class="addon-pair-title">Works best with</p>
-            <ul class="addon-pair-list">
-              <li>Fertilizer Program</li>
-            </ul>
-          </div>
-        </details>
-
-        <details class="addon-card addon-card--lawn">
-          <summary>
-            <h3>Overseeding</h3>
-            <span class="addon-toggle">Read</span>
-          </summary>
-          <div class="addon-body">
-            <img class="addon-media" src="/images/S5.png" alt="Lawn overseeding service" loading="lazy" decoding="async" />
-            <p>Overseeding fills thin and bare spots to improve density and give lawns a fuller look.</p>
-            <p class="addon-pair-title">Works best with</p>
-            <ul class="addon-pair-list">
-              <li>Aeration</li>
-              <li>Top Dressing</li>
-            </ul>
-          </div>
-        </details>
-
-        <details class="addon-card addon-card--lawn">
-          <summary>
-            <h3>Top Dressing</h3>
-            <span class="addon-toggle">Read</span>
-          </summary>
-          <div class="addon-body">
-            <img class="addon-media" src="/images/S6.png" alt="Top dressing lawn service" loading="lazy" decoding="async" />
-            <p>A thin soil layer helps level low spots and improves root-zone moisture and nutrient retention.</p>
-            <p class="addon-pair-title">Works best with</p>
-            <ul class="addon-pair-list">
-              <li>Overseeding</li>
-              <li>Aeration</li>
-            </ul>
-          </div>
-        </details>
-
-        <details class="addon-card addon-card--lawn">
-          <summary>
-            <h3>Shrub Hedge Trimming</h3>
-            <span class="addon-toggle">Read</span>
-          </summary>
-          <div class="addon-body">
-            <img class="addon-media" src="/images/S7.png" alt="Tree and shrub hedge trimming" loading="lazy" decoding="async" />
-            <p>Shape and health-focused trimming keeps hedges neat, controlled, and curb-appeal ready.</p>
-            <p class="addon-pair-title">Works best with</p>
-            <ul class="addon-pair-list">
-              <li>Routine Lawn Maintenance</li>
-            </ul>
-          </div>
-        </details>
-
-        <details class="addon-card addon-card--lawn">
-          <summary>
-            <h3>Power Raking</h3>
-            <span class="addon-toggle">Read</span>
-          </summary>
-          <div class="addon-body">
-            <img class="addon-media" src="/images/S8.png" alt="Power raking lawn service" loading="lazy" decoding="async" />
-            <p>Power raking clears excess surface buildup and helps your lawn breathe and recover faster.</p>
-            <p class="addon-pair-title">Works best with</p>
-            <ul class="addon-pair-list">
-              <li>Aeration</li>
-            </ul>
-          </div>
-        </details>
       </div>
     </div>
   </section>
@@ -342,13 +208,158 @@
     <div class="container split-grid">
       <div>
         <h2>Request a lawn quote</h2>
-        <p class="section-lead">Takes about 1 minute.</p>
-        <p class="section-lead">No commitment required.</p>
-        <p class="section-lead">Accurate pricing, no guessing.</p>
+        <p class="section-lead">Select the lawn package first. Then choose any extra treatments you want priced and send the quote request directly to Green Wolf.</p>
       </div>
       <div class="quote-form">
-        <div id="309320be-1d48-4310-a545-7a08dd1adf4f-2164449"></div>
-        <p class="form-footnote"></p>
+        <form
+          id="lawn-quote-form"
+          class="service-form"
+          data-form-endpoint="https://script.google.com/macros/s/AKfycbwB9XuhpMGjq8DO4pie112a_zC0xVoKR1lxm9JPyqHehKJb6z1_cFWC0fzjOvs8HIkSvw/exec"
+          method="post"
+          novalidate>
+          <input type="hidden" name="service" value="Lawn Care" />
+          <input type="hidden" name="source" value="Lawn Service Website Form" />
+          <input type="hidden" name="page" value="https://greenwolf.work/lawn" />
+          <input type="hidden" name="fullName" value="" />
+          <input type="hidden" name="firstName" value="" />
+          <input type="hidden" name="lastName" value="" />
+          <input type="hidden" name="phoneNumber" value="" />
+          <input type="hidden" name="emailAddress" value="" />
+          <input type="hidden" name="streetAddress" value="" />
+          <input type="hidden" name="frequency" value="" />
+          <input type="hidden" name="packageName" value="" />
+          <input type="hidden" name="addOns" value="" />
+          <input type="hidden" name="message" value="" />
+          <input
+            class="form-honeypot"
+            type="text"
+            name="company"
+            tabindex="-1"
+            autocomplete="off"
+            aria-hidden="true" />
+
+          <div class="snow-selection-summary" data-lawn-selection-summary>
+            <div class="snow-selection-topline">
+              <span class="snow-selection-badge">Selected Package</span>
+              <span class="snow-selection-state" data-selected-lawn-package-state>Waiting for selection</span>
+            </div>
+            <strong data-selected-lawn-package-text>Choose a lawn package above to continue.</strong>
+            <p class="snow-selection-note" data-selected-lawn-package-note>Your quote will update after you pick one plan.</p>
+          </div>
+
+          <div class="snow-addon-panel" data-lawn-addon-panel hidden>
+            <div class="snow-addon-head">
+              <h3>Choose add-ons</h3>
+              <p>Select any lawn treatments or extras you want included in the quote.</p>
+            </div>
+            <div class="snow-addon-grid">
+              <label class="snow-addon-option">
+                <input type="checkbox" name="lawnAddOn" value="Aeration" />
+                <img src="/images/S1.png" alt="Lawn aeration service" />
+                <span class="snow-addon-copy">
+                  <strong>Aeration</strong>
+                  <span>Break up compacted soil so water, air, and nutrients move deeper into the lawn.</span>
+                </span>
+              </label>
+
+              <label class="snow-addon-option">
+                <input type="checkbox" name="lawnAddOn" value="Dethatching" />
+                <img src="/images/S2.png" alt="Lawn dethatching service" />
+                <span class="snow-addon-copy">
+                  <strong>Dethatching</strong>
+                  <span>Remove built-up dead material so the lawn can recover and breathe properly.</span>
+                </span>
+              </label>
+
+              <label class="snow-addon-option">
+                <input type="checkbox" name="lawnAddOn" value="Fertilizer Program" />
+                <img src="/images/S3.png" alt="Lawn fertilizer service" />
+                <span class="snow-addon-copy">
+                  <strong>Fertilizer Program</strong>
+                  <span>Season-long feeding for thicker color, stronger growth, and better resilience.</span>
+                </span>
+              </label>
+
+              <label class="snow-addon-option">
+                <input type="checkbox" name="lawnAddOn" value="Weed Control" />
+                <img src="/images/S4.png" alt="Lawn weed control service" />
+                <span class="snow-addon-copy">
+                  <strong>Weed Control</strong>
+                  <span>Target broadleaf weeds without sacrificing the health of the turf.</span>
+                </span>
+              </label>
+
+              <label class="snow-addon-option">
+                <input type="checkbox" name="lawnAddOn" value="Overseeding" />
+                <img src="/images/S5.png" alt="Lawn overseeding service" />
+                <span class="snow-addon-copy">
+                  <strong>Overseeding</strong>
+                  <span>Fill thin spots and improve turf density where the lawn needs reinforcement.</span>
+                </span>
+              </label>
+
+              <label class="snow-addon-option">
+                <input type="checkbox" name="lawnAddOn" value="Power Raking" />
+                <img src="/images/S8.png" alt="Power raking lawn service" />
+                <span class="snow-addon-copy">
+                  <strong>Power Raking</strong>
+                  <span>Clear surface buildup and wake the lawn up faster in spring or recovery periods.</span>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div class="service-form-grid">
+            <label class="form-field">
+              <span class="form-label">Name</span>
+              <input class="form-input" type="text" name="name" autocomplete="name" required />
+            </label>
+
+            <label class="form-field">
+              <span class="form-label">Phone Number</span>
+              <input class="form-input" type="tel" name="phone" autocomplete="tel" required />
+            </label>
+
+            <label class="form-field form-field--full">
+              <span class="form-label">Address</span>
+              <input class="form-input" type="text" name="address" autocomplete="street-address" required />
+            </label>
+
+            <label class="form-field">
+              <span class="form-label">Email</span>
+              <input class="form-input" type="email" name="email" autocomplete="email" required />
+            </label>
+
+            <label class="form-field">
+              <span class="form-label">Approx Lawn Size</span>
+              <select class="form-input" name="lawnSize" required>
+                <option value="">Select one</option>
+                <option value="Up to 2,500 sq ft">Up to 2,500 sq ft</option>
+                <option value="2,500 to 5,000 sq ft">2,500 to 5,000 sq ft</option>
+                <option value="Over 5,000 sq ft">Over 5,000 sq ft</option>
+                <option value="Not sure">Not sure</option>
+              </select>
+            </label>
+
+            <label class="form-field form-field--full">
+              <span class="form-label">Notes</span>
+              <textarea class="form-input form-textarea" name="notes" rows="4" placeholder="Tell us about weeds, patchy areas, gates, pets, trimming concerns, or anything else we should know."></textarea>
+            </label>
+          </div>
+
+          <div class="service-form-actions">
+            <button class="btn btn-primary" type="submit">Send Quote Request</button>
+            <a class="btn btn-outline" href="tel:+16395979351">Call Instead</a>
+          </div>
+
+          <p class="form-footnote">Lawn quote requests from this page go straight to Green Wolf and save to your Google Sheet backup.</p>
+          <p class="form-status" data-form-status aria-live="polite"></p>
+        </form>
+        <iframe
+          name="lawn-quote-submit-frame"
+          class="form-submit-frame"
+          tabindex="-1"
+          aria-hidden="true"></iframe>
       </div>
     </div>
   </section>
@@ -372,10 +383,6 @@
   <script src="https://elfsightcdn.com/platform.js" async></script>
   <script src="/script.js"></script>
 
-  <!-- Jobber embed script -->
-  <script src="https://d3ey4dbjkt2f6s.cloudfront.net/assets/static_link/work_request_embed_snippet.js" 
-    clienthub_id="309320be-1d48-4310-a545-7a08dd1adf4f-2164449" 
-    form_url="https://clienthub.getjobber.com/client_hubs/309320be-1d48-4310-a545-7a08dd1adf4f/public/work_request/embedded_work_request_form?form_id=2164449"></script>
 </body>
 </html>
 

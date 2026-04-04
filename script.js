@@ -435,6 +435,177 @@ function setupSnowQuoteForm() {
   });
 }
 
+function setupLawnQuoteForm() {
+  const form = document.getElementById('lawn-quote-form');
+  if (!form) return;
+
+  const packageCards = Array.from(document.querySelectorAll('[data-lawn-package-card]'));
+  const packageButtons = Array.from(document.querySelectorAll('[data-select-lawn-package]'));
+  const addonPanel = form.querySelector('[data-lawn-addon-panel]');
+  const selectionSummary = form.querySelector('[data-lawn-selection-summary]');
+  const selectionText = form.querySelector('[data-selected-lawn-package-text]');
+  const selectionState = form.querySelector('[data-selected-lawn-package-state]');
+  const selectionNote = form.querySelector('[data-selected-lawn-package-note]');
+  const status = form.querySelector('[data-form-status]');
+  const submitButton = form.querySelector('button[type="submit"]');
+  const endpoint = form.dataset.formEndpoint || '';
+  const iframeTarget = 'lawn-quote-submit-frame';
+  let selectedPackage = null;
+
+  const setStatus = (message, state = '') => {
+    if (!status) return;
+    status.textContent = message;
+    status.className = `form-status${state ? ` is-${state}` : ''}`;
+  };
+
+  const splitName = (fullName) => {
+    const normalized = fullName.trim().replace(/\s+/g, ' ');
+    if (!normalized) return { firstName: '', lastName: '' };
+
+    const parts = normalized.split(' ');
+    return {
+      firstName: parts[0] || '',
+      lastName: parts.slice(1).join(' ')
+    };
+  };
+
+  const selectLawnPackage = (card) => {
+    if (!card) return;
+
+    selectedPackage = {
+      name: card.dataset.packageName || '',
+      frequency: card.dataset.packageFrequency || ''
+    };
+
+    packageCards.forEach((item) => item.classList.toggle('is-selected', item === card));
+    packageButtons.forEach((button) => {
+      const parentCard = button.closest('[data-lawn-package-card]');
+      button.textContent = parentCard === card ? 'Selected' : 'Select this plan';
+    });
+
+    if (selectionText) {
+      selectionText.textContent = `${selectedPackage.name} | ${selectedPackage.frequency}`;
+    }
+
+    if (selectionState) {
+      selectionState.textContent = 'Locked in';
+    }
+
+    if (selectionNote) {
+      selectionNote.textContent = 'This lawn package will be included in your quote unless you change it above.';
+    }
+
+    if (selectionSummary) {
+      selectionSummary.classList.add('is-active');
+    }
+
+    if (addonPanel) {
+      addonPanel.hidden = false;
+    }
+
+    const top = form.getBoundingClientRect().top + window.scrollY - 110;
+    window.scrollTo({ top, behavior: 'smooth' });
+    emitAnalyticsEvent('lawn_package_select', {
+      page: getPageKey(),
+      package_name: selectedPackage.name,
+      package_frequency: selectedPackage.frequency
+    });
+  };
+
+  packageButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const card = button.closest('[data-lawn-package-card]');
+      selectLawnPackage(card);
+    });
+  });
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    if (!form.reportValidity()) {
+      setStatus('Please fill out all required fields before sending.', 'error');
+      return;
+    }
+
+    if (!selectedPackage) {
+      setStatus('Select a lawn package first so the quote includes the right plan.', 'error');
+      const top = document.getElementById('details')?.getBoundingClientRect().top + window.scrollY - 110;
+      if (typeof top === 'number' && !Number.isNaN(top)) {
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+      return;
+    }
+
+    const payload = new URLSearchParams(new FormData(form));
+    const honeypot = payload.get('company');
+    if (honeypot) return;
+
+    if (!endpoint || endpoint.includes('REPLACE_WITH_YOUR_DEPLOYMENT_ID')) {
+      setStatus('This lawn form is not connected yet. Add your Google Apps Script web app URL first.', 'error');
+      return;
+    }
+
+    const nameInput = form.querySelector('[name="name"]');
+    const phoneInput = form.querySelector('[name="phone"]');
+    const emailInput = form.querySelector('[name="email"]');
+    const addressInput = form.querySelector('[name="address"]');
+    const lawnSizeInput = form.querySelector('[name="lawnSize"]');
+    const notesInput = form.querySelector('[name="notes"]');
+    const messageInput = form.querySelector('[name="message"]');
+    const frequencyInput = form.querySelector('[name="frequency"]');
+    const packageNameInput = form.querySelector('[name="packageName"]');
+    const addOnsInput = form.querySelector('[name="addOns"]');
+    const aliasFullName = form.querySelector('[name="fullName"]');
+    const aliasFirstName = form.querySelector('[name="firstName"]');
+    const aliasLastName = form.querySelector('[name="lastName"]');
+    const aliasPhone = form.querySelector('[name="phoneNumber"]');
+    const aliasEmail = form.querySelector('[name="emailAddress"]');
+    const aliasAddress = form.querySelector('[name="streetAddress"]');
+    const sourceInput = form.querySelector('[name="source"]');
+    const pageInput = form.querySelector('[name="page"]');
+
+    const nameParts = splitName(nameInput?.value || '');
+    const selectedAddOns = Array.from(form.querySelectorAll('input[name="lawnAddOn"]:checked'))
+      .map((input) => input.value)
+      .filter(Boolean);
+    const compiledMessageParts = [
+      `Selected package: ${selectedPackage.name}`,
+      `Plan frequency: ${selectedPackage.frequency}`,
+      lawnSizeInput?.value ? `Approx lawn size: ${lawnSizeInput.value}` : '',
+      selectedAddOns.length ? `Add-ons: ${selectedAddOns.join(', ')}` : '',
+      notesInput?.value ? `Customer notes: ${notesInput.value.trim()}` : ''
+    ].filter(Boolean);
+
+    if (aliasFullName) aliasFullName.value = nameInput?.value || '';
+    if (aliasFirstName) aliasFirstName.value = nameParts.firstName;
+    if (aliasLastName) aliasLastName.value = nameParts.lastName;
+    if (aliasPhone) aliasPhone.value = phoneInput?.value || '';
+    if (aliasEmail) aliasEmail.value = emailInput?.value || '';
+    if (aliasAddress) aliasAddress.value = addressInput?.value || '';
+    if (frequencyInput) frequencyInput.value = selectedPackage.frequency;
+    if (packageNameInput) packageNameInput.value = selectedPackage.name;
+    if (addOnsInput) addOnsInput.value = selectedAddOns.join(', ');
+    if (messageInput) messageInput.value = compiledMessageParts.join(' | ');
+    if (sourceInput && !sourceInput.value) sourceInput.value = 'Lawn Service Website Form';
+    if (pageInput) pageInput.value = window.location.href;
+
+    form.action = endpoint;
+    form.target = iframeTarget;
+
+    form.classList.add('is-submitting');
+    submitButton.disabled = true;
+    setStatus('Sending your quote request...', 'pending');
+
+    window.setTimeout(() => {
+      form.submit();
+      emitAnalyticsEvent('lawn_quote_submit', { page: getPageKey() });
+      window.setTimeout(() => {
+        window.location.href = '/thank-you';
+      }, 1200);
+    }, 50);
+  });
+}
+
 function setupDetailsAccordion() {
   const accordionGroups = document.querySelectorAll('[data-accordion="true"]');
   accordionGroups.forEach((group) => {
@@ -495,6 +666,7 @@ function init() {
   setupMobileNav();
   setupMobileCtaBar();
   setupSnowQuoteForm();
+  setupLawnQuoteForm();
   setupDetailsAccordion();
   optimizeMedia();
   setupTracking();
