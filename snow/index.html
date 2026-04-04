@@ -143,7 +143,7 @@
       <h2>Choose a snow plan</h2>
       <p class="section-lead">Pick a plan, then submit the quote form for pricing.</p>
         <div class="package-grid plan-showcase">
-        <article class="package-card package-card--alpha">
+        <article class="package-card package-card--alpha" data-snow-package-card data-package-name="Full-Season Coverage" data-package-frequency="FULL SEASON">
           <div class="package-card-top">
             <div class="package-meta">ALPHA SNOW PROGRAM</div>
             <p class="package-range">FULL SEASON</p>
@@ -161,11 +161,11 @@
             </ul>
           </div>
           <div class="package-card-footer">
-            <a class="btn btn-primary" href="#quote">Get a quote</a>
+            <button class="btn btn-primary" type="button" data-select-snow-package>Select this plan</button>
           </div>
         </article>
 
-        <article class="package-card package-card--beta">
+        <article class="package-card package-card--beta" data-snow-package-card data-package-name="Consistent Service" data-package-frequency="MONTHLY">
           <div class="package-card-top">
             <div class="package-meta">BETA SNOW PROGRAM</div>
             <p class="package-range">MONTHLY</p>
@@ -182,11 +182,11 @@
             </ul>
           </div>
           <div class="package-card-footer">
-            <a class="btn btn-primary" href="#quote">Get a quote</a>
+            <button class="btn btn-primary" type="button" data-select-snow-package>Select this plan</button>
           </div>
         </article>
 
-        <article class="package-card package-card--delta">
+        <article class="package-card package-card--delta" data-snow-package-card data-package-name="On-Demand Clearing" data-package-frequency="PER PUSH">
           <div class="package-card-top">
             <div class="package-meta">DELTA SNOW PROGRAM</div>
             <p class="package-range">PER PUSH</p>
@@ -203,7 +203,7 @@
             </ul>
           </div>
           <div class="package-card-footer">
-            <a class="btn btn-primary" href="#quote">Get a quote</a>
+            <button class="btn btn-primary" type="button" data-select-snow-package>Select this plan</button>
           </div>
         </article>
       </div>
@@ -239,70 +239,11 @@
     </div>
   </section>
 
-  <section class="section alt-section">
-    <div class="container">
-      <h2>Snow add-ons</h2>
-      <p class="section-lead">Make winter safer and clearer. Tap "Read more" to see what each add-on includes.</p>
-      <div class="addon-grid">
-        <details class="addon-card">
-          <summary>
-            <div>
-              <h3>Ice melt application</h3>
-              <p class="addon-blurb">Prevent slick spots on walks, steps, and entries.</p>
-            </div>
-            <span class="addon-toggle">Read more</span>
-          </summary>
-          <div class="addon-body">
-            <p>Concrete-safe ice melt spread after each visit where you need extra traction.</p>
-            <ul>
-              <li>Targeted to high-traffic areas and slopes</li>
-              <li>Available as-needed or bundled for the season</li>
-            </ul>
-          </div>
-        </details>
-
-        <details class="addon-card">
-          <summary>
-            <div>
-              <h3>Priority route window</h3>
-              <p class="addon-blurb">Earlier arrival after storms for businesses or tight schedules.</p>
-            </div>
-            <span class="addon-toggle">Read more</span>
-          </summary>
-          <div class="addon-body">
-            <p>We place your property in our first-pass loop to clear before peak traffic.</p>
-            <ul>
-              <li>Great for early commuters and storefronts</li>
-              <li>Limited spots to keep response times fast</li>
-            </ul>
-          </div>
-        </details>
-
-        <details class="addon-card">
-          <summary>
-            <div>
-              <h3>On-call shovel visit</h3>
-              <p class="addon-blurb">Extra shoveling for drifts or windrows between scheduled pushes.</p>
-            </div>
-            <span class="addon-toggle">Read more</span>
-          </summary>
-          <div class="addon-body">
-            <p>Text us when the plow ridge blocks your drive - we'll clear approaches and walkways.</p>
-            <ul>
-              <li>Quick response during active snowfall</li>
-              <li>Available for residential and light commercial</li>
-            </ul>
-          </div>
-        </details>
-      </div>
-    </div>
-  </section>
-
   <section class="section" id="quote">
     <div class="container split-grid">
       <div>
         <h2>Request a snow quote</h2>
-        <p class="section-lead">Fill out the form and it goes straight to Green Wolf. We also save a backup copy to Google Sheets so your request does not get lost.</p>
+        <p class="section-lead">Pick your package first. Then the add-on options open below so we can price the quote properly before sending you to the thank-you page.</p>
       </div>
       <div class="quote-form">
         <form
@@ -320,6 +261,9 @@
           <input type="hidden" name="phoneNumber" value="" />
           <input type="hidden" name="emailAddress" value="" />
           <input type="hidden" name="streetAddress" value="" />
+          <input type="hidden" name="frequency" value="" />
+          <input type="hidden" name="packageName" value="" />
+          <input type="hidden" name="addOns" value="" />
           <input type="hidden" name="message" value="" />
           <input
             class="form-honeypot"
@@ -328,6 +272,46 @@
             tabindex="-1"
             autocomplete="off"
             aria-hidden="true" />
+
+          <div class="snow-selection-summary" data-snow-selection-summary>
+            <span class="snow-selection-label">Selected package</span>
+            <strong data-selected-package-text>Choose a snow plan above to continue.</strong>
+          </div>
+
+          <div class="snow-addon-panel" data-snow-addon-panel hidden>
+            <div class="snow-addon-head">
+              <h3>Choose add-ons</h3>
+              <p>Select anything you want priced with your package.</p>
+            </div>
+            <div class="snow-addon-grid">
+              <label class="snow-addon-option">
+                <input type="checkbox" name="snowAddOn" value="Ice melt application" />
+                <img src="/images/3004.jpeg" alt="Snow clearing on front steps and entry" />
+                <span class="snow-addon-copy">
+                  <strong>Ice melt application</strong>
+                  <span>Safer footing on walks, steps, and entries after each visit.</span>
+                </span>
+              </label>
+
+              <label class="snow-addon-option">
+                <input type="checkbox" name="snowAddOn" value="Priority route window" />
+                <img src="/images/3008.jpeg" alt="Cleared driveway after snowfall" />
+                <span class="snow-addon-copy">
+                  <strong>Priority route window</strong>
+                  <span>Earlier service window for early commutes and time-sensitive properties.</span>
+                </span>
+              </label>
+
+              <label class="snow-addon-option">
+                <input type="checkbox" name="snowAddOn" value="On-call shovel visit" />
+                <img src="/images/3005.jpeg" alt="Snow removal result on residential driveway" />
+                <span class="snow-addon-copy">
+                  <strong>On-call shovel visit</strong>
+                  <span>Extra clearing for drift buildup, windrows, or surprise access issues.</span>
+                </span>
+              </label>
+            </div>
+          </div>
 
           <div class="service-form-grid">
             <label class="form-field">
@@ -348,6 +332,11 @@
             <label class="form-field form-field--full">
               <span class="form-label">Email</span>
               <input class="form-input" type="email" name="email" autocomplete="email" required />
+            </label>
+
+            <label class="form-field form-field--full">
+              <span class="form-label">Notes</span>
+              <textarea class="form-input form-textarea" name="notes" rows="4" placeholder="Gate code, corner lot, drift problem areas, preferred contact time, or anything else we should know."></textarea>
             </label>
           </div>
 

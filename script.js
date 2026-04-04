@@ -270,10 +270,15 @@ function setupSnowQuoteForm() {
   const form = document.getElementById('snow-quote-form');
   if (!form) return;
 
+  const packageCards = Array.from(document.querySelectorAll('[data-snow-package-card]'));
+  const packageButtons = Array.from(document.querySelectorAll('[data-select-snow-package]'));
+  const addonPanel = form.querySelector('[data-snow-addon-panel]');
+  const selectionText = form.querySelector('[data-selected-package-text]');
   const status = form.querySelector('[data-form-status]');
   const submitButton = form.querySelector('button[type="submit"]');
   const endpoint = form.dataset.formEndpoint || '';
   const iframeTarget = 'snow-quote-submit-frame';
+  let selectedPackage = null;
 
   const setStatus = (message, state = '') => {
     if (!status) return;
@@ -292,11 +297,58 @@ function setupSnowQuoteForm() {
     };
   };
 
+  const selectSnowPackage = (card) => {
+    if (!card) return;
+
+    selectedPackage = {
+      name: card.dataset.packageName || '',
+      frequency: card.dataset.packageFrequency || ''
+    };
+
+    packageCards.forEach((item) => item.classList.toggle('is-selected', item === card));
+    packageButtons.forEach((button) => {
+      const parentCard = button.closest('[data-snow-package-card]');
+      button.textContent = parentCard === card ? 'Selected' : 'Select this plan';
+    });
+
+    if (selectionText) {
+      selectionText.textContent = `${selectedPackage.name} | ${selectedPackage.frequency}`;
+    }
+
+    if (addonPanel) {
+      addonPanel.hidden = false;
+    }
+
+    const top = form.getBoundingClientRect().top + window.scrollY - 110;
+    window.scrollTo({ top, behavior: 'smooth' });
+    emitAnalyticsEvent('snow_package_select', {
+      page: getPageKey(),
+      package_name: selectedPackage.name,
+      package_frequency: selectedPackage.frequency
+    });
+  };
+
+  packageButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const card = button.closest('[data-snow-package-card]');
+      selectSnowPackage(card);
+    });
+  });
+
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     if (!form.reportValidity()) {
       setStatus('Please fill out all required fields before sending.', 'error');
+      return;
+    }
+
+    if (!selectedPackage) {
+      setStatus('Select a snow package first so the quote includes the right plan.', 'error');
+      const top = document.getElementById('details')?.getBoundingClientRect().top + window.scrollY - 110;
+      if (typeof top === 'number' && !Number.isNaN(top)) {
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
       return;
     }
 
@@ -313,7 +365,11 @@ function setupSnowQuoteForm() {
     const phoneInput = form.querySelector('[name="phone"]');
     const emailInput = form.querySelector('[name="email"]');
     const addressInput = form.querySelector('[name="address"]');
+    const notesInput = form.querySelector('[name="notes"]');
     const messageInput = form.querySelector('[name="message"]');
+    const frequencyInput = form.querySelector('[name="frequency"]');
+    const packageNameInput = form.querySelector('[name="packageName"]');
+    const addOnsInput = form.querySelector('[name="addOns"]');
     const aliasFullName = form.querySelector('[name="fullName"]');
     const aliasFirstName = form.querySelector('[name="firstName"]');
     const aliasLastName = form.querySelector('[name="lastName"]');
@@ -324,6 +380,15 @@ function setupSnowQuoteForm() {
     const pageInput = form.querySelector('[name="page"]');
 
     const nameParts = splitName(nameInput?.value || '');
+    const selectedAddOns = Array.from(form.querySelectorAll('input[name="snowAddOn"]:checked'))
+      .map((input) => input.value)
+      .filter(Boolean);
+    const compiledMessageParts = [
+      `Selected package: ${selectedPackage.name}`,
+      `Plan type: ${selectedPackage.frequency}`,
+      selectedAddOns.length ? `Add-ons: ${selectedAddOns.join(', ')}` : '',
+      notesInput?.value ? `Customer notes: ${notesInput.value.trim()}` : ''
+    ].filter(Boolean);
 
     if (aliasFullName) aliasFullName.value = nameInput?.value || '';
     if (aliasFirstName) aliasFirstName.value = nameParts.firstName;
@@ -331,7 +396,10 @@ function setupSnowQuoteForm() {
     if (aliasPhone) aliasPhone.value = phoneInput?.value || '';
     if (aliasEmail) aliasEmail.value = emailInput?.value || '';
     if (aliasAddress) aliasAddress.value = addressInput?.value || '';
-    if (messageInput && !messageInput.value) messageInput.value = '';
+    if (frequencyInput) frequencyInput.value = selectedPackage.frequency;
+    if (packageNameInput) packageNameInput.value = selectedPackage.name;
+    if (addOnsInput) addOnsInput.value = selectedAddOns.join(', ');
+    if (messageInput) messageInput.value = compiledMessageParts.join(' | ');
     if (sourceInput && !sourceInput.value) sourceInput.value = 'Snow Service Website Form';
     if (pageInput) pageInput.value = window.location.href;
 
@@ -346,10 +414,7 @@ function setupSnowQuoteForm() {
       form.submit();
       emitAnalyticsEvent('snow_quote_submit', { page: getPageKey() });
       window.setTimeout(() => {
-        form.reset();
-        form.classList.remove('is-submitting');
-        submitButton.disabled = false;
-        setStatus('Your request was sent. Green Wolf will follow up shortly.', 'success');
+        window.location.href = '/thank-you';
       }, 1200);
     }, 50);
   });
