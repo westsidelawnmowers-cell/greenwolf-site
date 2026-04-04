@@ -1,5 +1,5 @@
 const RECIPIENT_EMAIL = 'greenwolfsaskatoon@gmail.com';
-const SHEET_NAME = 'Snow Quotes';
+const SHEET_NAME = 'Sheet1';
 
 function doGet() {
   return ContentService
@@ -28,13 +28,12 @@ function doPost(e) {
 
     sheet.appendRow([
       new Date(),
-      data.service,
       data.name,
-      data.address,
       data.phone,
       data.email,
-      data.source,
-      data.page
+      data.address,
+      data.service,
+      data.message
     ]);
 
     MailApp.sendEmail({
@@ -59,6 +58,7 @@ function normalizeSubmission_(e) {
     address: clean_(params.address),
     phone: clean_(params.phone),
     email: clean_(params.email),
+    message: clean_(params.message),
     source: clean_(params.source) || 'https://greenwolf.work/snow',
     page: clean_(params.page) || '',
     company: clean_(params.company)
@@ -81,13 +81,12 @@ function ensureHeaderRow_(sheet) {
 
   sheet.appendRow([
     'Submitted At',
-    'Service',
     'Name',
-    'Address',
     'Phone',
     'Email',
-    'Source',
-    'Page'
+    'Address',
+    'Service',
+    'Message'
   ]);
 }
 
@@ -100,6 +99,7 @@ function buildPlainTextEmail_(data) {
     `Phone: ${data.phone}`,
     `Email: ${data.email}`,
     `Service: ${data.service}`,
+    data.message ? `Message: ${data.message}` : '',
     `Source: ${data.source}`,
     data.page ? `Page: ${data.page}` : ''
   ].filter(Boolean).join('\n');
