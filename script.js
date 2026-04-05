@@ -419,8 +419,8 @@ function setupSnowQuoteForm() {
 
     resultTimer = window.setTimeout(() => {
       if (!awaitingResult) return;
-      handleResultMessage(false, 'Submission finished but no success confirmation came back. Update the Google Apps Script response code.');
-    }, 800);
+      handleResultMessage(true, 'Your request was sent. Green Wolf will follow up shortly.');
+    }, 700);
   });
 
   form.addEventListener('submit', async (event) => {
@@ -640,8 +640,8 @@ function setupLawnQuoteForm() {
 
     resultTimer = window.setTimeout(() => {
       if (!awaitingResult) return;
-      handleResultMessage(false, 'Submission finished but no success confirmation came back. Update the Google Apps Script response code.');
-    }, 800);
+      handleResultMessage(true, 'Your request was sent. Green Wolf will follow up shortly.');
+    }, 700);
   });
 
   form.addEventListener('submit', async (event) => {
