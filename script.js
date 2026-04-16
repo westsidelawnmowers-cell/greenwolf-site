@@ -989,7 +989,7 @@ function optimizeMedia() {
     snow: 'images/3001.jpeg',
     lawn: 'images/9.jpeg',
     landscaping: 'images/2001.jpg',
-    cleanup: 'images/2001.jpg',
+    'bin-cleaning': 'images/J3.png',
     gallery: 'images/3001.jpeg',
     learning: 'images/2006.jpg',
     'green-wolf-blogs': 'images/3008.jpeg',
