@@ -145,14 +145,24 @@
   </header>
 
   <section class="hero" id="top">
+    <div class="hero-orbit hero-orbit--left" aria-hidden="true"></div>
+    <div class="hero-orbit hero-orbit--right" aria-hidden="true"></div>
     <div class="container hero-grid">
-      <div>
-        <h2>Lawn Care, Weed Control & Fertilization in Saskatoon.</h2>
-        <p>Reliable recurring lawn care and targeted treatment plans for healthier, greener turf.</p>
+      <div class="hero-copy">
+        <span class="hero-eyebrow">Saskatoon Property Care</span>
+        <h2>Clean lines. Healthier lawns. Fewer headaches.</h2>
+        <p class="hero-lead">Green Wolf keeps Saskatoon properties sharp with recurring lawn care, targeted treatments, seasonal cleanup, and winter service handled directly by a local owner.</p>
+        <div class="hero-service-tags" aria-label="Featured Green Wolf services">
+          <span>Weekly lawn care</span>
+          <span>Weed control</span>
+          <span>Landscaping</span>
+          <span>Snow removal</span>
+          <span>Bin cleaning</span>
+        </div>
         <ul class="hero-bullets">
-          <li>Lawn care, weed control, and fertilization</li>
-          <li>Landscaping, bin cleaning, and snow removal</li>
-          <li>Fast communication and reliable scheduling</li>
+          <li>One local team for lawn care, landscaping, snow removal, and bin cleaning</li>
+          <li>Direct communication without franchise layers or call-center delays</li>
+          <li>Clear recommendations for your property instead of vague upsells</li>
         </ul>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#quote">Get a free assessment</a>
@@ -163,17 +173,48 @@
           <span>Fully insured</span>
           <span>Serving Saskatoon</span>
         </div>
+        <div class="hero-stat-grid" aria-label="Green Wolf highlights">
+          <article class="hero-stat-card">
+            <strong>Owner-operated</strong>
+            <span>Direct contact from quote to service day.</span>
+          </article>
+          <article class="hero-stat-card">
+            <strong>Year-round service</strong>
+            <span>Keep one reliable contact across every season.</span>
+          </article>
+          <article class="hero-stat-card">
+            <strong>Built for Saskatoon</strong>
+            <span>Plans shaped around local lawns, weather, and timing.</span>
+          </article>
+        </div>
       </div>
-      <div class="hero-media">
-  <video
-    src="/Videos/10001.mp4"
-    autoplay
-    muted
-    loop
-    playsinline
-    class="hero-video"
-  ></video>
-</div>
+      <div class="hero-showcase">
+        <div class="hero-floating-card">
+          <span class="hero-floating-label">Why this sells</span>
+          <strong>One company can handle the property instead of four separate vendors.</strong>
+          <p>That means less chasing, fewer missed messages, and a cleaner experience for homeowners and property managers.</p>
+        </div>
+        <div class="hero-media-shell">
+          <div class="hero-media-badge">Now booking seasonal work</div>
+          <div class="hero-media">
+            <video
+              src="/Videos/10001.mp4"
+              autoplay
+              muted
+              loop
+              playsinline
+              class="hero-video"
+            ></video>
+          </div>
+          <div class="hero-media-footer">
+            <div>
+              <span class="hero-media-label">What customers want</span>
+              <strong>Cleaner curb appeal with less follow-up.</strong>
+            </div>
+            <a class="hero-media-link" href="#reviews">See reviews</a>
+          </div>
+        </div>
+      </div>
     </div>
 
   </section>
@@ -201,46 +242,78 @@
           <strong>Fully Insured</strong>
           <span>Professional coverage and commercial-grade equipment on every job.</span>
         </article>
+        <article class="proof-band-card">
+          <strong>Free Assessment</strong>
+          <span>Start with a practical recommendation before committing to a plan.</span>
+        </article>
       </div>
     </div>
   </section>
 
   <section class="section" id="services">
     <div class="container">
-      <h2>Our services</h2>
-      <p class="section-lead">Year-round outdoor services with clear pricing and reliable timing.</p>
+      <div class="section-heading-row services-heading-row">
+        <div>
+          <h2>Our services</h2>
+          <p class="section-lead">Year-round outdoor services with clear pricing, faster communication, and one company that can stay with your property all year.</p>
+        </div>
+        <div class="service-intro-card">
+          <span class="service-intro-label">Better than piecing vendors together</span>
+          <p>Start with one service or combine them, then keep the same trusted contact instead of rebuilding trust every season.</p>
+        </div>
+      </div>
 
       <div class="card-grid">
-        <article class="card">
+        <article class="card service-card">
+          <span class="card-kicker">Winter</span>
           <h3>Snow Removal</h3>
           <p>Route-based clearing for driveways, walks, and entries with prompt response during storms.</p>
+          <ul class="card-list">
+            <li>Driveways, sidewalks, and entry areas</li>
+            <li>Residential and commercial scheduling</li>
+          </ul>
           <div class="service-cta">
             <a class="btn btn-primary" href="/snow">Snow plans</a>
             <a class="btn btn-outline" href="/snow#quote">Get estimate</a>
           </div>
         </article>
 
-        <article class="card">
+        <article class="card service-card">
+          <span class="card-kicker">Spring to Fall</span>
           <h3>Lawn Care</h3>
           <p>Weekly mowing plus weed control and fertilization programs for stronger lawns.</p>
+          <ul class="card-list">
+            <li>Recurring mowing and cleanup routes</li>
+            <li>Fertilizer and weed-control support</li>
+          </ul>
           <div class="service-cta">
             <a class="btn btn-primary" href="/lawn">Lawn programs</a>
             <a class="btn btn-outline" href="/lawn#quote">Get estimate</a>
           </div>
         </article>
 
-        <article class="card">
+        <article class="card service-card">
+          <span class="card-kicker">Curb Appeal</span>
           <h3>Landscaping</h3>
           <p>Planting, bed design, and stonework that refreshes your outdoor spaces with lasting impact.</p>
+          <ul class="card-list">
+            <li>Planting and garden bed refreshes</li>
+            <li>Stone, edging, and visual upgrades</li>
+          </ul>
           <div class="service-cta">
             <a class="btn btn-primary" href="/landscaping">Landscaping plans</a>
             <a class="btn btn-outline" href="/landscaping#quote">Get estimate</a>
           </div>
         </article>
 
-        <article class="card">
+        <article class="card service-card">
+          <span class="card-kicker">Fast Add-On</span>
           <h3>Bin Cleaning</h3>
           <p>Garbage, recycling, and organics bin cleaning that cuts smell, residue, and grime fast.</p>
+          <ul class="card-list">
+            <li>Garbage, recycling, and organics bins</li>
+            <li>One-time or recurring cleaning options</li>
+          </ul>
           <div class="service-cta">
             <a class="btn btn-primary" href="/bin-cleaning">Bin cleaning plans</a>
             <a class="btn btn-outline" href="/bin-cleaning#quote">Get estimate</a>
@@ -254,13 +327,45 @@
       <div>
         <h2>Request Your Free Assessment</h2>
         <p class="section-lead">Tell us what service you want, share your property details, and Green Wolf will point you to the right next step without the usual back-and-forth.</p>
-        <ul class="hero-bullets">
-          <li>Select the service you want assessed</li>
-          <li>Share your address and best contact details</li>
-          <li>Get a practical recommendation for your property</li>
-        </ul>
+        <div class="assessment-steps" aria-label="How Green Wolf assessments work">
+          <article class="assessment-step">
+            <span class="assessment-step-number">1</span>
+            <div class="assessment-step-copy">
+              <strong>Tell us what you need</strong>
+              <p>Pick the service and describe the property or problem you want handled.</p>
+            </div>
+          </article>
+          <article class="assessment-step">
+            <span class="assessment-step-number">2</span>
+            <div class="assessment-step-copy">
+              <strong>We review the details</strong>
+              <p>Green Wolf looks at your location, timing, and service fit before recommending the next step.</p>
+            </div>
+          </article>
+          <article class="assessment-step">
+            <span class="assessment-step-number">3</span>
+            <div class="assessment-step-copy">
+              <strong>You get a straight answer</strong>
+              <p>No bloated sales pitch. Just a practical recommendation, quote direction, or follow-up question.</p>
+            </div>
+          </article>
+        </div>
       </div>
       <div class="quote-form">
+        <div class="quote-form-head">
+          <span class="quote-form-eyebrow">Free Assessment Request</span>
+          <p>Best for homeowners and property managers who want a clear next step without waiting on a long sales process.</p>
+        </div>
+        <div class="quote-reassurance" aria-label="What happens after you submit">
+          <div class="quote-reassurance-item">
+            <strong>No-pressure follow-up</strong>
+            <span>You get a recommendation, not a bloated sales script.</span>
+          </div>
+          <div class="quote-reassurance-item">
+            <strong>Built for local properties</strong>
+            <span>Recommendations are based on Saskatoon timing, service mix, and site conditions.</span>
+          </div>
+        </div>
         <form
           id="home-assessment-form"
           class="service-form"
@@ -388,12 +493,75 @@
   <div class="container">
     <h2>Reviews from your neighbors</h2>
     <p class="section-lead">Real feedback from Saskatoon homeowners who trust Green Wolf.</p>
-
-    <!-- Google Reviews Widget -->
-<div class="elfsight-app-ccf1bb17-35fe-4567-8191-22807a5eca9e" data-elfsight-app-lazy></div>
+    <div class="reviews-shell">
+      <div class="reviews-summary">
+        <span class="reviews-badge">Local Proof</span>
+        <h3>Google reviews matter more than polished sales copy.</h3>
+        <p>Before someone books, they want proof that the communication is solid and the work shows up as promised. This section does that job.</p>
+      </div>
+      <div class="reviews-frame">
+        <div class="elfsight-app-ccf1bb17-35fe-4567-8191-22807a5eca9e" data-elfsight-app-lazy></div>
+      </div>
+    </div>
 
   </div>
 </section>
+
+  <section class="section alt-section" id="service-area">
+    <div class="container split-grid service-area-grid">
+      <div>
+        <h2>Built for Saskatoon neighborhoods</h2>
+        <p class="section-lead">People convert faster when they know you already work in areas like theirs. Green Wolf is focused on Saskatoon properties, routes, and seasonal timing.</p>
+        <div class="service-area-pills" aria-label="Popular service areas">
+          <span>Evergreen</span>
+          <span>Brighton</span>
+          <span>Stonebridge</span>
+          <span>Rosewood</span>
+          <span>Willowgrove</span>
+          <span>And surrounding Saskatoon areas</span>
+        </div>
+      </div>
+      <div class="service-area-card">
+        <span class="service-area-card-label">Sales Reality</span>
+        <h3>Local familiarity closes better than generic claims.</h3>
+        <p>Customers want to know you understand their neighborhood, seasonal conditions, and the kind of property issues they actually deal with. This section makes that clear before they call.</p>
+        <div class="service-cta">
+          <a class="btn btn-primary" href="#quote">Request assessment</a>
+          <a class="btn btn-outline" href="tel:+16395979351">Call for availability</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-heading-row">
+        <div>
+          <h2>Questions people ask before they contact you</h2>
+          <p class="section-lead">Good service pages remove obvious objections. These answers reduce hesitation before someone fills out the form or calls.</p>
+        </div>
+        <a class="section-mini-link" href="#quote">Ask for your assessment</a>
+      </div>
+      <div class="faq-grid">
+        <article class="faq-item">
+          <h3>Do I need to know exactly which service I need?</h3>
+          <p>No. Tell Green Wolf what you are dealing with and you can get pointed to the right service instead of guessing.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Can I start with one service and add more later?</h3>
+          <p>Yes. You can begin with lawn care, snow removal, landscaping, or bin cleaning and expand if the property needs more support.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Do you work with recurring service schedules?</h3>
+          <p>Yes. The site is already built around recurring lawn care and route-based seasonal work, not just one-off visits.</p>
+        </article>
+        <article class="faq-item">
+          <h3>What is the fastest way to reach you?</h3>
+          <p>Call or text <a href="tel:+16395979351">639-597-9351</a> for the fastest response, or use the assessment form if you want to send property details first.</p>
+        </article>
+      </div>
+    </div>
+  </section>
 
 
   <section class="section" id="contact">
@@ -410,9 +578,12 @@
         <p><strong>Email:</strong> <a href="mailto:info@greenwolf.work">info@greenwolf.work</a></p>
       </div>
       <div class="quote-block">
-        <h3>Ready to book?</h3>
-        <p class="small-text">We can reserve snow routes, schedule lawn care, or set up bin cleaning service.</p>
-        <a class="btn btn-primary" href="#services">Choose service</a>
+        <h3>Ready to stop chasing property work?</h3>
+        <p class="small-text">Use one direct contact for lawn care, landscaping, snow removal, and bin cleaning instead of managing separate vendors every season.</p>
+        <div class="service-cta">
+          <a class="btn btn-primary" href="#quote">Request assessment</a>
+          <a class="btn btn-outline" href="tel:+16395979351">Call now</a>
+        </div>
       </div>
     </div>
   </section>

@@ -59,7 +59,7 @@ function setupClickFlash() {
 
 function setupRevealOnScroll() {
   const revealElements = document.querySelectorAll(
-    '.card, .feature, .quote-block, .hero-media, .hero h2, .hero p, .hero-bullets li, .hero-actions, .site-header'
+    '.card, .feature, .quote-block, .quote-form, .quote-reassurance-item, .service-area-card, .faq-item, .hero-media-shell, .hero-floating-card, .hero-stat-card, .service-intro-card, .assessment-step, .reviews-shell, .hero h2, .hero p, .hero-eyebrow, .hero-service-tags, .hero-bullets li, .hero-actions, .site-header'
   );
 
   if (!('IntersectionObserver' in window)) {
