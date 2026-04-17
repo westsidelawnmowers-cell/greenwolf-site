@@ -289,6 +289,155 @@ function isTrustedQuoteOrigin(origin) {
   return origin.includes('script.google.com') || origin.includes('script.googleusercontent.com');
 }
 
+function setupHomeAssessmentForm() {
+  const form = document.getElementById('home-assessment-form');
+  if (!form) return;
+
+  const status = form.querySelector('[data-form-status]');
+  const submitButton = form.querySelector('button[type="submit"]');
+  const endpoint = form.dataset.formEndpoint || '';
+  const formKey = form.dataset.formKey || 'home-assessment';
+  const iframeTarget = 'home-assessment-submit-frame';
+  const iframe = document.querySelector(`iframe[name="${iframeTarget}"]`);
+  let awaitingResult = false;
+  let resultTimer = null;
+
+  const setStatus = (message, state = '') => {
+    if (!status) return;
+    status.textContent = message;
+    status.className = `form-status${state ? ` is-${state}` : ''}`;
+  };
+
+  const resetSubmissionState = () => {
+    awaitingResult = false;
+    if (resultTimer) {
+      window.clearTimeout(resultTimer);
+      resultTimer = null;
+    }
+    form.classList.remove('is-submitting');
+    submitButton.disabled = false;
+  };
+
+  const handleResultMessage = (success, message) => {
+    resetSubmissionState();
+
+    if (success) {
+      setStatus(message || 'Your assessment request was sent. Green Wolf will follow up shortly.', 'success');
+      window.setTimeout(() => {
+        window.location.href = '/thank-you';
+      }, 250);
+      return;
+    }
+
+    setStatus(message || 'The form could not be confirmed. Please try again or call/text us.', 'error');
+  };
+
+  const splitName = (fullName) => {
+    const normalized = fullName.trim().replace(/\s+/g, ' ');
+    if (!normalized) return { firstName: '', lastName: '' };
+
+    const parts = normalized.split(' ');
+    return {
+      firstName: parts[0] || '',
+      lastName: parts.slice(1).join(' ')
+    };
+  };
+
+  window.addEventListener('message', (event) => {
+    if (!awaitingResult || !isTrustedQuoteOrigin(event.origin)) return;
+
+    const payload = parseQuoteResultMessage(event.data);
+    if (!payload || payload.formKey !== formKey) return;
+
+    handleResultMessage(Boolean(payload.success), payload.message || payload.error);
+  });
+
+  iframe?.addEventListener('load', () => {
+    if (!awaitingResult) return;
+
+    if (resultTimer) {
+      window.clearTimeout(resultTimer);
+    }
+
+    resultTimer = window.setTimeout(() => {
+      if (!awaitingResult) return;
+      handleResultMessage(true, 'Your assessment request was sent. Green Wolf will follow up shortly.');
+    }, 700);
+  });
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    if (!form.reportValidity()) {
+      setStatus('Please fill out all required fields before sending.', 'error');
+      return;
+    }
+
+    const payload = new URLSearchParams(new FormData(form));
+    const honeypot = payload.get('company');
+    if (honeypot) return;
+
+    if (!endpoint || endpoint.includes('REPLACE_WITH_YOUR_DEPLOYMENT_ID')) {
+      setStatus('This homepage form is not connected yet. Add your Google Apps Script web app URL first.', 'error');
+      return;
+    }
+
+    const nameInput = form.querySelector('[name="name"]');
+    const phoneInput = form.querySelector('[name="phone"]');
+    const emailInput = form.querySelector('[name="email"]');
+    const addressInput = form.querySelector('[name="address"]');
+    const serviceInterestInput = form.querySelector('[name="serviceInterest"]');
+    const notesInput = form.querySelector('[name="notes"]');
+    const serviceInput = form.querySelector('[name="service"]');
+    const messageInput = form.querySelector('[name="message"]');
+    const aliasFullName = form.querySelector('[name="fullName"]');
+    const aliasFirstName = form.querySelector('[name="firstName"]');
+    const aliasLastName = form.querySelector('[name="lastName"]');
+    const aliasPhone = form.querySelector('[name="phoneNumber"]');
+    const aliasEmail = form.querySelector('[name="emailAddress"]');
+    const aliasAddress = form.querySelector('[name="streetAddress"]');
+    const pageInput = form.querySelector('[name="page"]');
+    const nameParts = splitName(nameInput?.value || '');
+    const selectedService = serviceInterestInput?.value || '';
+    const compiledMessageParts = [
+      'Request type: Free assessment',
+      selectedService ? `Service interest: ${selectedService}` : '',
+      addressInput?.value ? `Property address: ${addressInput.value.trim()}` : '',
+      notesInput?.value ? `Customer notes: ${notesInput.value.trim()}` : ''
+    ].filter(Boolean);
+
+    if (serviceInput) serviceInput.value = selectedService || 'Free Assessment';
+    if (messageInput) messageInput.value = compiledMessageParts.join(' | ');
+    if (aliasFullName) aliasFullName.value = nameInput?.value || '';
+    if (aliasFirstName) aliasFirstName.value = nameParts.firstName;
+    if (aliasLastName) aliasLastName.value = nameParts.lastName;
+    if (aliasPhone) aliasPhone.value = phoneInput?.value || '';
+    if (aliasEmail) aliasEmail.value = emailInput?.value || '';
+    if (aliasAddress) aliasAddress.value = addressInput?.value || '';
+    if (pageInput) pageInput.value = window.location.href;
+
+    form.action = endpoint;
+    form.target = iframeTarget;
+
+    awaitingResult = true;
+    form.classList.add('is-submitting');
+    submitButton.disabled = true;
+    setStatus('Sending your assessment request...', 'pending');
+    resultTimer = window.setTimeout(() => {
+      if (!awaitingResult) return;
+      handleResultMessage(false, 'No response came back from the assessment handler. Please try again.');
+    }, 12000);
+
+    window.setTimeout(() => {
+      form.submit();
+      emitAnalyticsEvent('home_assessment_submit', {
+        page: getPageKey(),
+        service_interest: selectedService || 'unknown'
+      });
+    }, 50);
+  });
+}
+
 function setupSnowQuoteForm() {
   const form = document.getElementById('snow-quote-form');
   if (!form) return;
@@ -1017,6 +1166,7 @@ function init() {
   setupHideHeaderOnScroll();
   setupMobileNav();
   setupMobileCtaBar();
+  setupHomeAssessmentForm();
   setupSnowQuoteForm();
   setupLawnQuoteForm();
   setupCleanupQuoteForm();

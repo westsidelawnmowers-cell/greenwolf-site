@@ -155,7 +155,7 @@
           <li>Fast communication and reliable scheduling</li>
         </ul>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#services">Choose your service</a>
+          <a class="btn btn-primary" href="#quote">Get a free assessment</a>
           <a class="btn btn-outline" href="tel:+16395979351">Call 639-597-9351</a>
         </div>
         <div class="trust-strip" aria-label="Green Wolf trust highlights">
@@ -246,6 +246,101 @@
             <a class="btn btn-outline" href="/bin-cleaning#quote">Get estimate</a>
           </div>
         </article>
+      </div>
+    </div>
+  </section>
+  <section class="section alt-section" id="quote">
+    <div class="container split-grid">
+      <div>
+        <h2>Request Your Free Assessment</h2>
+        <p class="section-lead">Tell us what service you want, share your property details, and Green Wolf will point you to the right next step without the usual back-and-forth.</p>
+        <ul class="hero-bullets">
+          <li>Select the service you want assessed</li>
+          <li>Share your address and best contact details</li>
+          <li>Get a practical recommendation for your property</li>
+        </ul>
+      </div>
+      <div class="quote-form">
+        <form
+          id="home-assessment-form"
+          class="service-form"
+          data-form-key="home-assessment"
+          data-form-endpoint="https://script.google.com/macros/s/AKfycbwB9XuhpMGjq8DO4pie112a_zC0xVoKR1lxm9JPyqHehKJb6z1_cFWC0fzjOvs8HIkSvw/exec"
+          method="post"
+          novalidate>
+          <input type="hidden" name="service" value="" />
+          <input type="hidden" name="source" value="Home Free Assessment Form" />
+          <input type="hidden" name="responseMode" value="iframe" />
+          <input type="hidden" name="formKey" value="home-assessment" />
+          <input type="hidden" name="page" value="https://greenwolf.work/" />
+          <input type="hidden" name="fullName" value="" />
+          <input type="hidden" name="firstName" value="" />
+          <input type="hidden" name="lastName" value="" />
+          <input type="hidden" name="phoneNumber" value="" />
+          <input type="hidden" name="emailAddress" value="" />
+          <input type="hidden" name="streetAddress" value="" />
+          <input type="hidden" name="message" value="" />
+          <input
+            class="form-honeypot"
+            type="text"
+            name="company"
+            tabindex="-1"
+            autocomplete="off"
+            aria-hidden="true" />
+
+          <div class="service-form-grid">
+            <label class="form-field">
+              <span class="form-label">Full Name</span>
+              <input class="form-input" type="text" name="name" autocomplete="name" required />
+            </label>
+
+            <label class="form-field">
+              <span class="form-label">Phone Number</span>
+              <input class="form-input" type="tel" name="phone" autocomplete="tel" required />
+            </label>
+
+            <label class="form-field">
+              <span class="form-label">Email</span>
+              <input class="form-input" type="email" name="email" autocomplete="email" required />
+            </label>
+
+            <label class="form-field">
+              <span class="form-label">Service Needed</span>
+              <select class="form-input" name="serviceInterest" required>
+                <option value="">Select a service</option>
+                <option value="Lawn Care">Lawn Care</option>
+                <option value="Snow Removal">Snow Removal</option>
+                <option value="Landscaping">Landscaping</option>
+                <option value="Garbage Bin Cleaning">Bin Cleaning</option>
+                <option value="Specialty Lawn Treatments">Specialty Lawn Treatments</option>
+                <option value="Not Sure Yet">Not Sure Yet</option>
+              </select>
+            </label>
+
+            <label class="form-field form-field--full">
+              <span class="form-label">Property Address</span>
+              <input class="form-input" type="text" name="address" autocomplete="street-address" required />
+            </label>
+
+            <label class="form-field form-field--full">
+              <span class="form-label">What Do You Need Help With?</span>
+              <textarea class="form-input form-textarea" name="notes" rows="4" placeholder="Tell us what you want assessed, what problems you are seeing, and any timing or budget notes."></textarea>
+            </label>
+          </div>
+
+          <div class="service-form-actions">
+            <button class="btn btn-primary" type="submit">Get My Free Assessment</button>
+            <a class="btn btn-outline" href="tel:+16395979351">Call Instead</a>
+          </div>
+
+          <p class="form-footnote">Free assessment requests from this page go straight to Green Wolf and save to your Google Sheet backup.</p>
+          <p class="form-status" data-form-status aria-live="polite"></p>
+        </form>
+        <iframe
+          name="home-assessment-submit-frame"
+          class="form-submit-frame"
+          tabindex="-1"
+          aria-hidden="true"></iframe>
       </div>
     </div>
   </section>
