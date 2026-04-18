@@ -39,7 +39,10 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": [
+      "LocalBusiness",
+      "ProfessionalService"
+    ],
     "@id": "https://greenwolf.work/#organization",
     "name": "Green Wolf Maintenance & Landscaping Inc.",
     "url": "https://greenwolf.work/",
@@ -81,6 +84,14 @@
       }
     ],
     "priceRange": "$$",
+    "knowsAbout": [
+      "Lawn care",
+      "Weed control",
+      "Fertilization",
+      "Landscaping",
+      "Snow removal",
+      "Garbage bin cleaning"
+    ],
     "contactPoint": [
       {
         "@type": "ContactPoint",
@@ -92,6 +103,52 @@
         ]
       }
     ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Green Wolf Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Lawn Care, Weed Control & Fertilization",
+            "url": "https://greenwolf.work/lawn"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Snow Removal Services",
+            "url": "https://greenwolf.work/snow"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Landscaping Services",
+            "url": "https://greenwolf.work/landscaping"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Garbage Bin Cleaning Service",
+            "url": "https://greenwolf.work/bin-cleaning"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Specialty Lawn Treatments",
+            "url": "https://greenwolf.work/specialty-lawn-treatments"
+          }
+        }
+      ]
+    },
     "serviceType": [
       "Lawn care",
       "Weed control",
@@ -124,7 +181,7 @@
           <img src="/Green-Wolf.png" alt="Green Wolf Logo" />
         </div>
         <div class="logo-text">
-          <h1>Green Wolf Maintenance & Landscaping Inc.</h1>
+          <p class="logo-name">Green Wolf Maintenance & Landscaping Inc.</p>
           <p class="tagline">Lawn care, weed control, fertilization, and snow removal</p>
         </div>
       </div>
@@ -152,7 +209,7 @@
     <div class="container hero-grid">
       <div class="hero-copy">
         <span class="hero-eyebrow">Saskatoon Property Care</span>
-        <h2>Clean lines.<br />Healthier lawns.<br /><span class="hero-accent">Zero headaches.</span></h2>
+        <h1>Clean lines.<br />Healthier lawns.<br /><span class="hero-accent">Zero headaches.</span></h1>
         <p class="hero-lead">Green Wolf keeps Saskatoon properties sharp with recurring lawn care, targeted treatments, seasonal cleanup, and winter service handled directly by a local owner.</p>
         <div class="hero-service-tags" aria-label="Featured Green Wolf services">
           <span>Weekly lawn care</span>

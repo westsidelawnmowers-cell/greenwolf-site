@@ -3,19 +3,19 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://greenwolf.work/</loc>
-    <lastmod>2026-03-25</lastmod>
+    <lastmod>2026-04-18</lastmod>
   </url>
   <url>
     <loc>https://greenwolf.work/about-us</loc>
-    <lastmod>2026-03-25</lastmod>
+    <lastmod>2026-04-18</lastmod>
   </url>
   <url>
     <loc>https://greenwolf.work/specialty-lawn-treatments</loc>
-    <lastmod>2026-03-25</lastmod>
+    <lastmod>2026-04-18</lastmod>
   </url>
   <url>
     <loc>https://greenwolf.work/lawn</loc>
-    <lastmod>2026-03-13</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <image:image>
       <image:loc>https://greenwolf.work/images/6002.jpg</image:loc>
     </image:image>
@@ -46,19 +46,19 @@
   </url>
   <url>
     <loc>https://greenwolf.work/snow</loc>
-    <lastmod>2026-03-13</lastmod>
+    <lastmod>2026-04-18</lastmod>
   </url>
   <url>
     <loc>https://greenwolf.work/landscaping</loc>
-    <lastmod>2026-03-13</lastmod>
+    <lastmod>2026-04-18</lastmod>
   </url>
   <url>
     <loc>https://greenwolf.work/bin-cleaning</loc>
-    <lastmod>2026-04-05</lastmod>
+    <lastmod>2026-04-18</lastmod>
   </url>
   <url>
     <loc>https://greenwolf.work/gallery</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <image:image>
       <image:loc>https://greenwolf.work/images/1.jpeg</image:loc>
     </image:image>
@@ -152,7 +152,7 @@
   </url>
   <url>
     <loc>https://greenwolf.work/learning</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <image:image>
       <image:loc>https://greenwolf.work/images/L1.jpg</image:loc>
     </image:image>
@@ -165,7 +165,7 @@
   </url>
   <url>
     <loc>https://greenwolf.work/green-wolf-blogs</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <image:image>
       <image:loc>https://greenwolf.work/images/3008.jpeg</image:loc>
     </image:image>
@@ -184,7 +184,7 @@
   </url>
   <url>
     <loc>https://greenwolf.work/library</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <image:image>
       <image:loc>https://greenwolf.work/images/6002.jpg</image:loc>
     </image:image>

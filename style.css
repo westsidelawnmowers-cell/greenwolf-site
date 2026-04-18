@@ -124,7 +124,8 @@ img {
   box-shadow: 0 0 0 3px rgba(246, 222, 150, 0.35);
 }
 
-.logo-text h1 {
+.logo-text h1,
+.logo-text .logo-name {
   font-size: 1.1rem;
   color: var(--forest);
 }
@@ -250,6 +251,7 @@ img {
   min-width: 0;
 }
 
+.hero h1,
 .hero h2 {
   font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(2rem, 4vw, 2.6rem);
@@ -2333,7 +2335,8 @@ img {
     min-width: 0;
   }
 
-  .logo-text h1 {
+  .logo-text h1,
+  .logo-text .logo-name {
     font-size: 1rem;
     line-height: 1.1;
   }
