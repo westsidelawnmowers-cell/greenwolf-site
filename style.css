@@ -1448,14 +1448,6 @@ img {
   color: #18492b;
 }
 
-.snow-selection-label {
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
 .snow-selection-summary strong {
   color: var(--forest);
   font-size: 1.35rem;

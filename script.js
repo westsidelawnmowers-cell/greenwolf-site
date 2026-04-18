@@ -47,16 +47,6 @@ function setupSmoothScrolling() {
   });
 }
 
-function setupClickFlash() {
-  document.addEventListener('click', (event) => {
-    const clickable = event.target.closest('a, button, .card, .pill');
-    if (!clickable) return;
-
-    clickable.classList.add('click-flash');
-    window.setTimeout(() => clickable.classList.remove('click-flash'), 280);
-  });
-}
-
 function setupRevealOnScroll() {
   const revealElements = document.querySelectorAll(
     '.card, .feature, .quote-block, .quote-form, .quote-reassurance-item, .service-area-card, .faq-item, .hero-media-shell, .hero-floating-card, .hero-stat-card, .service-intro-card, .assessment-step, .reviews-shell, .hero h2, .hero p, .hero-eyebrow, .hero-service-tags, .hero-bullets li, .hero-actions, .site-header'
@@ -1160,7 +1150,6 @@ function optimizeMedia() {
 function init() {
   setFooterYear();
   setupSmoothScrolling();
-  setupClickFlash();
   setupRevealOnScroll();
   setupBackToTop();
   setupHideHeaderOnScroll();
