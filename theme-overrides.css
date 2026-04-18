@@ -59,6 +59,24 @@ body {
   font-weight: 700;
 }
 
+@media (max-width: 960px) {
+  .main-nav {
+    color: #0b2d1c;
+    background: #fffef7;
+    border-color: rgba(6, 45, 29, 0.14);
+  }
+
+  .main-nav a {
+    color: #0b2d1c;
+  }
+
+  .main-nav a:hover,
+  .main-nav a:focus-visible,
+  .main-nav a.is-active {
+    color: #041c12;
+  }
+}
+
 .btn {
   padding: 0.82rem 1.45rem;
   font-weight: 800;
