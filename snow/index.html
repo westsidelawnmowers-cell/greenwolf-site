@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -77,6 +77,43 @@
     "description": "Route-based snow removal for Saskatoon driveways, sidewalks, and entries with seasonal and per-push plans."
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://greenwolf.work/snow#webpage",
+        "url": "https://greenwolf.work/snow",
+        "name": "Snow Removal Services in Saskatoon",
+        "isPartOf": {
+          "@id": "https://greenwolf.work/#website"
+        },
+        "about": {
+          "@id": "https://greenwolf.work/snow#service"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://greenwolf.work/snow#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://greenwolf.work/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Snow Removal",
+            "item": "https://greenwolf.work/snow"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <header class="site-header">
@@ -123,14 +160,14 @@
         </div>
       </div>
       <div class="hero-media">
-  <video 
+  <video
     class="hero-video"
     autoplay
     muted
     loop
     playsinline
     preload="auto">
-    
+
     <source src="/Videos/10002.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
@@ -365,6 +402,30 @@
     </div>
   </section>
 
+  <section class="section alt-section" id="related-services">
+    <div class="container">
+      <h2>More services from the same team</h2>
+      <p class="section-lead">Snow service should not be the only time a customer hears from you. These pages keep year-round service in play instead of treating winter as a dead end.</p>
+      <div class="card-grid">
+        <article class="card related-service-card">
+          <h3>Lawn Care</h3>
+          <p>Move winter clients into spring and summer mowing, weed control, and fertilizer plans.</p>
+          <a class="btn btn-outline" href="/lawn">View lawn care</a>
+        </article>
+        <article class="card related-service-card">
+          <h3>Landscaping</h3>
+          <p>Turn seasonal service into larger curb-appeal work when the snow is gone.</p>
+          <a class="btn btn-outline" href="/landscaping">View landscaping</a>
+        </article>
+        <article class="card related-service-card">
+          <h3>Bin Cleaning</h3>
+          <p>Add a simple recurring service for homeowners who already trust you with property access.</p>
+          <a class="btn btn-outline" href="/bin-cleaning">View bin cleaning</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="reviews">
     <div class="container">
       <h2>Reviews from your neighbors</h2>
@@ -384,13 +445,3 @@
   <script src="/script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
