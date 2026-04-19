@@ -1128,8 +1128,8 @@ function setupAddonSwipeHints() {
     const updateHint = () => {
       const panelVisible = !panel.hidden && panel.offsetParent !== null;
       const hasOverflow = grid.scrollWidth - grid.clientWidth > 16;
-      const nearStart = grid.scrollLeft < 20;
-      hint.classList.toggle('is-visible', mobileQuery.matches && panelVisible && hasOverflow && nearStart);
+      const hasSwiped = grid.scrollLeft > 20;
+      hint.classList.toggle('is-hidden', !mobileQuery.matches || !panelVisible || !hasOverflow || hasSwiped);
     };
 
     grid.addEventListener('scroll', updateHint, { passive: true });

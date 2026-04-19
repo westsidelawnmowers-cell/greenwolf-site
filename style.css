@@ -1768,7 +1768,7 @@ img {
 
 @media (max-width: 700px) {
   .addon-swipe-hint {
-    display: none;
+    display: inline-flex;
     align-items: center;
     gap: 0.3rem;
     width: fit-content;
@@ -1783,11 +1783,11 @@ img {
     border: 1px solid rgba(245, 201, 56, 0.32);
   }
 
-  .addon-swipe-hint.is-visible {
-    display: inline-flex;
+  .addon-swipe-hint.is-hidden {
+    display: none;
   }
 
-  .addon-swipe-hint.is-visible .addon-swipe-arrow {
+  .addon-swipe-hint:not(.is-hidden) .addon-swipe-arrow {
     animation: addonSwipeArrow 1s ease-in-out infinite;
   }
 
