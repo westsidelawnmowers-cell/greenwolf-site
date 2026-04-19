@@ -1479,6 +1479,14 @@ img {
   font-size: 0.92rem;
 }
 
+.addon-swipe-hint {
+  display: none;
+}
+
+.addon-swipe-arrow {
+  display: inline-block;
+}
+
 .snow-addon-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1759,6 +1767,30 @@ img {
 }
 
 @media (max-width: 700px) {
+  .addon-swipe-hint {
+    display: none;
+    align-items: center;
+    gap: 0.3rem;
+    width: fit-content;
+    margin-top: 0.15rem;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    background: rgba(245, 201, 56, 0.14);
+    color: #0b2d1c;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    border: 1px solid rgba(245, 201, 56, 0.32);
+  }
+
+  .addon-swipe-hint.is-visible {
+    display: inline-flex;
+  }
+
+  .addon-swipe-hint.is-visible .addon-swipe-arrow {
+    animation: addonSwipeArrow 1s ease-in-out infinite;
+  }
+
   .snow-addon-grid {
     grid-auto-flow: column;
     grid-auto-columns: minmax(220px, 72vw);
@@ -1773,6 +1805,17 @@ img {
   .snow-addon-option {
     min-height: 100%;
     scroll-snap-align: start;
+  }
+}
+
+@keyframes addonSwipeArrow {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(6px);
   }
 }
 

@@ -1113,6 +1113,41 @@ function setupDetailsAccordion() {
     });
   });
 }
+
+function setupAddonSwipeHints() {
+  const addonPanels = document.querySelectorAll('.snow-addon-panel');
+  if (!addonPanels.length) return;
+
+  const mobileQuery = window.matchMedia('(max-width: 700px)');
+
+  addonPanels.forEach((panel) => {
+    const grid = panel.querySelector('.snow-addon-grid');
+    const hint = panel.querySelector('[data-addon-swipe-hint]');
+    if (!grid || !hint) return;
+
+    const updateHint = () => {
+      const panelVisible = !panel.hidden && panel.offsetParent !== null;
+      const hasOverflow = grid.scrollWidth - grid.clientWidth > 16;
+      const nearStart = grid.scrollLeft < 20;
+      hint.classList.toggle('is-visible', mobileQuery.matches && panelVisible && hasOverflow && nearStart);
+    };
+
+    grid.addEventListener('scroll', updateHint, { passive: true });
+    window.addEventListener('resize', updateHint);
+
+    const panelObserver = new MutationObserver(() => {
+      window.requestAnimationFrame(updateHint);
+    });
+
+    panelObserver.observe(panel, {
+      attributes: true,
+      attributeFilter: ['hidden', 'class', 'style']
+    });
+
+    updateHint();
+  });
+}
+
 function optimizeMedia() {
   document.querySelectorAll('img').forEach((img) => {
     if (!img.closest('.hero')) {
@@ -1160,6 +1195,7 @@ function init() {
   setupLawnQuoteForm();
   setupCleanupQuoteForm();
   setupDetailsAccordion();
+  setupAddonSwipeHints();
   optimizeMedia();
   setupTracking();
 }
