@@ -1767,24 +1767,36 @@ img {
 }
 
 @media (max-width: 700px) {
+  .snow-addon-head {
+    position: relative;
+    padding-right: 6.4rem;
+  }
+
   .addon-swipe-hint {
     display: inline-flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
     align-items: center;
     gap: 0.3rem;
     width: fit-content;
-    margin-top: 0.15rem;
-    padding: 0.35rem 0.65rem;
+    margin-top: 0;
+    padding: 0.42rem 0.75rem;
     border-radius: 999px;
-    background: rgba(245, 201, 56, 0.14);
-    color: #0b2d1c;
-    font-size: 0.78rem;
+    background: linear-gradient(135deg, #ffe27a, #f5c938);
+    color: #052916;
+    font-size: 0.8rem;
     font-weight: 800;
     letter-spacing: 0.02em;
-    border: 1px solid rgba(245, 201, 56, 0.32);
+    border: 1px solid rgba(199, 150, 10, 0.28);
+    box-shadow: 0 10px 20px rgba(245, 201, 56, 0.24);
   }
 
   .addon-swipe-hint.is-hidden {
-    display: none;
+    opacity: 0;
+    transform: translateX(10px);
+    pointer-events: none;
   }
 
   .addon-swipe-hint:not(.is-hidden) .addon-swipe-arrow {
@@ -1797,6 +1809,7 @@ img {
     grid-template-columns: none;
     overflow-x: auto;
     overscroll-behavior-x: contain;
+    padding-right: 1rem;
     padding-bottom: 0.3rem;
     scroll-snap-type: x proximity;
     -webkit-overflow-scrolling: touch;
