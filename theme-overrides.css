@@ -210,3 +210,15 @@ body {
 .service-area-card-label {
   color: #1b5a36;
 }
+
+.hero .quote-block h3,
+.hero .quote-block strong {
+  color: #0b2d1c;
+}
+
+.hero .quote-block p,
+.hero .quote-block li,
+.hero .quote-block .small-text,
+.hero .quote-block a {
+  color: #4d5f53;
+}
