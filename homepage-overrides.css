@@ -153,6 +153,16 @@
   display: block;
 }
 
+.lawn-selector-page .service-card-media {
+  height: 220px;
+  border-radius: 1.05rem;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+}
+
+.lawn-selector-page .service-card-media img {
+  object-position: center center;
+}
+
 .service-card h3 {
   font-size: 1.28rem;
 }
@@ -228,5 +238,9 @@
 
   .service-card-media {
     height: 168px;
+  }
+
+  .lawn-selector-page .service-card-media {
+    height: 190px;
   }
 }
