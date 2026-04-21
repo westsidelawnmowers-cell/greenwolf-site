@@ -333,6 +333,16 @@ function setupHomeAssessmentForm() {
     };
   };
 
+  const collectExtraMessageLines = () =>
+    Array.from(form.querySelectorAll('[data-message-label]'))
+      .map((field) => {
+        const label = field.dataset.messageLabel || '';
+        const value = typeof field.value === 'string' ? field.value.trim() : '';
+        if (!label || !value) return '';
+        return `${label}: ${value}`;
+      })
+      .filter(Boolean);
+
   window.addEventListener('message', (event) => {
     if (!awaitingResult || !isTrustedQuoteOrigin(event.origin)) return;
 
@@ -389,10 +399,12 @@ function setupHomeAssessmentForm() {
     const pageInput = form.querySelector('[name="page"]');
     const nameParts = splitName(nameInput?.value || '');
     const selectedService = serviceInterestInput?.value || '';
+    const extraMessageLines = collectExtraMessageLines();
     const compiledMessageParts = [
       'Request type: Free assessment',
       selectedService ? `Service interest: ${selectedService}` : '',
       addressInput?.value ? `Property address: ${addressInput.value.trim()}` : '',
+      ...extraMessageLines,
       notesInput?.value ? `Customer notes: ${notesInput.value.trim()}` : ''
     ].filter(Boolean);
 
