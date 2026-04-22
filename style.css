@@ -1719,6 +1719,20 @@ img {
   pointer-events: none;
 }
 
+.request-form-page .hero-grid {
+  grid-template-columns: minmax(0, 760px);
+  justify-content: center;
+}
+
+.request-form-page #request-form .container {
+  max-width: 760px;
+}
+
+.request-form-page .quote-form-head h2 {
+  margin-bottom: 0.45rem;
+  color: var(--forest);
+}
+
 @media (max-width: 960px) {
   body.has-mobile-cta {
     padding-bottom: calc(5.75rem + env(safe-area-inset-bottom, 0px));

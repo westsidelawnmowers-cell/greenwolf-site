@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Request Form | Green Wolf Saskatoon</title>
+  <title>Request Service | Green Wolf Saskatoon</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Simple request form for Green Wolf. Send your name, phone or email, property address, and what you need help with." />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <link rel="canonical" href="https://greenwolf.work/request-form" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="en_CA" />
-  <meta property="og:title" content="Request Form | Green Wolf Saskatoon" />
+  <meta property="og:title" content="Request Service | Green Wolf Saskatoon" />
   <meta property="og:description" content="Simple Green Wolf request form for Saskatoon property service inquiries." />
   <meta property="og:url" content="https://greenwolf.work/request-form" />
   <meta property="og:image" content="https://greenwolf.work/Green-Wolf.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Request Form | Green Wolf Saskatoon" />
+  <meta name="twitter:title" content="Request Service | Green Wolf Saskatoon" />
   <meta name="twitter:description" content="Send Green Wolf a direct request form with your address and service details." />
   <meta name="twitter:image" content="https://greenwolf.work/Green-Wolf.png" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -57,7 +57,7 @@
   }
   </script>
 </head>
-<body>
+<body class="request-form-page">
   <header class="site-header">
     <div class="container header-content">
       <div class="logo-block">
@@ -66,7 +66,7 @@
         </div>
         <div class="logo-text">
           <p class="logo-name">Green Wolf Maintenance & Landscaping Inc.</p>
-          <p class="tagline">Simple Request Form</p>
+          <p class="tagline">Request Service</p>
         </div>
       </div>
       <nav class="main-nav" aria-label="Primary">
@@ -82,55 +82,23 @@
   <section class="hero">
     <div class="container hero-grid">
       <div>
-        <h1>Request Form</h1>
-        <p>Use this page when you just want a clean request form without choosing a service page first.</p>
-        <ul class="hero-bullets">
-          <li>Name required</li>
-          <li>Phone number or email required</li>
-          <li>Address and request details required</li>
-        </ul>
+        <h1>Request Service</h1>
+        <p>Complete the form below and Green Wolf will review your request and contact you about the next step.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#request-form">Fill out the form</a>
-          <a class="btn btn-outline" href="tel:+16395979351">Call 639-597-9351</a>
+          <a class="btn btn-primary" href="#request-form">Open form</a>
+          <a class="btn btn-outline" href="tel:+16395979351">Call/Text 639-597-9351</a>
         </div>
-        <div class="trust-strip" aria-label="Request form highlights">
-          <span>Direct to Green Wolf</span>
-          <span>No extra steps</span>
-          <span>Serving Saskatoon</span>
-        </div>
-      </div>
-      <div class="quote-block">
-        <h3>Best use for this page</h3>
-        <p class="small-text">This is the general-purpose link you can use anywhere when you do not want to send people through lawn, cleanup, snow, or commercial pages first.</p>
-        <ul class="hero-bullets">
-          <li>Ads and simple site links</li>
-          <li>Text messages and direct outreach</li>
-          <li>General inbound inquiries</li>
-        </ul>
       </div>
     </div>
   </section>
 
   <section class="section" id="request-form">
-    <div class="container split-grid">
-      <div>
-        <h2>Send Your Request</h2>
-        <p class="section-lead">Fill out the form and Green Wolf will review it and follow up with the right next step.</p>
-        <div class="quote-reassurance" aria-label="Request form notes">
-          <div class="quote-reassurance-item">
-            <strong>Contact rule</strong>
-            <span>You only need one contact method: phone or email.</span>
-          </div>
-          <div class="quote-reassurance-item">
-            <strong>Address matters</strong>
-            <span>The property address helps us understand the request faster and quote more accurately.</span>
-          </div>
-        </div>
-      </div>
+    <div class="container">
       <div class="quote-form">
         <div class="quote-form-head">
-          <span class="quote-form-eyebrow">General Request</span>
-          <p>Simple form. No package selection. No extra routing.</p>
+          <span class="quote-form-eyebrow">Request Details</span>
+          <h2>Send Your Request</h2>
+          <p>Please provide your name, property address, and either a phone number or an email address.</p>
         </div>
         <form
           id="home-assessment-form"
@@ -193,7 +161,6 @@
             <a class="btn btn-outline" href="tel:+16395979351">Call Instead</a>
           </div>
 
-          <p class="form-footnote">Requests from this page go straight to Green Wolf and save to your Google Sheet backup.</p>
           <p class="form-status" data-form-status aria-live="polite"></p>
         </form>
         <iframe
