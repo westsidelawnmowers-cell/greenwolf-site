@@ -343,6 +343,11 @@ function setupHomeAssessmentForm() {
       })
       .filter(Boolean);
 
+  const contactRequirementFields = (form.dataset.contactRequired || '')
+    .split(',')
+    .map((name) => name.trim())
+    .filter(Boolean);
+
   window.addEventListener('message', (event) => {
     if (!awaitingResult || !isTrustedQuoteOrigin(event.origin)) return;
 
@@ -371,6 +376,20 @@ function setupHomeAssessmentForm() {
     if (!form.reportValidity()) {
       setStatus('Please fill out all required fields before sending.', 'error');
       return;
+    }
+
+    if (contactRequirementFields.length) {
+      const hasRequiredContactMethod = contactRequirementFields.some((fieldName) => {
+        const field = form.querySelector(`[name="${fieldName}"]`);
+        return typeof field?.value === 'string' && field.value.trim() !== '';
+      });
+
+      if (!hasRequiredContactMethod) {
+        setStatus('Please provide at least a phone number or an email address before sending.', 'error');
+        const firstContactField = form.querySelector(`[name="${contactRequirementFields[0]}"]`);
+        firstContactField?.focus();
+        return;
+      }
     }
 
     const payload = new URLSearchParams(new FormData(form));
