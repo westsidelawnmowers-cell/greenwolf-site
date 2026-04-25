@@ -279,6 +279,22 @@ function isTrustedQuoteOrigin(origin) {
   return origin.includes('script.google.com') || origin.includes('script.googleusercontent.com');
 }
 
+function getContactRequirementFields(form) {
+  return (form?.dataset.contactRequired || '')
+    .split(',')
+    .map((name) => name.trim())
+    .filter(Boolean);
+}
+
+function hasRequiredContactMethod(form, fieldNames) {
+  if (!fieldNames.length) return true;
+
+  return fieldNames.some((fieldName) => {
+    const field = form.querySelector(`[name="${fieldName}"]`);
+    return typeof field?.value === 'string' && field.value.trim() !== '';
+  });
+}
+
 function setupHomeAssessmentForm() {
   const form = document.getElementById('home-assessment-form');
   if (!form) return;
@@ -343,10 +359,7 @@ function setupHomeAssessmentForm() {
       })
       .filter(Boolean);
 
-  const contactRequirementFields = (form.dataset.contactRequired || '')
-    .split(',')
-    .map((name) => name.trim())
-    .filter(Boolean);
+  const contactRequirementFields = getContactRequirementFields(form);
 
   window.addEventListener('message', (event) => {
     if (!awaitingResult || !isTrustedQuoteOrigin(event.origin)) return;
@@ -379,12 +392,7 @@ function setupHomeAssessmentForm() {
     }
 
     if (contactRequirementFields.length) {
-      const hasRequiredContactMethod = contactRequirementFields.some((fieldName) => {
-        const field = form.querySelector(`[name="${fieldName}"]`);
-        return typeof field?.value === 'string' && field.value.trim() !== '';
-      });
-
-      if (!hasRequiredContactMethod) {
+      if (!hasRequiredContactMethod(form, contactRequirementFields)) {
         setStatus('Please provide at least a phone number or an email address before sending.', 'error');
         const firstContactField = form.querySelector(`[name="${contactRequirementFields[0]}"]`);
         firstContactField?.focus();
@@ -474,6 +482,7 @@ function setupSnowQuoteForm() {
   const submitButton = form.querySelector('button[type="submit"]');
   const endpoint = form.dataset.formEndpoint || '';
   const formKey = form.dataset.formKey || 'snow';
+  const contactRequirementFields = getContactRequirementFields(form);
   const iframeTarget = 'snow-quote-submit-frame';
   const iframe = document.querySelector(`iframe[name="${iframeTarget}"]`);
   let selectedPackage = null;
@@ -601,6 +610,13 @@ function setupSnowQuoteForm() {
       return;
     }
 
+    if (!hasRequiredContactMethod(form, contactRequirementFields)) {
+      setStatus('Please provide at least a phone number or an email address before sending.', 'error');
+      const firstContactField = form.querySelector(`[name="${contactRequirementFields[0]}"]`);
+      firstContactField?.focus();
+      return;
+    }
+
     if (!selectedPackage) {
       setStatus('Select a snow package first so the quote includes the right plan.', 'error');
       const top = document.getElementById('details')?.getBoundingClientRect().top + window.scrollY - 110;
@@ -695,6 +711,7 @@ function setupLawnQuoteForm() {
   const submitButton = form.querySelector('button[type="submit"]');
   const endpoint = form.dataset.formEndpoint || '';
   const formKey = form.dataset.formKey || 'lawn';
+  const contactRequirementFields = getContactRequirementFields(form);
   const iframeTarget = 'lawn-quote-submit-frame';
   const iframe = document.querySelector(`iframe[name="${iframeTarget}"]`);
   let selectedPackage = null;
@@ -822,6 +839,13 @@ function setupLawnQuoteForm() {
       return;
     }
 
+    if (!hasRequiredContactMethod(form, contactRequirementFields)) {
+      setStatus('Please provide at least a phone number or an email address before sending.', 'error');
+      const firstContactField = form.querySelector(`[name="${contactRequirementFields[0]}"]`);
+      firstContactField?.focus();
+      return;
+    }
+
     if (!selectedPackage) {
       setStatus('Select a lawn package first so the quote includes the right plan.', 'error');
       const top = document.getElementById('details')?.getBoundingClientRect().top + window.scrollY - 110;
@@ -918,6 +942,7 @@ function setupCleanupQuoteForm() {
   const submitButton = form.querySelector('button[type="submit"]');
   const endpoint = form.dataset.formEndpoint || '';
   const formKey = form.dataset.formKey || 'cleanup';
+  const contactRequirementFields = getContactRequirementFields(form);
   const iframeTarget = 'cleanup-quote-submit-frame';
   const iframe = document.querySelector(`iframe[name="${iframeTarget}"]`);
   let selectedPackage = null;
@@ -1042,6 +1067,13 @@ function setupCleanupQuoteForm() {
 
     if (!form.reportValidity()) {
       setStatus('Please fill out all required fields before sending.', 'error');
+      return;
+    }
+
+    if (!hasRequiredContactMethod(form, contactRequirementFields)) {
+      setStatus('Please provide at least a phone number or an email address before sending.', 'error');
+      const firstContactField = form.querySelector(`[name="${contactRequirementFields[0]}"]`);
+      firstContactField?.focus();
       return;
     }
 

@@ -218,6 +218,7 @@
           id="home-assessment-form"
           class="service-form"
           data-form-key="cleanup-assessment"
+          data-contact-required="phone,email"
           data-form-endpoint="https://script.google.com/macros/s/AKfycbwB9XuhpMGjq8DO4pie112a_zC0xVoKR1lxm9JPyqHehKJb6z1_cFWC0fzjOvs8HIkSvw/exec"
           method="post"
           novalidate>
@@ -250,12 +251,12 @@
 
             <label class="form-field">
               <span class="form-label">Phone Number</span>
-              <input class="form-input" type="tel" name="phone" autocomplete="tel" required />
+              <input class="form-input" type="tel" name="phone" autocomplete="tel" />
             </label>
 
             <label class="form-field">
               <span class="form-label">Email</span>
-              <input class="form-input" type="email" name="email" autocomplete="email" required />
+              <input class="form-input" type="email" name="email" autocomplete="email" />
             </label>
 
             <label class="form-field">
@@ -307,7 +308,7 @@
             <a class="btn btn-outline" href="tel:+16395979351">Call Instead</a>
           </div>
 
-          <p class="form-footnote">Cleanup requests from this page go straight to Green Wolf and save to your Google Sheet backup.</p>
+          <p class="form-footnote">Send your cleanup details and Green Wolf will review the scope and follow up with the right next step.</p>
           <p class="form-status" data-form-status aria-live="polite"></p>
         </form>
         <iframe
