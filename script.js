@@ -1210,6 +1210,48 @@ function setupAddonSwipeHints() {
   });
 }
 
+function setupComingSoonPopup() {
+  const popup = document.querySelector('[data-coming-soon-popup]');
+  if (!popup) return;
+
+  const dialog = popup.querySelector('[data-coming-soon-dialog]');
+  const closeButtons = popup.querySelectorAll('[data-close-coming-soon]');
+  const waitlistLink = popup.querySelector('[data-coming-soon-waitlist]');
+
+  const closePopup = () => {
+    popup.hidden = true;
+    document.body.classList.remove('has-popup-open');
+  };
+
+  const openPopup = () => {
+    popup.hidden = false;
+    document.body.classList.add('has-popup-open');
+  };
+
+  closeButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      closePopup();
+    });
+  });
+
+  waitlistLink?.addEventListener('click', () => {
+    closePopup();
+  });
+
+  popup.addEventListener('click', (event) => {
+    if (dialog?.contains(event.target)) return;
+    closePopup();
+  });
+
+  window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !popup.hidden) {
+      closePopup();
+    }
+  });
+
+  window.requestAnimationFrame(openPopup);
+}
+
 function optimizeMedia() {
   document.querySelectorAll('img').forEach((img) => {
     if (!img.closest('.hero')) {
@@ -1258,6 +1300,7 @@ function init() {
   setupCleanupQuoteForm();
   setupDetailsAccordion();
   setupAddonSwipeHints();
+  setupComingSoonPopup();
   optimizeMedia();
   setupTracking();
 }
