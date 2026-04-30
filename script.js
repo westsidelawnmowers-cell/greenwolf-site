@@ -49,8 +49,48 @@ function setupSmoothScrolling() {
 
 function setupRevealOnScroll() {
   const revealElements = document.querySelectorAll(
-    '.card, .feature, .quote-block, .quote-form, .quote-reassurance-item, .service-area-card, .faq-item, .hero-media-shell, .hero-floating-card, .hero-stat-card, .service-intro-card, .assessment-step, .reviews-shell, .hero h2, .hero p, .hero-eyebrow, .hero-service-tags, .hero-bullets li, .hero-actions, .site-header'
+    [
+      '.site-header',
+      '.hero-eyebrow',
+      '.hero h1',
+      '.hero h2',
+      '.hero p',
+      '.hero-bullets li',
+      '.hero-service-tags span',
+      '.hero-actions',
+      '.hero-media',
+      '.hero-media-shell',
+      '.hero-floating-card',
+      '.hero-stat-card',
+      '.section-heading-row',
+      '.section h2',
+      '.section-lead',
+      '.section-mini-link',
+      '.card',
+      '.service-card',
+      '.service-intro-card',
+      '.feature',
+      '.package-card',
+      '.assessment-step',
+      '.quote-block',
+      '.quote-form',
+      '.quote-reassurance-item',
+      '.service-area-card',
+      '.faq-item',
+      '.reviews-shell',
+      '.featured-resource-card',
+      '.resource-group',
+      '.resource-tab',
+      '.learning-choice-card',
+      '.learning-showcase-card',
+      '.gallery-hint',
+      '.gallery-grid img',
+      '.split-grid > *',
+      '.related-service-card',
+      '.thank-you-service-links .card'
+    ].join(', ')
   );
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (!('IntersectionObserver' in window)) {
     revealElements.forEach((element) => element.classList.add('is-visible'));
@@ -69,8 +109,21 @@ function setupRevealOnScroll() {
     { threshold: 0.08, rootMargin: '0px 0px -6% 0px' }
   );
 
-  revealElements.forEach((element) => {
+  revealElements.forEach((element, index) => {
     element.classList.add('will-reveal');
+
+    if (element.matches('.hero-media, .hero-media-shell, .hero-floating-card, .split-grid > *:nth-child(even)')) {
+      element.classList.add('reveal-right');
+    } else if (element.matches('.hero h1, .hero h2, .hero p, .quote-block, .split-grid > *:nth-child(odd)')) {
+      element.classList.add('reveal-left');
+    } else if (element.matches('.hero-service-tags span, .hero-bullets li, .resource-tab, .section-mini-link')) {
+      element.classList.add('reveal-soft');
+    }
+
+    if (!reducedMotion) {
+      element.style.setProperty('--reveal-delay', `${Math.min(index % 8, 7) * 45}ms`);
+    }
+
     revealObserver.observe(element);
   });
 }
@@ -295,6 +348,17 @@ function hasRequiredContactMethod(form, fieldNames) {
   });
 }
 
+function splitFullName(fullName) {
+  const normalized = fullName.trim().replace(/\s+/g, ' ');
+  if (!normalized) return { firstName: '', lastName: '' };
+
+  const parts = normalized.split(' ');
+  return {
+    firstName: parts[0] || '',
+    lastName: parts.slice(1).join(' ')
+  };
+}
+
 function setupHomeAssessmentForm() {
   const form = document.getElementById('home-assessment-form');
   if (!form) return;
@@ -336,17 +400,6 @@ function setupHomeAssessmentForm() {
     }
 
     setStatus(message || 'The form could not be confirmed. Please try again or call/text us.', 'error');
-  };
-
-  const splitName = (fullName) => {
-    const normalized = fullName.trim().replace(/\s+/g, ' ');
-    if (!normalized) return { firstName: '', lastName: '' };
-
-    const parts = normalized.split(' ');
-    return {
-      firstName: parts[0] || '',
-      lastName: parts.slice(1).join(' ')
-    };
   };
 
   const collectExtraMessageLines = () =>
@@ -424,7 +477,7 @@ function setupHomeAssessmentForm() {
     const aliasEmail = form.querySelector('[name="emailAddress"]');
     const aliasAddress = form.querySelector('[name="streetAddress"]');
     const pageInput = form.querySelector('[name="page"]');
-    const nameParts = splitName(nameInput?.value || '');
+    const nameParts = splitFullName(nameInput?.value || '');
     const selectedService = serviceInterestInput?.value || '';
     const extraMessageLines = collectExtraMessageLines();
     const compiledMessageParts = [
@@ -517,17 +570,6 @@ function setupSnowQuoteForm() {
     }
 
     setStatus(message || 'The form could not be confirmed. Please try again or call/text us.', 'error');
-  };
-
-  const splitName = (fullName) => {
-    const normalized = fullName.trim().replace(/\s+/g, ' ');
-    if (!normalized) return { firstName: '', lastName: '' };
-
-    const parts = normalized.split(' ');
-    return {
-      firstName: parts[0] || '',
-      lastName: parts.slice(1).join(' ')
-    };
   };
 
   const selectSnowPackage = (card) => {
@@ -653,7 +695,7 @@ function setupSnowQuoteForm() {
     const sourceInput = form.querySelector('[name="source"]');
     const pageInput = form.querySelector('[name="page"]');
 
-    const nameParts = splitName(nameInput?.value || '');
+    const nameParts = splitFullName(nameInput?.value || '');
     const selectedAddOns = Array.from(form.querySelectorAll('input[name="snowAddOn"]:checked'))
       .map((input) => input.value)
       .filter(Boolean);
@@ -746,17 +788,6 @@ function setupLawnQuoteForm() {
     }
 
     setStatus(message || 'The form could not be confirmed. Please try again or call/text us.', 'error');
-  };
-
-  const splitName = (fullName) => {
-    const normalized = fullName.trim().replace(/\s+/g, ' ');
-    if (!normalized) return { firstName: '', lastName: '' };
-
-    const parts = normalized.split(' ');
-    return {
-      firstName: parts[0] || '',
-      lastName: parts.slice(1).join(' ')
-    };
   };
 
   const selectLawnPackage = (card) => {
@@ -883,7 +914,7 @@ function setupLawnQuoteForm() {
     const sourceInput = form.querySelector('[name="source"]');
     const pageInput = form.querySelector('[name="page"]');
 
-    const nameParts = splitName(nameInput?.value || '');
+    const nameParts = splitFullName(nameInput?.value || '');
     const selectedAddOns = Array.from(form.querySelectorAll('input[name="lawnAddOn"]:checked'))
       .map((input) => input.value)
       .filter(Boolean);
@@ -977,17 +1008,6 @@ function setupCleanupQuoteForm() {
     }
 
     setStatus(message || 'The form could not be confirmed. Please try again or call/text us.', 'error');
-  };
-
-  const splitName = (fullName) => {
-    const normalized = fullName.trim().replace(/\s+/g, ' ');
-    if (!normalized) return { firstName: '', lastName: '' };
-
-    const parts = normalized.split(' ');
-    return {
-      firstName: parts[0] || '',
-      lastName: parts.slice(1).join(' ')
-    };
   };
 
   const selectCleanupPackage = (card) => {
@@ -1115,7 +1135,7 @@ function setupCleanupQuoteForm() {
     const sourceInput = form.querySelector('[name="source"]');
     const pageInput = form.querySelector('[name="page"]');
 
-    const nameParts = splitName(nameInput?.value || '');
+    const nameParts = splitFullName(nameInput?.value || '');
     const selectedAddOns = Array.from(form.querySelectorAll('input[name="cleanupAddOn"]:checked'))
       .map((input) => input.value)
       .filter(Boolean);

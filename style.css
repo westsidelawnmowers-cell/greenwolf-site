@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap');
 
 :root {
   --forest: #062d1d;
@@ -39,13 +39,47 @@ body {
 
 .will-reveal {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.45s ease, transform 0.45s ease;
+  transform: translateY(22px) scale(0.985);
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s cubic-bezier(0.2, 0.72, 0.24, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
 }
 
 .is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+.will-reveal.reveal-left {
+  transform: translateX(-24px) scale(0.985);
+}
+
+.will-reveal.reveal-right {
+  transform: translateX(24px) scale(0.985);
+}
+
+.will-reveal.reveal-soft {
+  transform: translateY(12px);
+}
+
+.will-reveal.is-visible,
+.will-reveal.reveal-left.is-visible,
+.will-reveal.reveal-right.is-visible,
+.will-reveal.reveal-soft.is-visible {
+  transform: translate(0, 0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .will-reveal,
+  .will-reveal.reveal-left,
+  .will-reveal.reveal-right,
+  .will-reveal.reveal-soft {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 img {
