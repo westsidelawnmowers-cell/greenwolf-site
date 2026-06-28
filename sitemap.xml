@@ -3,55 +3,49 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://greenwolf.work/</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://greenwolf.work/about-us</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://greenwolf.work/lawn-care</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://greenwolf.work/commercial-lawn-care</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://greenwolf.work/privacy-policy</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
   <url>
     <loc>https://greenwolf.work/cleanup</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://greenwolf.work/request-form</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
     <loc>https://greenwolf.work/specialty-lawn-treatments</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://greenwolf.work/lawn</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -84,25 +78,25 @@
   </url>
   <url>
     <loc>https://greenwolf.work/snow</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://greenwolf.work/landscaping</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://greenwolf.work/bin-cleaning</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://greenwolf.work/gallery</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <image:image>
@@ -198,7 +192,7 @@
   </url>
   <url>
     <loc>https://greenwolf.work/learning</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <image:image>
@@ -213,7 +207,7 @@
   </url>
   <url>
     <loc>https://greenwolf.work/green-wolf-blogs</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <image:image>
@@ -234,7 +228,7 @@
   </url>
   <url>
     <loc>https://greenwolf.work/library</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <image:image>
