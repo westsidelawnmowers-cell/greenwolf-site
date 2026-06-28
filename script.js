@@ -6,7 +6,11 @@ function getPageKey() {
     return 'home';
   }
 
-  const base = normalizedPath.split('/').pop();
+  const pathSegments = normalizedPath.split('/').filter(Boolean);
+  const lastSegment = pathSegments[pathSegments.length - 1];
+  const base = lastSegment?.toLowerCase() === 'index.html'
+    ? pathSegments[pathSegments.length - 2]
+    : lastSegment;
   return (base || 'home').toLowerCase().replace(/\.html$/, '');
 }
 
@@ -329,7 +333,12 @@ function parseQuoteResultMessage(data) {
 }
 
 function isTrustedQuoteOrigin(origin) {
-  return origin.includes('script.google.com') || origin.includes('script.googleusercontent.com');
+  try {
+    const hostname = new URL(origin).hostname;
+    return hostname === 'script.google.com' || hostname === 'script.googleusercontent.com';
+  } catch (error) {
+    return false;
+  }
 }
 
 function getContactRequirementFields(form) {
