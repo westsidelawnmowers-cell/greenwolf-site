@@ -377,7 +377,6 @@ function setupHomeAssessmentForm() {
   const endpoint = form.dataset.formEndpoint || '';
   const formKey = form.dataset.formKey || 'home-assessment';
   const iframeTarget = 'home-assessment-submit-frame';
-  const iframe = document.querySelector(`iframe[name="${iframeTarget}"]`);
   let awaitingResult = false;
   let resultTimer = null;
 
@@ -402,6 +401,10 @@ function setupHomeAssessmentForm() {
 
     if (success) {
       setStatus(message || 'Your assessment request was sent. Green Wolf will follow up shortly.', 'success');
+      emitAnalyticsEvent('home_assessment_submit', {
+        page: getPageKey(),
+        service_interest: form.querySelector('[name="serviceInterest"]')?.value || 'unknown'
+      });
       window.setTimeout(() => {
         window.location.href = '/thank-you';
       }, 250);
@@ -430,19 +433,6 @@ function setupHomeAssessmentForm() {
     if (!payload || payload.formKey !== formKey) return;
 
     handleResultMessage(Boolean(payload.success), payload.message || payload.error);
-  });
-
-  iframe?.addEventListener('load', () => {
-    if (!awaitingResult) return;
-
-    if (resultTimer) {
-      window.clearTimeout(resultTimer);
-    }
-
-    resultTimer = window.setTimeout(() => {
-      if (!awaitingResult) return;
-      handleResultMessage(true, 'Your assessment request was sent. Green Wolf will follow up shortly.');
-    }, 700);
   });
 
   form.addEventListener('submit', (event) => {
@@ -521,10 +511,6 @@ function setupHomeAssessmentForm() {
 
     window.setTimeout(() => {
       form.submit();
-      emitAnalyticsEvent('home_assessment_submit', {
-        page: getPageKey(),
-        service_interest: selectedService || 'unknown'
-      });
     }, 50);
   });
 }
@@ -546,7 +532,6 @@ function setupSnowQuoteForm() {
   const formKey = form.dataset.formKey || 'snow';
   const contactRequirementFields = getContactRequirementFields(form);
   const iframeTarget = 'snow-quote-submit-frame';
-  const iframe = document.querySelector(`iframe[name="${iframeTarget}"]`);
   let selectedPackage = null;
   let awaitingResult = false;
   let resultTimer = null;
@@ -572,6 +557,10 @@ function setupSnowQuoteForm() {
 
     if (success) {
       setStatus(message || 'Your request was sent. Green Wolf will follow up shortly.', 'success');
+      emitAnalyticsEvent('snow_quote_submit', {
+        page: getPageKey(),
+        package_name: selectedPackage?.name || 'unknown'
+      });
       window.setTimeout(() => {
         window.location.href = '/thank-you';
       }, 250);
@@ -638,19 +627,6 @@ function setupSnowQuoteForm() {
     if (!payload || payload.formKey !== formKey) return;
 
     handleResultMessage(Boolean(payload.success), payload.message || payload.error);
-  });
-
-  iframe?.addEventListener('load', () => {
-    if (!awaitingResult) return;
-
-    if (resultTimer) {
-      window.clearTimeout(resultTimer);
-    }
-
-    resultTimer = window.setTimeout(() => {
-      if (!awaitingResult) return;
-      handleResultMessage(true, 'Your request was sent. Green Wolf will follow up shortly.');
-    }, 700);
   });
 
   form.addEventListener('submit', async (event) => {
@@ -742,7 +718,6 @@ function setupSnowQuoteForm() {
 
     window.setTimeout(() => {
       form.submit();
-      emitAnalyticsEvent('snow_quote_submit', { page: getPageKey() });
     }, 50);
   });
 }
@@ -764,7 +739,6 @@ function setupLawnQuoteForm() {
   const formKey = form.dataset.formKey || 'lawn';
   const contactRequirementFields = getContactRequirementFields(form);
   const iframeTarget = 'lawn-quote-submit-frame';
-  const iframe = document.querySelector(`iframe[name="${iframeTarget}"]`);
   let selectedPackage = null;
   let awaitingResult = false;
   let resultTimer = null;
@@ -790,6 +764,10 @@ function setupLawnQuoteForm() {
 
     if (success) {
       setStatus(message || 'Your request was sent. Green Wolf will follow up shortly.', 'success');
+      emitAnalyticsEvent('lawn_quote_submit', {
+        page: getPageKey(),
+        package_name: selectedPackage?.name || 'unknown'
+      });
       window.setTimeout(() => {
         window.location.href = '/thank-you';
       }, 250);
@@ -856,19 +834,6 @@ function setupLawnQuoteForm() {
     if (!payload || payload.formKey !== formKey) return;
 
     handleResultMessage(Boolean(payload.success), payload.message || payload.error);
-  });
-
-  iframe?.addEventListener('load', () => {
-    if (!awaitingResult) return;
-
-    if (resultTimer) {
-      window.clearTimeout(resultTimer);
-    }
-
-    resultTimer = window.setTimeout(() => {
-      if (!awaitingResult) return;
-      handleResultMessage(true, 'Your request was sent. Green Wolf will follow up shortly.');
-    }, 700);
   });
 
   form.addEventListener('submit', async (event) => {
@@ -962,7 +927,6 @@ function setupLawnQuoteForm() {
 
     window.setTimeout(() => {
       form.submit();
-      emitAnalyticsEvent('lawn_quote_submit', { page: getPageKey() });
     }, 50);
   });
 }
@@ -984,7 +948,6 @@ function setupCleanupQuoteForm() {
   const formKey = form.dataset.formKey || 'cleanup';
   const contactRequirementFields = getContactRequirementFields(form);
   const iframeTarget = 'cleanup-quote-submit-frame';
-  const iframe = document.querySelector(`iframe[name="${iframeTarget}"]`);
   let selectedPackage = null;
   let awaitingResult = false;
   let resultTimer = null;
@@ -1010,6 +973,10 @@ function setupCleanupQuoteForm() {
 
     if (success) {
       setStatus(message || 'Your request was sent. Green Wolf will follow up shortly.', 'success');
+      emitAnalyticsEvent('bin_cleaning_waitlist_submit', {
+        page: getPageKey(),
+        package_name: selectedPackage?.name || 'unknown'
+      });
       window.setTimeout(() => {
         window.location.href = '/thank-you';
       }, 250);
@@ -1076,19 +1043,6 @@ function setupCleanupQuoteForm() {
     if (!payload || payload.formKey !== formKey) return;
 
     handleResultMessage(Boolean(payload.success), payload.message || payload.error);
-  });
-
-  iframe?.addEventListener('load', () => {
-    if (!awaitingResult) return;
-
-    if (resultTimer) {
-      window.clearTimeout(resultTimer);
-    }
-
-    resultTimer = window.setTimeout(() => {
-      if (!awaitingResult) return;
-      handleResultMessage(true, 'Your request was sent. Green Wolf will follow up shortly.');
-    }, 700);
   });
 
   form.addEventListener('submit', async (event) => {
@@ -1184,7 +1138,6 @@ function setupCleanupQuoteForm() {
 
     window.setTimeout(() => {
       form.submit();
-      emitAnalyticsEvent('cleanup_quote_submit', { page: getPageKey() });
     }, 50);
   });
 }

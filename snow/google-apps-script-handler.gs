@@ -3,7 +3,7 @@ const SHEET_NAME = 'Sheet1';
 
 function doGet() {
   return ContentService
-    .createTextOutput('Green Wolf snow quote handler is live.')
+    .createTextOutput('Green Wolf website request handler is live.')
     .setMimeType(ContentService.MimeType.TEXT);
 }
 
@@ -16,9 +16,13 @@ function doPost(e) {
     return buildResponse_({ success: true, skipped: true, message: 'Ignored spam submission.', formKey }, responseMode);
   }
 
-  const missing = ['name', 'address', 'phone', 'email'].filter((field) => !data[field]);
+  const missing = ['name', 'address'].filter((field) => !data[field]);
   if (missing.length) {
     return buildResponse_({ success: false, error: `Missing required fields: ${missing.join(', ')}`, formKey }, responseMode);
+  }
+
+  if (!data.phone && !data.email) {
+    return buildResponse_({ success: false, error: 'A phone number or email address is required.', formKey }, responseMode);
   }
 
   const lock = LockService.getScriptLock();
@@ -38,12 +42,13 @@ function doPost(e) {
       data.message
     ]);
 
-    MailApp.sendEmail({
+    const emailOptions = {
       to: RECIPIENT_EMAIL,
-      replyTo: data.email,
-      subject: `Snow quote request from ${data.name}`,
+      subject: `${data.service} request from ${data.name}`,
       body: buildPlainTextEmail_(data)
-    });
+    };
+    if (data.email) emailOptions.replyTo = data.email;
+    MailApp.sendEmail(emailOptions);
 
     return buildResponse_({ success: true, message: 'Form submitted successfully', formKey }, responseMode);
   } finally {
@@ -96,7 +101,7 @@ function ensureHeaderRow_(sheet) {
 
 function buildPlainTextEmail_(data) {
   return [
-    'New snow quote request',
+    'New Green Wolf website request',
     '',
     `Name: ${data.name}`,
     `Address: ${data.address}`,
