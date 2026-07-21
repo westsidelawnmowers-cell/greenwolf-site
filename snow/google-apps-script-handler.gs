@@ -1,5 +1,6 @@
 const RECIPIENT_EMAIL = 'greenwolfsaskatoon@gmail.com';
 const SHEET_NAME = 'Sheet1';
+const DUPLICATE_WINDOW_SECONDS = 300;
 
 function doGet() {
   return ContentService
@@ -29,6 +30,12 @@ function doPost(e) {
   lock.waitLock(20000);
 
   try {
+    const cache = CacheService.getScriptCache();
+    const submissionKey = buildSubmissionKey_(data);
+    if (cache.get(submissionKey)) {
+      return buildResponse_({ success: true, duplicate: true, message: 'Form submitted successfully', formKey }, responseMode);
+    }
+
     const sheet = getOrCreateSheet_();
     ensureHeaderRow_(sheet);
 
@@ -49,11 +56,28 @@ function doPost(e) {
     };
     if (data.email) emailOptions.replyTo = data.email;
     MailApp.sendEmail(emailOptions);
+    cache.put(submissionKey, '1', DUPLICATE_WINDOW_SECONDS);
 
     return buildResponse_({ success: true, message: 'Form submitted successfully', formKey }, responseMode);
   } finally {
     lock.releaseLock();
   }
+}
+
+function buildSubmissionKey_(data) {
+  const fingerprint = [
+    data.service,
+    data.name,
+    data.address,
+    data.phone,
+    data.email,
+    data.message,
+    data.source,
+    data.page
+  ].map((value) => clean_(value).toLowerCase()).join('\n');
+
+  const digest = Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, fingerprint);
+  return `submission_${Utilities.base64EncodeWebSafe(digest)}`;
 }
 
 function normalizeSubmission_(e) {
