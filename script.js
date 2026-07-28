@@ -247,6 +247,103 @@ function setupMobileNav() {
   });
 }
 
+function setupPageLandmarks() {
+  const header = document.querySelector('.site-header');
+  const footer = document.querySelector('.footer');
+  if (!header || !footer) return;
+
+  let main = document.querySelector('main');
+  if (!main) {
+    main = document.createElement('main');
+    main.id = 'main-content';
+    footer.parentNode.insertBefore(main, footer);
+
+    let current = header.nextSibling;
+    while (current && current !== main) {
+      const next = current.nextSibling;
+      main.appendChild(current);
+      current = next;
+    }
+  } else if (!main.id) {
+    main.id = 'main-content';
+  }
+
+  if (!document.querySelector('.skip-link')) {
+    const skipLink = document.createElement('a');
+    skipLink.className = 'skip-link';
+    skipLink.href = '#main-content';
+    skipLink.textContent = 'Skip to main content';
+    document.body.insertBefore(skipLink, document.body.firstChild);
+  }
+}
+
+function setupConsistentNavigation() {
+  const nav = document.querySelector('.main-nav');
+  if (!nav) return;
+
+  const links = [
+    ['Services', '/#services'],
+    ['Lawn', '/lawn-care'],
+    ['Snow', '/snow'],
+    ['Landscaping', '/landscaping'],
+    ['Gallery', '/gallery'],
+    ['Contact', '/about-us#contact-page'],
+    ['Client Portal', 'https://clienthub.getjobber.com/client_hubs/309320be-1d48-4310-a545-7a08dd1adf4f/login/new?source=share_login']
+  ];
+  const currentPath = window.location.pathname.replace(/\/+$/, '') || '/';
+
+  nav.replaceChildren(...links.map(([label, href]) => {
+    const link = document.createElement('a');
+    link.href = href;
+    link.textContent = label;
+    const linkPath = href.startsWith('/') ? href.split('#')[0].replace(/\/+$/, '') || '/' : '';
+    if (linkPath && linkPath !== '/' && linkPath === currentPath) {
+      link.setAttribute('aria-current', 'page');
+    }
+    return link;
+  }));
+}
+
+function setupBreadcrumbs() {
+  const main = document.getElementById('main-content');
+  const canonical = document.querySelector('link[rel="canonical"]')?.href;
+  const heading = document.querySelector('h1')?.textContent?.trim();
+  const isHome = getPageKey() === 'home';
+  const isNoIndex = document.querySelector('meta[name="robots"][content*="noindex"]');
+  if (!main || !canonical || !heading || isHome || isNoIndex) return;
+
+  if (!document.querySelector('.breadcrumbs')) {
+    const breadcrumbNav = document.createElement('nav');
+    breadcrumbNav.className = 'breadcrumbs';
+    breadcrumbNav.setAttribute('aria-label', 'Breadcrumb');
+    breadcrumbNav.innerHTML = `
+      <div class="container">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li aria-current="page">${heading}</li>
+        </ol>
+      </div>
+    `;
+    main.insertBefore(breadcrumbNav, main.firstChild);
+  }
+
+  const hasBreadcrumbSchema = Array.from(document.querySelectorAll('script[type="application/ld+json"]'))
+    .some((script) => script.textContent.includes('BreadcrumbList'));
+  if (!hasBreadcrumbSchema) {
+    const schema = document.createElement('script');
+    schema.type = 'application/ld+json';
+    schema.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://greenwolf.work/' },
+        { '@type': 'ListItem', position: 2, name: heading, item: canonical }
+      ]
+    });
+    document.head.appendChild(schema);
+  }
+}
+
 function setupMobileCtaBar() {
   if (document.querySelector('.mobile-cta-bar')) return;
 
@@ -666,6 +763,7 @@ function setupSnowQuoteForm() {
     const phoneInput = form.querySelector('[name="phone"]');
     const emailInput = form.querySelector('[name="email"]');
     const addressInput = form.querySelector('[name="address"]');
+    const preferredReplyInput = form.querySelector('[name="preferredReply"]');
     const notesInput = form.querySelector('[name="notes"]');
     const messageInput = form.querySelector('[name="message"]');
     const frequencyInput = form.querySelector('[name="frequency"]');
@@ -688,6 +786,7 @@ function setupSnowQuoteForm() {
       `Selected package: ${selectedPackage.name}`,
       `Plan type: ${selectedPackage.frequency}`,
       selectedAddOns.length ? `Add-ons: ${selectedAddOns.join(', ')}` : '',
+      preferredReplyInput?.value ? `Preferred reply: ${preferredReplyInput.value}` : '',
       notesInput?.value ? `Customer notes: ${notesInput.value.trim()}` : ''
     ].filter(Boolean);
 
@@ -1270,6 +1369,9 @@ function optimizeMedia() {
 
 function init() {
   setFooterYear();
+  setupPageLandmarks();
+  setupConsistentNavigation();
+  setupBreadcrumbs();
   setupSmoothScrolling();
   setupRevealOnScroll();
   setupBackToTop();

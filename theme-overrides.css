@@ -253,3 +253,47 @@ body {
 .service-text-quote-card p {
   margin: 0 0 1rem;
 }
+
+.snow-scope-checklist {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.25fr) auto;
+  gap: 1.5rem;
+  align-items: center;
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  border: 1px solid rgba(77, 109, 58, 0.24);
+  border-radius: 1rem;
+  background: linear-gradient(135deg, rgba(240, 247, 235, 0.96), rgba(255, 255, 255, 0.96));
+  box-shadow: 0 12px 30px rgba(30, 45, 23, 0.08);
+}
+
+.snow-scope-checklist h3 {
+  margin: 0.3rem 0 0.45rem;
+}
+
+.snow-scope-checklist p {
+  margin: 0;
+}
+
+.snow-scope-checklist ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.snow-scope-checklist li + li {
+  margin-top: 0.45rem;
+}
+
+.snow-scope-checklist .btn {
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .snow-scope-checklist {
+    grid-template-columns: 1fr;
+  }
+
+  .snow-scope-checklist .btn {
+    justify-self: start;
+  }
+}

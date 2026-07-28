@@ -138,7 +138,7 @@
         </div>
       </div>
       <div class="quote-block">
-        <h3>Best fit for</h3>
+        <h2>Best fit for</h2>
         <ul class="hero-bullets">
           <li>Offices, retail plazas, and industrial frontage</li>
           <li>Condo boards, apartment sites, and managed communities</li>
@@ -184,7 +184,7 @@
           </article>
           <article class="card">
             <h3>What helps speed this up</h3>
-            <p>Property type, number of sites, service frequency, contract timing, and access notes make the quote more accurate on the first pass.</p>
+            <p>Start with the address, property type, and primary service. Add timing, site count, turf size, and access details in the optional notes when they are relevant.</p>
           </article>
         </div>
       </div>
@@ -262,17 +262,6 @@
             </label>
 
             <label class="form-field">
-              <span class="form-label">Service Frequency</span>
-              <select class="form-input" name="serviceFrequency" data-message-label="Requested frequency">
-                <option value="">Select frequency</option>
-                <option value="Weekly">Weekly</option>
-                <option value="Bi-weekly">Bi-weekly</option>
-                <option value="Needs site review">Needs site review</option>
-                <option value="Not sure yet">Not sure yet</option>
-              </select>
-            </label>
-
-            <label class="form-field">
               <span class="form-label">Primary Service Needed</span>
               <select class="form-input" name="primaryScope" data-message-label="Primary service needed" required>
                 <option value="">Select primary service</option>
@@ -281,18 +270,6 @@
                 <option value="Seasonal cleanup and lawn care">Seasonal cleanup and lawn care</option>
                 <option value="Multi-service property maintenance">Multi-service property maintenance</option>
                 <option value="Needs site recommendation">Needs site recommendation</option>
-              </select>
-            </label>
-
-            <label class="form-field">
-              <span class="form-label">Contract Timing</span>
-              <select class="form-input" name="contractTiming" data-message-label="Contract timing">
-                <option value="">Select timing</option>
-                <option value="As soon as possible">As soon as possible</option>
-                <option value="Within 30 days">Within 30 days</option>
-                <option value="Planning next season">Planning next season</option>
-                <option value="Collecting bids or renewal quotes">Collecting bids or renewal quotes</option>
-                <option value="Not sure yet">Not sure yet</option>
               </select>
             </label>
 
@@ -307,19 +284,9 @@
               </select>
             </label>
 
-            <label class="form-field">
-              <span class="form-label">Approximate Site Count</span>
-              <input class="form-input" type="text" name="siteCount" data-message-label="Approximate site count" placeholder="Example: 1 site or 4 properties" />
-            </label>
-
-            <label class="form-field">
-              <span class="form-label">Lot Size or Scope</span>
-              <input class="form-input" type="text" name="siteScope" data-message-label="Lot size or scope" placeholder="Example: 18,000 sq. ft. turf area" />
-            </label>
-
             <label class="form-field form-field--full">
               <span class="form-label">Site Notes</span>
-              <textarea class="form-input form-textarea" name="notes" rows="4" placeholder="Add access details, gate info, service windows, problem areas, or other services you want bundled."></textarea>
+              <textarea class="form-input form-textarea" name="notes" rows="4" placeholder="Optional: timing, site count, turf size, access details, problem areas, or other services you want bundled."></textarea>
             </label>
           </div>
 
