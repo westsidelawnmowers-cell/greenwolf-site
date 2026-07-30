@@ -72,7 +72,8 @@ body {
 
   .main-nav a:hover,
   .main-nav a:focus-visible,
-  .main-nav a.is-active {
+  .main-nav a.is-active,
+  .main-nav a[aria-current="page"] {
     color: #041c12;
   }
 }

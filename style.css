@@ -247,7 +247,8 @@ img {
 
 .main-nav a:hover::after,
 .main-nav a:focus-visible::after,
-.main-nav a.is-active::after {
+.main-nav a.is-active::after,
+.main-nav a[aria-current="page"]::after {
   transform: scaleX(1);
 }
 
