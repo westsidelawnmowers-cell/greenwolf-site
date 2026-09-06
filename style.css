@@ -1278,6 +1278,12 @@ img {
   box-shadow: 0 16px 28px rgba(18, 24, 19, 0.18);
 }
 
+@media (max-width: 760px) {
+  .seasonal-programs-page .plan-showcase .package-card--delta {
+    --seasonal-card-image: url('images/S7-720.jpg');
+  }
+}
+
 .seasonal-programs-page .plan-showcase .package-card--delta .package-card-top::before {
   color: #f8f3e9;
   background: rgba(10, 20, 16, 0.46);

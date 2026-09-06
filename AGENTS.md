@@ -5,6 +5,7 @@
 - This is a dependency-free static site. Public routes use directory pages such as `snow/index.html`; root-level `.html` files with the same names are redirect or compatibility pages, so make content changes in the directory page unless the root file also needs redirect metadata updated.
 - Shared presentation lives in `style.css` and `theme-overrides.css`; homepage-only overrides live in `homepage-overrides.css`. Page HTML retains fallback navigation markup, but `script.js` replaces the navigation links at runtime and also generates missing main/skip-link landmarks and canonical-page breadcrumbs; update shared navigation there and preserve each page's `.site-header`, `.main-nav`, `.footer`, canonical URL, and `h1`. Analytics, other UI behavior, and form submission logic also live in `script.js`.
 - Keep root-relative asset and route URLs (for example `/script.js` and `/thank-you`) because pages are served from nested directories.
+- For large gallery and service photos, keep the full-size image as the `src` and add a matching `images/*-720.jpg` derivative through `srcset`; preserve accurate intrinsic `width`/`height`, contextual `alt` text, `sizes`, and `loading`/`decoding` attributes when reusing the image across pages.
 - Public directory pages own their page-specific title, description, canonical URL, social metadata, and, where present, JSON-LD. Keep those values aligned with the route and visible copy; update `sitemap.xml` when adding or removing a public route.
 
 ## Forms and verification

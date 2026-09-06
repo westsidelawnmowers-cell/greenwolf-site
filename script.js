@@ -497,7 +497,7 @@ function setupHomeAssessmentForm() {
     resetSubmissionState();
 
     if (success) {
-      setStatus(message || 'Your assessment request was sent. Green Wolf will follow up shortly.', 'success');
+      setStatus(message || 'Your quote request was sent. Green Wolf will follow up shortly.', 'success');
       emitAnalyticsEvent('home_assessment_submit', {
         page: getPageKey(),
         service_interest: form.querySelector('[name="serviceInterest"]')?.value || 'unknown'
@@ -542,7 +542,7 @@ function setupHomeAssessmentForm() {
 
     if (contactRequirementFields.length) {
       if (!hasRequiredContactMethod(form, contactRequirementFields)) {
-        setStatus('Please provide at least a phone number or an email address before sending.', 'error');
+        setStatus('Please provide a phone number so Green Wolf can follow up.', 'error');
         const firstContactField = form.querySelector(`[name="${contactRequirementFields[0]}"]`);
         firstContactField?.focus();
         return;
@@ -577,14 +577,14 @@ function setupHomeAssessmentForm() {
     const selectedService = serviceInterestInput?.value || '';
     const extraMessageLines = collectExtraMessageLines();
     const compiledMessageParts = [
-      'Request type: Free assessment',
+      'Request type: Homepage quick quote',
       selectedService ? `Service interest: ${selectedService}` : '',
       addressInput?.value ? `Property address: ${addressInput.value.trim()}` : '',
       ...extraMessageLines,
       notesInput?.value ? `Customer notes: ${notesInput.value.trim()}` : ''
     ].filter(Boolean);
 
-    if (serviceInput) serviceInput.value = selectedService || 'Free Assessment';
+    if (serviceInput) serviceInput.value = selectedService || 'Website Quote';
     if (messageInput) messageInput.value = compiledMessageParts.join(' | ');
     if (aliasFullName) aliasFullName.value = nameInput?.value || '';
     if (aliasFirstName) aliasFirstName.value = nameParts.firstName;
@@ -600,10 +600,10 @@ function setupHomeAssessmentForm() {
     awaitingResult = true;
     form.classList.add('is-submitting');
     submitButton.disabled = true;
-    setStatus('Sending your assessment request...', 'pending');
+    setStatus('Sending your quote request...', 'pending');
     resultTimer = window.setTimeout(() => {
       if (!awaitingResult) return;
-      handleResultMessage(false, 'No response came back from the assessment handler. Please try again.');
+      handleResultMessage(false, 'No response came back from the quote handler. Please try again.');
     }, 12000);
 
     window.setTimeout(() => {
@@ -1347,10 +1347,10 @@ function optimizeMedia() {
     'specialty-lawn-treatments': 'images/S1.png',
     snow: 'images/3001.jpeg',
     lawn: 'images/9.jpeg',
-    landscaping: 'images/2001.jpg',
+    landscaping: 'images/2001-720.jpg',
     'bin-cleaning': 'images/J3.png',
     gallery: 'images/3001.jpeg',
-    learning: 'images/2006.jpg',
+    learning: 'images/2006-720.jpg',
     'green-wolf-blogs': 'images/3008.jpeg',
     library: 'images/2008.jpeg'
   };
