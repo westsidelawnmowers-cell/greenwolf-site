@@ -438,6 +438,15 @@ function isTrustedQuoteOrigin(origin) {
   }
 }
 
+async function submitFormRequest(form, endpoint) {
+  const body = new URLSearchParams(new FormData(form));
+  await window.fetch(endpoint, {
+    method: 'POST',
+    mode: 'no-cors',
+    body
+  });
+}
+
 function getContactRequirementFields(form) {
   return (form?.dataset.contactRequired || '')
     .split(',')
@@ -542,7 +551,10 @@ function setupHomeAssessmentForm() {
 
     if (contactRequirementFields.length) {
       if (!hasRequiredContactMethod(form, contactRequirementFields)) {
-        setStatus('Please provide a phone number so Green Wolf can follow up.', 'error');
+        const contactMessage = contactRequirementFields.length > 1
+          ? 'Please provide at least a phone number or an email address so Green Wolf can follow up.'
+          : 'Please provide a phone number so Green Wolf can follow up.';
+        setStatus(contactMessage, 'error');
         const firstContactField = form.querySelector(`[name="${contactRequirementFields[0]}"]`);
         firstContactField?.focus();
         return;
@@ -576,8 +588,9 @@ function setupHomeAssessmentForm() {
     const nameParts = splitFullName(nameInput?.value || '');
     const selectedService = serviceInterestInput?.value || '';
     const extraMessageLines = collectExtraMessageLines();
+    const requestType = form.dataset.requestType || 'Website quote';
     const compiledMessageParts = [
-      'Request type: Homepage quick quote',
+      `Request type: ${requestType}`,
       selectedService ? `Service interest: ${selectedService}` : '',
       addressInput?.value ? `Property address: ${addressInput.value.trim()}` : '',
       ...extraMessageLines,
@@ -594,20 +607,22 @@ function setupHomeAssessmentForm() {
     if (aliasAddress) aliasAddress.value = addressInput?.value || '';
     if (pageInput) pageInput.value = window.location.href;
 
-    form.action = endpoint;
-    form.target = iframeTarget;
-
     awaitingResult = true;
     form.classList.add('is-submitting');
     submitButton.disabled = true;
-    setStatus('Sending your quote request...', 'pending');
+    setStatus(form.dataset.pendingMessage || 'Sending your request...', 'pending');
     resultTimer = window.setTimeout(() => {
       if (!awaitingResult) return;
       handleResultMessage(false, 'No response came back from the quote handler. Please try again.');
     }, 12000);
 
-    window.setTimeout(() => {
-      form.submit();
+    window.setTimeout(async () => {
+      try {
+        await submitFormRequest(form, endpoint);
+        handleResultMessage(true, form.dataset.successMessage || 'Your request was sent successfully.');
+      } catch (error) {
+        handleResultMessage(false, 'The request could not be sent. Please try again or call/text us.');
+      }
     }, 50);
   });
 }
@@ -764,6 +779,7 @@ function setupSnowQuoteForm() {
     const emailInput = form.querySelector('[name="email"]');
     const addressInput = form.querySelector('[name="address"]');
     const preferredReplyInput = form.querySelector('[name="preferredReply"]');
+    const neighborhoodInput = form.querySelector('[name="neighborhood"]');
     const notesInput = form.querySelector('[name="notes"]');
     const messageInput = form.querySelector('[name="message"]');
     const frequencyInput = form.querySelector('[name="frequency"]');
@@ -785,6 +801,7 @@ function setupSnowQuoteForm() {
     const compiledMessageParts = [
       `Selected package: ${selectedPackage.name}`,
       `Plan type: ${selectedPackage.frequency}`,
+      neighborhoodInput?.value ? `Neighborhood: ${neighborhoodInput.value}` : '',
       selectedAddOns.length ? `Add-ons: ${selectedAddOns.join(', ')}` : '',
       preferredReplyInput?.value ? `Preferred reply: ${preferredReplyInput.value}` : '',
       notesInput?.value ? `Customer notes: ${notesInput.value.trim()}` : ''
@@ -803,9 +820,6 @@ function setupSnowQuoteForm() {
     if (sourceInput && !sourceInput.value) sourceInput.value = 'Snow Service Website Form';
     if (pageInput) pageInput.value = window.location.href;
 
-    form.action = endpoint;
-    form.target = iframeTarget;
-
     awaitingResult = true;
     form.classList.add('is-submitting');
     submitButton.disabled = true;
@@ -815,8 +829,13 @@ function setupSnowQuoteForm() {
       handleResultMessage(false, 'No response came back from the quote handler. Please try again.');
     }, 12000);
 
-    window.setTimeout(() => {
-      form.submit();
+    window.setTimeout(async () => {
+      try {
+        await submitFormRequest(form, endpoint);
+        handleResultMessage(true, 'Your snow quote request was sent successfully.');
+      } catch (error) {
+        handleResultMessage(false, 'The snow quote request could not be sent. Please try again or call/text us.');
+      }
     }, 50);
   });
 }
@@ -1012,9 +1031,6 @@ function setupLawnQuoteForm() {
     if (sourceInput && !sourceInput.value) sourceInput.value = 'Lawn Service Website Form';
     if (pageInput) pageInput.value = window.location.href;
 
-    form.action = endpoint;
-    form.target = iframeTarget;
-
     awaitingResult = true;
     form.classList.add('is-submitting');
     submitButton.disabled = true;
@@ -1024,8 +1040,13 @@ function setupLawnQuoteForm() {
       handleResultMessage(false, 'No response came back from the quote handler. Please try again.');
     }, 12000);
 
-    window.setTimeout(() => {
-      form.submit();
+    window.setTimeout(async () => {
+      try {
+        await submitFormRequest(form, endpoint);
+        handleResultMessage(true, 'Your lawn quote request was sent successfully.');
+      } catch (error) {
+        handleResultMessage(false, 'The lawn quote request could not be sent. Please try again or call/text us.');
+      }
     }, 50);
   });
 }
@@ -1223,9 +1244,6 @@ function setupCleanupQuoteForm() {
     if (sourceInput && !sourceInput.value) sourceInput.value = 'Bin Cleaning Website Form';
     if (pageInput) pageInput.value = window.location.href;
 
-    form.action = endpoint;
-    form.target = iframeTarget;
-
     awaitingResult = true;
     form.classList.add('is-submitting');
     submitButton.disabled = true;
@@ -1235,8 +1253,13 @@ function setupCleanupQuoteForm() {
       handleResultMessage(false, 'No response came back from the quote handler. Please try again.');
     }, 12000);
 
-    window.setTimeout(() => {
-      form.submit();
+    window.setTimeout(async () => {
+      try {
+        await submitFormRequest(form, endpoint);
+        handleResultMessage(true, 'Your request was sent successfully.');
+      } catch (error) {
+        handleResultMessage(false, 'The request could not be sent. Please try again or call/text us.');
+      }
     }, 50);
   });
 }
@@ -1291,46 +1314,103 @@ function setupAddonSwipeHints() {
   });
 }
 
-function setupComingSoonPopup() {
-  const popup = document.querySelector('[data-coming-soon-popup]');
-  if (!popup) return;
+function setupAvailabilityModal() {
+  const page = getPageKey();
+  const contentByPage = {
+    home: {
+      title: '2026 landscaping and cleanup are fully booked',
+      message: 'Landscaping and spring and fall cleanup are now booking for 2027. Snow-clearing quotes remain available, with priority routes in Hampton Village, Rosewood and Brighton.',
+      actionLabel: 'See booking options',
+      actionHref: '#services'
+    },
+    landscaping: {
+      title: 'Fully booked for 2026',
+      message: 'Green Wolf is now booking 2027 landscaping projects. Join the booking list and tell us what you are planning.',
+      actionLabel: 'Join the 2027 booking list',
+      actionHref: '#quote'
+    },
+    cleanup: {
+      title: 'Spring and fall cleanup is fully booked for 2026',
+      message: 'Join the 2027 booking list for spring or fall cleanup in Saskatoon.',
+      actionLabel: 'Join the 2027 booking list',
+      actionHref: '#quote'
+    }
+  };
+  const content = contentByPage[page];
+  if (!content || document.querySelector('[data-availability-modal]')) return;
 
-  const dialog = popup.querySelector('[data-coming-soon-dialog]');
-  const closeButtons = popup.querySelectorAll('[data-close-coming-soon]');
-  const waitlistLink = popup.querySelector('[data-coming-soon-waitlist]');
+  const sessionKey = 'greenwolf-availability-2026-seen';
+  try {
+    if (window.sessionStorage.getItem(sessionKey) === 'true') return;
+    window.sessionStorage.setItem(sessionKey, 'true');
+  } catch (error) {
+    // The notice can still work when storage is unavailable.
+  }
+
+  const popup = document.createElement('div');
+  popup.className = 'coming-soon-popup';
+  popup.hidden = true;
+  popup.dataset.availabilityModal = '';
+  popup.innerHTML = `
+    <div class="coming-soon-popup-backdrop" data-close-availability></div>
+    <section class="coming-soon-popup-dialog" role="dialog" aria-modal="true" aria-labelledby="availability-modal-title" aria-describedby="availability-modal-description">
+      <button class="coming-soon-popup-close" type="button" aria-label="Close availability notice" data-close-availability>&times;</button>
+      <span class="coming-soon-popup-badge">Important availability update</span>
+      <h2 id="availability-modal-title">${content.title}</h2>
+      <p id="availability-modal-description">${content.message}</p>
+      <div class="coming-soon-popup-actions">
+        <a class="btn btn-primary" href="${content.actionHref}" data-availability-action>${content.actionLabel}</a>
+        <button class="btn btn-outline" type="button" data-close-availability>Continue browsing</button>
+      </div>
+    </section>
+  `;
+
+  document.body.appendChild(popup);
+  const dialog = popup.querySelector('[role="dialog"]');
+  const closeButton = popup.querySelector('.coming-soon-popup-close');
+  const previousFocus = document.activeElement;
+  const returnFocus = previousFocus instanceof HTMLElement && previousFocus !== document.body
+    ? previousFocus
+    : document.querySelector('.skip-link, .site-header a, main a');
 
   const closePopup = () => {
     popup.hidden = true;
     document.body.classList.remove('has-popup-open');
+    if (returnFocus instanceof HTMLElement) returnFocus.focus();
   };
 
-  const openPopup = () => {
-    popup.hidden = false;
-    document.body.classList.add('has-popup-open');
-  };
+  popup.querySelectorAll('[data-close-availability]').forEach((control) => {
+    control.addEventListener('click', closePopup);
+  });
 
-  closeButtons.forEach((button) => {
-    button.addEventListener('click', () => {
+  popup.querySelector('[data-availability-action]')?.addEventListener('click', closePopup);
+
+  popup.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
       closePopup();
-    });
-  });
+      return;
+    }
 
-  waitlistLink?.addEventListener('click', () => {
-    closePopup();
-  });
-
-  popup.addEventListener('click', (event) => {
-    if (dialog?.contains(event.target)) return;
-    closePopup();
-  });
-
-  window.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && !popup.hidden) {
-      closePopup();
+    if (event.key !== 'Tab') return;
+    const focusable = Array.from(dialog.querySelectorAll('a[href], button:not([disabled])'));
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
     }
   });
 
-  window.requestAnimationFrame(openPopup);
+  window.requestAnimationFrame(() => {
+    popup.hidden = false;
+    document.body.classList.add('has-popup-open');
+    closeButton?.focus();
+  });
 }
 
 function optimizeMedia() {
@@ -1342,20 +1422,20 @@ function optimizeMedia() {
   });
 
   const pagePosterMap = {
-    home: 'images/1.jpeg',
-    'about-us': 'images/2008.jpeg',
-    'specialty-lawn-treatments': 'images/S1.png',
-    snow: 'images/3001.jpeg',
-    lawn: 'images/9.jpeg',
-    landscaping: 'images/2001-720.jpg',
-    'bin-cleaning': 'images/J3.png',
-    gallery: 'images/3001.jpeg',
-    learning: 'images/2006-720.jpg',
-    'green-wolf-blogs': 'images/3008.jpeg',
-    library: 'images/2008.jpeg'
+    home: '/images/1.jpeg',
+    'about-us': '/images/2008.jpeg',
+    'specialty-lawn-treatments': '/images/S1.png',
+    snow: '/images/3001.jpeg',
+    lawn: '/images/9.jpeg',
+    landscaping: '/images/2001-720.jpg',
+    'bin-cleaning': '/images/J3.png',
+    gallery: '/images/3001.jpeg',
+    learning: '/images/2006-720.jpg',
+    'green-wolf-blogs': '/images/3008.jpeg',
+    library: '/images/2008.jpeg'
   };
 
-  const poster = pagePosterMap[getPageKey()] || 'images/1.jpeg';
+  const poster = pagePosterMap[getPageKey()] || '/images/1.jpeg';
   document.querySelectorAll('video').forEach((video) => {
     if (!video.getAttribute('preload') || video.getAttribute('preload') === 'auto') {
       video.setAttribute('preload', 'metadata');
@@ -1384,7 +1464,7 @@ function init() {
   setupCleanupQuoteForm();
   setupDetailsAccordion();
   setupAddonSwipeHints();
-  setupComingSoonPopup();
+  setupAvailabilityModal();
   optimizeMedia();
   setupTracking();
 }
