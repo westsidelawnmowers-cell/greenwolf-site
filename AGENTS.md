@@ -7,6 +7,7 @@
 - Keep root-relative asset and route URLs (for example `/script.js` and `/thank-you`) because pages are served from nested directories.
 - For large gallery and service photos, keep the full-size image as the `src` and add a matching `images/*-720.jpg` derivative through `srcset`; preserve accurate intrinsic `width`/`height`, contextual `alt` text, `sizes`, and `loading`/`decoding` attributes when reusing the image across pages.
 - Public directory pages own their page-specific title, description, canonical URL, social metadata, and, where present, JSON-LD. Keep those values aligned with the route and visible copy; update `sitemap.xml` when adding or removing a public route.
+- Booking availability copy also lives in `script.js` under `setupAvailabilityModal()`; keep its page-specific messages and CTA anchors aligned with the homepage, landscaping, and cleanup pages. To recheck the notice, clear the `greenwolf-availability-2026-seen` sessionStorage key; verify Tab/Shift+Tab focus trapping, Escape dismissal, and restored focus.
 
 ## Forms and verification
 

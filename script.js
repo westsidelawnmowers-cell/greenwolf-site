@@ -780,6 +780,8 @@ function setupSnowQuoteForm() {
     const addressInput = form.querySelector('[name="address"]');
     const preferredReplyInput = form.querySelector('[name="preferredReply"]');
     const neighborhoodInput = form.querySelector('[name="neighborhood"]');
+    const clearingAreasInput = form.querySelector('[name="clearingAreas"]');
+    const propertyLayoutInput = form.querySelector('[name="propertyLayout"]');
     const notesInput = form.querySelector('[name="notes"]');
     const messageInput = form.querySelector('[name="message"]');
     const frequencyInput = form.querySelector('[name="frequency"]');
@@ -802,6 +804,8 @@ function setupSnowQuoteForm() {
       `Selected package: ${selectedPackage.name}`,
       `Plan type: ${selectedPackage.frequency}`,
       neighborhoodInput?.value ? `Neighborhood: ${neighborhoodInput.value}` : '',
+      clearingAreasInput?.value.trim() ? `Areas to clear: ${clearingAreasInput.value.trim()}` : '',
+      propertyLayoutInput?.value ? `Property layout: ${propertyLayoutInput.value}` : '',
       selectedAddOns.length ? `Add-ons: ${selectedAddOns.join(', ')}` : '',
       preferredReplyInput?.value ? `Preferred reply: ${preferredReplyInput.value}` : '',
       notesInput?.value ? `Customer notes: ${notesInput.value.trim()}` : ''

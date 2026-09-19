@@ -423,6 +423,24 @@
               </select>
             </label>
 
+            <label class="form-field form-field--full">
+              <span class="form-label">Areas to clear</span>
+              <input class="form-input" type="text" name="clearingAreas" placeholder="For example: driveway, city sidewalk, front steps, back entry" />
+            </label>
+
+            <label class="form-field form-field--full">
+              <span class="form-label">Property layout</span>
+              <select class="form-input" name="propertyLayout">
+                <option value="">Select the closest match</option>
+                <option value="Single driveway or small parking pad">Single driveway or small parking pad</option>
+                <option value="Standard double driveway">Standard double driveway</option>
+                <option value="Large or extended driveway">Large or extended driveway</option>
+                <option value="Corner lot with extra city sidewalk">Corner lot with extra city sidewalk</option>
+                <option value="Commercial, condo, or multi-unit property">Commercial, condo, or multi-unit property</option>
+                <option value="Not sure — please review photos">Not sure — please review photos</option>
+              </select>
+            </label>
+
             <label class="form-field">
               <span class="form-label">Email</span>
               <input class="form-input" type="email" name="email" autocomplete="email" />
@@ -440,7 +458,7 @@
 
             <label class="form-field form-field--full">
               <span class="form-label">Notes</span>
-              <textarea class="form-input form-textarea" name="notes" rows="4" placeholder="Gate code, corner lot, drift problem areas, service areas, or anything else we should know."></textarea>
+              <textarea class="form-input form-textarea" name="notes" rows="4" placeholder="Gate code, drift problem areas, snow-storage limits, access concerns, or anything else we should know."></textarea>
             </label>
           </div>
 
