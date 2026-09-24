@@ -284,7 +284,7 @@ function setupConsistentNavigation() {
   const links = [
     ['Services', '/#services'],
     ['Lawn', '/lawn-care'],
-    ['Snow', '/snow'],
+    ['Snow Removal', '/snow'],
     ['Landscaping', '/landscaping'],
     ['Gallery', '/gallery'],
     ['Contact', '/about-us#contact-page'],
@@ -782,6 +782,7 @@ function setupSnowQuoteForm() {
     const neighborhoodInput = form.querySelector('[name="neighborhood"]');
     const clearingAreasInput = form.querySelector('[name="clearingAreas"]');
     const propertyLayoutInput = form.querySelector('[name="propertyLayout"]');
+    const propertyTypeInput = form.querySelector('[name="propertyType"]');
     const notesInput = form.querySelector('[name="notes"]');
     const messageInput = form.querySelector('[name="message"]');
     const frequencyInput = form.querySelector('[name="frequency"]');
@@ -803,6 +804,7 @@ function setupSnowQuoteForm() {
     const compiledMessageParts = [
       `Selected package: ${selectedPackage.name}`,
       `Plan type: ${selectedPackage.frequency}`,
+      propertyTypeInput?.value ? `Property type: ${propertyTypeInput.value}` : '',
       neighborhoodInput?.value ? `Neighborhood: ${neighborhoodInput.value}` : '',
       clearingAreasInput?.value.trim() ? `Areas to clear: ${clearingAreasInput.value.trim()}` : '',
       propertyLayoutInput?.value ? `Property layout: ${propertyLayoutInput.value}` : '',
@@ -1322,10 +1324,11 @@ function setupAvailabilityModal() {
   const page = getPageKey();
   const contentByPage = {
     home: {
-      title: '2026 landscaping and cleanup are fully booked',
-      message: 'Landscaping and spring and fall cleanup are now booking for 2027. Snow-clearing quotes remain available, with priority routes in Hampton Village, Rosewood and Brighton.',
-      actionLabel: 'See booking options',
-      actionHref: '#services'
+      badge: 'Winter 2026–27 routes now booking',
+      title: 'Secure your Saskatoon snow-clearing contract',
+      message: 'Monthly and full-season snow removal is available for homes and businesses across Saskatoon. Request pricing before winter routes fill.',
+      actionLabel: 'Get my snow quote',
+      actionHref: '/snow#quote'
     },
     landscaping: {
       title: 'Fully booked for 2026',
@@ -1343,7 +1346,7 @@ function setupAvailabilityModal() {
   const content = contentByPage[page];
   if (!content || document.querySelector('[data-availability-modal]')) return;
 
-  const sessionKey = 'greenwolf-availability-2026-seen';
+  const sessionKey = 'greenwolf-seasonal-offer-2026-27-seen';
   try {
     if (window.sessionStorage.getItem(sessionKey) === 'true') return;
     window.sessionStorage.setItem(sessionKey, 'true');
@@ -1359,7 +1362,7 @@ function setupAvailabilityModal() {
     <div class="coming-soon-popup-backdrop" data-close-availability></div>
     <section class="coming-soon-popup-dialog" role="dialog" aria-modal="true" aria-labelledby="availability-modal-title" aria-describedby="availability-modal-description">
       <button class="coming-soon-popup-close" type="button" aria-label="Close availability notice" data-close-availability>&times;</button>
-      <span class="coming-soon-popup-badge">Important availability update</span>
+      <span class="coming-soon-popup-badge">${content.badge || 'Important availability update'}</span>
       <h2 id="availability-modal-title">${content.title}</h2>
       <p id="availability-modal-description">${content.message}</p>
       <div class="coming-soon-popup-actions">
