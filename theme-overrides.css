@@ -302,3 +302,37 @@ body {
     justify-self: start;
   }
 }
+
+/* Mobile: one contact bar instead of two. The sticky bottom bar already has
+   Call / Text / Get Quote, so the header button is hidden on small screens. */
+@media (max-width: 960px) {
+  .header-content > .btn {
+    display: none;
+  }
+
+  body.has-mobile-cta {
+    padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .mobile-cta-bar {
+    gap: 0.5rem;
+    padding: 0.55rem 0.75rem calc(0.55rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .mobile-cta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    min-height: 2.9rem;
+    padding: 0.5rem 0.4rem;
+    line-height: 1.1;
+    box-shadow: none;
+  }
+
+  .mobile-cta-btn svg {
+    width: 1.05rem;
+    height: 1.05rem;
+    flex: none;
+  }
+}

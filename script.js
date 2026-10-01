@@ -367,8 +367,8 @@ function setupMobileCtaBar() {
   bar.setAttribute('role', 'navigation');
   bar.setAttribute('aria-label', 'Quick actions');
   bar.innerHTML = `
-    <a class="mobile-cta-btn" href="tel:${SITE_PHONE_URI}" data-track="call_click">Call</a>
-    <a class="mobile-cta-btn" href="sms:${SITE_PHONE_URI}" data-track="text_click">Text</a>
+    <a class="mobile-cta-btn" href="tel:${SITE_PHONE_URI}" data-track="call_click"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Call</a>
+    <a class="mobile-cta-btn" href="sms:${SITE_PHONE_URI}" data-track="text_click"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Text</a>
     <a class="mobile-cta-btn mobile-cta-btn--primary" href="${primaryHref}" data-track="${primaryTrack}">${primaryLabel}</a>
   `;
 
@@ -1371,6 +1371,9 @@ function setupAvailabilityModal() {
     }
   };
   const content = contentByPage[page];
+  // On phones the homepage popup is skipped: the hero already leads with the snow
+  // quote and the sticky Call / Text / Get Quote bar is always visible.
+  if (page === 'home' && window.matchMedia('(max-width: 960px)').matches) return;
   if (!content || document.querySelector('[data-availability-modal]')) return;
 
   const sessionKey = 'greenwolf-availability-2026-seen';

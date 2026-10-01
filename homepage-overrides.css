@@ -453,3 +453,10 @@
     height: 190px;
   }
 }
+
+/* Phones: the service tags are labels only; hiding them brings the snow CTA above the fold. */
+@media (max-width: 760px) {
+  .hero-service-tags {
+    display: none;
+  }
+}
