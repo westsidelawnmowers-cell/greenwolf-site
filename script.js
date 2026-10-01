@@ -809,6 +809,7 @@ function setupSnowQuoteForm() {
     const neighborhoodInput = form.querySelector('[name="neighborhood"]');
     const clearingAreasInput = form.querySelector('[name="clearingAreas"]');
     const propertyLayoutInput = form.querySelector('[name="propertyLayout"]');
+    const propertyTypeInput = form.querySelector('[name="propertyType"]');
     const notesInput = form.querySelector('[name="notes"]');
     const messageInput = form.querySelector('[name="message"]');
     const frequencyInput = form.querySelector('[name="frequency"]');
@@ -830,6 +831,7 @@ function setupSnowQuoteForm() {
     const compiledMessageParts = [
       `Selected package: ${selectedPackage.name}`,
       `Plan type: ${selectedPackage.frequency}`,
+      propertyTypeInput?.value ? `Property type: ${propertyTypeInput.value}` : '',
       neighborhoodInput?.value ? `Neighborhood: ${neighborhoodInput.value}` : '',
       clearingAreasInput?.value.trim() ? `Areas to clear: ${clearingAreasInput.value.trim()}` : '',
       propertyLayoutInput?.value ? `Property layout: ${propertyLayoutInput.value}` : '',
@@ -1348,8 +1350,13 @@ function setupAddonSwipeHints() {
 function setupAvailabilityModal() {
   const page = getPageKey();
   const contentByPage = {
-    // No homepage popup: the homepage already shows the 2026 availability band
-    // under the hero, and a first-visit popup there hides the snow quote offer.
+    home: {
+      badge: 'Winter 2026–27 routes now booking',
+      title: 'Secure your Saskatoon snow-clearing contract',
+      message: 'Monthly and full-season snow removal is available for homes and businesses across Saskatoon. Request pricing before winter routes fill.',
+      actionLabel: 'Get my snow quote',
+      actionHref: '/snow#quote'
+    },
     landscaping: {
       title: 'Fully booked for 2026',
       message: 'Green Wolf is now booking 2027 landscaping projects. Join the booking list and tell us what you are planning.',
@@ -1382,7 +1389,7 @@ function setupAvailabilityModal() {
     <div class="coming-soon-popup-backdrop" data-close-availability></div>
     <section class="coming-soon-popup-dialog" role="dialog" aria-modal="true" aria-labelledby="availability-modal-title" aria-describedby="availability-modal-description">
       <button class="coming-soon-popup-close" type="button" aria-label="Close availability notice" data-close-availability>&times;</button>
-      <span class="coming-soon-popup-badge">Important availability update</span>
+      <span class="coming-soon-popup-badge">${content.badge || 'Important availability update'}</span>
       <h2 id="availability-modal-title">${content.title}</h2>
       <p id="availability-modal-description">${content.message}</p>
       <div class="coming-soon-popup-actions">
@@ -1497,3 +1504,4 @@ function init() {
 }
 
 init();
+
