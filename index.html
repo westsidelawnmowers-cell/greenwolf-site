@@ -12,11 +12,13 @@
   <meta property="og:title" content="Saskatoon Snow Removal &amp; 2027 Project Booking | Green Wolf" />
   <meta property="og:description" content="Priority snow-clearing routes for Hampton Village, Rosewood and Brighton. Join the 2027 landscaping or cleanup booking list." />
   <meta property="og:url" content="https://greenwolf.work/" />
-  <meta property="og:image" content="https://greenwolf.work/Green-Wolf.png" />
+  <meta property="og:image" content="https://greenwolf.work/images/og-snow.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Saskatoon Snow Removal &amp; 2027 Project Booking | Green Wolf" />
   <meta name="twitter:description" content="Priority snow-clearing routes for Hampton Village, Rosewood and Brighton. Landscaping and cleanup are booking for 2027." />
-  <meta name="twitter:image" content="https://greenwolf.work/Green-Wolf.png" />
+  <meta name="twitter:image" content="https://greenwolf.work/images/og-snow.jpg" />
   <meta name="theme-color" content="#0f2d1f" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
@@ -53,6 +55,15 @@
     "image": "https://greenwolf.work/Green-Wolf.png",
     "telephone": "+1-639-597-9351",
     "email": "info@greenwolf.work",
+    "priceRange": "$$",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 52.1115795,
+      "longitude": -106.5904431
+    },
+    "sameAs": [
+      "https://www.google.com/maps/place/Green+Wolf+Maintenance+and+Landscaping+Inc./@52.1115828,-106.593018,692m/data=!3m1!4b1!4m6!3m5!1s0x267506dde3c1b857:0xb5f497c3ada014e2!8m2!3d52.1115795!4d-106.5904431!16s%2Fg%2F11m_71gl9d"
+    ],
     "description": "Owner-operated lawn care and snow removal in Saskatoon, with 2027 booking lists for landscaping and seasonal cleanup.",
     "address": {
       "@type": "PostalAddress",
@@ -195,7 +206,7 @@
     <div class="container header-content">
       <div class="logo-block">
         <div class="logo-circle">
-          <img src="/Green-Wolf.png" width="661" height="663" alt="Green Wolf Logo" />
+          <img src="/Green-Wolf-160.png" width="160" height="160" alt="Green Wolf Logo" />
         </div>
         <div class="logo-text">
           <p class="logo-name">Green Wolf Maintenance & Landscaping Inc.</p>
@@ -240,28 +251,14 @@
         </ul>
         <div class="hero-actions">
           <a class="btn btn-primary" href="/snow#quote">Get a Snow Quote</a>
-          <a class="btn btn-outline" href="sms:+16395979351">Text Property Photos</a>
+          <a class="btn btn-outline" href="sms:+16395979351" data-track="home_hero_photo_text_click">Text Property Photos</a>
         </div>
-        <p class="hero-photo-quote"><strong>Fastest quote path:</strong> text your address and 2–3 clear property photos to <a href="sms:+16395979351">639-597-9351</a>.</p>
+        <p class="hero-photo-quote"><strong>Fastest quote path:</strong> text your address and 2–3 clear property photos to <a href="sms:+16395979351" data-track="home_hero_phone_text_click">639-597-9351</a>.</p>
         <p class="hero-photo-quote">Weekly lawn mowing and trimming starts at $99 per month. Weed control, fertilizer, cleanup, landscaping, and snow services are priced separately.</p>
         <div class="trust-strip" aria-label="Green Wolf trust highlights">
           <span>Google-reviewed</span>
           <span>Fully insured</span>
           <span>Serving Saskatoon</span>
-        </div>
-        <div class="hero-stat-grid" aria-label="Green Wolf highlights">
-          <article class="hero-stat-card">
-            <strong>Owner-operated</strong>
-            <span>Direct contact from quote to service day.</span>
-          </article>
-          <article class="hero-stat-card">
-            <strong>2027 booking lists open</strong>
-            <span>Landscaping and spring and fall cleanup are fully booked for 2026.</span>
-          </article>
-          <article class="hero-stat-card">
-            <strong>Limited snow routes</strong>
-            <span>Secure recurring winter coverage before routes fill.</span>
-          </article>
         </div>
       </div>
       <div class="hero-showcase">
@@ -274,7 +271,7 @@
           <div class="hero-media-badge">Priority 2026–27 snow routes now booking</div>
           <div class="hero-media">
             <video
-              src="/Videos/10001.mp4"
+              src="/Videos/10002-h264.mp4" poster="/images/snow-poster.jpg" preload="metadata"
               autoplay
               muted
               loop
@@ -354,7 +351,7 @@
       <div class="card-grid">
         <article class="card service-card">
           <div class="service-card-media">
-            <img loading="lazy" decoding="async" src="/images/S9.png" width="1080" height="1350" alt="Snow removal service in Saskatoon" />
+            <img loading="lazy" decoding="async" src="/images/S9.png" srcset="/images/S9-720.jpg 720w, /images/S9.png 1080w" sizes="(max-width: 760px) 92vw, 50vw" width="1080" height="1350" alt="Snow removal service in Saskatoon" />
           </div>
           <span class="card-kicker">Winter</span>
           <h3>Snow Removal</h3>
@@ -405,7 +402,7 @@
 
         <article class="card service-card">
           <div class="service-card-media">
-            <img loading="lazy" decoding="async" src="/images/seasonal-leaf-cleanup.jpg" width="1080" height="600" alt="Wheelbarrow and rakes used for seasonal leaf cleanup" />
+            <img loading="lazy" decoding="async" src="/images/seasonal-leaf-cleanup.jpg" srcset="/images/seasonal-leaf-cleanup-720.jpg 720w, /images/seasonal-leaf-cleanup.jpg 1080w" sizes="(max-width: 760px) 92vw, 50vw" width="1080" height="600" alt="Wheelbarrow and rakes used for seasonal leaf cleanup" />
           </div>
           <span class="card-kicker">Spring & Fall</span>
           <h3>Seasonal Cleanup</h3>
@@ -423,36 +420,17 @@
     </div>
   </section>
 
-  <section class="section seasonal-sales-band" aria-label="Snow routes and 2027 project booking">
-    <div class="container seasonal-sales-grid">
-      <div>
-        <span class="section-kicker">Book honestly around current capacity</span>
-        <h2>Secure winter coverage. Plan 2027 projects early.</h2>
-        <p class="section-lead">Snow-clearing quotes are open, with priority routes for Hampton Village, Rosewood and Brighton. Landscaping and spring and fall cleanup are fully booked for 2026 and accepting 2027 booking requests.</p>
-      </div>
-      <div class="seasonal-sales-card">
-        <strong>Current booking options</strong>
-        <h3>Snow Quotes &amp; 2027 Booking Lists</h3>
-        <ul class="card-list">
-          <li>Request a 2026–27 snow quote</li>
-          <li>Join the 2027 landscaping or cleanup booking list</li>
-          <li>Other Saskatoon snow areas remain subject to route availability</li>
-        </ul>
-        <a class="btn btn-primary" href="#quote">Choose a Booking Option</a>
-      </div>
-    </div>
-  </section>
   <section class="section alt-section" id="quote">
     <div class="container split-grid">
       <div>
         <span class="section-kicker">Clear next steps</span>
         <h2>Request snow service or join a 2027 booking list</h2>
-        <p class="section-lead">Choose the honest booking option, provide the Saskatoon property address, and tell Green Wolf how to reach you.</p>
+        <p class="section-lead">Pick the service, add your Saskatoon address, and tell us how to reach you.</p>
         <div class="text-quote-card">
           <span class="section-kicker">Even faster</span>
           <h3>Text the property details</h3>
           <p>Send your address, the service you need, and 2–3 clear photos. For landscaping or cleanup, specify that the request is for 2027.</p>
-          <a class="btn btn-outline" href="sms:+16395979351">Text photos to 639-597-9351</a>
+          <a class="btn btn-outline" href="sms:+16395979351" data-track="home_quote_photo_text_click">Text photos to 639-597-9351</a>
         </div>
       </div>
       <div class="quote-form">
@@ -519,13 +497,22 @@
             </label>
 
             <label class="form-field form-field--full">
-              <span class="form-label">Neighbourhood <span class="form-optional">Optional unless requesting snow</span></span>
-              <select class="form-input" name="neighborhood" data-message-label="Neighbourhood">
+              <span class="form-label">Neighbourhood <span class="form-optional" data-neighborhood-requirement>Optional unless requesting snow</span></span>
+              <select class="form-input" name="neighborhood" data-message-label="Neighbourhood" data-snow-neighborhood>
                 <option value="">Select neighbourhood</option>
                 <option value="Hampton Village — priority snow route">Hampton Village — priority snow route</option>
                 <option value="Rosewood — priority snow route">Rosewood — priority snow route</option>
                 <option value="Brighton — priority snow route">Brighton — priority snow route</option>
                 <option value="Other Saskatoon neighbourhood — snow subject to route availability">Other Saskatoon neighbourhood — snow subject to route availability</option>
+              </select>
+            </label>
+
+            <label class="form-field form-field--full">
+              <span class="form-label">Preferred Reply <span class="form-optional">Optional</span></span>
+              <select class="form-input" name="preferredReply" data-message-label="Preferred Reply">
+                <option value="">No preference</option>
+                <option value="Text message">Text message</option>
+                <option value="Phone call">Phone call</option>
               </select>
             </label>
 
@@ -642,7 +629,7 @@
           </div>
           <a class="section-mini-link" href="/about-us#contact-page" data-track="contact_page_click">Contact page</a>
         </div>
-        <p><strong>Phone:</strong> <a href="tel:+16395979351">639-597-9351</a> | <a href="sms:+16395979351">Text us</a></p>
+        <p><strong>Phone:</strong> <a href="tel:+16395979351">639-597-9351</a> | <a href="sms:+16395979351" data-track="home_footer_text_click">Text us</a></p>
         <p><strong>Email:</strong> <a href="mailto:info@greenwolf.work">info@greenwolf.work</a></p>
       </div>
       <div class="quote-block">

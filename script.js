@@ -26,6 +26,16 @@ function emitAnalyticsEvent(eventName, params = {}) {
   if (typeof window.gtag === 'function') {
     window.gtag('event', eventName, params);
   }
+
+  // Every successful form submission also fires GA4's recommended lead event,
+  // so one key event can be marked in GA4 and imported into Google Ads.
+  if (/_submit$/.test(eventName)) {
+    const leadParams = { form_name: eventName, ...params };
+    window.dataLayer.push({ event: 'generate_lead', ...leadParams });
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'generate_lead', leadParams);
+    }
+  }
 }
 
 function setFooterYear() {
@@ -483,8 +493,25 @@ function setupHomeAssessmentForm() {
   const endpoint = form.dataset.formEndpoint || '';
   const formKey = form.dataset.formKey || 'home-assessment';
   const iframeTarget = 'home-assessment-submit-frame';
+  const serviceInterestInput = form.querySelector('[name="serviceInterest"]');
+  const snowNeighborhoodInput = form.querySelector('[data-snow-neighborhood]');
+  const neighborhoodRequirement = form.querySelector('[data-neighborhood-requirement]');
   let awaitingResult = false;
   let resultTimer = null;
+
+  const syncSnowNeighborhoodRequirement = () => {
+    if (!serviceInterestInput || !snowNeighborhoodInput) return;
+
+    const snowSelected = serviceInterestInput.value === 'Snow Removal 2026-27';
+    snowNeighborhoodInput.required = snowSelected;
+    snowNeighborhoodInput.setAttribute('aria-required', String(snowSelected));
+    if (neighborhoodRequirement) {
+      neighborhoodRequirement.textContent = snowSelected ? 'Required for snow' : 'Optional unless requesting snow';
+    }
+  };
+
+  serviceInterestInput?.addEventListener('change', syncSnowNeighborhoodRequirement);
+  syncSnowNeighborhoodRequirement();
 
   const setStatus = (message, state = '') => {
     if (!status) return;
@@ -509,6 +536,7 @@ function setupHomeAssessmentForm() {
       setStatus(message || 'Your quote request was sent. Green Wolf will follow up shortly.', 'success');
       emitAnalyticsEvent('home_assessment_submit', {
         page: getPageKey(),
+        form_key: form.dataset.formKey || 'unknown',
         service_interest: form.querySelector('[name="serviceInterest"]')?.value || 'unknown'
       });
       window.setTimeout(() => {
@@ -574,7 +602,6 @@ function setupHomeAssessmentForm() {
     const phoneInput = form.querySelector('[name="phone"]');
     const emailInput = form.querySelector('[name="email"]');
     const addressInput = form.querySelector('[name="address"]');
-    const serviceInterestInput = form.querySelector('[name="serviceInterest"]');
     const notesInput = form.querySelector('[name="notes"]');
     const serviceInput = form.querySelector('[name="service"]');
     const messageInput = form.querySelector('[name="message"]');
@@ -1321,12 +1348,8 @@ function setupAddonSwipeHints() {
 function setupAvailabilityModal() {
   const page = getPageKey();
   const contentByPage = {
-    home: {
-      title: '2026 landscaping and cleanup are fully booked',
-      message: 'Landscaping and spring and fall cleanup are now booking for 2027. Snow-clearing quotes remain available, with priority routes in Hampton Village, Rosewood and Brighton.',
-      actionLabel: 'See booking options',
-      actionHref: '#services'
-    },
+    // No homepage popup: the homepage already shows the 2026 availability band
+    // under the hero, and a first-visit popup there hides the snow quote offer.
     landscaping: {
       title: 'Fully booked for 2026',
       message: 'Green Wolf is now booking 2027 landscaping projects. Join the booking list and tell us what you are planning.',
@@ -1426,20 +1449,20 @@ function optimizeMedia() {
   });
 
   const pagePosterMap = {
-    home: '/images/1.jpeg',
+    home: '/images/snow-poster.jpg',
     'about-us': '/images/2008.jpeg',
     'specialty-lawn-treatments': '/images/S1.png',
-    snow: '/images/3001.jpeg',
-    lawn: '/images/9.jpeg',
+    snow: '/images/snow-poster.jpg',
+    lawn: '/images/9-720.jpg',
     landscaping: '/images/2001-720.jpg',
     'bin-cleaning': '/images/J3.png',
-    gallery: '/images/3001.jpeg',
+    gallery: '/images/snow-poster.jpg',
     learning: '/images/2006-720.jpg',
-    'green-wolf-blogs': '/images/3008.jpeg',
+    'green-wolf-blogs': '/images/3008-720.jpg',
     library: '/images/2008.jpeg'
   };
 
-  const poster = pagePosterMap[getPageKey()] || '/images/1.jpeg';
+  const poster = pagePosterMap[getPageKey()] || '/images/hero-poster.jpg';
   document.querySelectorAll('video').forEach((video) => {
     if (!video.getAttribute('preload') || video.getAttribute('preload') === 'auto') {
       video.setAttribute('preload', 'metadata');
