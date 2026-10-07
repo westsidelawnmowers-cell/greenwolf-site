@@ -1352,18 +1352,44 @@ function setupWinterHero() {
   let lastTime = 0;
   let inView = true;
 
-  // Most flakes are small; about 1 in 6 is a large, slower "close-up" flake.
+  // Most flakes are small dots; some are large "close-up" dots and some are
+  // six-armed crystal snowflakes that rotate slowly as they fall.
   const makeFlake = (startAnywhere) => {
-    const big = Math.random() < 0.16;
+    const roll = Math.random();
+    const crystal = roll < 0.12;
+    const big = !crystal && roll < 0.26;
     return {
       x: Math.random() * width,
-      y: startAnywhere ? Math.random() * height : -10,
-      r: big ? 3.6 + Math.random() * 2.4 : 1.2 + Math.random() * 2.2,
-      speed: big ? 40 + Math.random() * 30 : 22 + Math.random() * 36,
+      y: startAnywhere ? Math.random() * height : -16,
+      crystal,
+      r: crystal ? 6 + Math.random() * 6 : big ? 3.6 + Math.random() * 2.4 : 1.2 + Math.random() * 2.2,
+      speed: crystal ? 26 + Math.random() * 22 : big ? 40 + Math.random() * 30 : 22 + Math.random() * 36,
       drift: Math.random() * Math.PI * 2,
       sway: 10 + Math.random() * 22,
-      alpha: big ? 0.55 + Math.random() * 0.3 : 0.5 + Math.random() * 0.45
+      angle: Math.random() * Math.PI,
+      spin: (Math.random() - 0.5) * 1.2,
+      alpha: crystal ? 0.7 + Math.random() * 0.25 : big ? 0.55 + Math.random() * 0.3 : 0.5 + Math.random() * 0.45
     };
+  };
+
+  const drawCrystal = (x, y, r, angle) => {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(angle);
+    ctx.lineWidth = Math.max(1, r / 6);
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    for (let arm = 0; arm < 6; arm += 1) {
+      ctx.moveTo(0, 0);
+      ctx.lineTo(0, -r);
+      ctx.moveTo(0, -r * 0.55);
+      ctx.lineTo(-r * 0.28, -r * 0.8);
+      ctx.moveTo(0, -r * 0.55);
+      ctx.lineTo(r * 0.28, -r * 0.8);
+      ctx.rotate(Math.PI / 3);
+    }
+    ctx.stroke();
+    ctx.restore();
   };
 
   const resize = () => {
@@ -1386,18 +1412,24 @@ function setupWinterHero() {
     lastTime = time;
     ctx.clearRect(0, 0, width, height);
     ctx.fillStyle = '#ffffff';
+    ctx.strokeStyle = '#ffffff';
+    ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
 
     flakes.forEach((flake, index) => {
       flake.y += flake.speed * dt;
       flake.drift += dt * 0.8;
       const x = flake.x + Math.sin(flake.drift) * flake.sway;
-      if (flake.y > height + 10) {
+      if (flake.y > height + 16) {
         flakes[index] = makeFlake(false);
         return;
       }
       ctx.globalAlpha = flake.alpha;
       ctx.shadowBlur = flake.r > 3.5 ? 6 : 0;
-      ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
+      if (flake.crystal) {
+        flake.angle += flake.spin * dt;
+        drawCrystal(x, flake.y, flake.r, flake.angle);
+        return;
+      }
       ctx.beginPath();
       ctx.arc(x, flake.y, flake.r, 0, Math.PI * 2);
       ctx.fill();
