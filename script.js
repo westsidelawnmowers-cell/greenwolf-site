@@ -1314,6 +1314,28 @@ function setupDetailsAccordion() {
   });
 }
 
+// Canadian Thanksgiving is the second Monday of October. True from the Monday
+// a week before through the end of the holiday itself.
+function isThanksgivingWeek(now = new Date()) {
+  const year = now.getFullYear();
+  const firstMonday = 1 + ((8 - new Date(year, 9, 1).getDay()) % 7);
+  const start = new Date(year, 9, firstMonday);
+  const end = new Date(year, 9, firstMonday + 8);
+  return now >= start && now < end;
+}
+
+function setupThanksgivingGreeting() {
+  if (!isThanksgivingWeek()) return;
+
+  const heroCopy = document.querySelector('.hero .hero-grid > :first-child');
+  if (!heroCopy || heroCopy.querySelector('.holiday-greeting')) return;
+
+  const greeting = document.createElement('p');
+  greeting.className = 'holiday-greeting';
+  greeting.innerHTML = '<span aria-hidden="true">🍁</span> Happy Thanksgiving, Saskatoon! Thank you for a great season.';
+  heroCopy.insertBefore(greeting, heroCopy.firstChild);
+}
+
 // Seasonal snowfall in the hero on the homepage and snow page (Oct 1 – Apr 15).
 function setupWinterHero() {
   const path = window.location.pathname.replace(/\/+$/, '').replace(/\.html$/, '');
@@ -1352,12 +1374,30 @@ function setupWinterHero() {
   let lastTime = 0;
   let inView = true;
 
+  const showLeaves = isThanksgivingWeek();
+
   // Most flakes are small dots; some are large "close-up" dots and some are
-  // six-armed crystal snowflakes that rotate slowly as they fall.
+  // six-armed crystal snowflakes that rotate slowly as they fall. During
+  // Thanksgiving week a few maple leaves tumble down with the snow.
   const makeFlake = (startAnywhere) => {
     const roll = Math.random();
     const crystal = roll < 0.12;
-    const big = !crystal && roll < 0.26;
+    const leaf = showLeaves && !crystal && roll < 0.2;
+    const big = !crystal && !leaf && roll < 0.32;
+    if (leaf) {
+      return {
+        x: Math.random() * width,
+        y: startAnywhere ? Math.random() * height : -24,
+        leaf: true,
+        r: 14 + Math.random() * 10,
+        speed: 30 + Math.random() * 24,
+        drift: Math.random() * Math.PI * 2,
+        sway: 24 + Math.random() * 30,
+        angle: Math.random() * Math.PI * 2,
+        spin: (Math.random() - 0.5) * 2.4,
+        alpha: 0.85 + Math.random() * 0.15
+      };
+    }
     return {
       x: Math.random() * width,
       y: startAnywhere ? Math.random() * height : -16,
@@ -1419,11 +1459,24 @@ function setupWinterHero() {
       flake.y += flake.speed * dt;
       flake.drift += dt * 0.8;
       const x = flake.x + Math.sin(flake.drift) * flake.sway;
-      if (flake.y > height + 16) {
+      if (flake.y > height + 24) {
         flakes[index] = makeFlake(false);
         return;
       }
       ctx.globalAlpha = flake.alpha;
+      if (flake.leaf) {
+        flake.angle += flake.spin * dt;
+        ctx.shadowBlur = 0;
+        ctx.save();
+        ctx.translate(x, flake.y);
+        ctx.rotate(flake.angle);
+        ctx.font = `${Math.round(flake.r)}px "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('🍁', 0, 0);
+        ctx.restore();
+        return;
+      }
       ctx.shadowBlur = flake.r > 3.5 ? 6 : 0;
       if (flake.crystal) {
         flake.angle += flake.spin * dt;
@@ -1650,6 +1703,7 @@ function init() {
   setupCleanupQuoteForm();
   setupDetailsAccordion();
   setupAddonSwipeHints();
+  setupThanksgivingGreeting();
   setupWinterHero();
   setupAvailabilityModal();
   optimizeMedia();
