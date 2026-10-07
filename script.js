@@ -1328,6 +1328,7 @@ function setupWinterHero() {
   if (!isWinter) return;
 
   hero.classList.add('hero--winter');
+  document.body.classList.add('is-winter');
 
   const snowbank = document.createElement('div');
   snowbank.className = 'hero-snowbank';
@@ -1351,15 +1352,19 @@ function setupWinterHero() {
   let lastTime = 0;
   let inView = true;
 
-  const makeFlake = (startAnywhere) => ({
-    x: Math.random() * width,
-    y: startAnywhere ? Math.random() * height : -10,
-    r: 1 + Math.random() * 2.4,
-    speed: 18 + Math.random() * 32,
-    drift: Math.random() * Math.PI * 2,
-    sway: 8 + Math.random() * 16,
-    alpha: 0.35 + Math.random() * 0.5
-  });
+  // Most flakes are small; about 1 in 6 is a large, slower "close-up" flake.
+  const makeFlake = (startAnywhere) => {
+    const big = Math.random() < 0.16;
+    return {
+      x: Math.random() * width,
+      y: startAnywhere ? Math.random() * height : -10,
+      r: big ? 3.6 + Math.random() * 2.4 : 1.2 + Math.random() * 2.2,
+      speed: big ? 40 + Math.random() * 30 : 22 + Math.random() * 36,
+      drift: Math.random() * Math.PI * 2,
+      sway: 10 + Math.random() * 22,
+      alpha: big ? 0.55 + Math.random() * 0.3 : 0.5 + Math.random() * 0.45
+    };
+  };
 
   const resize = () => {
     if (hero.clientWidth === width && hero.clientHeight === height) return;
@@ -1371,7 +1376,7 @@ function setupWinterHero() {
     canvas.height = Math.round(height * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     if (widthChanged) {
-      const count = Math.round(Math.min(90, Math.max(30, width / 14)));
+      const count = Math.round(Math.min(170, Math.max(60, width / 7.5)));
       flakes = Array.from({ length: count }, () => makeFlake(true));
     }
   };
@@ -1391,6 +1396,8 @@ function setupWinterHero() {
         return;
       }
       ctx.globalAlpha = flake.alpha;
+      ctx.shadowBlur = flake.r > 3.5 ? 6 : 0;
+      ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
       ctx.beginPath();
       ctx.arc(x, flake.y, flake.r, 0, Math.PI * 2);
       ctx.fill();
