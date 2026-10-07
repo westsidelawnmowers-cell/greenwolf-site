@@ -1516,6 +1516,34 @@ function setupWinterHero() {
   start();
 }
 
+function setupReviewCarousel() {
+  document.querySelectorAll('[data-review-carousel]').forEach((track) => {
+    const container = track.closest('.g-reviews');
+    if (!container) return;
+    const arrows = Array.from(container.querySelectorAll('[data-review-scroll]'));
+
+    const updateArrows = () => {
+      const maxScroll = track.scrollWidth - track.clientWidth - 2;
+      arrows.forEach((arrow) => {
+        const direction = Number(arrow.dataset.reviewScroll);
+        arrow.disabled = direction < 0 ? track.scrollLeft <= 2 : track.scrollLeft >= maxScroll;
+      });
+    };
+
+    arrows.forEach((arrow) => {
+      arrow.addEventListener('click', () => {
+        const card = track.querySelector('.g-review-card');
+        const step = card ? card.offsetWidth + 16 : track.clientWidth;
+        track.scrollBy({ left: step * Number(arrow.dataset.reviewScroll), behavior: 'smooth' });
+      });
+    });
+
+    track.addEventListener('scroll', updateArrows, { passive: true });
+    window.addEventListener('resize', updateArrows);
+    updateArrows();
+  });
+}
+
 function setupAddonSwipeHints() {
   const addonPanels = document.querySelectorAll('.snow-addon-panel');
   if (!addonPanels.length) return;
@@ -1703,6 +1731,7 @@ function init() {
   setupCleanupQuoteForm();
   setupDetailsAccordion();
   setupAddonSwipeHints();
+  setupReviewCarousel();
   setupThanksgivingGreeting();
   setupWinterHero();
   setupAvailabilityModal();

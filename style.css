@@ -3579,48 +3579,164 @@ img {
   color: var(--muted);
 }
 
-.native-reviews-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
+/* Google-style review carousel (homepage #reviews), arrows wired in setupReviewCarousel() */
+.g-reviews {
+  padding: 1.25rem;
+  border: 1px solid #dadce0;
+  border-radius: 1.2rem;
+  background: #ffffff;
+  box-shadow: 0 16px 30px rgba(15, 45, 31, 0.06);
+  font-family: Roboto, 'Manrope', Arial, sans-serif;
 }
 
-.native-review-card {
+.g-reviews-summary {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.g-logo {
+  width: 2.4rem;
+  height: 2.4rem;
+  flex-shrink: 0;
+}
+
+.g-reviews-title {
+  margin: 0;
+  color: #202124;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.g-reviews-score {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0.1rem 0 0;
+  color: #202124;
+}
+
+.g-reviews-score strong {
+  font-size: 1.15rem;
+}
+
+.g-reviews-count {
+  color: #70757a;
+  font-size: 0.9rem;
+}
+
+.g-stars {
+  color: #fbbc04;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.g-reviews-nav {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.g-reviews-arrow {
+  display: inline-grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid #dadce0;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #3c4043;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(60, 64, 67, 0.2);
+  transition: background 0.18s ease, opacity 0.18s ease;
+}
+
+.g-reviews-arrow:hover,
+.g-reviews-arrow:focus-visible {
+  background: #f1f3f4;
+}
+
+.g-reviews-arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.g-reviews-track {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  padding: 0.25rem 0.1rem 0.9rem;
+  scrollbar-width: thin;
+  scrollbar-color: #dadce0 transparent;
+}
+
+.g-reviews-track:focus-visible {
+  outline: 2px solid #1a73e8;
+  outline-offset: 4px;
+  border-radius: 0.8rem;
+}
+
+.g-review-card {
   display: flex;
   flex-direction: column;
-  min-height: 100%;
-  padding: 1.25rem;
-  border: 1px solid rgba(15, 45, 31, 0.1);
-  border-radius: 1.2rem;
-  background: linear-gradient(180deg, #ffffff, #f7faf5);
-  box-shadow: 0 16px 30px rgba(15, 45, 31, 0.06);
+  gap: 0.6rem;
+  flex: 0 0 calc((100% - 2rem) / 3);
+  min-width: 15rem;
+  padding: 1.1rem;
+  border: 1px solid #dadce0;
+  border-radius: 0.9rem;
+  background: #f8f9fa;
+  scroll-snap-align: start;
 }
 
-.native-review-stars {
-  margin-bottom: 0.8rem;
-  color: #d99b00;
+.g-review-head {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.g-avatar {
+  display: inline-grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  color: #ffffff;
   font-size: 1.1rem;
-  letter-spacing: 0.08em;
+  font-weight: 600;
 }
 
-.native-review-card blockquote {
+.g-review-name {
   flex: 1;
-  margin: 0 0 1rem;
-  color: var(--ink);
-  font-size: 0.98rem;
-  line-height: 1.65;
-}
-
-.native-review-author {
+  min-width: 0;
   margin: 0;
-  color: var(--forest);
-  font-weight: 900;
+  color: #202124;
+  font-size: 0.95rem;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.native-review-source {
-  margin: 0.2rem 0 0;
-  color: var(--muted);
-  font-size: 0.82rem;
+.g-review-icon {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex-shrink: 0;
+}
+
+.g-review-card blockquote {
+  margin: 0;
+  color: #3c4043;
+  font-size: 0.95rem;
+  line-height: 1.55;
 }
 
 .native-reviews-actions {
@@ -3666,8 +3782,8 @@ img {
     grid-template-columns: 1fr;
   }
 
-  .native-reviews-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .g-review-card {
+    flex-basis: calc((100% - 1rem) / 2);
   }
 
   .quote-reassurance {
@@ -3680,8 +3796,17 @@ img {
 }
 
 @media (max-width: 640px) {
-  .native-reviews-grid {
-    grid-template-columns: 1fr;
+  .g-reviews {
+    padding: 1rem;
+  }
+
+  .g-reviews-nav {
+    display: none;
+  }
+
+  .g-review-card {
+    flex-basis: 85%;
+    min-width: 0;
   }
 
   .hero-eyebrow {
