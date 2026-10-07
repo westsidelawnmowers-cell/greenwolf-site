@@ -1314,6 +1314,116 @@ function setupDetailsAccordion() {
   });
 }
 
+// Seasonal snowfall in the hero on the homepage and snow page (Oct 1 – Apr 15).
+function setupWinterHero() {
+  const path = window.location.pathname.replace(/\/+$/, '').replace(/\.html$/, '');
+  if (path !== '' && path !== '/index' && path !== '/snow') return;
+
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+
+  const now = new Date();
+  const month = now.getMonth();
+  const isWinter = month >= 9 || month <= 2 || (month === 3 && now.getDate() <= 15);
+  if (!isWinter) return;
+
+  hero.classList.add('hero--winter');
+
+  const snowbank = document.createElement('div');
+  snowbank.className = 'hero-snowbank';
+  snowbank.setAttribute('aria-hidden', 'true');
+  hero.appendChild(snowbank);
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const canvas = document.createElement('canvas');
+  canvas.className = 'hero-snowfall';
+  canvas.setAttribute('aria-hidden', 'true');
+  hero.insertBefore(canvas, hero.firstChild);
+
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  let width = 0;
+  let height = 0;
+  let flakes = [];
+  let frameId = 0;
+  let lastTime = 0;
+  let inView = true;
+
+  const makeFlake = (startAnywhere) => ({
+    x: Math.random() * width,
+    y: startAnywhere ? Math.random() * height : -10,
+    r: 1 + Math.random() * 2.4,
+    speed: 18 + Math.random() * 32,
+    drift: Math.random() * Math.PI * 2,
+    sway: 8 + Math.random() * 16,
+    alpha: 0.35 + Math.random() * 0.5
+  });
+
+  const resize = () => {
+    if (hero.clientWidth === width && hero.clientHeight === height) return;
+    const widthChanged = hero.clientWidth !== width;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = hero.clientWidth;
+    height = hero.clientHeight;
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    if (widthChanged) {
+      const count = Math.round(Math.min(90, Math.max(30, width / 14)));
+      flakes = Array.from({ length: count }, () => makeFlake(true));
+    }
+  };
+
+  const draw = (time) => {
+    const dt = lastTime ? Math.min((time - lastTime) / 1000, 0.05) : 0;
+    lastTime = time;
+    ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = '#ffffff';
+
+    flakes.forEach((flake, index) => {
+      flake.y += flake.speed * dt;
+      flake.drift += dt * 0.8;
+      const x = flake.x + Math.sin(flake.drift) * flake.sway;
+      if (flake.y > height + 10) {
+        flakes[index] = makeFlake(false);
+        return;
+      }
+      ctx.globalAlpha = flake.alpha;
+      ctx.beginPath();
+      ctx.arc(x, flake.y, flake.r, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    frameId = window.requestAnimationFrame(draw);
+  };
+
+  const start = () => {
+    if (frameId || !inView || document.hidden) return;
+    lastTime = 0;
+    frameId = window.requestAnimationFrame(draw);
+  };
+
+  const stop = () => {
+    window.cancelAnimationFrame(frameId);
+    frameId = 0;
+  };
+
+  resize();
+  window.addEventListener('resize', resize);
+  document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((entries) => {
+      inView = entries[0].isIntersecting;
+      inView ? start() : stop();
+    }).observe(hero);
+  }
+
+  start();
+}
+
 function setupAddonSwipeHints() {
   const addonPanels = document.querySelectorAll('.snow-addon-panel');
   if (!addonPanels.length) return;
@@ -1501,6 +1611,7 @@ function init() {
   setupCleanupQuoteForm();
   setupDetailsAccordion();
   setupAddonSwipeHints();
+  setupWinterHero();
   setupAvailabilityModal();
   optimizeMedia();
   setupTracking();
