@@ -3739,6 +3739,13 @@ img {
   line-height: 1.55;
 }
 
+.g-review-note {
+  margin: 0;
+  color: #70757a;
+  font-size: 0.88rem;
+  font-style: italic;
+}
+
 .native-reviews-actions {
   display: flex;
   flex-wrap: wrap;
