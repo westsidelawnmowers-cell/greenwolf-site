@@ -414,3 +414,40 @@ body.is-winter .mobile-cta-btn--primary::before {
     flex: none;
   }
 }
+
+/* In-form plan picker (snow, lawn, bin cleaning quote forms). */
+.package-quick-pick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+}
+
+.package-quick-pick__btn {
+  min-height: 2.75rem;
+  padding: 0.55rem 0.95rem;
+  border: 1.5px solid rgba(15, 45, 31, 0.22);
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--forest, #0f2d1f);
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.package-quick-pick__btn:hover,
+.package-quick-pick__btn:focus-visible {
+  border-color: var(--forest, #0f2d1f);
+}
+
+.package-quick-pick__btn.is-active {
+  border-color: transparent;
+  background: var(--gold-gradient, #f2c94c);
+  box-shadow: 0 8px 18px rgba(230, 199, 110, 0.3);
+}
+
+.snow-selection-summary.needs-selection {
+  outline: 3px solid #d9534f;
+  outline-offset: 3px;
+}

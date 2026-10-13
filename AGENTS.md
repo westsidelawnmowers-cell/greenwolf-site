@@ -12,6 +12,8 @@
 
 ## Forms and verification
 
+- For a local static preview, run `python -m http.server 8765` from the site root and open `http://127.0.0.1:8765`.
+- `vercel.json` applies security headers to every route. Preserve the catch-all header rule and its frame, content-type, referrer, and permissions protections when changing deployment configuration.
 - Service forms are coupled to `script.js` through their IDs and `data-*` attributes. Preserve the form key, endpoint, contact requirements, hidden spam field, status element, and named iframe when changing a form.
 - `snow/google-apps-script-handler.gs` is the server-side reference for accepted lead fields, spreadsheet rows, email delivery, and iframe responses. Coordinate field or response-contract changes with both the page and handler.
 - There is no repository build, test, or lint command. Manually check the edited route at desktop and mobile widths, navigation and root-relative assets, CTA analytics hooks, required/contact validation, package or add-on selection where present, successful form status, and the `/thank-you` redirect.

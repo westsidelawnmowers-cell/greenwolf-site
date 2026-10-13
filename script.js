@@ -448,13 +448,41 @@ function isTrustedQuoteOrigin(origin) {
   }
 }
 
+// Classic form POST into the form's hidden iframe. Used when fetch() is blocked
+// (some in-app browsers, privacy extensions and strict networks block it).
+function submitViaIframe(form, endpoint) {
+  return new Promise((resolve, reject) => {
+    const frame = form.parentElement?.querySelector('iframe.form-submit-frame[name]')
+      || document.querySelector('iframe.form-submit-frame[name]');
+    if (!frame) {
+      reject(new Error('No submit frame'));
+      return;
+    }
+
+    const timer = window.setTimeout(() => reject(new Error('Iframe submit timed out')), 30000);
+    frame.addEventListener('load', () => {
+      window.clearTimeout(timer);
+      resolve();
+    }, { once: true });
+
+    form.action = endpoint;
+    form.method = 'post';
+    form.target = frame.name;
+    HTMLFormElement.prototype.submit.call(form);
+  });
+}
+
 async function submitFormRequest(form, endpoint) {
   const body = new URLSearchParams(new FormData(form));
-  await window.fetch(endpoint, {
-    method: 'POST',
-    mode: 'no-cors',
-    body
-  });
+  try {
+    await window.fetch(endpoint, {
+      method: 'POST',
+      mode: 'no-cors',
+      body
+    });
+  } catch (error) {
+    await submitViaIframe(form, endpoint);
+  }
 }
 
 function getContactRequirementFields(form) {
@@ -640,7 +668,7 @@ function setupHomeAssessmentForm() {
     setStatus(form.dataset.pendingMessage || 'Sending your request...', 'pending');
     resultTimer = window.setTimeout(() => {
       if (!awaitingResult) return;
-      handleResultMessage(false, 'No response came back from the quote handler. Please try again.');
+      setStatus('Still sending... this can take a few more seconds. Please keep this page open.', 'pending');
     }, 12000);
 
     window.setTimeout(async () => {
@@ -785,7 +813,9 @@ function setupSnowQuoteForm() {
 
     if (!selectedPackage) {
       setStatus('Select a snow package first so the quote includes the right plan.', 'error');
-      const top = document.getElementById('details')?.getBoundingClientRect().top + window.scrollY - 110;
+      const picker = form.querySelector('.snow-selection-summary');
+      picker?.classList.add('needs-selection');
+      const top = (picker || document.getElementById('details'))?.getBoundingClientRect().top + window.scrollY - 110;
       if (typeof top === 'number' && !Number.isNaN(top)) {
         window.scrollTo({ top, behavior: 'smooth' });
       }
@@ -859,7 +889,7 @@ function setupSnowQuoteForm() {
     setStatus('Sending your quote request...', 'pending');
     resultTimer = window.setTimeout(() => {
       if (!awaitingResult) return;
-      handleResultMessage(false, 'No response came back from the quote handler. Please try again.');
+      setStatus('Still sending... this can take a few more seconds. Please keep this page open.', 'pending');
     }, 12000);
 
     window.setTimeout(async () => {
@@ -1004,7 +1034,9 @@ function setupLawnQuoteForm() {
 
     if (!selectedPackage) {
       setStatus('Select a lawn package first so the quote includes the right plan.', 'error');
-      const top = document.getElementById('details')?.getBoundingClientRect().top + window.scrollY - 110;
+      const picker = form.querySelector('.snow-selection-summary');
+      picker?.classList.add('needs-selection');
+      const top = (picker || document.getElementById('details'))?.getBoundingClientRect().top + window.scrollY - 110;
       if (typeof top === 'number' && !Number.isNaN(top)) {
         window.scrollTo({ top, behavior: 'smooth' });
       }
@@ -1070,7 +1102,7 @@ function setupLawnQuoteForm() {
     setStatus('Sending your quote request...', 'pending');
     resultTimer = window.setTimeout(() => {
       if (!awaitingResult) return;
-      handleResultMessage(false, 'No response came back from the quote handler. Please try again.');
+      setStatus('Still sending... this can take a few more seconds. Please keep this page open.', 'pending');
     }, 12000);
 
     window.setTimeout(async () => {
@@ -1215,7 +1247,9 @@ function setupCleanupQuoteForm() {
 
     if (!selectedPackage) {
       setStatus('Select a bin cleaning package first so the quote includes the right plan.', 'error');
-      const top = document.getElementById('details')?.getBoundingClientRect().top + window.scrollY - 110;
+      const picker = form.querySelector('.snow-selection-summary');
+      picker?.classList.add('needs-selection');
+      const top = (picker || document.getElementById('details'))?.getBoundingClientRect().top + window.scrollY - 110;
       if (typeof top === 'number' && !Number.isNaN(top)) {
         window.scrollTo({ top, behavior: 'smooth' });
       }
@@ -1283,7 +1317,7 @@ function setupCleanupQuoteForm() {
     setStatus('Sending your quote request...', 'pending');
     resultTimer = window.setTimeout(() => {
       if (!awaitingResult) return;
-      handleResultMessage(false, 'No response came back from the quote handler. Please try again.');
+      setStatus('Still sending... this can take a few more seconds. Please keep this page open.', 'pending');
     }, 12000);
 
     window.setTimeout(async () => {
@@ -1714,6 +1748,52 @@ function optimizeMedia() {
   });
 }
 
+// Lets customers pick a plan right inside the quote form, so they never have to
+// scroll back up to the package cards (a missing plan used to block sending).
+function setupInFormPackagePickers() {
+  const kinds = ['snow', 'lawn', 'cleanup'];
+  kinds.forEach((kind) => {
+    const summary = document.querySelector(`[data-${kind}-selection-summary]`);
+    const cards = Array.from(document.querySelectorAll(`[data-${kind}-package-card]`));
+    if (!summary || !cards.length || summary.querySelector('.package-quick-pick')) return;
+
+    const wrap = document.createElement('div');
+    wrap.className = 'package-quick-pick';
+    wrap.setAttribute('role', 'group');
+    wrap.setAttribute('aria-label', 'Choose a plan');
+
+    const chips = cards.map((card) => {
+      const chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'package-quick-pick__btn';
+      chip.textContent = (card.dataset.packageName || 'Plan').split('|')[0].trim();
+      chip.setAttribute('aria-pressed', 'false');
+      chip.addEventListener('click', () => {
+        card.querySelector(`[data-select-${kind}-package]`)?.click();
+      });
+      wrap.appendChild(chip);
+      return chip;
+    });
+
+    const sync = () => {
+      cards.forEach((card, index) => {
+        const selected = card.classList.contains('is-selected');
+        chips[index].classList.toggle('is-active', selected);
+        chips[index].setAttribute('aria-pressed', String(selected));
+        if (selected) summary.classList.remove('needs-selection');
+      });
+    };
+    const observer = new MutationObserver(sync);
+    cards.forEach((card) => observer.observe(card, { attributes: true, attributeFilter: ['class'] }));
+
+    summary.appendChild(wrap);
+    const text = summary.querySelector('strong');
+    if (text && /above/i.test(text.textContent)) text.textContent = 'Choose a plan to continue.';
+    const note = summary.querySelector('p');
+    if (note && /after you pick/i.test(note.textContent)) note.textContent = 'Tap a plan here, or compare the full plans above. Not sure? Pick the closest one and mention it in your notes.';
+  });
+}
+
 function init() {
   setFooterYear();
   setupPageLandmarks();
@@ -1729,6 +1809,7 @@ function init() {
   setupSnowQuoteForm();
   setupLawnQuoteForm();
   setupCleanupQuoteForm();
+  setupInFormPackagePickers();
   setupDetailsAccordion();
   setupAddonSwipeHints();
   setupReviewCarousel();
