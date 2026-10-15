@@ -522,24 +522,8 @@ function setupHomeAssessmentForm() {
   const formKey = form.dataset.formKey || 'home-assessment';
   const iframeTarget = 'home-assessment-submit-frame';
   const serviceInterestInput = form.querySelector('[name="serviceInterest"]');
-  const snowNeighborhoodInput = form.querySelector('[data-snow-neighborhood]');
-  const neighborhoodRequirement = form.querySelector('[data-neighborhood-requirement]');
   let awaitingResult = false;
   let resultTimer = null;
-
-  const syncSnowNeighborhoodRequirement = () => {
-    if (!serviceInterestInput || !snowNeighborhoodInput) return;
-
-    const snowSelected = serviceInterestInput.value === 'Snow Removal 2026-27';
-    snowNeighborhoodInput.required = snowSelected;
-    snowNeighborhoodInput.setAttribute('aria-required', String(snowSelected));
-    if (neighborhoodRequirement) {
-      neighborhoodRequirement.textContent = snowSelected ? 'Required for snow' : 'Optional unless requesting snow';
-    }
-  };
-
-  serviceInterestInput?.addEventListener('change', syncSnowNeighborhoodRequirement);
-  syncSnowNeighborhoodRequirement();
 
   const setStatus = (message, state = '') => {
     if (!status) return;
