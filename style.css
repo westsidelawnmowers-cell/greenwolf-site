@@ -3746,6 +3746,57 @@ img {
   font-style: italic;
 }
 
+/* Floating back-to-top button; setupBackToTop() toggles .is-active past 380px of scroll.
+   Hidden at mobile widths, where the fixed CTA bar already owns the bottom edge. */
+.back-to-top {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 60;
+  width: 2.9rem;
+  height: 2.9rem;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid rgba(15, 45, 31, 0.14);
+  border-radius: 50%;
+  background: #ffffff;
+  color: var(--forest);
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(15, 45, 31, 0.18);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0.75rem);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s, background 0.18s ease;
+}
+
+.back-to-top.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition-delay: 0s;
+}
+
+.back-to-top:hover,
+.back-to-top:focus-visible {
+  background: #f3f8f1;
+}
+
+@media (max-width: 960px) {
+  .back-to-top {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back-to-top {
+    transition: none;
+  }
+}
+
 .native-reviews-actions {
   display: flex;
   flex-wrap: wrap;
