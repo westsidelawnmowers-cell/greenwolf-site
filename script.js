@@ -672,11 +672,8 @@ function setupSnowQuoteForm() {
 
   const packageCards = Array.from(document.querySelectorAll('[data-snow-package-card]'));
   const packageButtons = Array.from(document.querySelectorAll('[data-select-snow-package]'));
-  const addonPanel = form.querySelector('[data-snow-addon-panel]');
-  const selectionSummary = form.querySelector('[data-snow-selection-summary]');
-  const selectionText = form.querySelector('[data-selected-package-text]');
-  const selectionState = form.querySelector('[data-selected-package-state]');
-  const selectionNote = form.querySelector('[data-selected-package-note]');
+  const planChoice = form.querySelector('[data-snow-plan-choice]');
+  const planRadios = Array.from(form.querySelectorAll('input[name="snowPlan"]'));
   const status = form.querySelector('[data-form-status]');
   const submitButton = form.querySelector('button[type="submit"]');
   const endpoint = form.dataset.formEndpoint || '';
@@ -721,55 +718,45 @@ function setupSnowQuoteForm() {
     setStatus(message || 'The form could not be confirmed. Please try again or call/text us.', 'error');
   };
 
-  const selectSnowPackage = (card) => {
-    if (!card) return;
-
-    selectedPackage = {
-      name: card.dataset.packageName || '',
-      frequency: card.dataset.packageFrequency || ''
-    };
-
-    packageCards.forEach((item) => item.classList.toggle('is-selected', item === card));
-    packageButtons.forEach((button) => {
-      const parentCard = button.closest('[data-snow-package-card]');
-      button.textContent = parentCard === card ? 'Selected' : 'Select this plan';
+  // The plan lives in the form as a radio pair; the plan cards above just pre-select one.
+  const syncSelectedPlan = () => {
+    const checked = planRadios.find((radio) => radio.checked);
+    selectedPackage = checked
+      ? { name: checked.value, frequency: checked.dataset.planFrequency || checked.value.toUpperCase() }
+      : null;
+    packageCards.forEach((card) => {
+      card.classList.toggle('is-selected', Boolean(selectedPackage) && card.dataset.packageName === selectedPackage.name);
     });
-
-    if (selectionText) {
-      selectionText.textContent = `${selectedPackage.name} | ${selectedPackage.frequency}`;
-    }
-
-    if (selectionState) {
-      selectionState.textContent = 'Locked in';
-    }
-
-    if (selectionNote) {
-      selectionNote.textContent = 'This package will be included in your quote unless you change it above.';
-    }
-
-    if (selectionSummary) {
-      selectionSummary.classList.add('is-active');
-    }
-
-    if (addonPanel) {
-      addonPanel.hidden = false;
-    }
-
-    const top = form.getBoundingClientRect().top + window.scrollY - 110;
-    window.scrollTo({ top, behavior: 'smooth' });
-    emitAnalyticsEvent('snow_package_select', {
-      page: getPageKey(),
-      package_name: selectedPackage.name,
-      package_frequency: selectedPackage.frequency
-    });
+    if (selectedPackage) planChoice?.classList.remove('needs-selection');
   };
+
+  planRadios.forEach((radio) => {
+    radio.addEventListener('change', () => {
+      syncSelectedPlan();
+      if (!selectedPackage) return;
+      emitAnalyticsEvent('snow_package_select', {
+        page: getPageKey(),
+        package_name: selectedPackage.name,
+        package_frequency: selectedPackage.frequency
+      });
+    });
+  });
 
   packageButtons.forEach((button) => {
     button.addEventListener('click', () => {
       const card = button.closest('[data-snow-package-card]');
-      selectSnowPackage(card);
+      const radio = planRadios.find((input) => input.value === card?.dataset.packageName);
+      if (radio && !radio.checked) {
+        radio.checked = true;
+        radio.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+      const top = form.getBoundingClientRect().top + window.scrollY - 110;
+      window.scrollTo({ top, behavior: 'smooth' });
+      window.setTimeout(() => form.querySelector('[name="name"]')?.focus({ preventScroll: true }), 450);
     });
   });
+
+  syncSelectedPlan();
 
   window.addEventListener('message', (event) => {
     if (!awaitingResult || !isTrustedQuoteOrigin(event.origin)) return;
@@ -795,14 +782,11 @@ function setupSnowQuoteForm() {
       return;
     }
 
+    syncSelectedPlan();
     if (!selectedPackage) {
-      setStatus('Select a snow package first so the quote includes the right plan.', 'error');
-      const picker = form.querySelector('.snow-selection-summary');
-      picker?.classList.add('needs-selection');
-      const top = (picker || document.getElementById('details'))?.getBoundingClientRect().top + window.scrollY - 110;
-      if (typeof top === 'number' && !Number.isNaN(top)) {
-        window.scrollTo({ top, behavior: 'smooth' });
-      }
+      setStatus('Please choose Full Season or Monthly first.', 'error');
+      planChoice?.classList.add('needs-selection');
+      planRadios[0]?.focus();
       return;
     }
 
@@ -843,7 +827,7 @@ function setupSnowQuoteForm() {
       .map((input) => input.value)
       .filter(Boolean);
     const compiledMessageParts = [
-      `Selected package: ${selectedPackage.name}`,
+      `Selected plan: ${selectedPackage.name}`,
       `Plan type: ${selectedPackage.frequency}`,
       propertyTypeInput?.value ? `Property type: ${propertyTypeInput.value}` : '',
       neighborhoodInput?.value ? `Neighborhood: ${neighborhoodInput.value}` : '',
