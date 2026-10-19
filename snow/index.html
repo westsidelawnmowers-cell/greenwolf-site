@@ -352,9 +352,11 @@
 
           <fieldset class="snow-plan-choice" data-snow-plan-choice>
             <legend class="form-label">Which plan do you want?</legend>
+            <span id="snow-plan-popular-note" class="visually-hidden">Most popular choice</span>
             <div class="snow-plan-options">
-              <label class="snow-plan-option">
-                <input type="radio" name="snowPlan" value="Full Season" data-plan-frequency="FULL SEASON" required />
+              <label class="snow-plan-option snow-plan-option--featured">
+                <span class="snow-plan-badge" aria-hidden="true">Most popular</span>
+                <input type="radio" name="snowPlan" value="Full Season" data-plan-frequency="FULL SEASON" required aria-describedby="snow-plan-popular-note" />
                 <span class="snow-plan-option-copy">
                   <strong>Full Season</strong>
                   <span>Nov&ndash;Mar &middot; Save 10%</span>
