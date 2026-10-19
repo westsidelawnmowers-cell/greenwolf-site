@@ -1341,7 +1341,7 @@ function setupThanksgivingGreeting() {
 // Seasonal snowfall in the hero on the homepage and snow page (Oct 1 – Apr 15).
 function setupWinterHero() {
   const path = window.location.pathname.replace(/\/+$/, '').replace(/\.html$/, '');
-  if (path !== '' && path !== '/index' && path !== '/snow') return;
+  if (path !== '' && path !== '/index' && !path.startsWith('/snow')) return;
 
   const hero = document.querySelector('.hero');
   if (!hero) return;
