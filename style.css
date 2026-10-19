@@ -3864,6 +3864,43 @@ img {
   border-color: #c0392b;
 }
 
+/* Snow price tiers (snow page + neighbourhood pages) */
+.price-tiers {
+  margin-bottom: 1.25rem;
+}
+
+.price-tier .eyebrow {
+  margin-bottom: 0.35rem;
+}
+
+.price-tier-amount {
+  margin: 0;
+  color: var(--forest);
+  font-family: 'Outfit', 'Manrope', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.price-tier-amount span {
+  margin-left: 0.15rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.price-tier-season {
+  margin: 0.35rem 0 0.6rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.price-tier-season strong {
+  color: var(--forest);
+}
+
 .form-optional {
   margin-left: 0.3rem;
   color: var(--muted);
