@@ -66,17 +66,30 @@
   "offers": [
     {
       "@type": "Offer",
-      "name": "Full Season snow removal (November 1 to March 31)",
-      "description": "One price for the winter; saves 10% compared to the monthly plan.",
+      "name": "Monthly snow removal",
+      "description": "Standard driveway, city sidewalk, front walk and steps, billed month to month.",
       "availability": "https://schema.org/InStock",
-      "url": "https://greenwolf.work/snow-removal-hampton-village#quote"
+      "url": "https://greenwolf.work/snow-removal-hampton-village#quote",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": 159,
+        "minPrice": 159,
+        "priceCurrency": "CAD",
+        "unitText": "month"
+      }
     },
     {
       "@type": "Offer",
-      "name": "Monthly snow removal",
-      "description": "Same clearing, billed month to month.",
+      "name": "Full Season snow removal (November 1 to March 31)",
+      "description": "One price for the winter; saves 10% compared to the monthly plan.",
       "availability": "https://schema.org/InStock",
-      "url": "https://greenwolf.work/snow-removal-hampton-village#quote"
+      "url": "https://greenwolf.work/snow-removal-hampton-village#quote",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": 715,
+        "minPrice": 715,
+        "priceCurrency": "CAD"
+      }
     }
   ]
 }
@@ -151,7 +164,7 @@
       "name": "What does snow removal cost in Hampton Village?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "It depends on your driveway size, how much city sidewalk you have and whether you have a corner lot. Choose Full Season (November 1 to March 31, saves 10%) or Monthly, send your address, and we reply with a price for your property."
+        "text": "From $159 per month, or from $715 for the full season (November 1 to March 31, 10% less than monthly). That covers a standard single driveway, the city sidewalk, the front walk and the front steps. Corner lots with extra sidewalk and double driveways are priced in your written quote."
       }
     },
     {
@@ -201,9 +214,9 @@
         <h1>Snow Removal in Hampton Village, Saskatoon</h1>
         <p>Hampton Village is one of three Saskatoon neighbourhoods where Green Wolf already runs a dedicated winter route, so your driveway is cleared early in the day instead of whenever a crew can get across the city.</p>
         <ul class="hero-bullets">
+          <li>Monthly from <strong>$159</strong> &middot; Full Season from <strong>$715</strong> (Nov 1 &ndash; Mar 31, saves 10%)</li>
           <li>Driveway, city sidewalk, front walk and steps every qualifying snowfall</li>
-          <li>Full Season (Nov 1 &ndash; Mar 31, saves 10%) or Monthly</li>
-          <li>Owner-operated, fully insured, 5.0&#9733; on Google</li>
+          <li>60+ driveways cleared by 4 crews across Saskatoon &middot; 5.0&#9733; on Google</li>
         </ul>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#quote" data-track="snow_hampton_hero_quote_click">Get a Snow Quote</a>
@@ -212,7 +225,7 @@
         <p class="service-photo-quote">Fastest way to a price: <a href="sms:+16395979351" data-track="snow_hampton_photo_quote_click">text your Hampton Village address and 2&ndash;3 photos</a> of the driveway, sidewalk and steps.</p>
         <div class="trust-strip" aria-label="Green Wolf trust highlights">
           <span>5.0&#9733; on Google &middot; 23 reviews</span>
-          <span>Fully insured</span>
+          <span>4 crews &middot; 60+ driveways</span>
           <span>Route already running in Hampton Village</span>
         </div>
       </div>
@@ -265,9 +278,9 @@
           </div>
           <div class="package-card-body">
             <h3 class="package-name">Full Season</h3>
-            <p class="package-price">November to March &middot; Save 10% vs. monthly</p>
+            <p class="package-price"><strong>From $715</strong> for November to March &middot; Save 10% vs. monthly</p>
             <ul class="package-list">
-              <li><strong>Saves 10%</strong> compared to paying month by month</li>
+              <li><strong>Saves 10%</strong> compared to paying $159 a month</li>
               <li>Covered November 1 to March 31</li>
               <li>Driveway, sidewalk, steps and entry cleared every qualifying snowfall</li>
               <li>Your spot on the Hampton Village route is locked in for the season</li>
@@ -286,7 +299,7 @@
           </div>
           <div class="package-card-body">
             <h3 class="package-name">Monthly</h3>
-            <p class="package-price">Pay month to month</p>
+            <p class="package-price"><strong>From $159 per month</strong> &middot; Pay month to month</p>
             <ul class="package-list">
               <li>Same clearing as full season, billed monthly</li>
               <li>Driveway, sidewalk, steps and entry cleared every qualifying snowfall</li>
@@ -376,14 +389,14 @@
                 <input type="radio" name="snowPlan" value="Full Season" data-plan-frequency="FULL SEASON" required aria-describedby="snow-plan-popular-note" />
                 <span class="snow-plan-option-copy">
                   <strong>Full Season</strong>
-                  <span>Nov&ndash;Mar &middot; Save 10%</span>
+                  <span>From $715 &middot; Nov&ndash;Mar &middot; Save 10%</span>
                 </span>
               </label>
               <label class="snow-plan-option">
                 <input type="radio" name="snowPlan" value="Monthly" data-plan-frequency="MONTHLY" required />
                 <span class="snow-plan-option-copy">
                   <strong>Monthly</strong>
-                  <span>Pay month to month</span>
+                  <span>From $159 per month</span>
                 </span>
               </label>
             </div>
@@ -448,7 +461,7 @@
         </article>
         <article class="card">
           <h3>What does snow removal cost in Hampton Village?</h3>
-          <p>It depends on your driveway size, how much city sidewalk you have and whether you have a corner lot. Choose Full Season (November 1 to March 31, saves 10%) or Monthly, send your address, and we reply with a price for your property.</p>
+          <p>From $159 per month, or from $715 for the full season (November 1 to March 31, 10% less than monthly). That covers a standard single driveway, the city sidewalk, the front walk and the front steps. Corner lots with extra sidewalk and double driveways are priced in your written quote.</p>
         </article>
         <article class="card">
           <h3>Do you clear the city sidewalk and the front steps too?</h3>

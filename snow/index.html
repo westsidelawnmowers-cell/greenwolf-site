@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>Snow Removal in Saskatoon &amp; Priority Routes | Green Wolf</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Priority 2026–27 snow-clearing routes for Hampton Village, Rosewood and Brighton. Other Saskatoon properties can request monthly or full-season route review." />
+  <meta name="description" content="Saskatoon snow removal from $159/month or $715 for the full season (Nov–Mar). Driveway, sidewalk and steps cleared every snowfall by 4 crews. Priority routes in Hampton Village, Rosewood and Brighton." />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <link rel="canonical" href="https://greenwolf.work/snow" />
   <meta property="og:type" content="website" />
@@ -72,7 +72,34 @@
       }
     ],
     "url": "https://greenwolf.work/snow",
-    "description": "Priority snow-clearing routes for Hampton Village, Rosewood and Brighton, with recurring winter route review available for other Saskatoon properties."
+    "description": "Residential and commercial snow removal across Saskatoon from $159 per month or $715 for the full season, with priority routes in Hampton Village, Rosewood and Brighton.",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Monthly snow removal",
+        "url": "https://greenwolf.work/snow#quote",
+        "availability": "https://schema.org/InStock",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": 159,
+          "priceCurrency": "CAD",
+          "unitText": "month",
+          "minPrice": 159
+        }
+      },
+      {
+        "@type": "Offer",
+        "name": "Full Season snow removal (November 1 to March 31)",
+        "url": "https://greenwolf.work/snow#quote",
+        "availability": "https://schema.org/InStock",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "price": 715,
+          "priceCurrency": "CAD",
+          "minPrice": 715
+        }
+      }
+    ]
   }
   </script>
   <script type="application/ld+json">
@@ -132,18 +159,26 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Is full season or monthly snow removal cheaper in Saskatoon?",
+        "name": "How much does snow removal cost in Saskatoon?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Full season. Green Wolf's full-season plan covers November 1 to March 31 at one price and saves 10% compared to paying the monthly rate for the same months. Monthly is for people who want to start later or keep the option to stop."
+          "text": "Green Wolf snow removal in Saskatoon starts at $159 per month, or $715 for the full season (November 1 to March 31, 10% less than paying monthly). That covers a standard single driveway, the city sidewalk, the front walk and the front steps, cleared after every qualifying snowfall. A written quote confirms the exact price for your property."
         }
       },
       {
         "@type": "Question",
-        "name": "Why is there no single snow removal price?",
+        "name": "Is full season or monthly snow removal cheaper in Saskatoon?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Driveway size, sidewalk length, steps, back entries and corner-lot frontage all change the work. Your quote is based on the property you want cleared, on the plan you pick: full season or monthly."
+          "text": "Full season. Five months at $159 would be $795; Green Wolf's full-season plan is from $715 for November 1 to March 31, a 10% saving. Monthly is for people who want to start later or keep the option to stop."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What changes the price of snow removal?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A double or extended driveway, a corner lot with extra city sidewalk, a back or side entrance, a rear parking pad, or ice melt. Each is priced in the written quote, not added later."
         }
       },
       {
@@ -199,11 +234,11 @@
       <div>
         <p class="eyebrow">Priority routes and Saskatoon route review for winter 2026–27</p>
         <h1>Snow Removal in Saskatoon</h1>
-        <p>Monthly and full-season snow contracts for homes and businesses across Saskatoon. Routes already running in Hampton Village, Rosewood and Brighton.</p>
+        <p>Monthly snow clearing from <strong>$159 per month</strong>, or save 10% with a full-season plan. Four crews clearing 60+ driveways across Saskatoon, with routes already running in Hampton Village, Rosewood and Brighton.</p>
         <ul class="hero-bullets">
-          <li>Serving all Saskatoon neighbourhoods</li>
-          <li>Full-season and monthly contracts are the priority</li>
-          <li>Visit updates available when included in your quote</li>
+          <li>Monthly from $159 &middot; Full Season from $715 (Nov 1 &ndash; Mar 31)</li>
+          <li>Driveway, city sidewalk, front walk and steps every qualifying snowfall</li>
+          <li>60+ driveways cleared by 4 crews, all of Saskatoon</li>
         </ul>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#quote" data-track="snow_hero_quote_click">Get a Snow Quote</a>
@@ -255,9 +290,9 @@
           </div>
           <div class="package-card-body">
             <h3 class="package-name">Full Season</h3>
-            <p class="package-price">November to March &middot; Save 10% vs. monthly</p>
+            <p class="package-price"><strong>From $715</strong> for November to March &middot; Save 10% vs. monthly</p>
             <ul class="package-list">
-              <li><strong>Saves 10%</strong> compared to paying month by month</li>
+              <li><strong>Saves 10%</strong> compared to paying $159 a month</li>
               <li>Covered November 1 to March 31</li>
               <li>Driveway, sidewalk, steps and entry cleared every qualifying snowfall</li>
               <li>Your spot on the route is locked in for the season</li>
@@ -276,7 +311,7 @@
           </div>
           <div class="package-card-body">
             <h3 class="package-name">Monthly</h3>
-            <p class="package-price">Pay month to month</p>
+            <p class="package-price"><strong>From $159 per month</strong> &middot; Pay month to month</p>
             <ul class="package-list">
               <li>Same clearing as full season, billed monthly</li>
               <li>Driveway, sidewalk, steps and entry cleared every qualifying snowfall</li>
@@ -359,14 +394,14 @@
                 <input type="radio" name="snowPlan" value="Full Season" data-plan-frequency="FULL SEASON" required aria-describedby="snow-plan-popular-note" />
                 <span class="snow-plan-option-copy">
                   <strong>Full Season</strong>
-                  <span>Nov&ndash;Mar &middot; Save 10%</span>
+                  <span>From $715 &middot; Nov&ndash;Mar &middot; Save 10%</span>
                 </span>
               </label>
               <label class="snow-plan-option">
                 <input type="radio" name="snowPlan" value="Monthly" data-plan-frequency="MONTHLY" required />
                 <span class="snow-plan-option-copy">
                   <strong>Monthly</strong>
-                  <span>Pay month to month</span>
+                  <span>From $159 per month</span>
                 </span>
               </label>
             </div>
@@ -419,12 +454,12 @@
   <section class="section alt-section" aria-labelledby="snow-quote-questions-title">
     <div class="container">
       <p class="eyebrow">Straight answers before you request a quote</p>
-      <h2 id="snow-quote-questions-title">How Green Wolf prices snow service</h2>
-      <p class="section-lead">A low advertised price is not useful if it leaves out part of your property. Green Wolf reviews the actual clearing area and puts the agreed scope in writing.</p>
+      <h2 id="snow-quote-questions-title">How much does snow removal cost in Saskatoon?</h2>
+      <p class="section-lead">Green Wolf starts at <strong>$159 per month</strong>, or <strong>$715 for the full season</strong> (November 1 to March 31, 10% less than paying monthly). That covers a standard single driveway, the city sidewalk, the front walk and the front steps. Your written quote confirms the exact price for your property.</p>
       <div class="card-grid">
         <article class="card">
-          <h3>Why is there no single snow price?</h3>
-          <p>Driveway size, sidewalk length, steps, back entries and corner-lot frontage all change the work. Your quote is based on the property you want cleared, on the plan you pick.</p>
+          <h3>What changes the price?</h3>
+          <p>A double or extended driveway, a corner lot with extra city sidewalk, a back or side entrance, a rear parking pad, or ice melt. Each is priced in your quote, not added later.</p>
         </article>
         <article class="card">
           <h3>What should I send for an accurate quote?</h3>
@@ -432,7 +467,7 @@
         </article>
         <article class="card">
           <h3>Is full season or monthly cheaper?</h3>
-          <p>Full season. It covers November 1 to March 31 at one price and saves 10% compared to paying the monthly rate for the same months. Monthly is for people who want to start later or keep the option to stop.</p>
+          <p>Full season. Five months at $159 would be $795; the full-season plan is from $715 for November 1 to March 31, a 10% saving. Monthly is for people who want to start later or keep the option to stop.</p>
         </article>
         <article class="card">
           <h3>Do you serve my part of Saskatoon?</h3>
