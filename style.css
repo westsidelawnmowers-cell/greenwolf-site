@@ -3864,6 +3864,36 @@ img {
   border-color: #c0392b;
 }
 
+.snow-price-preview {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(30, 106, 58, 0.24);
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(229, 243, 232, 0.9), rgba(255, 255, 255, 0.96));
+  color: var(--forest);
+}
+
+.snow-price-preview__label {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.snow-price-preview strong {
+  font-family: 'Outfit', 'Manrope', sans-serif;
+  font-size: 1.35rem;
+  line-height: 1.1;
+}
+
+.snow-price-preview span:last-child {
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
 /* Snow price tiers (snow page + neighbourhood pages) */
 .price-tiers {
   margin-bottom: 1.25rem;

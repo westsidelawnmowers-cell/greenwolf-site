@@ -426,13 +426,19 @@
               <span class="form-label">Which property setup fits best?</span>
               <select class="form-input" name="propertyLayout" required>
                 <option value="" selected disabled>Select one</option>
-                <option value="Townhouse or small home — no driveway ($159/month)">Townhouse or small home — no driveway ($159/month)</option>
-                <option value="Single-car driveway (from $219/month)">Single-car driveway (from $219/month)</option>
-                <option value="Double-car driveway (from $249/month)">Double-car driveway (from $249/month)</option>
+                <option value="Townhouse or small home — no driveway ($159/month)" data-monthly-price="$159/month" data-season-price="$715">Townhouse or small home — no driveway ($159/month)</option>
+                <option value="Single-car driveway (from $219/month)" data-monthly-price="$219/month" data-season-price="$985">Single-car driveway (from $219/month)</option>
+                <option value="Double-car driveway (from $249/month)" data-monthly-price="$249/month" data-season-price="$1,120">Double-car driveway (from $249/month)</option>
                 <option value="Extended driveway, corner lot, or extra areas">Extended driveway, corner lot, or extra areas</option>
                 <option value="Not sure — please review my address or photos">Not sure — please review my address or photos</option>
               </select>
             </label>
+
+            <div class="snow-price-preview" data-snow-price-preview hidden aria-live="polite">
+              <span class="snow-price-preview__label">Your selected starting price</span>
+              <strong data-snow-price-preview-amount></strong>
+              <span data-snow-price-preview-detail></span>
+            </div>
 
             <label class="form-field form-field--full">
               <span class="form-label">Email <span class="form-optional">Optional</span></span>
@@ -450,7 +456,7 @@
             <a class="btn btn-outline" href="tel:+16395979351">Call Instead</a>
           </div>
 
-          <p class="form-footnote">We reply within one business day. Serving all Saskatoon neighbourhoods.</p>
+          <p class="form-footnote">Starting prices are for standard properties; your written quote confirms the final price. We reply within one business day. Serving all Saskatoon neighbourhoods.</p>
           <p class="form-status" data-form-status aria-live="polite"></p>
         </form>
         <iframe

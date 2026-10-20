@@ -674,6 +674,10 @@ function setupSnowQuoteForm() {
   const packageButtons = Array.from(document.querySelectorAll('[data-select-snow-package]'));
   const planChoice = form.querySelector('[data-snow-plan-choice]');
   const planRadios = Array.from(form.querySelectorAll('input[name="snowPlan"]'));
+  const propertyLayoutInput = form.querySelector('[name="propertyLayout"]');
+  const pricePreview = form.querySelector('[data-snow-price-preview]');
+  const pricePreviewAmount = form.querySelector('[data-snow-price-preview-amount]');
+  const pricePreviewDetail = form.querySelector('[data-snow-price-preview-detail]');
   const status = form.querySelector('[data-form-status]');
   const submitButton = form.querySelector('button[type="submit"]');
   const endpoint = form.dataset.formEndpoint || '';
@@ -698,6 +702,24 @@ function setupSnowQuoteForm() {
     }
     form.classList.remove('is-submitting');
     submitButton.disabled = false;
+  };
+
+  const updatePricePreview = () => {
+    const selectedOption = propertyLayoutInput?.options[propertyLayoutInput.selectedIndex];
+    const monthlyPrice = selectedOption?.dataset.monthlyPrice;
+    const seasonPrice = selectedOption?.dataset.seasonPrice;
+
+    if (!pricePreview || !pricePreviewAmount || !pricePreviewDetail || !monthlyPrice || !seasonPrice || !selectedPackage) {
+      if (pricePreview) pricePreview.hidden = true;
+      return;
+    }
+
+    const fullSeason = selectedPackage.name === 'Full Season';
+    pricePreviewAmount.textContent = fullSeason ? `${seasonPrice} full season` : `From ${monthlyPrice}`;
+    pricePreviewDetail.textContent = fullSeason
+      ? 'November 1 to March 31 · includes unlimited qualifying-snowfall visits'
+      : 'Includes unlimited qualifying-snowfall visits';
+    pricePreview.hidden = false;
   };
 
   const handleResultMessage = (success, message) => {
@@ -728,6 +750,7 @@ function setupSnowQuoteForm() {
       card.classList.toggle('is-selected', Boolean(selectedPackage) && card.dataset.packageName === selectedPackage.name);
     });
     if (selectedPackage) planChoice?.classList.remove('needs-selection');
+    updatePricePreview();
   };
 
   planRadios.forEach((radio) => {
@@ -741,6 +764,8 @@ function setupSnowQuoteForm() {
       });
     });
   });
+
+  propertyLayoutInput?.addEventListener('change', updatePricePreview);
 
   packageButtons.forEach((button) => {
     button.addEventListener('click', () => {
@@ -806,7 +831,6 @@ function setupSnowQuoteForm() {
     const preferredReplyInput = form.querySelector('[name="preferredReply"]');
     const neighborhoodInput = form.querySelector('[name="neighborhood"]');
     const clearingAreasInput = form.querySelector('[name="clearingAreas"]');
-    const propertyLayoutInput = form.querySelector('[name="propertyLayout"]');
     const propertyTypeInput = form.querySelector('[name="propertyType"]');
     const notesInput = form.querySelector('[name="notes"]');
     const messageInput = form.querySelector('[name="message"]');
