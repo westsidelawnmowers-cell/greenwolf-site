@@ -717,8 +717,8 @@ function setupSnowQuoteForm() {
     const fullSeason = selectedPackage.name === 'Full Season';
     pricePreviewAmount.textContent = fullSeason ? `${seasonPrice} full season` : `From ${monthlyPrice}`;
     pricePreviewDetail.textContent = fullSeason
-      ? 'November 1 to March 31 · includes unlimited qualifying-snowfall visits'
-      : 'Includes unlimited qualifying-snowfall visits';
+      ? 'November 1 to March 31 · unlimited visits, cleared within 24 hours of every 2 cm snowfall'
+      : 'Unlimited visits, cleared within 24 hours of every 2 cm snowfall';
     pricePreview.hidden = false;
   };
 
