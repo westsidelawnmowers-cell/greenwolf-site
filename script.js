@@ -297,8 +297,7 @@ function setupConsistentNavigation() {
     ['Snow', '/snow'],
     ['Landscaping', '/landscaping'],
     ['Gallery', '/gallery'],
-    ['Contact', '/about-us#contact-page'],
-    ['Client Portal', 'https://clienthub.getjobber.com/client_hubs/309320be-1d48-4310-a545-7a08dd1adf4f/login/new?source=share_login']
+    ['Contact', '/about-us#contact-page']
   ];
   const currentPath = window.location.pathname.replace(/\/+$/, '') || '/';
 
@@ -393,8 +392,6 @@ function setupTracking() {
       emitAnalyticsEvent('call_click', { page: getPageKey(), label });
     } else if (href.startsWith('sms:')) {
       emitAnalyticsEvent('text_click', { page: getPageKey(), label });
-    } else if (href.includes('clienthub.getjobber.com')) {
-      emitAnalyticsEvent('client_portal_click', { page: getPageKey(), label });
     } else if (href.includes('#quote')) {
       emitAnalyticsEvent('quote_click', { page: getPageKey(), label });
     } else if (href.includes('#services')) {
